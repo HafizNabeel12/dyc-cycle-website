@@ -88,7 +88,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             {/* Logo */}
             <div className="text-3xl font-bold mb-6">
-              DYU<span className="text-blue-400">CYCLE</span>
+              DYU<span className="text-yellow-400">CYCLE</span>
             </div>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
@@ -99,15 +99,15 @@ const Footer = () => {
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-blue-400" />
+                <Phone className="w-5 h-5 text-yellow-400" />
                 <span>1-800-DYU-BIKE (398-2453)</span>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-blue-400" />
+                <Mail className="w-5 h-5 text-yellow-400" />
                 <span>support@dyucycle.com</span>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-blue-400 mt-0.5" />
+                <MapPin className="w-5 h-5 text-yellow-400 mt-0.5" />
                 <span>123 Innovation Drive<br />Tech City, TC 12345</span>
               </div>
             </div>
@@ -155,17 +155,17 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex items-center gap-4">
-              <div className="bg-blue-600 p-3 rounded-full">
+              <div className="bg-yellow-600 p-3 rounded-full">
                 <Truck className="w-6 h-6" />
               </div>
               <div>
                 <h4 className="font-semibold">Free Shipping</h4>
-                <p className="text-gray-400 text-sm">On all orders over $299</p>
+                <p className="text-yellow-400 text-sm">On all orders over $299</p>
               </div>
             </div>
             
             <div className="flex items-center gap-4">
-              <div className="bg-green-600 p-3 rounded-full">
+              <div className="bg-yellow-600 p-3 rounded-full">
                 <Shield className="w-6 h-6" />
               </div>
               <div>
@@ -175,7 +175,7 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center gap-4">
-              <div className="bg-purple-600 p-3 rounded-full">
+              <div className="bg-yellow-600 p-3 rounded-full">
                 <CreditCard className="w-6 h-6" />
               </div>
               <div>
@@ -214,7 +214,7 @@ const Footer = () => {
                   placeholder="Your email"
                   className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500"
                 />
-                <button className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg transition-colors">
+                <button className="bg-yellow-600 hover:bg-gray-700 px-6 py-2 rounded-lg transition-colors">
                   Subscribe
                 </button>
               </div>
@@ -230,9 +230,9 @@ const Footer = () => {
             <a href="/terms" className="hover:text-white ml-1">Terms of Service</a>
           </div>
           
-          <div className="text-gray-400 text-sm">
+          {/* <div className="text-gray-400 text-sm">
             Made with ❤️ for students worldwide
-          </div>
+          </div> */}
         </div>
       </div>
 

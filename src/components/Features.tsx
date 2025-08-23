@@ -18,11 +18,11 @@ const Features = () => {
   const mainFeatures = [
     {
       id: '1',
-      icon: <Battery className="w-12 h-12 text-green-500" />,
+      icon: <Battery className="w-12 h-12 text-yellow-500" />,
       title: 'Long-Lasting Battery',
       description: 'Up to 40+ miles on a single charge with our advanced lithium-ion battery technology.',
       stats: '40+ Miles Range',
-      gradient: 'from-green-400 to-emerald-600'
+      bgColor: 'bg-black'
     },
     {
       id: '2',
@@ -30,44 +30,44 @@ const Features = () => {
       title: 'Lightning Fast',
       description: 'Reach speeds up to 28 MPH with our powerful electric motor system.',
       stats: '28 MPH Top Speed',
-      gradient: 'from-yellow-400 to-orange-600'
+      bgColor: 'bg-gray-800'
     },
     {
       id: '3',
-      icon: <Bike className="w-12 h-12 text-blue-500" />,
+      icon: <Bike className="w-12 h-12 text-yellow-500" />,
       title: 'Ultra Portable',
       description: 'Foldable design that fits in tight spaces - perfect for dorms and apartments.',
       stats: 'Compact & Foldable',
-      gradient: 'from-blue-400 to-purple-600'
+      bgColor: 'bg-black'
     },
     {
       id: '4',
-      icon: <Shield className="w-12 h-12 text-purple-500" />,
+      icon: <Shield className="w-12 h-12 text-yellow-500" />,
       title: 'Safety First',
       description: 'Advanced braking system, LED lights, and reflective materials for maximum safety.',
       stats: '360° Safety Features',
-      gradient: 'from-purple-400 to-pink-600'
+      bgColor: 'bg-gray-800'
     }
   ];
 
   const additionalFeatures = [
     {
-      icon: <Award className="w-8 h-8 text-blue-600" />,
+      icon: <Award className="w-8 h-8 text-yellow-500" />,
       title: 'Premium Quality',
       description: 'Made with aircraft-grade aluminum and premium components.'
     },
     {
-      icon: <Wrench className="w-8 h-8 text-green-600" />,
+      icon: <Wrench className="w-8 h-8 text-yellow-500" />,
       title: 'Easy Assembly',
       description: '10-20 minutes setup with included tools and video guide.'
     },
     {
-      icon: <Truck className="w-8 h-8 text-purple-600" />,
+      icon: <Truck className="w-8 h-8 text-yellow-500" />,
       title: 'Free Shipping',
       description: 'Fast delivery within 7 business days, completely free.'
     },
     {
-      icon: <Clock className="w-8 h-8 text-orange-600" />,
+      icon: <Clock className="w-8 h-8 text-yellow-500" />,
       title: '24/7 Support',
       description: 'Round-the-clock customer service and technical support.'
     }
@@ -83,19 +83,17 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 bg-white border border-gray-200 text-black px-4 py-2 rounded-full text-sm font-medium mb-4">
             <CheckCircle className="w-4 h-4" />
             Why Choose DYU
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
             Built For
-            <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Student Life
-            </span>
+            <span className="block text-yellow-500">Student Life</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Every DYU e-bike is engineered with students in mind - combining performance, portability, and affordability.
@@ -107,14 +105,14 @@ const Features = () => {
           {mainFeatures.map((feature, index) => (
             <div
               key={feature.id}
-              className={`group relative bg-gradient-to-br ${feature.gradient} p-8 rounded-3xl text-white transform hover:scale-105 transition-all duration-300 hover:shadow-2xl`}
+              className={`group relative ${feature.bgColor} p-8 rounded-3xl text-white transform hover:scale-105 transition-all duration-300 hover:shadow-2xl`}
               style={{
                 animationDelay: `${index * 100}ms`
               }}
             >
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-4 right-4 w-20 h-20 border-2 border-white rounded-full"></div>
+                <div className="absolute top-4 right-4 w-20 h-20 border-2 border-yellow-500 rounded-full"></div>
                 <div className="absolute bottom-4 left-4 w-16 h-16 border-2 border-white rounded-full"></div>
               </div>
               
@@ -123,11 +121,11 @@ const Features = () => {
                   {feature.icon}
                 </div>
                 <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
-                <p className="text-white text-opacity-90 mb-4 leading-relaxed">
+                <p className="text-gray-300 mb-4 leading-relaxed">
                   {feature.description}
                 </p>
-                <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-4 py-2 inline-block">
-                  <span className="text-sm font-medium">{feature.stats}</span>
+                <div className="bg-yellow-500 text-black rounded-full px-4 py-2 inline-block">
+                  <span className="text-sm font-bold">{feature.stats}</span>
                 </div>
               </div>
             </div>
@@ -135,9 +133,9 @@ const Features = () => {
         </div>
 
         {/* Additional Features */}
-        <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-3xl p-8 md:p-12 mb-20">
+        <div className="bg-white rounded-3xl p-8 md:p-12 mb-20 shadow-lg">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h3 className="text-3xl md:text-4xl font-bold text-black mb-4">
               Everything You Need
             </h3>
             <p className="text-lg text-gray-600">
@@ -149,12 +147,12 @@ const Features = () => {
             {additionalFeatures.map((feature, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="bg-gray-50 rounded-2xl p-6 hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 border border-gray-200"
               >
                 <div className="mb-4">
                   {feature.icon}
                 </div>
-                <h4 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h4>
+                <h4 className="text-lg font-bold text-black mb-2">{feature.title}</h4>
                 <p className="text-gray-600 text-sm">{feature.description}</p>
               </div>
             ))}
@@ -165,11 +163,11 @@ const Features = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Content */}
           <div>
-            <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-yellow-100 text-black px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Users className="w-4 h-4" />
               Trusted by Students
             </div>
-            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h3 className="text-3xl md:text-4xl font-bold text-black mb-6">
               Join Thousands of Happy Students
             </h3>
             <p className="text-lg text-gray-600 mb-8">
@@ -180,8 +178,8 @@ const Features = () => {
             <div className="space-y-4">
               {whyChooseUs.map((item, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center">
-                    <CheckCircle className="w-4 h-4 text-white" />
+                  <div className="flex-shrink-0 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
+                    <CheckCircle className="w-4 h-4 text-black" />
                   </div>
                   <span className="text-gray-700">{item}</span>
                 </div>
@@ -191,34 +189,34 @@ const Features = () => {
 
           {/* Right Side - Visual */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl p-8 text-white">
+            <div className="bg-black rounded-3xl p-8 text-white">
               {/* Replace with actual image */}
-              <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-8 mb-6">
+              <div className="bg-gray-800 rounded-2xl p-8 mb-6">
                 <div className="text-center">
-                  <Bike className="w-24 h-24 mx-auto text-white mb-4" />
-                  <div className="text-3xl font-bold mb-2">50,000+</div>
-                  <div className="text-white text-opacity-90">Happy Students</div>
+                  <Bike className="w-24 h-24 mx-auto text-yellow-500 mb-4" />
+                  <div className="text-3xl font-bold mb-2 text-yellow-500">50,000+</div>
+                  <div className="text-gray-300">Happy Students</div>
                 </div>
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold mb-1">4.9★</div>
-                  <div className="text-sm text-white text-opacity-90">Rating</div>
+                <div className="bg-gray-800 rounded-xl p-4 text-center">
+                  <div className="text-2xl font-bold mb-1 text-yellow-500">4.9★</div>
+                  <div className="text-sm text-gray-300">Rating</div>
                 </div>
-                <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-4 text-center">
+                <div className="bg-gray-800 rounded-xl p-4 text-center">
                   <div className="text-2xl font-bold mb-1">40+</div>
-                  <div className="text-sm text-white text-opacity-90">Miles Range</div>
+                  <div className="text-sm text-gray-300">Miles Range</div>
                 </div>
               </div>
             </div>
             
             {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
-              <Award className="w-10 h-10 text-yellow-800" />
+            <div className="absolute -top-4 -right-4 w-20 h-20 bg-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+              <Award className="w-10 h-10 text-black" />
             </div>
-            <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-green-400 rounded-full flex items-center justify-center shadow-lg">
-              <CheckCircle className="w-8 h-8 text-green-800" />
+            <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center shadow-lg">
+              <CheckCircle className="w-8 h-8 text-yellow-500" />
             </div>
           </div>
         </div>

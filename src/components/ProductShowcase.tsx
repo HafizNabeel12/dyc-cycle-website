@@ -108,17 +108,17 @@ const ProductShowcase = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <div className="inline-flex items-center gap-2 bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Bike className="w-4 h-4" />
             Featured E-Bikes
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
             Choose Your Perfect
-            <span className="block text-blue-600">Study Companion</span>
+            <span className="block text-yellow-500">Study Companion</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             From budget-friendly options to premium performance bikes, find the perfect e-bike for your campus lifestyle.
@@ -133,7 +133,7 @@ const ProductShowcase = () => {
               onClick={() => setActiveFilter(filter.key)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                 activeFilter === filter.key
-                  ? 'bg-blue-600 text-white shadow-lg'
+                  ? 'bg-yellow-500 text-black shadow-lg'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
@@ -147,17 +147,17 @@ const ProductShowcase = () => {
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
               {/* Product Image */}
-              <div className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+              <div className="relative h-64 bg-gray-100 overflow-hidden">
                 {/* Replace with actual product image */}
                 <div className="w-full h-full flex items-center justify-center text-gray-400">
                   <Bike className="w-24 h-24" />
                 </div>
                 
                 {/* Badge */}
-                <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                <div className="absolute top-4 left-4 bg-yellow-500 text-black px-3 py-1 rounded-full text-sm font-bold">
                   {product.badge}
                 </div>
                 
@@ -177,7 +177,7 @@ const ProductShowcase = () => {
 
                 {/* Quick Actions */}
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <button className="bg-white text-gray-900 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors">
+                  <button className="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors">
                     Quick View
                   </button>
                 </div>
@@ -193,7 +193,7 @@ const ProductShowcase = () => {
                         key={i}
                         className={`w-4 h-4 ${
                           i < Math.floor(product.rating)
-                            ? 'text-yellow-400 fill-yellow-400'
+                            ? 'text-yellow-500 fill-yellow-500'
                             : 'text-gray-300'
                         }`}
                       />
@@ -205,7 +205,7 @@ const ProductShowcase = () => {
                 </div>
 
                 {/* Product Name */}
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{product.name}</h3>
+                <h3 className="text-xl font-bold text-black mb-2">{product.name}</h3>
                 
                 {/* Description */}
                 <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
@@ -214,9 +214,9 @@ const ProductShowcase = () => {
                 <div className="space-y-2 mb-4">
                   {product.features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-2 text-sm text-gray-700">
-                      {index === 0 && <Battery className="w-4 h-4 text-green-500" />}
-                      {index === 1 && <Zap className="w-4 h-4 text-blue-500" />}
-                      {index === 2 && <Bike className="w-4 h-4 text-purple-500" />}
+                      {index === 0 && <Battery className="w-4 h-4 text-yellow-500" />}
+                      {index === 1 && <Zap className="w-4 h-4 text-gray-600" />}
+                      {index === 2 && <Bike className="w-4 h-4 text-black" />}
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -225,12 +225,12 @@ const ProductShowcase = () => {
                 {/* Price and CTA */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-gray-900">{product.price}</span>
+                    <span className="text-2xl font-bold text-black">{product.price}</span>
                     {product.originalPrice && (
                       <span className="text-lg text-gray-500 line-through">{product.originalPrice}</span>
                     )}
                   </div>
-                  <button className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                  <button className="flex items-center gap-2 bg-yellow-500 text-black px-6 py-2 rounded-full font-bold hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105">
                     <ShoppingCart className="w-4 h-4" />
                     Add to Cart
                   </button>
@@ -243,7 +243,7 @@ const ProductShowcase = () => {
         {/* Bottom CTA */}
         <div className="text-center mt-16">
           <p className="text-gray-600 mb-6">Can't decide? Get personalized recommendations!</p>
-          <button className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+          <button className="bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-900 transition-all duration-300 transform hover:scale-105">
             Find My Perfect E-Bike
           </button>
         </div>
