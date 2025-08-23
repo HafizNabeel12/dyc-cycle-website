@@ -111,7 +111,7 @@ const Testimonials = () => {
             <span className="block text-yellow-500">Are Saying</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Don't just take our word for it - hear from thousands of students who have made DYU their campus companion.
+            Don&apos;t just take our word for it - hear from thousands of students who have made DYU their campus companion.
           </p>
         </div>
 
@@ -154,7 +154,7 @@ const Testimonials = () => {
 
                         {/* Comment */}
                         <blockquote className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                          "{testimonial.comment}"
+                          {testimonial.comment}
                         </blockquote>
 
                         {/* Author Info */}

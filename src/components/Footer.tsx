@@ -93,7 +93,7 @@ const Footer = () => {
             
             <p className="text-gray-300 mb-6 leading-relaxed">
               Empowering students with premium, affordable e-bikes designed for campus life. 
-              Join over 50,000 students who've made DYU their trusted campus companion.
+              Join over 50,000 students who&apos;ve made DYU their trusted campus companion.
             </p>
 
             {/* Contact Info */}

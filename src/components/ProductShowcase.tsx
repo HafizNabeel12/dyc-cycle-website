@@ -242,7 +242,7 @@ const ProductShowcase = () => {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <p className="text-gray-600 mb-6">Can't decide? Get personalized recommendations!</p>
+          <p className="text-gray-600 mb-6">Can&apos;t decide? Get personalized recommendations!</p>
           <button className="bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-900 transition-all duration-300 transform hover:scale-105">
             Find My Perfect E-Bike
           </button>

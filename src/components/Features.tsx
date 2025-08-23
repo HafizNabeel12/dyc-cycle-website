@@ -139,7 +139,7 @@ const Features = () => {
               Everything You Need
             </h3>
             <p className="text-lg text-gray-600">
-              We've thought of every detail to make your e-bike experience perfect
+              We&apos;ve thought of every detail to make your e-bike experience perfect
             </p>
           </div>
           
@@ -172,7 +172,7 @@ const Features = () => {
             </h3>
             <p className="text-lg text-gray-600 mb-8">
               DYU e-bikes have become the preferred choice for students across the globe. 
-              Here's why they trust us with their daily commute.
+              Here&apos;s why they trust us with their daily commute.
             </p>
             
             <div className="space-y-4">

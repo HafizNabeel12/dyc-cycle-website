@@ -73,14 +73,14 @@ const CallToAction = () => {
           </div>
 
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Don't Miss Out on the
+            Don&apos;t Miss Out on the
             <span className="block text-yellow-500">
               Biggest Sale of the Year!
             </span>
           </h2>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Join over 50,000 students who've already transformed their campus experience with DYU e-bikes.
+            Join over 50,000 students who&apos;ve already transformed their campus experience with DYU e-bikes.
           </p>
 
           {/* Main CTA Buttons */}
@@ -258,7 +258,7 @@ const CallToAction = () => {
               </button>
               
               <button className="border-2 border-white text-white font-semibold px-8 py-4 rounded-full text-lg hover:bg-white hover:text-black transition-all duration-300">
-                Download Buyer's Guide
+                Download Buyer&apos;s Guide
               </button>
             </div>
             
