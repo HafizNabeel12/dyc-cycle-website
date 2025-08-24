@@ -117,7 +117,7 @@ const HeroSection: React.FC = () => {
           <div className="relative">
             <div className="relative z-10">
               <div className="w-full h-96 bg-gray-800 rounded-2xl flex items-center justify-center">
-                <p className="text-gray-400">// Company/Team Image Here</p>
+                <p className="text-gray-400">Company Team Image Here</p>
               </div>
             </div>
             {/* Floating Achievement Badge */}
@@ -144,7 +144,7 @@ const MissionVisionSection: React.FC = () => {
             Our <span className="text-yellow-400">Purpose</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            With a mission to make smart travel accessible to all, we're building the future of sustainable transportation.
+            With a mission to make smart travel accessible to all, we&apos;re building the future of sustainable transportation.
           </p>
         </div>
 
@@ -241,7 +241,7 @@ const TimelineSection: React.FC = () => {
             Our <span className="text-yellow-400">Journey</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            From startup to global leader - here's how we built the future of electric mobility
+            From startup to global leader - here&apos;s how we built the future of electric mobility
           </p>
         </div>
 
@@ -380,7 +380,7 @@ const ImpactSection: React.FC = () => {
             Global <span className="text-yellow-400">Impact</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Riding a DYU is not just a commute; it's a statement, a commitment to a sustainable future
+            Riding a DYU is not just a commute; it&apos;s a statement, a commitment to a sustainable future
           </p>
         </div>
 
@@ -403,7 +403,7 @@ const ImpactSection: React.FC = () => {
           </h3>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Every DYU bike represents a step towards cleaner cities, reduced emissions, and healthier communities. 
-            Together with our riders, we're building a more sustainable world, one journey at a time.
+            Together with our riders, we&apos;re building a more sustainable world, one journey at a time.
           </p>
           <div className="mt-8">
             <button className="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold hover:bg-yellow-300 transition-all">
@@ -426,7 +426,7 @@ const TeamSection: React.FC = () => {
             Meet Our <span className="text-yellow-400">Team</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            The passionate innovators behind DYU's revolutionary electric bikes
+            The passionate innovators behind DYU&apos;s revolutionary electric bikes
           </p>
         </div>
 
@@ -435,7 +435,7 @@ const TeamSection: React.FC = () => {
           {[1, 2, 3, 4].map((member) => (
             <div key={member} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all">
               <div className="h-64 bg-gray-200 flex items-center justify-center">
-                <p className="text-gray-500">// Team Member {member} Photo</p>
+                <p className="text-gray-500">Team Member {member} Photo</p>
               </div>
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold text-black mb-2">Team Member {member}</h3>
@@ -463,7 +463,7 @@ const FinalCTASection: React.FC = () => {
           </h2>
           
           <p className="text-xl font-semibold">
-            Be part of the electric revolution that's transforming how the world moves
+            Be part of the electric revolution that&apos;s transforming how the world moves
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

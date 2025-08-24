@@ -67,7 +67,7 @@ const HeroSection: React.FC = () => {
             <div className="space-y-6">
               <div className="inline-flex items-center bg-yellow-400 text-black px-6 py-3 rounded-full text-sm font-bold">
                 <MessageCircle className="w-4 h-4 mr-2" />
-                WE'RE HERE TO HELP
+                WE&apos;RE HERE TO HELP
               </div>
               
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
@@ -77,7 +77,7 @@ const HeroSection: React.FC = () => {
               
               <p className="text-xl text-black leading-relaxed max-w-lg">
                 Have questions about our electric bikes? Need support? Want to explore partnerships? 
-                We're here to help you every step of the way.
+                We&apos;re here to help you every step of the way.
               </p>
             </div>
             
@@ -115,7 +115,7 @@ const HeroSection: React.FC = () => {
           <div className="relative">
             <div className="relative z-10">
               <div className="w-full h-96 bg-gray-800 rounded-2xl flex items-center justify-center">
-                <p className="text-gray-400">// Contact/Support Team Image Here</p>
+                <p className="text-gray-400"> Contact Support Team Image Here</p>
               </div>
             </div>
             {/* Floating Contact Info */}
@@ -262,7 +262,7 @@ const ContactFormSection: React.FC = () => {
               Send Us a <span className="text-yellow-400">Message</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Use the form below to send us a message and we'll get back to you within 24 hours
+              Use the form below to send us a message and we&apos;ll get back to you within 24 hours
             </p>
           </div>
 
@@ -588,7 +588,7 @@ const SupportPromiseSection: React.FC = () => {
             Our Support Promise
           </h2>
           <p className="text-xl font-semibold max-w-2xl mx-auto">
-            We're committed to providing exceptional support every step of the way
+            We&apos;re committed to providing exceptional support every step of the way
           </p>
         </div>
 

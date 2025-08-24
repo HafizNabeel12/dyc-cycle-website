@@ -71,7 +71,7 @@ const HeroSection: React.FC = () => {
               </h1>
               
               <p className="text-xl text-black leading-relaxed max-w-lg">
-                Transform your campus commute with DYU's premium electric bikes. 
+                Transform your campus commute with DYU&apos;s premium electric bikes. 
                 Lightweight, foldable, and designed for the modern student lifestyle.
               </p>
             </div>
@@ -110,7 +110,7 @@ const HeroSection: React.FC = () => {
             <div className="relative z-10">
               {/* Replace with actual bike image */}
               <div className="w-full h-96 bg-gray-800 rounded-2xl flex items-center justify-center">
-                <p className="text-gray-400">// Hero Bike Image Here</p>
+                <p className="text-gray-400">Hero Bike Image Here</p>
               </div>
             </div>
             {/* Floating Elements */}
@@ -243,7 +243,7 @@ const FeaturedProducts: React.FC = () => {
 
               {/* Product Image */}
               <div className="h-64 bg-gray-200 flex items-center justify-center">
-                <p className="text-gray-500">// {product.name} Image</p>
+                <p className="text-gray-500"> {product.name} Image</p>
               </div>
 
               {/* Product Info */}
@@ -312,7 +312,7 @@ const WhyChooseSection: React.FC = () => {
             Why Students Choose <span className="text-yellow-400">DYU</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            More than just transportation - it's your freedom to explore campus and beyond.
+            More than just transportation - it&apos;s your freedom to explore campus and beyond.
           </p>
         </div>
 
@@ -369,7 +369,7 @@ const TestimonialsSection: React.FC = () => {
             Student <span className="text-yellow-400">Reviews</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Hear from students who've transformed their campus experience
+            Hear from students who&apos;ve transformed their campus experience
           </p>
         </div>
 
@@ -383,11 +383,11 @@ const TestimonialsSection: React.FC = () => {
                 ))}
               </div>
               
-              <p className="text-gray-800 mb-6 italic">"{testimonial.content}"</p>
+              <p className="text-gray-800 mb-6 italic">{testimonial.content}</p>
               
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                  <span className="text-gray-500 text-sm">// Avatar</span>
+                  <span className="text-gray-500 text-sm">Avatar</span>
                 </div>
                 <div>
                   <h4 className="font-bold text-black">{testimonial.name}</h4>
