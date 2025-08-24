@@ -209,34 +209,8 @@ const FeaturedProducts: React.FC = () => {
       discount: "45% OFF",
       image: "",
       features: ["25+ Mile Range", "20 MPH", "Cargo Capacity", "LED Display"]
-    },
-    {
-      id: 7,
-      name: "DYU C6",
-      originalPrice: 1099,
-      salePrice: 599,
-      discount: "45% OFF",
-      image: "",
-      features: ["25+ Mile Range", "20 MPH", "Cargo Capacity", "LED Display"]
-    },
-    {
-      id: 8,
-      name: "DYU C6",
-      originalPrice: 1099,
-      salePrice: 599,
-      discount: "45% OFF",
-      image: "",
-      features: ["25+ Mile Range", "20 MPH", "Cargo Capacity", "LED Display"]
-    },
-    {
-      id: 9,
-      name: "DYU C6",
-      originalPrice: 1099,
-      salePrice: 599,
-      discount: "45% OFF",
-      image: "",
-      features: ["25+ Mile Range", "20 MPH", "Cargo Capacity", "LED Display"]
     }
+    
   ];
 
   return (
