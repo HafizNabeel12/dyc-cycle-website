@@ -32,7 +32,7 @@ import {
 } from 'lucide-react';
 
 // Import the product data from centralized location
-import { PRODUCTS_DATA, getProductBySlug, getRelatedProducts,  } from '../../../lib/productData';
+import {  getProductBySlug, getRelatedProducts,  } from '../../../lib/productData';
 
 interface ProductCard {
   id: number;

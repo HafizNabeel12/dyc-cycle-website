@@ -449,6 +449,7 @@ const FeaturedProducts: React.FC = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 h-auto">
+          
           {filteredProducts.map((product) => (
             <div 
               key={product.id} 
@@ -484,8 +485,10 @@ const FeaturedProducts: React.FC = () => {
               <div className="h-96 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center relative overflow-hidden">
                 <div className="text-center group-hover:scale-110 transition-transform duration-500">
                   <div className=" h-96  bg-gradient-to-br from-gray-200 to-gray-300 relative overflow-hidden">
+              <Link href={`/products/${product.slug}`}>
                    <img className='object-cover group-hover:scale-110 transition-transform duration-500' 
                    src={product.image} alt={product.name} />
+                  </Link>
                   </div>
                 
                 </div>
@@ -518,6 +521,7 @@ const FeaturedProducts: React.FC = () => {
                     </div>
                     <p className="text-xs text-gray-500">({product.reviewCount})</p>
                   </div>
+                  
                 </div>
                 
                 {/* Enhanced Pricing */}
@@ -554,7 +558,9 @@ const FeaturedProducts: React.FC = () => {
                     <ShoppingCart className="w-4 h-4 mr-2" />
                     Quick Add
                   </button> 
+
                 </div>
+                
               </div>
 
               {/* Stock Indicator */}
