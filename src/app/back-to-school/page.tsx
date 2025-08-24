@@ -64,7 +64,7 @@ interface Testimonial {
 }
 
 // Real Product Data based on fetched information
-export const PRODUCTS_DATA: ProductCard[] = [
+const PRODUCTS_DATA: ProductCard[] = [
   {
     id: 1,
     name: "DYU D3F",

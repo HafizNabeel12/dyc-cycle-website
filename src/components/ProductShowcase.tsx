@@ -8,84 +8,99 @@ const ProductShowcase = () => {
   const [favorites, setFavorites] = useState<string[]>([]);
 
   const products = [
-    {
-      id: '1',
-      name: 'DYU King',
-      price: '$899',
-      originalPrice: '$1,299',
-      image: '/* Replace with actual product image */',
-      features: ['30+ Miles Range', '25 MPH Top Speed', 'Foldable Design'],
-      description: 'The flagship model with exceptional performance and range.',
-      badge: 'BESTSELLER',
-      category: 'premium',
-      rating: 4.9,
-      reviews: 324
+     {
+    id: 1,
+    name: "DYU D3F",
+    slug: "dyu-d3f-mini-folding-electric-bike",
+    originalPrice: 899,
+    salePrice: 449,
+    discount: "50% OFF",
+    image: "/images/d3f/d3f-main.png",
+    features: ["37+ Mile Range", "15.5 MPH", "Ultra Compact", "Quick Fold"],
+    badge: "COMPACT KING",
+    category: "Mini",
+    rating: 4.5,
+    reviewCount: 178,
+    specifications: {
+      motor: "250W Rear Hub Motor",
+      battery: "36V 10Ah Lithium-ion",
+      range: "37-45 miles",
+      speed: "15.5 mph",
+      weight: "35 lbs",
+      wheelSize: "14 inch",
+      foldable: true
     },
-    {
-      id: '2',
-      name: 'DYU D3F',
-      price: '$299',
-      originalPrice: '$499',
-      image: '/* Replace with actual product image */',
-      features: ['20 Miles Range', '15 MPH Speed', 'Lightweight'],
-      description: 'Perfect entry-level e-bike for students and city commuting.',
-      badge: 'STUDENT FAVORITE',
-      category: 'budget',
-      rating: 4.7,
-      reviews: 156
+    description: "The DYU D3F is a compact, lightweight electric bike perfect for students. Its 14-inch wheels make it incredibly portable and easy to store in dorm rooms.",
+    keyFeatures: [
+      "Ultra-compact 14-inch design",
+      "Foldable for easy storage",
+      "Perfect for short commutes",
+      "Lightweight and portable",
+      "Budget-friendly option"
+    ]
+  },
+  {
+    id: 2,
+    name: "DYU T1",
+    slug: "dyu-t1-torque-sensor-electric-bike",
+    originalPrice: 1299,
+    salePrice: 649,
+    discount: "50% OFF",
+    image: "/images/T1/t1-main.png",
+    features: ["Torque Sensor", "35+ Mile Range", "20 inch", "Shimano Gears"],
+    badge: "SMART CHOICE",
+    category: "Smart",
+    rating: 4.7,
+    reviewCount: 156,
+    specifications: {
+      motor: "250W Mid-Drive with Torque Sensor",
+      battery: "36V 12.5Ah Removable",
+      range: "35-50 miles",
+      speed: "20 mph",
+      weight: "42 lbs",
+      wheelSize: "20 inch",
+      foldable: true
     },
-    {
-      id: '3',
-      name: 'DYU A1F',
-      price: '$599',
-      originalPrice: '$799',
-      image: '/* Replace with actual product image */',
-      features: ['25 Miles Range', '20 MPH Speed', 'Compact'],
-      description: 'Mid-range option with excellent value and performance.',
-      badge: 'MOST POPULAR',
-      category: 'mid-range',
-      rating: 4.8,
-      reviews: 289
+    description: "The DYU T1 features advanced torque sensor technology and premium magnesium alloy frame. Perfect for students who want the latest in e-bike technology.",
+    keyFeatures: [
+      "Torque sensor for natural pedal assist",
+      "Magnesium alloy frame",
+      "Shimano derailleur system",
+      "Advanced smart features",
+      "Premium build quality"
+    ]
+  },
+  {
+    id: 3,
+    name: "DYU C1",
+    slug: "dyu-c1-26-inch-city-electric-bike",
+    originalPrice: 1099,
+    salePrice: 599,
+    discount: "45% OFF",
+    image: "/images/C1/c1-main.png",
+    features: ["26 inch Wheels", "60KM Range", "500W Peak Power", "Front Suspension"],
+    badge: "CITY CRUISER",
+    category: "City",
+    rating: 4.6,
+    reviewCount: 134,
+    specifications: {
+      motor: "250W/500W Peak Hub Motor",
+      battery: "36V 10Ah Detachable",
+      range: "37-60 miles",
+      speed: "25 mph",
+      weight: "55 lbs",
+      wheelSize: "26 inch",
+      foldable: true
     },
-    {
-      id: '4',
-      name: 'DYU C6',
-      price: '$1,199',
-      originalPrice: '$1,599',
-      image: '/* Replace with actual product image */',
-      features: ['40+ Miles Range', '28 MPH Speed', 'Premium Build'],
-      description: 'Professional grade e-bike with premium features.',
-      badge: 'PRO CHOICE',
-      category: 'premium',
-      rating: 5.0,
-      reviews: 92
-    },
-    {
-      id: '5',
-      name: 'DYU T1',
-      price: '$399',
-      originalPrice: '$599',
-      image: '/* Replace with actual product image */',
-      features: ['22 Miles Range', '18 MPH Speed', 'Urban Design'],
-      description: 'Stylish urban commuter with modern aesthetics.',
-      badge: 'NEW',
-      category: 'budget',
-      rating: 4.6,
-      reviews: 78
-    },
-    {
-      id: '6',
-      name: 'DYU S2',
-      price: '$799',
-      originalPrice: '$1,099',
-      image: '/* Replace with actual product image */',
-      features: ['35 Miles Range', '23 MPH Speed', 'All-Terrain'],
-      description: 'Versatile e-bike suitable for various terrains.',
-      badge: 'VERSATILE',
-      category: 'mid-range',
-      rating: 4.8,
-      reviews: 167
-    }
+    description: "The DYU C1 offers the perfect balance of comfort and performance with 26-inch wheels and front suspension, ideal for city commuting.",
+    keyFeatures: [
+      "26-inch wheels for stability",
+      "Front suspension system",
+      "Shimano 7-speed transmission",
+      "Detachable battery",
+      "Comfortable city riding position"
+    ]
+  },
   ];
 
   const filters = [
@@ -162,7 +177,7 @@ const ProductShowcase = () => {
                 </div>
                 
                 {/* Favorite Button */}
-                <button
+                {/* <button
                   onClick={() => toggleFavorite(product.id)}
                   className="absolute top-4 right-4 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-all duration-200"
                 >
@@ -173,7 +188,7 @@ const ProductShowcase = () => {
                         : 'text-gray-400'
                     }`}
                   />
-                </button>
+                </button> */}
 
                 {/* Quick Actions */}
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
@@ -200,7 +215,7 @@ const ProductShowcase = () => {
                     ))}
                   </div>
                   <span className="text-sm text-gray-600">
-                    {product.rating} ({product.reviews})
+                    {product.rating} 
                   </span>
                 </div>
 
@@ -225,7 +240,7 @@ const ProductShowcase = () => {
                 {/* Price and CTA */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-black">{product.price}</span>
+                    <span className="text-2xl font-bold text-black">{product.salePrice}</span>
                     {product.originalPrice && (
                       <span className="text-lg text-gray-500 line-through">{product.originalPrice}</span>
                     )}
