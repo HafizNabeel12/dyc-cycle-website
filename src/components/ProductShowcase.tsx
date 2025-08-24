@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Star, Heart, ShoppingCart, Zap, Bike, Battery } from 'lucide-react';
+import Link from 'next/link';
 
 const ProductShowcase = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -72,35 +73,35 @@ const ProductShowcase = () => {
   },
   {
     id: 3,
-    name: "DYU C1",
-    slug: "dyu-c1-26-inch-city-electric-bike",
-    originalPrice: 1099,
-    salePrice: 599,
-    discount: "45% OFF",
-    image: "/images/C1/c1-main.png",
-    features: ["26 inch Wheels", "60KM Range", "500W Peak Power", "Front Suspension"],
-    badge: "CITY CRUISER",
-    category: "City",
-    rating: 4.6,
-    reviewCount: 134,
+    name: "DYU Stroll 1",
+    slug: "dyu-stroll-1-700c-city-electric-bike",
+    originalPrice: 1299,
+    salePrice: 799,
+    discount: "38% OFF",
+    image: "/images/Stroll1/stroll1-main.png",
+    features: ["700C Wheels", "67KM Range", "Aluminum Frame", "Hydraulic Brakes"],
+    badge: "PREMIUM STYLE",
+    category: "Urban",
+    rating: 4.7,
+    reviewCount: 127,
     specifications: {
-      motor: "250W/500W Peak Hub Motor",
-      battery: "36V 10Ah Detachable",
-      range: "37-60 miles",
-      speed: "25 mph",
-      weight: "55 lbs",
-      wheelSize: "26 inch",
-      foldable: true
+      motor: "250W Mid-Drive Motor",
+      battery: "36V 9Ah Removable",
+      range: "Up to 67 km",
+      speed: "25 km/h",
+      weight: "22 kg",
+      wheelSize: "700C",
+      foldable: false
     },
-    description: "The DYU C1 offers the perfect balance of comfort and performance with 26-inch wheels and front suspension, ideal for city commuting.",
+    description: "The DYU Stroll 1 features a streamlined aluminum alloy frame and 700C wheels, designed for stylish urban commuting with premium components.",
     keyFeatures: [
-      "26-inch wheels for stability",
-      "Front suspension system",
-      "Shimano 7-speed transmission",
-      "Detachable battery",
-      "Comfortable city riding position"
+      "Streamlined aluminum alloy frame",
+      "700C wheels for smooth riding",
+      "Dual hydraulic disc brakes",
+      "Puncture-resistant tires",
+      "Multiple riding modes (Eco, Normal, Sport)"
     ]
-  },
+  }
   ];
 
   const filters = [
@@ -158,18 +159,18 @@ const ProductShowcase = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 h-auto">
           {filteredProducts.map((product) => (
             <div
               key={product.id}
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
             >
               {/* Product Image */}
-              <div className="relative h-64 bg-gray-100 overflow-hidden">
-                {/* Replace with actual product image */}
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  <Bike className="w-24 h-24" />
-                </div>
+              <div className="relative h-96 bg-gray-100 overflow-hidden">
+               <Link href={`/products/${product.slug}`}>
+                   <img className='object-cover group-hover:scale-110 transition-transform duration-500' 
+                   src={product.image} alt={product.name} />
+                  </Link>
                 
                 {/* Badge */}
                 <div className="absolute top-4 left-4 bg-yellow-500 text-black px-3 py-1 rounded-full text-sm font-bold">
@@ -191,11 +192,11 @@ const ProductShowcase = () => {
                 </button> */}
 
                 {/* Quick Actions */}
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                {/* <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                   <button className="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors">
                     Quick View
                   </button>
-                </div>
+                </div> */}
               </div>
 
               {/* Product Info */}
@@ -240,9 +241,9 @@ const ProductShowcase = () => {
                 {/* Price and CTA */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-black">{product.salePrice}</span>
+                    <span className="text-2xl font-bold text-black">${product.salePrice}</span>
                     {product.originalPrice && (
-                      <span className="text-lg text-gray-500 line-through">{product.originalPrice}</span>
+                      <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
                     )}
                   </div>
                   <button className="flex items-center gap-2 bg-yellow-500 text-black px-6 py-2 rounded-full font-bold hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105">
@@ -258,9 +259,11 @@ const ProductShowcase = () => {
         {/* Bottom CTA */}
         <div className="text-center mt-16">
           <p className="text-gray-600 mb-6">Can&apos;t decide? Get personalized recommendations!</p>
+          <Link href="/back-to-school#product">
           <button className="bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-900 transition-all duration-300 transform hover:scale-105">
             Find My Perfect E-Bike
           </button>
+          </Link>
         </div>
       </div>
     </section>

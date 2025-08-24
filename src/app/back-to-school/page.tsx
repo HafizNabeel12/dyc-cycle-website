@@ -227,7 +227,7 @@ const PRODUCTS_DATA: ProductCard[] = [
     originalPrice: 1299,
     salePrice: 799,
     discount: "38% OFF",
-    image: "/images/Stroll1/strool1-main.png",
+    image: "/images/Stroll1/stroll1-main.png",
     features: ["700C Wheels", "67KM Range", "Aluminum Frame", "Hydraulic Brakes"],
     badge: "PREMIUM STYLE",
     category: "Urban",
@@ -528,7 +528,7 @@ const FeaturedProducts: React.FC = () => {
                 <div className="flex items-baseline space-x-2">
                   <span className="text-3xl font-bold text-black">${product.salePrice}</span>
                   <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
-                  <span className="text-sm text-green-600 font-semibold">
+                  <span className="text-sm text-yellow-500 font-semibold">
                     Save ${product.originalPrice - product.salePrice}
                   </span>
                 </div>

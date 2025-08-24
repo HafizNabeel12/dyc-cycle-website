@@ -190,7 +190,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     originalPrice: 1299,
     salePrice: 799,
     discount: "38% OFF",
-    image: "/images/Stroll1/strool-main.png",
+    image: "/images/Stroll1/stroll1-main.png",
     features: ["700C Wheels", "67KM Range", "Aluminum Frame", "Hydraulic Brakes"],
     badge: "PREMIUM STYLE",
     category: "Urban",
