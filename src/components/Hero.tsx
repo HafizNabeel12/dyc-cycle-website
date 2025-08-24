@@ -5,13 +5,13 @@ import { ArrowRight, Star, Zap, Bike } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
       {/* Background Pattern */}
       <div className="absolute inset-0 z-0">
-        <div className="w-full h-full bg-black"></div>
+        <div className="w-full h-full bg-white"></div>
         {/* Add actual background image here with overlay */}
         {/* <img src="/hero-bg.jpg" alt="DYU E-Bikes" className="w-full h-full object-cover opacity-60" /> */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div> */}
       </div>
 
       {/* Animated Background Elements */}
@@ -31,7 +31,7 @@ const Hero = () => {
         </div> */}
 
         {/* Main Heading */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 mt-40 leading-tight">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-black mb-6 mt-40 leading-tight">
           Ride Into The
           <span className="block text-yellow-500">
             New School Year
@@ -39,7 +39,7 @@ const Hero = () => {
         </h1>
 
         {/* Subheading */}
-        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto leading-relaxed">
           Premium electric bikes designed for students. Lightweight, foldable, and perfect for campus commuting. 
           Starting at just <span className="font-bold text-yellow-500">$299</span>
         </p>
@@ -67,7 +67,7 @@ const Hero = () => {
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
           
-          <button className="group border-2 border-white text-white font-semibold px-8 py-4 rounded-full text-lg hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105">
+          <button className="group border-2 border-black text-black font-semibold px-8 py-4 rounded-full text-lg hover:bg-black hover:text-white transition-all duration-300 transform hover:scale-105">
             Watch Demo Video
           </button>
         </div>
@@ -79,7 +79,7 @@ const Hero = () => {
             <div className="text-gray-400 text-sm">Happy Students</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-2">30+</div>
+            <div className="text-3xl md:text-4xl font-bold text-yellow-500 mb-2">30+</div>
             <div className="text-gray-400 text-sm">Miles Range</div>
           </div>
           <div className="text-center">
@@ -87,7 +87,7 @@ const Hero = () => {
             <div className="text-gray-400 text-sm">Customer Rating</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-white mb-2">24/7</div>
+            <div className="text-3xl md:text-4xl font-bold text-yellow-500 mb-2">24/7</div>
             <div className="text-gray-400 text-sm">Support</div>
           </div>
         </div>

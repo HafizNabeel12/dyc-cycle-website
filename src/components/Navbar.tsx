@@ -17,9 +17,9 @@ const Navbar = () => {
 
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'E-Bikes', href: '/e-bikes' },
-    { label: 'Accessories', href: '/accessories' },
-    { label: 'Support', href: '/support' },
+    { label: 'Products', href: '/back-to-school' },
+    // { label: 'Accessories', href: '/accessories' },
+    // { label: 'Support', href: '/support' },
     { label: 'About', href: '/about' }
   ];
 
@@ -28,7 +28,7 @@ const Navbar = () => {
       isScrolled ? 'bg-white shadow-2xl' : 'bg-transparent'
     }`}>
       {/* Top Banner */}
-      <div className="bg-black text-yellow-400 text-center py-2 text-sm font-medium">
+      <div className="bg-black text-white text-center py-2 text-sm font-medium">
         🎓 Back to School Sale - Up to 50% OFF + Free Shipping! Limited Time Only
       </div>
       
@@ -36,7 +36,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <div className="text-2xl font-bold text-white">
+            <div className="text-2xl font-bold text-black">
               DYU<span className="text-yellow-500">CYCLE</span>
             </div>
           </div>
@@ -48,7 +48,7 @@ const Navbar = () => {
                 key={item.label}
                 href={item.href}
                 className={`text-sm font-medium transition-colors duration-200 hover:text-yellow-500 ${
-                  isScrolled ? 'text-black' : 'text-white'
+                  isScrolled ? 'text-black' : 'text-black'
                 }`}
               >
                 {item.label}
@@ -59,14 +59,14 @@ const Navbar = () => {
           {/* Right Side Icons */}
           <div className="hidden md:flex items-center space-x-4">
             <Search className={`w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors ${
-              isScrolled ? 'text-black' : 'text-white'
+              isScrolled ? 'text-black' : 'text-black'
             }`} />
             <User className={`w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors ${
-              isScrolled ? 'text-black' : 'text-white'
+              isScrolled ? 'text-black' : 'text-black'
             }`} />
             <div className="relative">
               <ShoppingCart className={`w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors ${
-                isScrolled ? 'text-black' : 'text-white'
+                isScrolled ? 'text-black' : 'text-black'
               }`} />
               <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold">
                 0

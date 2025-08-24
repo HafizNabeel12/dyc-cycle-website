@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -54,12 +56,13 @@ export default function RootLayout({
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
-        />
+          />
         
         {/* Analytics - Replace with your tracking codes */}
         {/* <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> */}
       </head>
       <body className={`${inter.className} antialiased`}>
+          <Navbar />
         {/* Skip to main content for accessibility */}
         <a 
           href="#main-content" 
@@ -73,6 +76,7 @@ export default function RootLayout({
         </div>
         
         {/* Global scripts can be added here */}
+        <Footer />
       </body>
     </html>
   );
