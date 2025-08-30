@@ -48,7 +48,7 @@ const CartPage: React.FC = () => {
         <div className="text-center py-16">
           <ShoppingBag className="mx-auto h-24 w-24 text-gray-400 mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h2>
-          <p className="text-gray-600 mb-8">Looks like you haven't added anything to your cart yet.</p>
+          <p className="text-gray-600 mb-8">Looks like you haven&apos;t added anything to your cart yet.</p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
