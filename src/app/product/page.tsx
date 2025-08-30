@@ -356,7 +356,7 @@ const ProductCardWithCart: React.FC<{ product: ProductCard }> = ({ product }) =>
         </ul>
 
         {/* Quantity Selector */}
-        <div className="flex items-center justify-between pt-2">
+        {/* <div className="flex items-center justify-between pt-2">
           <span className="text-sm font-medium text-gray-700">Quantity:</span>
           <div className="flex items-center border border-gray-300 rounded-lg">
             <button
@@ -377,7 +377,7 @@ const ProductCardWithCart: React.FC<{ product: ProductCard }> = ({ product }) =>
               <Plus className="w-4 h-4" />
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* Enhanced Action Buttons */}
         <div className="space-y-3 pt-2">
