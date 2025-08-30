@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { CartProvider } from '@/components/CartContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -62,7 +63,6 @@ export default function RootLayout({
         {/* <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> */}
       </head>
       <body className={`${inter.className} antialiased`}>
-          <Navbar />
         {/* Skip to main content for accessibility */}
         <a 
           href="#main-content" 
@@ -72,7 +72,11 @@ export default function RootLayout({
         </a>
         
         <div id="main-content">
+         <CartProvider>
+          <Navbar />
+
           {children}
+          </CartProvider>
         </div>
         
         {/* Global scripts can be added here */}

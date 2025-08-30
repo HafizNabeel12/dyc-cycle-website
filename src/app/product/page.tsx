@@ -1,7 +1,8 @@
-// src/app/back-to-school/page.tsx
+// src/app/product/page.tsx
 'use client';
 
 import { useState } from 'react';
+import { useCart } from '@/components/CartContext';
 import Link from 'next/link';
 import { 
   BookOpen, 
@@ -23,16 +24,18 @@ import {
   Percent,
   Eye,
   Heart,
-  PlayCircle
+  PlayCircle,
+  Plus,
+  Minus
 } from 'lucide-react';
 
 // Updated Types with real product data structure
 interface ProductCard {
-  id: number;
+  id: string; // Changed to string for cart compatibility
   name: string;
   slug: string;
   originalPrice: number;
-  salePrice: number;
+  price: number;
   discount: string;
   image: string;
   features: string[];
@@ -63,14 +66,14 @@ interface Testimonial {
   university: string;
 }
 
-// Real Product Data based on fetched information
+// Real Product Data - Updated with string IDs for cart compatibility
 const PRODUCTS_DATA: ProductCard[] = [
   {
-    id: 1,
+    id: 'dyu-d3f',
     name: "DYU D3F",
     slug: "dyu-d3f-mini-folding-electric-bike",
     originalPrice: 899,
-    salePrice: 449,
+    price: 449,
     discount: "50% OFF",
     image: "/images/d3f/d3f-main.png",
     features: ["37+ Mile Range", "15.5 MPH", "Ultra Compact", "Quick Fold"],
@@ -97,11 +100,11 @@ const PRODUCTS_DATA: ProductCard[] = [
     ]
   },
   {
-    id: 2,
+    id: 'dyu-t1',
     name: "DYU T1",
     slug: "dyu-t1-torque-sensor-electric-bike",
     originalPrice: 1299,
-    salePrice: 649,
+    price: 649,
     discount: "50% OFF",
     image: "/images/T1/t1-main.png",
     features: ["Torque Sensor", "35+ Mile Range", "20 inch", "Shimano Gears"],
@@ -128,11 +131,11 @@ const PRODUCTS_DATA: ProductCard[] = [
     ]
   },
   {
-    id: 3,
+    id: 'dyu-c1',
     name: "DYU C1",
     slug: "dyu-c1-26-inch-city-electric-bike",
     originalPrice: 1099,
-    salePrice: 599,
+    price: 599,
     discount: "45% OFF",
     image: "/images/C1/c1-main.png",
     features: ["26 inch Wheels", "60KM Range", "500W Peak Power", "Front Suspension"],
@@ -159,11 +162,11 @@ const PRODUCTS_DATA: ProductCard[] = [
     ]
   },
   {
-    id: 4,
+    id: 'dyu-c6',
     name: "DYU C6",
     slug: "dyu-c6-26-inch-city-electric-bike",
     originalPrice: 1199,
-    salePrice: 699,
+    price: 699,
     discount: "42% OFF",
     image: "/images/C6/c6-main.png",
     features: ["60KM Range", "12.5Ah Battery", "Dual Suspension", "LED Display"],
@@ -190,11 +193,11 @@ const PRODUCTS_DATA: ProductCard[] = [
     ]
   },
   {
-    id: 5,
+    id: 'dyu-c9',
     name: "DYU C9",
     slug: "dyu-c9-20-inch-long-range-ebike",
     originalPrice: 1699,
-    salePrice: 899,
+    price: 899,
     discount: "47% OFF",
     image: "/images/C9/c9-main.png",
     features: ["Fat Tires", "80+ Mile Range", "Front Suspension", "Premium Build"],
@@ -221,11 +224,11 @@ const PRODUCTS_DATA: ProductCard[] = [
     ]
   },
   {
-    id: 6,
+    id: 'dyu-stroll-1',
     name: "DYU Stroll 1",
     slug: "dyu-stroll-1-700c-city-electric-bike",
     originalPrice: 1299,
-    salePrice: 799,
+    price: 799,
     discount: "38% OFF",
     image: "/images/Stroll1/stroll1-main.png",
     features: ["700C Wheels", "67KM Range", "Aluminum Frame", "Hydraulic Brakes"],
@@ -253,8 +256,175 @@ const PRODUCTS_DATA: ProductCard[] = [
   }
 ];
 
+// Enhanced Product Card Component with Cart Functionality
+const ProductCardWithCart: React.FC<{ product: ProductCard }> = ({ product }) => {
+  const { addToCart, items } = useCart();
+  const [isAdding, setIsAdding] = useState(false);
+  const [justAdded, setJustAdded] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
+  const isInCart = items.some(item => item.id === product.id);
+  const cartQuantity = items.find(item => item.id === product.id)?.quantity || 0;
+
+  const handleAddToCart = async () => {
+    setIsAdding(true);
+    
+    // Add multiple quantities at once
+    for (let i = 0; i < quantity; i++) {
+      addToCart({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        category: product.category,
+      });
+    }
+
+    setJustAdded(true);
+    setTimeout(() => {
+      setIsAdding(false);
+      setJustAdded(false);
+    }, 2000);
+  };
+
+  const incrementQuantity = () => setQuantity(prev => Math.min(prev + 1, 10));
+  const decrementQuantity = () => setQuantity(prev => Math.max(prev - 1, 1));
+
+  return (
+    <div className="group relative bg-gray-50 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer">
+      {/* Enhanced Badges */}
+      {product.badge && (
+        <div className="absolute top-4 left-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold z-10 shadow-lg">
+          {product.badge}
+        </div>
+      )}
+      
+      {/* In Cart Badge */}
+      {isInCart && (
+        <div className="absolute top-4 right-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold z-10 shadow-lg">
+          {cartQuantity} in cart
+        </div>
+      )}
+
+      {/* Product Image */}
+      <div className="h-96 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center relative overflow-hidden">
+        <Link href={`/products/${product.slug}`}>
+          <img 
+            className='object-cover group-hover:scale-110 transition-transform duration-500 w-full h-96' 
+            src={product.image} 
+            alt={product.name} 
+          />
+        </Link>
+      </div>
+
+      {/* Enhanced Product Info */}
+      <div className="p-6 space-y-4">
+        <div className="flex items-start justify-between">
+          <h3 className="text-2xl font-bold text-black group-hover:text-yellow-600 transition-colors">
+            {product.name}
+          </h3>
+          <div className="text-right">
+            <div className="flex items-center space-x-1">
+              {[...Array(5)].map((_, i) => (
+                <Star 
+                  key={i} 
+                  className={`w-3 h-3 ${i < Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} 
+                />
+              ))}
+            </div>
+            <p className="text-xs text-gray-500">({product.reviewCount})</p>
+          </div>
+        </div>
+        
+        {/* Enhanced Pricing */}
+        <div className="flex items-baseline space-x-2">
+          <span className="text-3xl font-bold text-black">${product.price}</span>
+          <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
+          <span className="text-sm text-yellow-500 font-semibold">
+            Save ${product.originalPrice - product.price}
+          </span>
+        </div>
+
+        {/* Enhanced Features */}
+        <ul className="space-y-2">
+          {product.features.map((feature, index) => (
+            <li key={index} className="flex items-center text-gray-600 text-sm">
+              <Check className="w-4 h-4 text-yellow-400 mr-2 flex-shrink-0" />
+              {feature}
+            </li>
+          ))}
+        </ul>
+
+        {/* Quantity Selector */}
+        <div className="flex items-center justify-between pt-2">
+          <span className="text-sm font-medium text-gray-700">Quantity:</span>
+          <div className="flex items-center border border-gray-300 rounded-lg">
+            <button
+              onClick={decrementQuantity}
+              className="p-2 hover:bg-gray-100 transition-colors"
+              disabled={quantity <= 1}
+            >
+              <Minus className="w-4 h-4" />
+            </button>
+            <span className="px-4 py-2 font-semibold min-w-[50px] text-center">
+              {quantity}
+            </span>
+            <button
+              onClick={incrementQuantity}
+              className="p-2 hover:bg-gray-100 transition-colors"
+              disabled={quantity >= 10}
+            >
+              <Plus className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Enhanced Action Buttons */}
+        <div className="space-y-3 pt-2">
+          <Link
+            href={`/products/${product.slug}`}
+            className="w-full bg-black text-yellow-400 py-4 rounded-lg font-bold hover:bg-gray-800 transition-all group-hover:bg-yellow-400 group-hover:text-black flex items-center justify-center shadow-lg hover:shadow-xl"
+          >
+            <Eye className="w-5 h-5 mr-2" />
+            View Details
+            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          
+          <button 
+            onClick={handleAddToCart}
+            disabled={isAdding}
+            className={`w-full py-3 rounded-lg font-semibold transition-all flex items-center justify-center shadow-lg hover:shadow-xl ${
+              justAdded 
+                ? 'bg-black hover:bg-black text-white' 
+                : 'border-2 border-yellow-400 text-black hover:bg-yellow-400 hover:text-black'
+            }`}
+          >
+            {isAdding ? (
+              <>
+                <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin mr-2" />
+                Adding...
+              </>
+            ) : justAdded ? (
+              <>
+                <Check className="w-4 h-4 mr-2" />
+                Added to Cart!
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Add {quantity > 1 ? `${quantity} ` : ''}to Cart - ${(product.price * quantity).toFixed(2)}
+              </>
+            )}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Hero Section Component - Enhanced
 const HeroSection: React.FC = () => {
+  const { totalItems } = useCart(); // Add cart info to hero
   const [videoPlaying, setVideoPlaying] = useState(false);
 
   return (
@@ -271,6 +441,14 @@ const HeroSection: React.FC = () => {
           {/* Left Content - Enhanced */}
           <div className="space-y-8">
             <div className="space-y-6">
+              {/* Show cart status in hero */}
+              {/* {totalItems > 0 && (
+                <div className="inline-flex items-center bg-green-500 text-white px-6 py-3 rounded-full text-sm font-bold animate-bounce">
+                  <ShoppingCart className="w-4 h-4 mr-2" />
+                  {totalItems} ITEM{totalItems !== 1 ? 'S' : ''} IN CART
+                </div>
+              )} */}
+              
               <div className="inline-flex items-center bg-yellow-400 text-black px-6 py-3 rounded-full text-sm font-bold animate-bounce">
                 <BookOpen className="w-4 h-4 mr-2" />
                 BACK TO SCHOOL SPECIAL - LIMITED TIME
@@ -316,6 +494,15 @@ const HeroSection: React.FC = () => {
                 Shop Student Deals
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
+              {/* {totalItems > 0 && (
+                <Link 
+                  href="/cart"
+                  className="bg-green-500 text-white px-8 py-4 rounded-lg font-bold hover:bg-green-600 transition-all transform hover:scale-105 flex items-center justify-center shadow-lg hover:shadow-xl"
+                >
+                  <ShoppingCart className="w-5 h-5 mr-2" />
+                  View Cart ({totalItems})
+                </Link>
+              )} */}
               <button 
                 onClick={() => setVideoPlaying(true)}
                 className="border-2 border-black text-black px-8 py-4 rounded-lg font-semibold hover:bg-black hover:text-white transition-all flex items-center justify-center shadow-lg hover:shadow-xl"
@@ -355,17 +542,6 @@ const HeroSection: React.FC = () => {
                 </div>
               </div>
             </div>
-            
-            {/* Enhanced Floating Elements */}
-            {/* <div className="absolute -top-4 -right-4 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold animate-bounce shadow-lg">
-              50% OFF
-            </div>
-            <div className="absolute -bottom-4 -left-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-              Free Shipping
-            </div>
-            <div className="absolute top-1/2 -left-8 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold rotate-90 shadow-lg">
-              Popular
-            </div> */}
           </div>
         </div>
       </div>
@@ -373,8 +549,10 @@ const HeroSection: React.FC = () => {
   );
 };
 
-// Enhanced Promotional Banner
+// Enhanced Promotional Banner with Cart Link
 const PromoBanner: React.FC = () => {
+  const { totalItems, totalPrice } = useCart();
+  
   const offers = [
     { icon: Gift, text: "FREE Accessories Worth $200+" },
     { icon: Truck, text: "FREE Express Shipping" },
@@ -385,19 +563,28 @@ const PromoBanner: React.FC = () => {
   return (
     <section className="bg-yellow-400 text-black py-4 relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-center space-x-8 text-sm font-semibold">
-          {offers.map((offer, index) => {
-            const IconComponent = offer.icon;
-            return (
-              <div key={index} className="flex items-center hover:scale-105 transition-transform cursor-pointer">
-                <IconComponent className="w-4 h-4 mr-2" />
-                {offer.text}
-              </div>
-            );
-          })}
+       
+          <div className="flex items-center justify-center space-x-8 text-sm font-semibold">
+            {offers.map((offer, index) => {
+              const IconComponent = offer.icon;
+              return (
+                <div key={index} className="flex items-center hover:scale-105 transition-transform cursor-pointer">
+                  <IconComponent className="w-4 h-4 mr-2" />
+                  {offer.text}
+                </div>
+              );
+            })}
+          </div>
+          
+          {/* Cart Summary in Banner */}
+          {/* {totalItems > 0 && (
+            <Link href="/cart" className="flex items-center bg-black text-yellow-400 px-4 py-2 rounded-full text-sm font-bold hover:bg-gray-800 transition-colors">
+              <ShoppingCart className="w-4 h-4 mr-2" />
+              {totalItems} Items - ${totalPrice.toFixed(2)}
+            </Link>
+          )} */}
         </div>
-      </div>
-      
+     
       {/* Animated background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute animate-ping w-4 h-4 bg-black rounded-full top-2 left-1/4"></div>
@@ -407,9 +594,9 @@ const PromoBanner: React.FC = () => {
   );
 };
 
-// Enhanced Featured Products Section with Real Data
+// Enhanced Featured Products Section with Real Data and Cart Functionality
 const FeaturedProducts: React.FC = () => {
-  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+  const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   
   const categories = ['All', 'Mini', 'Smart', 'City', 'Adventure', 'Urban'];
@@ -448,143 +635,18 @@ const FeaturedProducts: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 h-auto">
-          
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((product) => (
-            <div 
-              key={product.id} 
-              className="group relative bg-gray-50 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-              onMouseEnter={() => setHoveredProduct(product.id)}
-              onMouseLeave={() => setHoveredProduct(null)}
-            >
-              {/* Enhanced Badges */}
-              {product.badge && (
-                <div className="absolute top-4 left-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold z-10 shadow-lg">
-                  {product.badge}
-                </div>
-              )}
-              
-              {/* Enhanced Discount Badge */}
-              {/* <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold z-10 shadow-lg animate-pulse">
-                {product.discount}
-              </div> */}
-
-              {/* Quick Actions Overlay */}
-              {/* <div className={`absolute top-16 right-4 flex flex-col space-y-2 z-10 transition-all duration-300 ${
-                hoveredProduct === product.id ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
-              }`}>
-                <button className="bg-white p-2 rounded-full shadow-lg hover:bg-yellow-400 transition-colors">
-                  <Eye className="w-4 h-4" />
-                </button>
-                <button className="bg-white p-2 rounded-full shadow-lg hover:bg-red-500 hover:text-white transition-colors">
-                  <Heart className="w-4 h-4" />
-                </button>
-              </div> */}
-
-              {/* Product Image */}
-              <div className="h-96 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center relative overflow-hidden">
-                <div className="text-center group-hover:scale-110 transition-transform duration-500">
-                  <div className=" h-96  bg-gradient-to-br from-gray-200 to-gray-300 relative overflow-hidden">
-              <Link href={`/products/${product.slug}`}>
-                   <img className='object-cover group-hover:scale-110 transition-transform duration-500' 
-                   src={product.image} alt={product.name} />
-                  </Link>
-                  </div>
-                
-                </div>
-                
-                {/* Hover Overlay */}
-                {/* <div className={`absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center transition-opacity duration-300 ${
-                  hoveredProduct === product.id ? 'opacity-100' : 'opacity-0'
-                }`}>
-                  <div className="text-center text-white">
-                    <PlayCircle className="w-12 h-12 mx-auto mb-2" />
-                    <p className="text-sm font-medium">Quick View</p>
-                  </div>
-                </div> */}
-              </div>
-
-              {/* Enhanced Product Info */}
-              <div className="p-6 space-y-4">
-                <div className="flex items-start justify-between">
-                  <h3 className="text-2xl font-bold text-black group-hover:text-yellow-600 transition-colors">
-                    {product.name}
-                  </h3>
-                  <div className="text-right">
-                    <div className="flex items-center space-x-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star 
-                          key={i} 
-                          className={`w-3 h-3 ${i < Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} 
-                        />
-                      ))}
-                    </div>
-                    <p className="text-xs text-gray-500">({product.reviewCount})</p>
-                  </div>
-                  
-                </div>
-                
-                {/* Enhanced Pricing */}
-                <div className="flex items-baseline space-x-2">
-                  <span className="text-3xl font-bold text-black">${product.salePrice}</span>
-                  <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
-                  <span className="text-sm text-yellow-500 font-semibold">
-                    Save ${product.originalPrice - product.salePrice}
-                  </span>
-                </div>
-
-                {/* Enhanced Features */}
-                <ul className="space-y-2">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-center text-gray-600 text-sm">
-                      <Check className="w-4 h-4 text-yellow-400 mr-2 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Enhanced Action Buttons */}
-                <div className="space-y-3 pt-2">
-                  <Link
-                    href={`/products/${product.slug}`}
-                    className="w-full bg-black text-yellow-400 py-4 rounded-lg font-bold hover:bg-gray-800 transition-all group-hover:bg-yellow-400 group-hover:text-black flex items-center justify-center shadow-lg hover:shadow-xl"
-                  >
-                    <Eye className="w-5 h-5 mr-2" />
-                    View Details
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                  
-                  <button className="w-full border-2 border-yellow-400 text-black py-3 rounded-lg font-semibold hover:bg-yellow-400 hover:text-black transition-all flex items-center justify-center">
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    Quick Add
-                  </button> 
-
-                </div>
-                
-              </div>
-
-              {/* Stock Indicator */}
-              {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200">
-                <div className="h-full bg-yellow-500 w-3/4"></div>
-              </div> */}
-            </div>
+            <ProductCardWithCart key={product.id} product={product} />
           ))}
         </div>
-
-        {/* View All Products Button */}
-        {/* <div className="text-center mt-12">
-          <Link 
-            href="/products"
-            className="inline-flex items-center bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
-          >
-            View All Products
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Link>
-        </div> */}
       </div>
     </section>
   );
 };
+
+// Keep all other sections unchanged (WhyChooseSection, TestimonialsSection, etc.)
+// ... (copy the remaining sections from your original code)
 
 // Enhanced Why Choose Section
 const WhyChooseSection: React.FC = () => {
@@ -774,8 +836,9 @@ const TestimonialsSection: React.FC = () => {
   );
 };
 
-// Enhanced Final CTA Section
+// Enhanced Final CTA Section with Cart Integration
 const FinalCTASection: React.FC = () => {
+  const { totalItems, totalPrice } = useCart();
   const [timeLeft, setTimeLeft] = useState({
     days: 7,
     hours: 12,
@@ -809,7 +872,7 @@ const FinalCTASection: React.FC = () => {
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="space-y-4">
             <div className="inline-block bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold animate-pulse">
-              🔥 LIMITED TIME OFFER
+              LIMITED TIME OFFER
             </div>
             <h2 className="text-4xl lg:text-6xl font-bold">
               Ready to Upgrade Your Commute?
@@ -818,6 +881,23 @@ const FinalCTASection: React.FC = () => {
               Save up to 50% + Free shipping + Free accessories worth $200+
             </p>
           </div>
+          
+          {/* Cart Summary in CTA */}
+          {totalItems > 0 && (
+            <div className="bg-black text-yellow-400 rounded-2xl p-6 max-w-2xl mx-auto mb-8">
+              <h3 className="text-xl font-bold mb-2">Your Cart Summary</h3>
+              <div className="flex justify-between items-center text-lg">
+                <span>{totalItems} Item{totalItems !== 1 ? 's' : ''}</span>
+                <span className="font-bold">${totalPrice.toFixed(2)}</span>
+              </div>
+              <Link
+                href="/cart"
+                className="w-full bg-yellow-400 text-black py-3 rounded-lg font-bold hover:bg-yellow-300 transition-all mt-4 block"
+              >
+                Complete Your Purchase
+              </Link>
+            </div>
+          )}
           
           {/* Countdown Timer */}
           <div className="bg-black text-yellow-400 rounded-2xl p-6 max-w-2xl mx-auto">
@@ -832,7 +912,7 @@ const FinalCTASection: React.FC = () => {
                 <div className="text-xs opacity-75">HOURS</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold">{timeLeft.minutes.toString().padStart(2, '0')}</div>
+                <div className="text-2xl md:text-3xl font-bold">${timeLeft.minutes.toString().padStart(2, '0')}</div>
                 <div className="text-xs opacity-75">MINS</div>
               </div>
               <div className="text-center">
@@ -946,7 +1026,7 @@ const NewsletterSection: React.FC = () => {
           </form>
           
           <p className="text-gray-400 text-sm mt-4">
-            📧 Student verification required. Unsubscribe anytime.
+            Student verification required. Unsubscribe anytime.
           </p>
         </div>
       </div>
@@ -954,8 +1034,10 @@ const NewsletterSection: React.FC = () => {
   );
 };
 
-// Main Page Component with Enhanced Structure
+// Main Page Component with Enhanced Structure and Cart Integration
 export default function BackToSchoolPage(): React.JSX.Element {
+  const { totalItems } = useCart();
+
   return (
     <main className="min-h-screen">
       <HeroSection />
@@ -966,13 +1048,18 @@ export default function BackToSchoolPage(): React.JSX.Element {
       <FinalCTASection />
       <NewsletterSection />
       
-      {/* Floating Action Button for Mobile */}
+      {/* Floating Cart Button for Mobile */}
       <div className="fixed bottom-6 right-6 lg:hidden z-50">
         <Link
-          href="#products"
-          className="bg-yellow-400 text-black p-4 rounded-full shadow-2xl hover:bg-yellow-300 transition-all transform hover:scale-110 flex items-center justify-center"
+          href={totalItems > 0 ? "/cart" : "#products"}
+          className="bg-yellow-400 text-black p-4 rounded-full shadow-2xl hover:bg-yellow-300 transition-all transform hover:scale-110 flex items-center justify-center relative"
         >
           <ShoppingCart className="w-6 h-6" />
+          {totalItems > 0 && (
+            <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
+              {totalItems > 99 ? '99+' : totalItems}
+            </div>
+          )}
         </Link>
       </div>
 

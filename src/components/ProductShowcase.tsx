@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { Star, Heart, ShoppingCart, Zap, Bike, Battery } from 'lucide-react';
+import { AddToCartButton } from '@/components/AddToCartButton';
+
 import Link from 'next/link';
 
 const ProductShowcase = () => {
@@ -10,11 +12,11 @@ const ProductShowcase = () => {
 
   const products = [
      {
-    id: 1,
+    id: "1",
     name: "DYU D3F",
     slug: "dyu-d3f-mini-folding-electric-bike",
     originalPrice: 899,
-    salePrice: 449,
+    price: 449,
     discount: "50% OFF",
     image: "/images/d3f/d3f-main.png",
     features: ["37+ Mile Range", "15.5 MPH", "Ultra Compact", "Quick Fold"],
@@ -41,11 +43,11 @@ const ProductShowcase = () => {
     ]
   },
   {
-    id: 2,
+    id: "2",
     name: "DYU T1",
     slug: "dyu-t1-torque-sensor-electric-bike",
     originalPrice: 1299,
-    salePrice: 649,
+    price: 649,
     discount: "50% OFF",
     image: "/images/T1/t1-main.png",
     features: ["Torque Sensor", "35+ Mile Range", "20 inch", "Shimano Gears"],
@@ -72,11 +74,11 @@ const ProductShowcase = () => {
     ]
   },
   {
-    id: 3,
+    id: "3",
     name: "DYU Stroll 1",
     slug: "dyu-stroll-1-700c-city-electric-bike",
     originalPrice: 1299,
-    salePrice: 799,
+    price: 799,
     discount: "38% OFF",
     image: "/images/Stroll1/stroll1-main.png",
     features: ["700C Wheels", "67KM Range", "Aluminum Frame", "Hydraulic Brakes"],
@@ -241,15 +243,12 @@ const ProductShowcase = () => {
                 {/* Price and CTA */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-black">${product.salePrice}</span>
+                    <span className="text-2xl font-bold text-black">${product.price}</span>
                     {product.originalPrice && (
-                      <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
+                      <span className="text-lg text-gray-500 line-through">${product.price}</span>
                     )}
                   </div>
-                  <button className="flex items-center gap-2 bg-yellow-500 text-black px-6 py-2 rounded-full font-bold hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105">
-                    <ShoppingCart className="w-4 h-4" />
-                    Add to Cart
-                  </button>
+                  <AddToCartButton product={product} />
                 </div>
               </div>
             </div>

@@ -2,11 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ShoppingCart, User, Search } from 'lucide-react';
+import Link from 'next/link';
+import { useCart } from './CartContext';
+import { CartIcon } from './CartIcon';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const { totalItems, totalPrice } = useCart();
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -14,16 +18,16 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
+  
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'Products', href: '/back-to-school' },
+    { label: 'Products', href: '/product' },
     // { label: 'Accessories', href: '/accessories' },
     // { label: 'Support', href: '/support' },
     { label: 'About us', href: '/about-us' },
     { label: 'Contact us', href: '/contact-us' }
   ];
-
+  
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white shadow-2xl' : 'bg-transparent'
@@ -59,19 +63,16 @@ const Navbar = () => {
 
           {/* Right Side Icons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Search className={`w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors ${
+            {/* <Search className={`w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors ${
               isScrolled ? 'text-black' : 'text-black'
             }`} />
             <User className={`w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors ${
               isScrolled ? 'text-black' : 'text-black'
-            }`} />
+            }`} /> */}
             <div className="relative">
-              <ShoppingCart className={`w-5 h-5 cursor-pointer hover:text-yellow-500 transition-colors ${
-                isScrolled ? 'text-black' : 'text-black'
-              }`} />
-              <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold">
-                0
-              </span>
+              <Link href="/cart">
+              <CartIcon/>
+              </Link>
             </div>
             <button className="bg-yellow-500 text-black px-6 py-2 rounded-full font-bold hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105">
               Shop Now

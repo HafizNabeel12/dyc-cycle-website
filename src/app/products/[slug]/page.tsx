@@ -2,6 +2,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { AddToCartButton } from '@/components/AddToCartButton';
 import Link from 'next/link';
 import { useParams, notFound } from 'next/navigation';
 import { 
@@ -35,11 +36,11 @@ import {
 import {  getProductBySlug, getRelatedProducts,  } from '../../../lib/productData';
 
 interface ProductCard {
-  id: number;
+  id: string;
   name: string;
   slug: string;
   originalPrice: number;
-  salePrice: number;
+  price: number;
   discount: string;
   image: string;
   features: string[];
@@ -260,10 +261,10 @@ const ProductPage: React.FC = () => {
 
               {/* Price */}
               <div className="flex items-baseline space-x-3 mb-6">
-                <span className="text-4xl font-bold text-black">${product.salePrice}</span>
+                <span className="text-4xl font-bold text-black">${product.price}</span>
                 <span className="text-2xl text-gray-500 line-through">${product.originalPrice}</span>
                 <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm font-semibold">
-                  Save ${product.originalPrice - product.salePrice}
+                  Save ${product.originalPrice - product.price}
                 </span>
               </div>
             </div>
@@ -310,13 +311,7 @@ const ProductPage: React.FC = () => {
 
             {/* Action Buttons */}
             <div className="space-y-4">
-              <button 
-                onClick={handleAddToCart}
-                className="w-full bg-yellow-400 text-black py-4 px-8 rounded-lg font-bold text-lg hover:bg-yellow-300 transition-all transform hover:scale-105 flex items-center justify-center shadow-lg hover:shadow-xl"
-              >
-                <ShoppingCart className="w-6 h-6 mr-3" />
-                Add to Cart - ${(product.salePrice * quantity).toLocaleString()}
-              </button>
+               <AddToCartButton product={product} />
               
               <div className="grid grid-cols-2 gap-4">
                 <button className="border-2 border-black text-black py-3 px-6 rounded-lg font-semibold hover:bg-black hover:text-white transition-all flex items-center justify-center">
@@ -636,7 +631,7 @@ const ProductPage: React.FC = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {getRelatedProducts(product.id, 3).map((relatedProduct) => (
+            {getRelatedProducts(3).map((relatedProduct) => (
                 <Link
                   key={relatedProduct.id}
                   href={`/products/${relatedProduct.slug}`}
@@ -670,7 +665,7 @@ const ProductPage: React.FC = () => {
                     </div>
                     
                     <div className="flex items-baseline space-x-2 mb-4">
-                      <span className="text-2xl font-bold text-black">${relatedProduct.salePrice}</span>
+                      <span className="text-2xl font-bold text-black">${relatedProduct.price}</span>
                       <span className="text-lg text-gray-500 line-through">${relatedProduct.originalPrice}</span>
                     </div>
 
@@ -694,7 +689,7 @@ const ProductPage: React.FC = () => {
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 lg:hidden z-50">
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-2xl font-bold text-black">${product.salePrice}</div>
+            <div className="text-2xl font-bold text-black">${product.price}</div>
             <div className="text-sm text-gray-500 line-through">${product.originalPrice}</div>
           </div>
           <button 

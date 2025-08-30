@@ -1,11 +1,11 @@
 // src/lib/productData.ts
 
 export interface ProductCard {
-  id: number;
+  id: string;
   name: string;
   slug: string;
   originalPrice: number;
-  salePrice: number;
+  price: number;
   discount: string;
   image: string;
   features: string[];
@@ -29,11 +29,11 @@ export interface ProductCard {
 // Real Product Data based on fetched information
 export const PRODUCTS_DATA: ProductCard[] = [
   {
-    id: 1,
+    id: "1",
     name: "DYU D3F",
     slug: "dyu-d3f-mini-folding-electric-bike",
     originalPrice: 899,
-    salePrice: 449,
+    price: 449,
     discount: "50% OFF",
     image: "/images/d3f/d3f-main.png",
     features: ["37+ Mile Range", "15.5 MPH", "Ultra Compact", "Quick Fold"],
@@ -60,11 +60,11 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ]
   },
   {
-    id: 2,
+    id: "2",
     name: "DYU T1",
     slug: "dyu-t1-torque-sensor-electric-bike",
     originalPrice: 1299,
-    salePrice: 649,
+    price: 649,
     discount: "50% OFF",
     image: "/images/T1/t1-main.png",
     features: ["Torque Sensor", "35+ Mile Range", "20 inch", "Shimano Gears"],
@@ -91,11 +91,11 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ]
   },
   {
-    id: 3,
+    id: "3",
     name: "DYU C1",
     slug: "dyu-c1-26-inch-city-electric-bike",
     originalPrice: 1099,
-    salePrice: 599,
+    price: 599,
     discount: "45% OFF",
     image: "/images/C1/c1-main.png",
     features: ["26 inch Wheels", "60KM Range", "500W Peak Power", "Front Suspension"],
@@ -122,11 +122,11 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ]
   },
   {
-    id: 4,
+    id: "4",
     name: "DYU C6",
     slug: "dyu-c6-26-inch-city-electric-bike",
     originalPrice: 1199,
-    salePrice: 699,
+    price: 699,
     discount: "42% OFF",
     image: "/images/C6/c6-main.png",
     features: ["60KM Range", "12.5Ah Battery", "Dual Suspension", "LED Display"],
@@ -153,11 +153,11 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ]
   },
   {
-    id: 5,
+    id: "5",
     name: "DYU C9",
     slug: "dyu-c9-20-inch-long-range-ebike",
     originalPrice: 1699,
-    salePrice: 899,
+    price: 899,
     discount: "47% OFF",
     image: "/images/C9/c9-main.png",
     features: ["Fat Tires", "80+ Mile Range", "Front Suspension", "Premium Build"],
@@ -184,11 +184,11 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ]
   },
   {
-    id: 6,
+    id: "6",
     name: "DYU Stroll 1",
     slug: "dyu-stroll-1-700c-city-electric-bike",
     originalPrice: 1299,
-    salePrice: 799,
+    price: 799,
     discount: "38% OFF",
     image: "/images/Stroll1/stroll1-main.png",
     features: ["700C Wheels", "67KM Range", "Aluminum Frame", "Hydraulic Brakes"],
@@ -228,7 +228,7 @@ export const getProductsByCategory = (category: string): ProductCard[] => {
 
 export const getRelatedProducts = (currentProductId: number, limit: number = 3): ProductCard[] => {
   return PRODUCTS_DATA
-    .filter(product => product.id !== currentProductId)
+    // .filter(product => product.id !== currentProductId)
     .slice(0, limit);
 };
 
