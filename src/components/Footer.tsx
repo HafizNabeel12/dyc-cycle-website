@@ -80,79 +80,9 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-white relative">
-      {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        {/* Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
-          {/* Company Info */}
-          <div className="lg:col-span-1">
-            {/* Logo */}
-            <div className="text-3xl font-bold mb-6">
-              DYU<span className="text-yellow-400">CYCLE</span>
-            </div>
-            
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              Empowering students with premium, affordable e-bikes designed for campus life. 
-              Join over 50,000 students who&apos;ve made DYU their trusted campus companion.
-            </p>
-
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-yellow-400" />
-                <span>1-800-DYU-BIKE (398-2453)</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-yellow-400" />
-                <span>support@dyucycle.com</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-yellow-400 mt-0.5" />
-                <span>123 Innovation Drive<br />Tech City, TC 12345</span>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex gap-4 mt-6">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gray-800 hover:bg-blue-600 p-3 rounded-full transition-all duration-300 transform hover:scale-110"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Footer Links */}
-          <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-8">
-            {footerSections.map((section, index) => (
-              <div key={index}>
-                <h3 className="font-bold text-lg mb-4">{section.title}</h3>
-                <ul className="space-y-2">
-                  {section.links.map((link, linkIndex) => (
-                    <li key={linkIndex}>
-                      <a
-                        href={link.href}
-                        className="text-gray-300 hover:text-white transition-colors duration-200"
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Features Row */}
-        <div className="border-t border-gray-800 pt-8 mb-8">
+        <div className="border-t border-gray-800 pt-8 m-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex items-center gap-4">
               <div className="bg-yellow-600 p-3 rounded-full">
@@ -187,7 +117,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-800 pt-8">
+        <div className="border-t border-gray-800 pt-8 m-8">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
             {/* Payment Methods */}
             <div>
@@ -234,12 +164,12 @@ const Footer = () => {
             Made with ❤️ for students worldwide
           </div> */}
         </div>
-      </div>
+  
 
       {/* Scroll to Top Button */}
       <button
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 z-50"
+        className="fixed bottom-8 right-8 bg-yellow-500 hover:bg-yellow-400 p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 z-50"
         aria-label="Scroll to top"
       >
         <ArrowUp className="w-6 h-6" />

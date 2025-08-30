@@ -14,8 +14,8 @@ export default function HomePage() {
       <Hero />
       <ProductShowcase />
       <Features />
-      <Testimonials />
-      <CallToAction />
+      {/* <Testimonials /> */}
+      {/* <CallToAction /> */}
       
     </main>
   );

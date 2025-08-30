@@ -126,10 +126,10 @@ const ProductShowcase = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white mt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        {/* <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Bike className="w-4 h-4" />
             Featured E-Bikes
@@ -141,10 +141,10 @@ const ProductShowcase = () => {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             From budget-friendly options to premium performance bikes, find the perfect e-bike for your campus lifestyle.
           </p>
-        </div>
+        </div> */}
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {/* <div className="flex flex-wrap justify-center gap-4 mb-12">
           {filters.map((filter) => (
             <button
               key={filter.key}
@@ -158,10 +158,10 @@ const ProductShowcase = () => {
               {filter.label}
             </button>
           ))}
-        </div>
+        </div> */}
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 h-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 h-auto mt-10">
           {filteredProducts.map((product) => (
             <div
               key={product.id}
@@ -263,6 +263,13 @@ const ProductShowcase = () => {
             Find My Perfect E-Bike
           </button>
           </Link>
+           <div className="w-[95%] h-full relative left-10 mt-10">
+
+        {/* Add actual background image here with overlay */}
+        <img src="/images/cycle.jpg" alt="DYU E-Bikes" className="w-full h-full object-cover  " />
+
+
+        </div>
         </div>
       </div>
     </section>

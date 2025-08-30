@@ -607,8 +607,15 @@ const FeaturedProducts: React.FC = () => {
 
   return (
     <section id="products" className="bg-white py-20">
+      <div className="w-full h-full">
+
+        {/* Add actual background image here with overlay */}
+        <img src="/images/product-banner.png" alt="DYU E-Bikes" className="w-full h-full object-cover mt-6 " />
+
+
+        </div>
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 mt-14">
           <h2 className="text-4xl lg:text-6xl font-bold text-black mb-4">
             Our <span className="text-yellow-400">Products</span>
           </h2>
@@ -1040,13 +1047,13 @@ export default function BackToSchoolPage(): React.JSX.Element {
 
   return (
     <main className="min-h-screen">
-      <HeroSection />
-      <PromoBanner />
+      {/* <HeroSection /> */}
+      {/* <PromoBanner /> */}
       <FeaturedProducts />
-      <WhyChooseSection />
-      <TestimonialsSection />
-      <FinalCTASection />
-      <NewsletterSection />
+      {/* <WhyChooseSection /> */}
+      {/* <TestimonialsSection /> */}
+      {/* <FinalCTASection /> */}
+      {/* <NewsletterSection /> */}
       
       {/* Floating Cart Button for Mobile */}
       <div className="fixed bottom-6 right-6 lg:hidden z-50">

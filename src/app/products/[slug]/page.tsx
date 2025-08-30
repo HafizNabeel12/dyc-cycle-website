@@ -155,9 +155,9 @@ const ProductPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white m-8">
       {/* Breadcrumb */}
-      <nav className="bg-gray-50 py-4 mt-16">
+      {/* <nav className="bg-gray-50 py-4 mt-16">
         <div className="container mx-auto px-4">
           <div className="flex items-center space-x-2 text-sm">
             <Link href="/" className="text-gray-500 hover:text-yellow-600">Home</Link>
@@ -167,10 +167,10 @@ const ProductPage: React.FC = () => {
             <span className="text-gray-900 font-medium">{product.name}</span>
           </div>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Back Button */}
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-4 mt-28">
         <Link 
           href="/back-to-school#products" 
           className="inline-flex items-center text-gray-600 hover:text-black transition-colors"
@@ -292,7 +292,7 @@ const ProductPage: React.FC = () => {
             {/* Quantity Selector */}
             <div className="flex items-center space-x-4">
               <span className="text-gray-700 font-medium">Quantity:</span>
-              <div className="flex items-center border border-gray-300 rounded-lg">
+              <div className="flex items-center text-black border border-gray-300 rounded-lg">
                 <button 
                   onClick={() => handleQuantityChange(-1)}
                   className="p-2 hover:bg-gray-50 rounded-l-lg"
@@ -313,7 +313,7 @@ const ProductPage: React.FC = () => {
             <div className="space-y-4">
                <AddToCartButton product={product} />
               
-              <div className="grid grid-cols-2 gap-4">
+              {/* <div className="grid grid-cols-2 gap-4">
                 <button className="border-2 border-black text-black py-3 px-6 rounded-lg font-semibold hover:bg-black hover:text-white transition-all flex items-center justify-center">
                   <Heart className="w-5 h-5 mr-2" />
                   Wishlist
@@ -322,7 +322,7 @@ const ProductPage: React.FC = () => {
                   <MessageCircle className="w-5 h-5 mr-2" />
                   Ask Question
                 </button>
-              </div>
+              </div> */}
             </div>
 
             {/* Trust Badges */}
