@@ -126,7 +126,7 @@ const ProductShowcase = () => {
   };
 
   return (
-    <section className="py-20 bg-white mt-28">
+    <section className="py-20 bg-white md:mt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         {/* <div className="text-center mb-16">
@@ -229,7 +229,7 @@ const ProductShowcase = () => {
                 <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
 
                 {/* Features */}
-                <div className="space-y-2 mb-4">
+                {/* <div className="space-y-2 mb-4">
                   {product.features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-2 text-sm text-gray-700">
                       {index === 0 && <Battery className="w-4 h-4 text-yellow-500" />}
@@ -238,7 +238,7 @@ const ProductShowcase = () => {
                       <span>{feature}</span>
                     </div>
                   ))}
-                </div>
+                </div> */}
 
                 {/* Price and CTA */}
                 <div className="flex items-center justify-between">

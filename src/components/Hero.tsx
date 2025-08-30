@@ -5,9 +5,9 @@ import { ArrowRight, Star, Zap, Bike } from 'lucide-react';
 
 const Hero = () => {
   return (
-   <section className="relative min-h-screen w-full">
+  <section className="relative min-h-screen w-full sm:m-0">
   {/* Spacer for navbar */}
-  <div className="h-20 md:h-24"></div>
+  <div className="h-32 md:h-24"></div>
 
   {/* Background image */}
   <img
@@ -16,21 +16,36 @@ const Hero = () => {
     className="w-full h-full object-cover"
   />
 
-  {/* Text content */}
-  <div className="absolute inset-0 z-30 flex flex-col justify-center px-4 sm:px-6 lg:px-12 text-center sm:text-left">
-    <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-snug sm:leading-tight">
+  {/* Text content (desktop & tablet only) */}
+  <div className="absolute inset-0 z-30 hidden sm:flex flex-col justify-center px-6 lg:px-12 text-left">
+    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
       End of Summer Sale
-      <span className="block text-yellow-500 text-base sm:text-xl md:text-2xl lg:text-3xl">
+      <span className="block text-yellow-500 text-xl md:text-2xl lg:text-3xl">
         Upto 30% OFF
       </span>
     </h1>
 
-    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start">
-      <button className="group bg-yellow-500 text-black font-bold px-5 sm:px-7 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full text-sm sm:text-base md:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg md:shadow-xl">
+    <div className="flex flex-col sm:flex-row gap-4 justify-start">
+      <button className="group bg-yellow-500 text-black font-bold px-7 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg md:shadow-xl">
         Shop Now
-        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
       </button>
     </div>
+  </div>
+
+  {/* Text content (mobile only, below image) */}
+  <div className="sm:hidden relative z-30 flex flex-col items-center text-center px-4 py-6">
+    <h1 className="text-xl font-bold text-black mb-3 leading-snug">
+      End of Summer Sale
+      <span className="block text-yellow-500 text-base">Upto 30% OFF</span>
+    </h1>
+
+    <button className="group bg-yellow-500 text-black font-bold px-5 py-2.5 rounded-full text-sm hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg">
+      Shop Now
+      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+    </button>
+ 
+
   
 
 
