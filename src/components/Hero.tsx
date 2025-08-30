@@ -5,36 +5,33 @@ import { ArrowRight, Star, Zap, Bike } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center  ">
+   <section className="relative min-h-screen w-full pt-24">
+  {/* Background image (no absolute here) */}
+  <img
+    src="/images/hero.png"
+    alt="DYU E-Bikes"
+    className="w-full h-full object-cover"
+  />
 
-      {/* Background Pattern */}
+  {/* Text content */}
+  <div className="absolute inset-0 z-30 flex flex-col justify-center px-8">
+    <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+      End of Summer Sale
+      <span className="block text-yellow-500">Upto 30% OFF</span>
+    </h1>
 
-      <div className='z-30'>
-
-        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 mt-40 ml-8 leading-tight ">
-          End of Summer Sale
-          <span className="block text-yellow-500">
-            Upto 30% OFF
-          </span>
-        </h1>
-
-          <div className="flex flex-col sm:flex-row ml-8">
-          <button className="group bg-yellow-500 text-black font-bold px-8 py-4 rounded-full text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-2xl">
-            Shop  Now
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-          
-        </div>
-
-        </div>
-      <div className="absolute ">
-        <div className="w-full h-full">
-
-        {/* Add actual background image here with overlay */}
-        <img src="/images/hero.png" alt="DYU E-Bikes" className="w-full h-full object-cover mt-72 " />
+    <div className="flex flex-col sm:flex-row">
+      <button className="group bg-yellow-500 text-black font-bold px-8 py-4 rounded-full text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-2xl">
+        Shop Now
+        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+      </button>
+    </div>
+  
 
 
-        </div>
+
+
+
         {/* <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div> */}
       </div>
 

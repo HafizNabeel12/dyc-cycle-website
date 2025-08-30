@@ -307,7 +307,7 @@ const ProductCardWithCart: React.FC<{ product: ProductCard }> = ({ product }) =>
       )}
 
       {/* Product Image */}
-      <div className="h-96 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center relative overflow-hidden">
+      <div className="h-96 bg-white flex items-center justify-center relative overflow-hidden">
         <Link href={`/products/${product.slug}`}>
           <img 
             className='object-cover group-hover:scale-110 transition-transform duration-500 w-full h-96' 
@@ -642,7 +642,7 @@ const FeaturedProducts: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 b">
           {filteredProducts.map((product) => (
             <ProductCardWithCart key={product.id} product={product} />
           ))}

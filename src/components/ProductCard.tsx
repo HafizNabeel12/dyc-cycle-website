@@ -55,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
     <Card className={`group hover:shadow-lg transition-shadow duration-300 border border-gray-200 ${className}`}>
       <CardContent className="p-0">
         {/* Product Image */}
-        <div className="relative overflow-hidden bg-gray-100 rounded-t-lg">
+        <div className="relative overflow-hidden bg-white rounded-t-lg">
           <div className="aspect-square">
             <Image
               src={product.image}
