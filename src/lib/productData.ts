@@ -8,6 +8,7 @@ export interface ProductCard {
   price: number;
   discount: string;
   image: string;
+  images: string[];
   features: string[];
   badge?: string;
   category: string;
@@ -36,6 +37,18 @@ export const PRODUCTS_DATA: ProductCard[] = [
     price: 449,
     discount: "50% OFF",
     image: "/images/d3f/d3f-main.png",
+    images: [ // Add this new array
+      "/images/d3f/d3f-main.png",
+      "/images/d3f/D3F-1.png",
+      "/images/d3f/D3F-2.png",
+      "/images/d3f/D3F-3.png",
+      "/images/d3f/D3F-4.png",
+      "/images/d3f/D3F-5.png",
+      "/images/d3f/D3F-6.png",
+      "/images/d3f/D3F-7.png",
+      "/images/d3f/D3F-side.png",
+    
+    ],
     features: ["37+ Mile Range", "15.5 MPH", "Ultra Compact", "Quick Fold"],
     badge: "COMPACT KING",
     category: "Mini",
@@ -67,6 +80,17 @@ export const PRODUCTS_DATA: ProductCard[] = [
     price: 649,
     discount: "50% OFF",
     image: "/images/T1/t1-main.png",
+     images: [ // Add this new array
+      "/images/T1/t1-main.png",
+      "/images/T1/t1-1.png",
+      "/images/T1/t1-2.png",
+      "/images/T1/t1-3.png",
+      "/images/T1/t1-4.png",
+      "/images/T1/t1-5.png",
+      "/images/T1/t1-6.png",
+      "/images/T1/t1-7.png",
+      
+    ],
     features: ["Torque Sensor", "35+ Mile Range", "20 inch", "Shimano Gears"],
     badge: "SMART CHOICE",
     category: "Smart",
@@ -98,6 +122,17 @@ export const PRODUCTS_DATA: ProductCard[] = [
     price: 599,
     discount: "45% OFF",
     image: "/images/C1/c1-main.png",
+     images: [ // Add this new array
+      "/images/C1/c1-main.png",
+      "/images/C1/c1-1.png",
+      "/images/C1/c1-2.png",
+      "/images/C1/c1-3.png",
+      "/images/C1/c1-4.png",
+      "/images/C1/c1-5.png",
+      "/images/C1/c1-6.png",
+      "/images/C1/c1-7.png",
+    
+    ],
     features: ["26 inch Wheels", "60KM Range", "500W Peak Power", "Front Suspension"],
     badge: "CITY CRUISER",
     category: "City",
@@ -129,6 +164,17 @@ export const PRODUCTS_DATA: ProductCard[] = [
     price: 699,
     discount: "42% OFF",
     image: "/images/C6/c6-main.png",
+     images: [ // Add this new array
+      "/images/C6/c6-main.png",
+      "/images/C6/c6-1.png",
+      "/images/C6/c6-2.png",
+      "/images/C6/c6-3.png",
+      "/images/C6/c6-4.png",
+      "/images/C6/c6-5.png",
+      "/images/C6/c6-6.png",
+      "/images/C6/c6-7.png",
+      
+    ],
     features: ["60KM Range", "12.5Ah Battery", "Dual Suspension", "LED Display"],
     badge: "STUDENT FAVORITE",
     category: "City",
@@ -160,6 +206,17 @@ export const PRODUCTS_DATA: ProductCard[] = [
     price: 899,
     discount: "47% OFF",
     image: "/images/C9/c9-main.png",
+     images: [ // Add this new array
+      "/images/C9/c9-main.png",
+      "/images/C9/c9-1.png",
+      "/images/C9/c9-2.png",
+      "/images/C9/c9-3.png",
+      "/images/C9/c9-4.png",
+      "/images/C9/c9-5.png",
+      "/images/C9/c9-6.png",
+      "/images/C9/c9-7.png",
+      
+    ],
     features: ["Fat Tires", "80+ Mile Range", "Front Suspension", "Premium Build"],
     badge: "LONG RANGE",
     category: "Adventure",
@@ -191,6 +248,17 @@ export const PRODUCTS_DATA: ProductCard[] = [
     price: 799,
     discount: "38% OFF",
     image: "/images/Stroll1/stroll1-main.png",
+     images: [ // Add this new array
+      "/images/Stroll1/stroll1-main.png",
+      "/images/Stroll1/stroll-1.png",
+      "/images/Stroll1/stroll-2.png",
+      "/images/Stroll1/stroll-3.png",
+      "/images/Stroll1/stroll-4.png",
+      "/images/Stroll1/stroll-5.png",
+      "/images/Stroll1/stroll-6.png",
+      "/images/Stroll1/stroll-7.png",
+      
+    ],
     features: ["700C Wheels", "67KM Range", "Aluminum Frame", "Hydraulic Brakes"],
     badge: "PREMIUM STYLE",
     category: "Urban",

@@ -41,8 +41,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <div className="text-2xl font-bold text-black">
-              DYU<span className="text-yellow-500">CYCLE</span>
+            <div className="text-2xl text-black">
+              
+              <span className="text-yellow-500">Skykellageret</span>
             </div>
           </div>
 
@@ -83,7 +84,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`${isScrolled ? 'text-black' : 'text-white'} hover:text-yellow-500 transition-colors`}
+              className={`${isScrolled ? 'text-black' : 'text-black'} hover:text-yellow-500 transition-colors`}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

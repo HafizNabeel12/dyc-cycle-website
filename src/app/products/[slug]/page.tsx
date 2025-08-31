@@ -1,7 +1,7 @@
 // src/app/products/[slug]/page.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { AddToCartButton } from '@/components/AddToCartButton';
 import Link from 'next/link';
 import { useParams, notFound } from 'next/navigation';
@@ -18,7 +18,6 @@ import {
   Battery,
   Gauge,
   Weight,
-  
   Zap,
   Eye,
   ChevronLeft,
@@ -33,7 +32,7 @@ import {
 } from 'lucide-react';
 
 // Import the product data from centralized location
-import {  getProductBySlug, getRelatedProducts,  } from '../../../lib/productData';
+import { getProductBySlug, getRelatedProducts } from '../../../lib/productData';
 
 interface ProductCard {
   id: string;
@@ -43,6 +42,7 @@ interface ProductCard {
   price: number;
   discount: string;
   image: string;
+  images: string[]; // Array of product images
   features: string[];
   badge?: string;
   category: string;
@@ -80,6 +80,13 @@ const ProductPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [activeTab, setActiveTab] = useState('overview');
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
+  const [imageLoadErrors, setImageLoadErrors] = useState<Set<number>>(new Set());
+  const thumbnailContainerRef = useRef<HTMLDivElement>(null);
+
+  
+
+  const THUMBNAILS_PER_VIEW = 8; // Number of thumbnails visible at once
 
   // Mock reviews data
   const reviews: Review[] = [
@@ -122,6 +129,10 @@ const ProductPage: React.FC = () => {
       
       if (foundProduct) {
         setProduct(foundProduct);
+        // Reset image-related state when product changes
+        setSelectedImage(0);
+        setThumbnailStartIndex(0);
+        setImageLoadErrors(new Set());
       } else {
         // Product not found, redirect to 404
         notFound();
@@ -130,6 +141,9 @@ const ProductPage: React.FC = () => {
     }
   }, [params.slug]);
 
+  // Get product images from the fetched product data
+  const productImages = product?.images || (product?.image ? [product.image] : []);
+
   const handleQuantityChange = (change: number) => {
     setQuantity(Math.max(1, quantity + change));
   };
@@ -137,6 +151,47 @@ const ProductPage: React.FC = () => {
   const handleAddToCart = () => {
     // Handle add to cart logic
     console.log(`Added ${quantity} of ${product?.name} to cart`);
+  };
+
+  const handleImageSelect = (index: number) => {
+    setSelectedImage(index);
+  };
+
+  // const handleImageError = (index: number) => {
+  //   setImageLoadErrors(prev => new Set([...prev, index]));
+  // };
+
+  const getValidImages = () => {
+    return productImages.filter((_, index) => !imageLoadErrors.has(index));
+  };
+
+  const getValidImageIndex = (originalIndex: number) => {
+    const validImages = getValidImages();
+    const validImageIndices = productImages
+      .map((_, index) => index)
+      .filter(index => !imageLoadErrors.has(index));
+    
+    return validImageIndices.indexOf(originalIndex);
+  };
+
+  const canScrollLeft = thumbnailStartIndex > 0;
+  const canScrollRight = thumbnailStartIndex + THUMBNAILS_PER_VIEW < productImages.length;
+
+  const scrollThumbnails = (direction: 'left' | 'right') => {
+    if (direction === 'left' && canScrollLeft) {
+      setThumbnailStartIndex(Math.max(0, thumbnailStartIndex - 1));
+    } else if (direction === 'right' && canScrollRight) {
+      setThumbnailStartIndex(Math.min(productImages.length - THUMBNAILS_PER_VIEW, thumbnailStartIndex + 1));
+    }
+  };
+
+  const handleThumbnailScroll = (e: React.WheelEvent) => {
+    e.preventDefault();
+    if (e.deltaX > 0 && canScrollRight) {
+      scrollThumbnails('right');
+    } else if (e.deltaX < 0 && canScrollLeft) {
+      scrollThumbnails('left');
+    }
   };
 
   if (loading) {
@@ -154,25 +209,14 @@ const ProductPage: React.FC = () => {
     return notFound();
   }
 
+  const visibleThumbnails = productImages.slice(thumbnailStartIndex, thumbnailStartIndex + THUMBNAILS_PER_VIEW);
+
   return (
     <div className="min-h-screen bg-white m-8">
-      {/* Breadcrumb */}
-      {/* <nav className="bg-gray-50 py-4 mt-16">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-gray-500 hover:text-yellow-600">Home</Link>
-            <span className="text-gray-400">/</span>
-            <Link href="/back-to-school" className="text-gray-500 hover:text-yellow-600">Back to School</Link>
-            <span className="text-gray-400">/</span>
-            <span className="text-gray-900 font-medium">{product.name}</span>
-          </div>
-        </div>
-      </nav> */}
-
       {/* Back Button */}
       <div className="container mx-auto px-4 py-4 mt-28">
         <Link 
-          href="/back-to-school#products" 
+          href="/product#products" 
           className="inline-flex items-center text-gray-600 hover:text-black transition-colors"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -188,49 +232,151 @@ const ProductPage: React.FC = () => {
             {/* Main Image */}
             <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden relative group">
               <div className="absolute inset-0 flex items-center justify-center">
-              <img className='object-cover group-hover:scale-110 transition-transform duration-500' 
-                   src={product.image} alt={product.name} />
+                {!imageLoadErrors.has(selectedImage) ? (
+                  <img 
+                    className="object-cover group-hover:scale-110 transition-transform duration-500 w-full h-full" 
+                    src={productImages[selectedImage]} 
+                    alt={`${product.name} - Image ${selectedImage + 1}`}
+                    // onError={() => handleImageError(selectedImage)}
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center text-gray-400">
+                    <Eye className="w-12 h-12 mb-2" />
+                    <span className="text-sm">Image not available</span>
+                  </div>
+                )}
               </div>
               
-              {/* Sale Badge */}
-              {/* <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold z-10">
-                {product.discount}
-              </div> */}
+              {/* Image Counter */}
+              <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+                {selectedImage + 1} / {productImages.length}
+              </div>
 
-              {/* Action Icons */}
-              {/* <div className="absolute top-4 right-4 flex flex-col space-y-2">
-                <button 
-                  onClick={() => setIsWishlisted(!isWishlisted)}
-                  className={`p-2 rounded-full shadow-lg transition-colors ${
-                    isWishlisted ? 'bg-red-500 text-white' : 'bg-white text-gray-600 hover:bg-red-50'
-                  }`}
-                >
-                  <Heart className="w-5 h-5" />
-                </button>
-                <button className="bg-white text-gray-600 p-2 rounded-full shadow-lg hover:bg-gray-50">
-                  <Share2 className="w-5 h-5" />
-                </button>
-                <button className="bg-white text-gray-600 p-2 rounded-full shadow-lg hover:bg-gray-50">
-                  <Eye className="w-5 h-5" />
-                </button>
-              </div> */}
+              {/* Navigation Arrows for Main Image */}
+              <button
+                onClick={() => setSelectedImage(selectedImage > 0 ? selectedImage - 1 : productImages.length - 1)}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 p-2 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => setSelectedImage(selectedImage < productImages.length - 1 ? selectedImage + 1 : 0)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 p-2 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
 
-            {/* Thumbnail Images */}
-            <div className="flex space-x-2">
-              {[...Array(4)].map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImage(index)}
-                  className={`flex-1 aspect-square rounded-lg overflow-hidden border-2 transition-colors ${
-                    selectedImage === index ? 'border-yellow-400' : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <Zap className="w-6 h-6 text-gray-400" />
-                  </div>
-                </button>
-              ))}
+            {/* Thumbnail Gallery */}
+            <div className="relative">
+              {/* Left Arrow */}
+              <button
+                onClick={() => scrollThumbnails('left')}
+                disabled={!canScrollLeft}
+                className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 transition-all ${
+                  canScrollLeft 
+                    ? 'text-gray-800 hover:bg-yellow-50 hover:text-yellow-600' 
+                    : 'text-gray-300 cursor-not-allowed'
+                }`}
+                style={{ marginLeft: '-12px' }}
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              {/* Thumbnails Container */}
+              <div 
+                ref={thumbnailContainerRef}
+                className="flex space-x-2 overflow-x-auto scrollbar-hide px-6"
+                onWheel={handleThumbnailScroll}
+                style={{ 
+                  scrollBehavior: 'smooth',
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none'
+                }}
+              >
+                {visibleThumbnails.map((image, index) => {
+                  const actualIndex = thumbnailStartIndex + index;
+                  const hasError = imageLoadErrors.has(actualIndex);
+                  
+                  return (
+                    <button
+                      key={actualIndex}
+                      onClick={() => handleImageSelect(actualIndex)}
+                      className={`flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                        selectedImage === actualIndex 
+                          ? 'border-yellow-400 shadow-lg scale-105' 
+                          : 'border-gray-200 hover:border-gray-300 hover:scale-102'
+                      }`}
+                    >
+                      <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                        {!hasError ? (
+                          <img 
+                            src={image} 
+                            alt={`${product.name} thumbnail ${actualIndex + 1}`}
+                            className="w-full h-full object-cover"
+                            // onError={() => handleImageError(actualIndex)}
+                          />
+                        ) : (
+                          <Eye className="w-6 h-6 text-gray-400" />
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Right Arrow */}
+              <button
+                onClick={() => scrollThumbnails('right')}
+                disabled={!canScrollRight}
+                className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 transition-all ${
+                  canScrollRight 
+                    ? 'text-gray-800 hover:bg-yellow-50 hover:text-yellow-600' 
+                    : 'text-gray-300 cursor-not-allowed'
+                }`}
+                style={{ marginRight: '-12px' }}
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+
+              {/* Mobile: Swipe Indicator */}
+              <div className="md:hidden flex justify-center mt-2">
+                <div className="flex space-x-1">
+                  {Array.from({ length: Math.ceil(productImages.length / THUMBNAILS_PER_VIEW) }).map((_, index) => (
+                    <div
+                      key={index}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        Math.floor(thumbnailStartIndex / THUMBNAILS_PER_VIEW) === index
+                          ? 'bg-yellow-400'
+                          : 'bg-gray-300'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Product Features Quick View */}
+            <div className="bg-gray-50 rounded-xl p-4 space-y-3">
+              <h3 className="font-semibold text-gray-900 mb-3">Quick Features</h3>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex items-center space-x-2 text-sm">
+                  <Battery className="w-4 h-4 text-yellow-600" />
+                  <span className="text-gray-600">Battery: {product.specifications.battery}</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm">
+                  <Gauge className="w-4 h-4 text-yellow-600" />
+                  <span className="text-gray-600">Range: {product.specifications.range}</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm">
+                  <Zap className="w-4 h-4 text-yellow-600" />
+                  <span className="text-gray-600">Speed: {product.specifications.speed}</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm">
+                  <Weight className="w-4 h-4 text-yellow-600" />
+                  <span className="text-gray-600">Weight: {product.specifications.weight}</span>
+                </div>
+              </div>
             </div>
           </div>
 
