@@ -1,11 +1,24 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Anton, Inter } from 'next/font/google'
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { CartProvider } from '@/components/CartContext';
 
-const inter = Inter({ subsets: ['latin'] });
+// Configure Anton font for headings/branding
+const anton = Anton({
+  subsets: ['latin'],
+  weight: '400', // Anton only has one weight
+  variable: '--font-anton',
+  display: 'swap',
+})
+
+// Configure Inter for body text (similar to Anton Sport's clean look)
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'DYU Cycle - Back to School | Premium E-Bikes for Students',
@@ -62,7 +75,7 @@ export default function RootLayout({
         {/* Analytics - Replace with your tracking codes */}
         {/* <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> */}
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${anton.variable} ${inter.variable}`}>
         {/* Skip to main content for accessibility */}
         <a 
           href="#main-content" 
