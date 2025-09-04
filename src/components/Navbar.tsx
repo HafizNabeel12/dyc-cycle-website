@@ -23,7 +23,7 @@ const Navbar = () => {
     { name: 'Klær', href: '/clothing' },
     { name: 'Sko', href: '/shoes' },
     { name: 'Ski', href: '/ski' },
-    { name: 'Sykkel', href: '/bikes' },
+    { name: 'Sykkel', href: '/cycle' },
     { name: 'Trening', href: '/training' },
     { name: 'Turutstyr', href: '/hiking-gear' },
     { name: 'Outlet', href: '/outlet' },
