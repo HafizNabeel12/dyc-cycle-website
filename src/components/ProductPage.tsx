@@ -442,7 +442,7 @@ export default function ProductPage() {
 
                 </div>
                 
-                    <AddToCartButton product={product}  className="w-[130px] rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium text-white transition hover:border-black hover:bg-gray-50 hover:text-black"/>
+                    <AddToCartButton product={product}  className=" rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium text-white transition hover:border-black hover:bg-gray-50 hover:text-black"/>
                 
               </div>
 

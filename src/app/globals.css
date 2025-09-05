@@ -298,6 +298,7 @@ select:focus-visible {
   }
 }
 
+
 /* Selection Styling */
 ::selection {
   background: var(--primary-blue);
