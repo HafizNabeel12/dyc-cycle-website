@@ -195,7 +195,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
             {/* What's in the Box */}
             <div>
               <button onClick={() => toggleAccordion("box")} className="w-full px-6 py-4 flex items-center justify-between text-left">
-                <span className="font-medium">What's in the Box</span>
+                <span className="font-medium">What&apos;s in the Box</span>
                 {openAccordion === "box" ? <ChevronUp /> : <ChevronDown />}
               </button>
               {openAccordion === "box" && (
