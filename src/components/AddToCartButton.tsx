@@ -35,13 +35,13 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
     }, 2000);
   };
 
-  const defaultClasses = 'bg-black text-black px-6 py-2 w-full transition-colors flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed';
+  const defaultClasses = 'bg-black text-black px-6 py-2 transition-colors flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
   return (
     <button
       onClick={handleAddToCart}
       disabled={isAdding}
-      className={`${className} ${defaultClasses} `}
+      className={` ${defaultClasses} ${className}`}
     >
       {justAdded ? (
         <>
