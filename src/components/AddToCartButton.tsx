@@ -41,7 +41,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
     <button
       onClick={handleAddToCart}
       disabled={isAdding}
-      className={`${defaultClasses} ${className}`}
+      className={`${className} ${defaultClasses} `}
     >
       {justAdded ? (
         <>
