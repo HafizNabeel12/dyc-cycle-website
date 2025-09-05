@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Menu, X, User, MapPin, ChevronDown } from 'lucide-react';
+import { Search, Menu, X, User, MapPin, ChevronDown, ShoppingBag } from 'lucide-react';
+import { CartIcon } from './CartIcon';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,16 +19,16 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: 'Merker', href: '/brands' },
-    { name: 'Medlemstilbud', href: '/member-deals' },
-    { name: 'Klær', href: '/clothing' },
-    { name: 'Sko', href: '/shoes' },
-    { name: 'Ski', href: '/ski' },
+    { name: 'Merker', href: '#' },
+    { name: 'Medlemstilbud', href: '#' },
+    { name: 'Klær', href: '#' },
+    { name: 'Sko', href: '#' },
+    { name: 'Ski', href: '#' },
     { name: 'Sykkel', href: '/cycle' },
-    { name: 'Trening', href: '/training' },
-    { name: 'Turutstyr', href: '/hiking-gear' },
-    { name: 'Outlet', href: '/outlet' },
-    { name: 'Idrettslag & Klubb', href: '/clubs' },
+    { name: 'Trening', href: '#' },
+    { name: 'Turutstyr', href: '#' },
+    { name: 'Outlet', href: '#' },
+    { name: 'Idrettslag & Klubb', href: '#' },
   ];
 
   const toggleDropdown = (index: React.SetStateAction<null>) => {
@@ -35,13 +36,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300  ${
       isScrolled 
         ? 'bg-white shadow-lg' 
         : 'bg-white'
     }`}>
       {/* Top Bar */}
-      <div className="bg-black text-white py-2 px-4">
+      {/* <div className="bg-black text-white py-2 px-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
           <div className="flex items-center space-x-4">
             <span className="font-medium">Gratis frakt over 599,-</span>
@@ -50,23 +51,21 @@ const Navbar = () => {
             <Link href="/customer-service" className="hover:text-yellow-400 transition-colors">
               Kundeservice
             </Link>
-            <Link href="/stores" className="hover:text-yellow-400 transition-colors flex items-center">
+            <Link href="/" className="hover:text-yellow-400 transition-colors flex items-center">
               <MapPin className="w-4 h-4 mr-1" />
               Finn butikk
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Navigation */}
-      <div className="bg-white border-b border-gray-100">
+      <div className="bg-white border-b border-gray-100 ">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-16   ">
             {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <div className="text-2xl  text-yellow-500">
-               Skykellageret
-              </div>
+            <Link href="/" >
+              <img src="/images/logo.jpg" alt="" className='w-40  items-start' />
             </Link>
 
             {/* Search Bar - Desktop */}
@@ -83,11 +82,13 @@ const Navbar = () => {
 
             {/* Right Side Actions */}
             <div className="flex items-center space-x-4">
-              <button className="hidden md:flex items-center space-x-2 text-gray-700 hover:text-black transition-colors">
-                <User className="w-5 h-5" />
-                <span>Logg inn / Bli medlem</span>
-              </button>
-              
+              <Link href="/" className="text-black hover:text-yellow-400 transition-colors flex items-center">
+              <MapPin className="w-4 h-4 mr-1" />
+              Finn butikk
+            </Link>
+            <Link href="/cart">
+                <CartIcon className='hidden md:flex items-center space-x-2 text-gray-700 hover:text-black transition-colors'/>
+              </Link>
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -100,7 +101,7 @@ const Navbar = () => {
 
           {/* Navigation Menu - Desktop */}
           <div className="hidden md:block">
-            <div className="flex space-x-8 py-4 overflow-x-auto">
+            <div className="flex space-x-8 py-4 overflow-x-auto ">
               {navItems.map((item, index) => (
                 <Link
                   key={index}

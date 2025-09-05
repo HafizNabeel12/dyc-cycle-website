@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ProductCard } from "@/lib/productData";
+import Link from "next/link";
+import { AddToCartButton } from "./AddToCartButton";
 
 export default function ProductDetails({ product }: { product: ProductCard }) {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
@@ -10,43 +12,57 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
   const [selectedSize, setSelectedSize] = useState(product.availableSizes[0]);
 
   return (
-    <div className="mt-32">
-     {/* IMAGE + THUMBNAILS */}
-<div className="flex justify-center">
-  <div className="grid grid-cols-[4fr_1fr] gap-6 w-full max-w-4xl items-start">
-    {/* MAIN IMAGE */}
-    <div >
-      <Image
-        src={selectedImage}
-        alt={product.name}
-        width={1000}
-        height={800}
-        className="w-full max-h-[600px] object-contain"
-      />
-    </div>
+    <div className="mt-20">
+      {/* Breadcrumb */}
+      <nav aria-label="Breadcrumb" className="border-b border-gray-200">
+        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-3 text-sm">
+          <li>
+            <Link href="/cycle" className="text-gray-600 hover:text-black transition">
+              Sykkel
+            </Link>
+          </li>
+          <li aria-hidden="true" className="text-gray-400">/</li>
+          <li className="text-black font-medium">{product.name}</li>
+        </ol>
+      </nav>
+      {/* IMAGE + THUMBNAILS */}
+      <div className="flex justify-center">
+        <div className="grid grid-cols-[4fr_1fr] gap-6 w-full max-w-5xl items-start">
+          {/* MAIN IMAGE */}
+          <div>
+            <Image
+              src={selectedImage}
+              alt={product.name}
+              width={1000}
+              height={800}
+              className="w-full max-h-[600px] object-contain"
+            />
+          </div>
 
-    {/* THUMBNAILS */}
-    <div className="grid grid-cols-2 items-end gap-3">
-      {product.images.map((img, i) => (
-        <button
-          key={i}
-          onClick={() => setSelectedImage(img)}
-          className={`border rounded-md p-1 ${
-            selectedImage === img ? "border-black" : "border-gray-300"
-          }`}
-        >
-          <Image
-            src={img}
-            alt={product.name}
-            width={100}
-            height={100}
-            className="object-contain w-[90px] h-[90px]"
-          />
-        </button>
-      ))}
-    </div>
-  </div>
-</div>
+          {/* THUMBNAILS */}
+          <div className="grid grid-cols-2 gap-3 justify-items-end">
+            {product.images.map((img, i) => (
+              <button
+                key={i}
+                onClick={() => setSelectedImage(img)}
+                className={`border rounded-md p-1 ${selectedImage === img ? "border-black" : "border-gray-300"
+                  }`}
+              >
+                <Image
+                  src={img}
+                  alt={product.name}
+                  width={100}
+                  height={100}
+                  className="object-contain w-[90px] h-[90px]"
+                />
+              </button>
+            ))}
+           
+
+          </div>
+        </div>
+      </div>
+
 
 
       {/* PRODUCT DETAILS */}
@@ -59,7 +75,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
         </div>
 
         {/* COLOR SELECTOR */}
-        <div>
+        {/* <div>
           <h3 className="font-semibold text-black">Select Color:</h3>
           <div className="flex gap-3 mt-2">
             {product.availableColors.map((color) => (
@@ -74,10 +90,10 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* SIZE SELECTOR */}
-        <div>
+        {/* <div>
           <h3 className="font-semibold text-black">Choose Size:</h3>
           <div className="flex gap-3 mt-2">
             {product.availableSizes.map((size) => (
@@ -92,16 +108,16 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* ACTION BUTTONS */}
         <div className="flex gap-4 mt-4">
-          <button className="bg-orange-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-orange-700">
-            Add to Cart
-          </button>
-          <button className="border border-orange-600 text-orange-600 px-6 py-3 rounded-md font-semibold hover:bg-orange-100">
+          
+            <AddToCartButton product={product} className="w-44 bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600"/>
+        
+          {/* <button className="border border-orange-600 text-orange-600 px-6 py-3 rounded-md font-semibold hover:bg-orange-100">
             Reserve in Store
-          </button>
+          </button> */}
         </div>
 
         {/* DESCRIPTION */}

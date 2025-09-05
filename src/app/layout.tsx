@@ -1,9 +1,16 @@
 import type { Metadata } from 'next';
-import { Anton, Inter } from 'next/font/google'
+import { Anton, Inter , Roboto_Condensed } from 'next/font/google'
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { CartProvider } from '@/components/CartContext';
+
+
+const robotoCondensed = Roboto_Condensed({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"], // you can add more if needed
+  variable: "--font-roboto-condensed",
+});
 
 // Configure Anton font for headings/branding
 const anton = Anton({
@@ -75,7 +82,7 @@ export default function RootLayout({
         {/* Analytics - Replace with your tracking codes */}
         {/* <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> */}
       </head>
-      <body className={`${anton.variable} ${inter.variable}`}>
+      <body className={` ${robotoCondensed.variable} ${anton.variable} ${inter.variable}`}>
         {/* Skip to main content for accessibility */}
         <a 
           href="#main-content" 
