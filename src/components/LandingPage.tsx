@@ -293,8 +293,20 @@ const LandingPage = () => {
                     src="/images/hero.png"
                     alt="DYU E-Bikes"
                     className="max-h-[600px] w-auto object-contain max-w-7xl px-4"
+
+
                 />
+
+                
             </section>
+
+              <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-center mt-6 mb-8">
+          <div >
+            <h1 className="text-2xl sm:text-4xl font-semibold tracking-tight text-black underline">Explore Our Ebikes</h1>
+            {/* <p className="text-sm text-gray-600">Elsykler, terreng, landevei og mer</p> */}
+          </div>
+
+        </header>
 
 
             {/* Featured Products Section */}
@@ -304,9 +316,9 @@ const LandingPage = () => {
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {products.map((product) => (
-                            <div key={product.id} className="group bg-white hover:shadow-sm transition-shadow duration-200 cursor-pointer">
+                            <div key={product.id} className="group bg-white hover:shadow-sm transition-shadow duration-200 cursor-pointer ">
                                 {/* Product Image Container */}
-                                <div className="relative aspect-square bg-gray-50 overflow-hidden">
+                                <div className="relative aspect-square bg-gray-50 overflow-hidden ">
                                     <Link href={`/products/${product.slug}`}>
                                         <img className='object-cover '
                                             src={product.image} alt={product.name} />
@@ -316,7 +328,7 @@ const LandingPage = () => {
                                     {/* Quick Add Button - appears on hover */}
                                     <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                         
-                                            <AddToCartButton product={product} className='w-full bg-black text-white py-2 text-sm font-medium hover:bg-gray-800 transition-colors items-center'/>
+                                            <AddToCartButton product={product} className='w-full bg-yellow-500 text-black py-2 text-sm font-medium hover:bg-yellow-600 transition-colors items-center'/>
                                         
                                     </div>
                                 </div>
@@ -325,10 +337,10 @@ const LandingPage = () => {
                                 <div className="pt-3 pb-4">
                                     {/* Brand and Product Name */}
                                     <div className="mb-2">
-                                        <div className="text-sm text-gray-900 font-medium mb-1">
-                                            – {product.name}
+                                        <div className="text-xl text-gray-900 font-semibold mb-1">
+                                            {product.name}
                                         </div>
-                                        <div className="text-sm text-gray-600">
+                                        <div className="text-lg text-gray-600">
                                             {product.category}
                                         </div>
                                     </div>
@@ -336,12 +348,12 @@ const LandingPage = () => {
                                     {/* Pricing */}
                                     <div className="space-y-1">
                                         {/* Regular/Sale Price */}
-                                        <div className="flex items-center gap-2">
+                                        <div className="flex items-center gap-2 text-lg">
                                             <span className="text-lg font-medium text-gray-900">
                                                 {product.price},-
                                             </span>
                                             {product.originalPrice && (
-                                                <span className="text-sm text-gray-500 line-through">
+                                                <span className="text-sm text-yellow-500 line-through">
                                                     {product.originalPrice},-
                                                 </span>
                                             )}

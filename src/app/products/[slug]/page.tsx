@@ -1,3 +1,4 @@
+// src/app/products/[slug]/page.tsx
 import { getAllProductSlugs, getProductBySlug } from "@/lib/productData";
 import { notFound } from "next/navigation";
 import ProductDetails from "@/components/ProductDetails";
@@ -19,7 +20,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="max-w-7xl mx-auto px-4 py-10">
       <ProductDetails product={product!} />
     </div>
   );

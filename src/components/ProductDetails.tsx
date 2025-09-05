@@ -5,11 +5,18 @@ import Image from "next/image";
 import { ProductCard } from "@/lib/productData";
 import Link from "next/link";
 import { AddToCartButton } from "./AddToCartButton";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
 
 export default function ProductDetails({ product }: { product: ProductCard }) {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const [selectedColor, setSelectedColor] = useState(product.availableColors[0]);
   const [selectedSize, setSelectedSize] = useState(product.availableSizes[0]);
+  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+
+  const toggleAccordion = (id: string) => {
+    setOpenAccordion(openAccordion === id ? null : id);
+  };
 
   return (
     <div className="mt-20">
@@ -57,7 +64,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 />
               </button>
             ))}
-           
+
 
           </div>
         </div>
@@ -66,7 +73,8 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
 
 
       {/* PRODUCT DETAILS */}
-      <div className="mt-10 space-y-6">
+      
+      <div className="mt-10 space-y-6 ">
         <h1 className="text-2xl font-bold text-black">{product.name}</h1>
         <div className="flex items-center gap-4">
           <span className="text-2xl font-bold text-red-600">${product.price}</span>
@@ -112,15 +120,16 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
 
         {/* ACTION BUTTONS */}
         <div className="flex gap-4 mt-4">
-          
-            <AddToCartButton product={product} className="w-44 bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600"/>
-        
+
+          <AddToCartButton product={product} className="w-44 bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600" />
+
           {/* <button className="border border-orange-600 text-orange-600 px-6 py-3 rounded-md font-semibold hover:bg-orange-100">
             Reserve in Store
           </button> */}
         </div>
 
         {/* DESCRIPTION */}
+       
         <div className="mt-8">
           <h2 className="text-xl font-bold mb-2 text-black">About the Product</h2>
           <p className="text-gray-700">{product.description}</p>
@@ -137,19 +146,83 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
         </div>
 
         {/* SPECIFICATIONS */}
-        <div className="mt-6">
-          <h3 className="font-semibold mb-2 text-black">Specifications:</h3>
-          <ul className="list-disc ml-6 space-y-1 text-gray-700">
-            <li><strong>Motor:</strong> {product.specifications.motor}</li>
-            <li><strong>Battery:</strong> {product.specifications.battery}</li>
-            <li><strong>Range:</strong> {product.specifications.range}</li>
-            <li><strong>Speed:</strong> {product.specifications.speed}</li>
-            <li><strong>Weight:</strong> {product.specifications.weight}</li>
-            <li><strong>Wheel Size:</strong> {product.specifications.wheelSize}</li>
-            <li><strong>Foldable: </strong>{product.specifications.foldable ? "Yes" : "No"}</li>
-          </ul>
-        </div>
+        {/* Accordion block - Specs / Size / What's in the Box */}
+        
+          <div className="bg-white border border-gray-200 rounded-lg text-black">
+            {/* Specs */}
+            <div className="border-b border-gray-100">
+              <button onClick={() => toggleAccordion("specs")} className="w-full px-6 py-4 flex items-center justify-between text-left">
+                <span className="font-medium">Specs</span>
+                {openAccordion === "specs" ? <ChevronUp /> : <ChevronDown />}
+              </button>
+              {openAccordion === "specs" && (
+                <div className="px-6 pb-4 text-sm text-gray-700">
+                  <ul className="space-y-2">
+                    <li><strong>Motor:</strong> {product.specifications.motor}</li>
+                    <li><strong>Battery:</strong> {product.specifications.battery}</li>
+                    <li><strong>Range:</strong> {product.specifications.range}</li>
+                    <li><strong>Top speed:</strong> {product.specifications.speed}</li>
+                    <li><strong>Weight:</strong> {product.specifications.weight}</li>
+                    <li><strong>Wheel size:</strong> {product.specifications.wheelSize}</li>
+                    {product.specifications.brakes && <li><strong>Brakes:</strong> {product.specifications.brakes}</li>}
+                    {product.specifications.frame && <li><strong>Frame:</strong> {product.specifications.frame}</li>}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Size */}
+            <div className="border-b border-gray-100">
+              <button onClick={() => toggleAccordion("size")} className="w-full px-6 py-4 flex items-center justify-between text-left">
+                <span className="font-medium">Size</span>
+                {openAccordion === "size" ? <ChevronUp /> : <ChevronDown />}
+              </button>
+              {openAccordion === "size" && (
+                <div className="px-6 pb-4 text-sm text-gray-700">
+                  {product.availableSizes.length === 0 ? (
+                    <p>One-size / folding model</p>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-2">
+                      {product.availableSizes.map((s) => (
+                        <div key={s} className="p-2 border rounded text-sm">{s}</div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* What's in the Box */}
+            <div>
+              <button onClick={() => toggleAccordion("box")} className="w-full px-6 py-4 flex items-center justify-between text-left">
+                <span className="font-medium">What's in the Box</span>
+                {openAccordion === "box" ? <ChevronUp /> : <ChevronDown />}
+              </button>
+              {openAccordion === "box" && (
+                <div className="px-6 pb-6 text-sm text-gray-700">
+                  <ul className="list-disc ml-5 space-y-1">
+                    {product.whatsInTheBox.map((item, i) => <li key={i}>{item}</li>)}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+
+
+       
+        
       </div>
+
+
     </div>
+
+
+
+
+
+
+
   );
 }
+
+

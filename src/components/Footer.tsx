@@ -79,23 +79,23 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white relative">
+    <footer className="bg-black text-white relative">
 
         {/* Features Row */}
-        <div className="border-t border-gray-800 pt-8 m-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex items-center gap-4">
-              <div className="bg-yellow-600 p-3 rounded-full">
+        <div className="border-t border-gray-800 pt-8 m-8 flex items-center justify-center  ">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-56 ">
+            <div className="flex items-center  gap-4">
+              <div className=" p-3 rounded-full">
                 <Truck className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="font-semibold">Free Shipping</h4>
-                <p className="text-yellow-400 text-sm">On all orders over $299</p>
+                <h4 >Free Shipping</h4>
+                <p className="text-gray-400 text-sm">On all orders over $299</p>
               </div>
             </div>
             
             <div className="flex items-center gap-4">
-              <div className="bg-yellow-600 p-3 rounded-full">
+              <div className=" p-3 rounded-full">
                 <Shield className="w-6 h-6" />
               </div>
               <div>
@@ -105,7 +105,7 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center gap-4">
-              <div className="bg-yellow-600 p-3 rounded-full">
+              <div className="p-3 rounded-full">
                 <CreditCard className="w-6 h-6" />
               </div>
               <div>
@@ -135,7 +135,7 @@ const Footer = () => {
             </div>
 
             {/* Newsletter Signup */}
-            <div className="text-center lg:text-right">
+            {/* <div className="text-center lg:text-right">
               <h4 className="font-semibold mb-3">Stay Updated</h4>
               <p className="text-gray-400 text-sm mb-3">Get the latest deals and updates</p>
               <div className="flex gap-2 max-w-sm">
@@ -148,7 +148,7 @@ const Footer = () => {
                   Subscribe
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

@@ -65,7 +65,7 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16   ">
             {/* Logo */}
             <Link href="/" >
-              <img src="/images/logo.jpg" alt="" className='w-40  items-start' />
+              <img src="/images/logo.jpg" alt="" className='w-36  items-start' />
             </Link>
 
             {/* Search Bar - Desktop */}
@@ -101,12 +101,12 @@ const Navbar = () => {
 
           {/* Navigation Menu - Desktop */}
           <div className="hidden md:block">
-            <div className="flex space-x-8 py-4 overflow-x-auto ">
+            <div className="flex space-x-8 py-4 overflow-x-auto text-xl  ">
               {navItems.map((item, index) => (
                 <Link
                   key={index}
                   href={item.href}
-                  className="whitespace-nowrap text-gray-700 hover:text-black font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-yellow-400"
+                  className="whitespace-nowrap text-gray-700 hover:text-black transition-colors duration-200 border-b-2 border-transparent hover:border-yellow-400"
                 >
                   {item.name}
                 </Link>
