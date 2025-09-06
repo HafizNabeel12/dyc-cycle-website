@@ -90,7 +90,7 @@ const Navbar = () => {
         {/* Navigation Items - Two Rows */}
         <div className="px-2 py-2 overflow-hidden">
           {/* First Row */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-lg mb-2 items-center justify-center">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm mb-2 items-center justify-center">
             {navItems.slice(0, 6).map((item, index) => (
               <Link
                 key={index}
@@ -103,7 +103,7 @@ const Navbar = () => {
           </div>
           
           {/* Second Row */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-lg items-center justify-center">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm items-center justify-center">
             {navItems.slice(6).map((item, index) => (
               <Link
                 key={index + 5}
