@@ -281,66 +281,60 @@ const LandingPage = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-white mt-20 ">
+        <div className="min-h-screen bg-white mt-20">
             {/* Hero Section */}
-
-            <section className="flex min-h-screen justify-center items-center  ">
-                {/* Spacer for navbar */}
-                {/* <div className="h-32 md:h-24"></div> */}
-
+            <section className="flex md:min-h-screen justify-center items-center sm:m-0">
                 {/* Background image */}
                 <img
                     src="/images/hero.png"
                     alt="DYU E-Bikes"
-                    className="max-h-[600px] w-auto object-contain max-w-7xl px-4"
-
-
+                    className="max-h-[600px] w-auto md:object-contain md:max-w-7xl px-4 sm:px-2 "
                 />
-
-                
             </section>
 
-              <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-center mt-6 mb-8">
-          <div >
-            <h1 className="text-2xl sm:text-4xl font-semibold tracking-tight text-black underline">Explore Our Ebikes</h1>
-            {/* <p className="text-sm text-gray-600">Elsykler, terreng, landevei og mer</p> */}
-          </div>
-
-        </header>
-
+            {/* Header Section */}
+            <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-center mt-6 mb-8 px-4 sm:px-0">
+                <div>
+                    <h1 className="md:text-2xl sm:text-xl font-semibold tracking-tight text-black underline text-center sm:text-left">
+                        Explore Our Ebikes
+                    </h1>
+                </div>
+            </header>
 
             {/* Featured Products Section */}
-            <section className="mb-24 px-4">
+            <section className="mb-24 px-4 sm:px-2">
                 <div className="max-w-7xl mx-auto">
-
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {/* Mobile: Single column grid, Desktop: Multi-column grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         {products.map((product) => (
-                            <div key={product.id} className="group bg-white hover:shadow-sm transition-shadow duration-200 cursor-pointer ">
+                            <div key={product.id} className="group bg-white hover:shadow-sm transition-shadow duration-200 cursor-pointer">
                                 {/* Product Image Container */}
-                                <div className="relative aspect-square bg-gray-50 overflow-hidden ">
+                                <div className="relative aspect-square bg-gray-50 overflow-hidden">
                                     <Link href={`/products/${product.slug}`}>
-                                        <img className='object-cover '
-                                            src={product.image} alt={product.name} />
+                                        <img 
+                                            className='object-cover sm:w-full sm:h-full w-[80%] h-[80%] m-auto sm:m-0'
+                                            src={product.image} 
+                                            alt={product.name} 
+                                        />
                                     </Link>
 
-
-                                    {/* Quick Add Button - appears on hover */}
-                                    <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                        
-                                            <AddToCartButton product={product} className='w-full bg-yellow-500 text-black py-2 text-sm font-medium hover:bg-yellow-600 transition-colors items-center'/>
-                                        
+                                    {/* Quick Add Button - appears on hover for desktop, always visible on mobile */}
+                                    <div className="absolute bottom-3 left-3 right-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
+                                        <AddToCartButton 
+                                            product={product} 
+                                            className='w-full bg-yellow-500 text-black py-2 sm:py-2 text-sm font-medium hover:bg-yellow-600 transition-colors items-center'
+                                        />
                                     </div>
                                 </div>
 
                                 {/* Product Info */}
-                                <div className="pt-3 pb-4">
+                                <div className="pt-3 pb-4 sm:pt-3 sm:pb-4">
                                     {/* Brand and Product Name */}
                                     <div className="mb-2">
-                                        <div className="text-xl text-gray-900 font-semibold mb-1">
+                                        <div className="text-lg sm:text-xl text-gray-900 font-semibold mb-1 leading-tight">
                                             {product.name}
                                         </div>
-                                        <div className="text-lg text-gray-600">
+                                        <div className="text-sm sm:text-lg text-gray-600">
                                             {product.category}
                                         </div>
                                     </div>
@@ -348,8 +342,8 @@ const LandingPage = () => {
                                     {/* Pricing */}
                                     <div className="space-y-1">
                                         {/* Regular/Sale Price */}
-                                        <div className="flex items-center gap-2 text-lg">
-                                            <span className="text-lg font-medium text-gray-900">
+                                        <div className="flex items-center gap-2 text-base sm:text-lg">
+                                            <span className="text-base sm:text-lg font-medium text-gray-900">
                                                 {product.price},-
                                             </span>
                                             {product.originalPrice && (
@@ -358,17 +352,12 @@ const LandingPage = () => {
                                                 </span>
                                             )}
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
-
-
-
             </section>
         </div>
     );
