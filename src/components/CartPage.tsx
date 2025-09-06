@@ -47,7 +47,7 @@ const CartPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 flex justify-center items-center">
         <div className="container mx-auto px-4 py-8">
           <div className="flex justify-center items-center h-64">
             <div className="animate-spin rounded-full h-8 w-8 border-2 border-yellow-500 border-t-transparent"></div>
@@ -61,7 +61,7 @@ const CartPage: React.FC = () => {
   if (items.length === 0) {
     return (
       <div className="bg-gray-50">
-        <div className="container mx-auto px-4 py-8 mt-52">
+        <div className="container mx-auto px-4 py-8 mt-52 md:mt-36">
           {/* MOBILE EMPTY CART */}
           <div className="lg:hidden">
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center">
@@ -86,8 +86,8 @@ const CartPage: React.FC = () => {
           </div>
 
           {/* DESKTOP EMPTY CART - UNCHANGED */}
-          <div className="hidden lg:block">
-            <div className="bg-white p-16 text-center max-w-2xl mx-auto">
+          <div className="hidden lg:block ">
+            <div className=" p-16 text-center max-w-2xl mx-auto">
               <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <ShoppingBag className="h-12 w-12 text-gray-400" />
               </div>
@@ -103,12 +103,12 @@ const CartPage: React.FC = () => {
                   Continue Shopping
                 </button>
                 
-                <button
+                {/* <button
                   onClick={handleStartFresh}
                   className="bg-gray-100 text-gray-700 px-8 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all duration-200"
                 >
                   Start Fresh Shopping
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
