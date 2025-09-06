@@ -53,9 +53,9 @@ const Navbar = () => {
           {/* Right Icons */}
           <div className="flex items-center space-x-4">
             {/* User Icon */}
-            <Link href="/login">
+            {/* <Link href="/login">
               <User className="w-5 h-5 text-gray-700" />
-            </Link>
+            </Link> */}
             
             {/* Cart Icon */}
             <Link href="/cart">
@@ -68,12 +68,12 @@ const Navbar = () => {
         <div className="px-4 py-3 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             {/* Hamburger Menu */}
-            <button
+            {/* <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="flex-shrink-0"
             >
               <Menu className="w-5 h-5 text-gray-700" />
-            </button>
+            </button> */}
             
             {/* Search Bar */}
             <div className="relative flex-1">
