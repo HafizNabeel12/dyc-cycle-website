@@ -18,7 +18,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
   };
 
   return (
-    <div className="mt-20 px-4 sm:px-6 lg:px-8">
+    <div className="mt-40 md:mt-20 px-4 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
         <ol className="mx-auto flex max-w-7xl items-center gap-2 px-0 sm:px-4 py-3 text-sm">

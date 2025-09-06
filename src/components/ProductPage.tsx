@@ -79,7 +79,7 @@ export const products = [
       "/images/T1/t1-7.png",
 
     ],
-    features: ["Torque Sensor", "35+ Mile Range", "20 inch", "Shimano Gears"],
+    features: [ "35+ Mile Range", "20 inch", "Shimano Gears", "Torque Sensor",],
     badge: "SMART CHOICE",
     category: "Smart",
     rating: 4.7,
