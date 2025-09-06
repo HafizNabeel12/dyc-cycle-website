@@ -310,10 +310,10 @@ export default function ProductPage() {
   }, [sort, page]);
 
   return (
-    <main className="bg-white text-gray-900 mt-32">
-      {/* Breadcrumb */}
+    <main className="bg-white text-gray-900 mt-52 md:mt-36">     
+          {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
-        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-3 text-sm">
+        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-2 py-3 text-sm">
           <li>
             <Link href="/" className="text-gray-600 hover:text-black transition">
               Hjem
@@ -325,159 +325,92 @@ export default function ProductPage() {
       </nav>
 
       {/* Header */}
-      <section className="mx-auto max-w-7xl px-4 pt-6">
+      <section className="mx-auto max-w-7xl px-4 sm:px-2 pt-6">
         <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-center">
-          <div >
-            <h1 className="text-2xl sm:text-4xl font-semibold tracking-tight text-black">Sykkel</h1>
-            {/* <p className="text-sm text-gray-600">Elsykler, terreng, landevei og mer</p> */}
+          <div>
+            <h1 className="text-2xl sm:text-4xl font-semibold tracking-tight text-black text-center sm:text-left">Sykkel</h1>
           </div>
-
         </header>
-
-        {/* Subcategories */}
-        {/* <div className="mt-4 overflow-x-auto">
-          <ul className="flex min-w-max gap-2 pb-1">
-            {SUBCATEGORIES.map((t) => (
-              <li key={t}>
-                <button
-                  onClick={() => setActiveSub(t)}
-                  className={[
-                    "whitespace-nowrap rounded-full border px-3 py-2 text-sm transition",
-                    activeSub === t
-                      ? "border-black bg-black text-white"
-                      : "border-gray-300 text-gray-800 hover:border-black hover:bg-gray-50",
-                  ].join(" ")}
-                >
-                  {t}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div> */}
-
-        {/* Banner */}
-        {/* <div className="mt-4 rounded-2xl border border-gray-200 bg-gray-50 p-4">
-          <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
-            <div>
-              <p className="text-sm font-medium text-black">
-                Medlemsfordel: <span className="text-yellow-500">Opptil 40%</span> på utvalgte sykler
-              </p>
-              <p className="text-xs text-gray-600">Bli med i Anton Club og få bonus fra første krone.</p>
-            </div>
-            <Link href="#" className="rounded-full bg-yellow-400 px-4 py-2 text-sm font-medium text-black hover:bg-yellow-300 active:bg-yellow-500 transition">
-              Bli medlem
-            </Link>
-          </div>
-        </div> */}
       </section>
 
       {/* Product grid */}
-      <section className="mx-auto mt-6 max-w-7xl px-4">
+      <section className="mx-auto mt-6 max-w-7xl px-4 sm:px-2">
         {/* Toolbar */}
         <div className="mb-2 flex items-center justify-between text-sm text-gray-700">
-          <div>{total} produkter</div>
+          <div className="text-xs sm:text-sm">{total} produkter</div>
           <div className="flex items-center gap-2">
-            {/* <span className="text-gray-500">Sorter:</span>
-            <div className="relative">
-              <SortSelect value={sort} onChange={setSort} />
-            </div> */}
+            {/* Sort functionality commented out as in original */}
           </div>
         </div>
 
-        {/* Grid */}
-        <ul role="list" className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
+        {/* Grid - Mobile: 2 columns, Desktop: 3 columns */}
+        <ul role="list" className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden">
           {products.map((product) => (
-            <li key={product.id} className="group rounded-2xl border border-gray-200 p-3 transition hover:border-black">
-              <div className="relative mb-3">
-                <div className=" w-full rounded-xl bg-white" />
+            <li key={product.id} className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black">
+              <div className="relative mb-2 sm:mb-3">
+                <div className="w-full rounded-lg sm:rounded-xl bg-white" />
                 <Link href={`/products/${product.slug}`}>
-                  <img className='object-cover '
-                    src={product.image} alt={product.name} />
+                  <img 
+                    className='object-cover w-[85%] h-[85%] sm:w-full sm:h-full m-auto sm:m-0 rounded-lg sm:rounded-xl'
+                    src={product.image} 
+                    alt={product.name} 
+                  />
                 </Link>
-
-               
-
               </div>
 
               <div className="space-y-1">
-                {/* <p className="text-xs uppercase text-gray-500">{p.brand}</p> */}
-                <h3 className="text-sm font-medium text-black group-hover:underline">
-                  <Link href="#">{product.name}</Link>
+                <h3 className="text-xs sm:text-sm font-medium text-black group-hover:underline leading-tight">
+                  <Link href="#" className="break-words">{product.name}</Link>
                 </h3>
-
               </div>
 
-              <div className="mt-2 flex items-end justify-between">
-
-
-                <div className="mt-2 flex items-end justify-between">
-                  <div>
-                    {product.price < product.originalPrice ? (
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-base font-semibold text-black">
-                          {formatCurrency(product.price)}
-                        </span>
-                        <span className="text-sm text-gray-500 line-through">
-                          {formatCurrency(product.originalPrice)}
-                        </span>
-                      </div>
-                    ) : (
-                      <span className="text-base font-semibold text-black">
+              <div className="mt-2 flex flex-col sm:flex-row sm:items-end sm:justify-between">
+                <div className="flex-1 min-w-0">
+                  {product.price < product.originalPrice ? (
+                    <div className="flex items-baseline gap-1 sm:gap-2 flex-wrap">
+                      <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
                         {formatCurrency(product.price)}
                       </span>
-                    )}
+                      <span className="text-xs sm:text-sm text-gray-500 line-through whitespace-nowrap">
+                        {formatCurrency(product.originalPrice)}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
+                      {formatCurrency(product.price)}
+                    </span>
+                  )}
 
-                    {product.features?.length && (
-                      <ul className="mt-3 flex flex-wrap gap-1.5 text-[11px] text-gray-700">
-                        {product.features.slice(0, 2).map((f, i) => (
-                          <li key={i} className="rounded-md border border-gray-200 px-2 py-0.5">
-                            {f}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-
-
-
+                  {product.features?.length && (
+                    <ul className="mt-2 sm:mt-3 flex flex-wrap gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] text-gray-700">
+                      {product.features.slice(0, 2).map((f, i) => (
+                        <li key={i} className="rounded-md border border-gray-200 px-1.5 sm:px-2 py-0.5 whitespace-nowrap">
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-                
-                    <AddToCartButton product={product}  className=" rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium text-white transition hover:border-black hover:bg-gray-50 hover:text-black"/>
-                
+
+                {/* Add to Cart Button - Always visible on mobile, hover on desktop */}
+                <div className="mt-2 sm:mt-0 sm:ml-2 flex-shrink-0">
+                  <AddToCartButton 
+                    product={product}  
+                    className="w-full sm:w-auto rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-black bg-yellow-400 hover:bg-yellow-300 transition sm:text-white sm:bg-black sm:hover:border-black sm:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
+                  />
+                </div>
               </div>
-
-
-
-
-              {/* <div className="mt-3 overflow-x-auto">
-                <div className="flex min-w-max gap-2">
-                  {Array.from({ length: 5 }).map((_, idx) => (
-                    <button key={idx} className="h-14 w-20 flex-shrink-0 rounded-lg bg-gray-200 transition hover:bg-gray-300" aria-label={`Miniatyrbilde ${idx + 1}`} />
-                  ))}
-                </div>
-              </div> */}
             </li>
           ))}
         </ul>
 
-        {/* Pagination */}
-        {/* <nav className="mt-6 flex items-center justify-center gap-2" aria-label="Pagination">
-          <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1} className="inline-flex items-center gap-1 rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-800 hover:border-black hover:bg-gray-50 transition disabled:opacity-40">
-            <ChevronLeft className="h-4 w-4" /> Forrige
-          </button>
-          <span className="rounded-full border border-gray-300 px-3 py-1.5 text-sm">{page}</span>
-          <button onClick={() => setPage((p) => p + 1)} className="inline-flex items-center gap-1 rounded-full border border-gray-300 px-3 py-1.5 text-sm text-gray-800 hover:border-black hover:bg-gray-50 transition">
-            Neste <ChevronRight className="h-4 w-4" />
-          </button>
-        </nav> */}
-
         {/* SEO text */}
-        <section className="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-6">
-          <h2 className="text-lg font-semibold text-black">Velg riktig sykkel</h2>
-          <p className="mt-2 text-sm leading-6 text-gray-700">
+        <section className="mt-8 sm:mt-10 rounded-xl sm:rounded-2xl border border-gray-200 bg-gray-50 p-4 sm:p-6">
+          <h2 className="text-base sm:text-lg font-semibold text-black">Velg riktig sykkel</h2>
+          <p className="mt-2 text-xs sm:text-sm leading-5 sm:leading-6 text-gray-700">
             Utforsk vårt utvalg av elsykler, terreng- og landeveissykler. Vi hjelper deg å finne en sykkel som passer ditt behov—til jobb, trening eller tur.
           </p>
-          <ul className="mt-3 list-disc pl-5 text-sm leading-6 text-gray-700">
+          <ul className="mt-3 list-disc pl-4 sm:pl-5 text-xs sm:text-sm leading-5 sm:leading-6 text-gray-700 space-y-1">
             <li>Fri frakt over 1000 kr</li>
             <li>Click &amp; Collect i butikk</li>
             <li>Medlemspriser med bonus</li>

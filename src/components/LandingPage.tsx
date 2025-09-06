@@ -281,9 +281,9 @@ const LandingPage = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-white mt-56 md:mt-20 ">
+        <div className="min-h-screen bg-white mt-56 md:mt-24 ">
             {/* Hero Section */}
-            <section className="flex md:min-h-screen justify-center items-center sm:m-0">
+            <section className="flex justify-center items-center sm:m-0">
                 {/* Background image */}
                 <img
                     src="/images/hero.png"
@@ -319,7 +319,7 @@ const LandingPage = () => {
                                     </Link>
 
                                     {/* Quick Add Button - appears on hover for desktop, always visible on mobile */}
-                                    <div className="absolute bottom-3 left-3 right-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
+                                    <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                         <AddToCartButton 
                                             product={product} 
                                             className='w-full bg-yellow-500 text-black py-2 sm:py-2 text-sm font-medium hover:bg-yellow-600 transition-colors items-center'
