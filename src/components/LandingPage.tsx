@@ -281,14 +281,14 @@ const LandingPage = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-white mt-20">
+        <div className="min-h-screen bg-white mt-56 md:mt-20 ">
             {/* Hero Section */}
             <section className="flex md:min-h-screen justify-center items-center sm:m-0">
                 {/* Background image */}
                 <img
                     src="/images/hero.png"
                     alt="DYU E-Bikes"
-                    className="max-h-[600px] w-auto md:object-contain md:max-w-7xl px-4 sm:px-2 "
+                    className="max-h-[600px] w-auto md:object-contain md:max-w-7xl md:px-4 sm:px-2 "
                 />
             </section>
 
@@ -309,7 +309,7 @@ const LandingPage = () => {
                         {products.map((product) => (
                             <div key={product.id} className="group bg-white hover:shadow-sm transition-shadow duration-200 cursor-pointer">
                                 {/* Product Image Container */}
-                                <div className="relative aspect-square bg-gray-50 overflow-hidden">
+                                <div className="relative aspect-square bg-white overflow-hidden">
                                     <Link href={`/products/${product.slug}`}>
                                         <img 
                                             className='object-cover sm:w-full sm:h-full w-[80%] h-[80%] m-auto sm:m-0'
