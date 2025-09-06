@@ -5,16 +5,26 @@ import Image from "next/image";
 import { ProductCard } from "@/lib/productData";
 import Link from "next/link";
 import { AddToCartButton } from "./AddToCartButton";
-import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Minus, Plus } from "lucide-react";
+import { useCart } from "./CartContext";
 
 export default function ProductDetails({ product }: { product: ProductCard }) {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const [selectedColor, setSelectedColor] = useState(product.availableColors[0]);
   const [selectedSize, setSelectedSize] = useState(product.availableSizes[0]);
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+  const { updateQuantity } = useCart();
+
+  const [quantity, setQuantity] = useState<number>(1);
 
   const toggleAccordion = (id: string) => {
     setOpenAccordion(openAccordion === id ? null : id);
+  };
+
+  const handleQuantityChange = (newQuantity: number) => {
+    if (newQuantity < 1) return; // don't allow 0 or negative
+    setQuantity(newQuantity);
+    updateQuantity(product.id, newQuantity); // keep cart in sync
   };
 
   return (
@@ -49,7 +59,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
 
           {/* Mobile Thumbnails - Arrow Navigation */}
           <div className="relative">
-            <div 
+            <div
               id="thumbnailContainer"
               className="flex gap-3 overflow-x-hidden pb-2 scroll-smooth"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -58,9 +68,8 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 <button
                   key={i}
                   onClick={() => setSelectedImage(img)}
-                  className={`flex-shrink-0 border rounded-md p-1 ${
-                    selectedImage === img ? "border-black" : "border-gray-300"
-                  }`}
+                  className={`flex-shrink-0 border rounded-md p-1 ${selectedImage === img ? "border-black" : "border-gray-300"
+                    }`}
                 >
                   <Image
                     src={img}
@@ -72,7 +81,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 </button>
               ))}
             </div>
-            
+
             {/* Left Arrow */}
             <button
               onClick={() => {
@@ -83,7 +92,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
             >
               <ChevronLeft size={16} className="text-gray-700" />
             </button>
-            
+
             {/* Right Arrow */}
             <button
               onClick={() => {
@@ -100,7 +109,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
         {/* MOBILE PRODUCT INFO */}
         <div className="mt-6 space-y-4">
           <h1 className="text-xl font-bold text-black">{product.name}</h1>
-          
+
           <div className="flex items-center gap-3">
             <span className="text-xl font-bold text-red-600">${product.price}</span>
             <span className="line-through text-gray-500 text-sm">${product.originalPrice}</span>
@@ -109,9 +118,9 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
 
           {/* Mobile Add to Cart Button */}
           <div className="mt-4">
-            <AddToCartButton 
-              product={product} 
-              className="w-full bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600" 
+            <AddToCartButton
+              product={product}
+              className="w-full bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600"
             />
           </div>
 
@@ -135,8 +144,8 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
           <div className="mt-6 bg-white border border-gray-200 rounded-lg text-black">
             {/* Specs */}
             <div className="border-b border-gray-100">
-              <button 
-                onClick={() => toggleAccordion("specs")} 
+              <button
+                onClick={() => toggleAccordion("specs")}
                 className="w-full px-4 py-4 flex items-center justify-between text-left"
               >
                 <span className="font-medium">Specs</span>
@@ -160,8 +169,8 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
 
             {/* Size */}
             <div className="border-b border-gray-100">
-              <button 
-                onClick={() => toggleAccordion("size")} 
+              <button
+                onClick={() => toggleAccordion("size")}
                 className="w-full px-4 py-4 flex items-center justify-between text-left"
               >
                 <span className="font-medium">Size</span>
@@ -184,8 +193,8 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
 
             {/* What's in the Box */}
             <div>
-              <button 
-                onClick={() => toggleAccordion("box")} 
+              <button
+                onClick={() => toggleAccordion("box")}
                 className="w-full px-4 py-4 flex items-center justify-between text-left"
               >
                 <span className="font-medium">What&apos;s in the Box</span>
@@ -204,10 +213,10 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
       </div>
 
       {/* DESKTOP LAYOUT (lg and above) - UNCHANGED */}
-      <div className="hidden lg:block">
+      <div className="hidden lg:block ">
         {/* IMAGE + THUMBNAILS */}
-        <div className="flex justify-center">
-          <div className="grid grid-cols-[4fr_1fr] gap-6 w-full max-w-5xl items-start">
+        <div className=" justify-center grid grid-cols-[3fr_2fr] gap-6 w-full">
+          <div className=" w-full max-w-5xl ">
             {/* MAIN IMAGE */}
             <div>
               <Image
@@ -219,117 +228,176 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               />
             </div>
 
-            {/* THUMBNAILS */}
-            <div className="grid grid-cols-2 gap-3 justify-items-end">
-              {product.images.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSelectedImage(img)}
-                  className={`border rounded-md p-1 ${
-                    selectedImage === img ? "border-black" : "border-gray-300"
-                  }`}
-                >
-                  <Image
-                    src={img}
-                    alt={product.name}
-                    width={100}
-                    height={100}
-                    className="object-contain w-[90px] h-[90px]"
-                  />
+            <div className="relative">
+              <div
+                id="thumbnailContainer"
+                className="flex gap-3 w-full "
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                {product.images.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedImage(img)}
+                    className={`flex-shrink-0 border rounded-md p-1 ${selectedImage === img ? "border-black" : "border-gray-300"
+                      }`}
+                  >
+                    <Image
+                      src={img}
+                      alt={product.name}
+                      width={60}
+                      height={60}
+                      className="object-contain w-[60px] h-[60px]"
+                    />
+                  </button>
+                ))}
+              </div>
+
+              {/* Left Arrow */}
+              <button
+                onClick={() => {
+                  const container = document.getElementById('thumbnailContainer');
+                  if (container) container.scrollBy({ left: -150, behavior: 'smooth' });
+                }}
+                className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-2 shadow-md z-10"
+              >
+                <ChevronLeft size={16} className="text-gray-700" />
+              </button>
+
+              {/* Right Arrow */}
+              <button
+                onClick={() => {
+                  const container = document.getElementById('thumbnailContainer');
+                  if (container) container.scrollBy({ left: 150, behavior: 'smooth' });
+                }}
+                className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-2 shadow-md z-10"
+              >
+                <ChevronRight size={16} className="text-gray-700" />
+              </button>
+            </div>
+          </div>
+
+
+          {/* PRODUCT DETAILS */}
+
+          <div className="mt-10 space-y-6   ">
+            <h1 className="text-2xl font-bold text-black">{product.name}</h1>
+
+
+
+            {/* DESCRIPTION */}
+            <div className="mt-8">
+              <h2 className="text-xl font-bold mb-2 text-black">About the Product</h2>
+              <p className="text-gray-700">{product.description}</p>
+            </div>
+
+            {/* KEY FEATURES */}
+            <div className="mt-6">
+              <h3 className="font-semibold mb-2 text-black">Key Features:</h3>
+              <ul className="list-disc ml-6 space-y-1 text-gray-700">
+                {product.keyFeatures.map((f, i) => (
+                  <li key={i}>{f}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex items-center gap-4">
+
+              <span className="text-2xl font-bold text-red-600 ">${product.price}</span>
+              <span className="line-through text-gray-500">${product.originalPrice}</span>
+              <span className="text-green-600">{product.discount}</span>
+            </div>
+
+
+            {/* Quantity + Add to Cart in one row */}
+            <div className="flex items-center gap-6 mt-6">
+              {/* Quantity Controls */}
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-gray-600">Qty:</span>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => handleQuantityChange(quantity - 1)}
+                    className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                  >
+                    <Minus className="h-4 w-4 text-gray-600" />
+                  </button>
+                  <span className="text-base font-semibold min-w-[32px] text-center text-black">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={() => handleQuantityChange(quantity + 1)}
+                    className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                  >
+                    <Plus className="h-4 w-4 text-gray-600" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Add to Cart Button */}
+              <AddToCartButton
+                product={product}
+                className="w-44 bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600"
+              />
+            </div>
+
+
+            {/* SPECIFICATIONS */}
+            <div className="bg-white border border-gray-200 rounded-lg text-black">
+              {/* Specs */}
+              <div className="border-b border-gray-100">
+                <button onClick={() => toggleAccordion("specs")} className="w-full px-6 py-4 flex items-center justify-between text-left">
+                  <span className="font-medium">Specs</span>
+                  {openAccordion === "specs" ? <ChevronUp /> : <ChevronDown />}
                 </button>
-              ))}
-            </div>
-          </div>
-        </div>
+                {openAccordion === "specs" && (
+                  <div className="px-6 pb-4 text-sm text-gray-700">
+                    <ul className="space-y-2">
+                      <li><strong>Motor:</strong> {product.specifications.motor}</li>
+                      <li><strong>Battery:</strong> {product.specifications.battery}</li>
+                      <li><strong>Range:</strong> {product.specifications.range}</li>
+                      <li><strong>Top speed:</strong> {product.specifications.speed}</li>
+                      <li><strong>Weight:</strong> {product.specifications.weight}</li>
+                      <li><strong>Wheel size:</strong> {product.specifications.wheelSize}</li>
+                      {product.specifications.brakes && <li><strong>Brakes:</strong> {product.specifications.brakes}</li>}
+                      {product.specifications.frame && <li><strong>Frame:</strong> {product.specifications.frame}</li>}
+                    </ul>
+                  </div>
+                )}
+              </div>
 
-        {/* PRODUCT DETAILS */}
-        <div className="mt-10 space-y-6">
-          <h1 className="text-2xl font-bold text-black">{product.name}</h1>
-          <div className="flex items-center gap-4">
-            <span className="text-2xl font-bold text-red-600">${product.price}</span>
-            <span className="line-through text-gray-500">${product.originalPrice}</span>
-            <span className="text-green-600">{product.discount}</span>
-          </div>
+              {/* Size */}
+              <div className="border-b border-gray-100">
+                <button onClick={() => toggleAccordion("size")} className="w-full px-6 py-4 flex items-center justify-between text-left">
+                  <span className="font-medium">Size</span>
+                  {openAccordion === "size" ? <ChevronUp /> : <ChevronDown />}
+                </button>
+                {openAccordion === "size" && (
+                  <div className="px-6 pb-4 text-sm text-gray-700">
+                    {product.availableSizes.length === 0 ? (
+                      <p>One-size / folding model</p>
+                    ) : (
+                      <div className="grid grid-cols-2 gap-2">
+                        {product.availableSizes.map((s) => (
+                          <div key={s} className="p-2 border rounded text-sm">{s}</div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
 
-          {/* ACTION BUTTONS */}
-          <div className="flex gap-4 mt-4">
-            <AddToCartButton product={product} className="w-44 bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600" />
-          </div>
-
-          {/* DESCRIPTION */}
-          <div className="mt-8">
-            <h2 className="text-xl font-bold mb-2 text-black">About the Product</h2>
-            <p className="text-gray-700">{product.description}</p>
-          </div>
-
-          {/* KEY FEATURES */}
-          <div className="mt-6">
-            <h3 className="font-semibold mb-2 text-black">Key Features:</h3>
-            <ul className="list-disc ml-6 space-y-1 text-gray-700">
-              {product.keyFeatures.map((f, i) => (
-                <li key={i}>{f}</li>
-              ))}
-            </ul>
-          </div>
-
-          {/* SPECIFICATIONS */}
-          <div className="bg-white border border-gray-200 rounded-lg text-black">
-            {/* Specs */}
-            <div className="border-b border-gray-100">
-              <button onClick={() => toggleAccordion("specs")} className="w-full px-6 py-4 flex items-center justify-between text-left">
-                <span className="font-medium">Specs</span>
-                {openAccordion === "specs" ? <ChevronUp /> : <ChevronDown />}
-              </button>
-              {openAccordion === "specs" && (
-                <div className="px-6 pb-4 text-sm text-gray-700">
-                  <ul className="space-y-2">
-                    <li><strong>Motor:</strong> {product.specifications.motor}</li>
-                    <li><strong>Battery:</strong> {product.specifications.battery}</li>
-                    <li><strong>Range:</strong> {product.specifications.range}</li>
-                    <li><strong>Top speed:</strong> {product.specifications.speed}</li>
-                    <li><strong>Weight:</strong> {product.specifications.weight}</li>
-                    <li><strong>Wheel size:</strong> {product.specifications.wheelSize}</li>
-                    {product.specifications.brakes && <li><strong>Brakes:</strong> {product.specifications.brakes}</li>}
-                    {product.specifications.frame && <li><strong>Frame:</strong> {product.specifications.frame}</li>}
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            {/* Size */}
-            <div className="border-b border-gray-100">
-              <button onClick={() => toggleAccordion("size")} className="w-full px-6 py-4 flex items-center justify-between text-left">
-                <span className="font-medium">Size</span>
-                {openAccordion === "size" ? <ChevronUp /> : <ChevronDown />}
-              </button>
-              {openAccordion === "size" && (
-                <div className="px-6 pb-4 text-sm text-gray-700">
-                  {product.availableSizes.length === 0 ? (
-                    <p>One-size / folding model</p>
-                  ) : (
-                    <div className="grid grid-cols-2 gap-2">
-                      {product.availableSizes.map((s) => (
-                        <div key={s} className="p-2 border rounded text-sm">{s}</div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* What's in the Box */}
-            <div>
-              <button onClick={() => toggleAccordion("box")} className="w-full px-6 py-4 flex items-center justify-between text-left">
-                <span className="font-medium">What&apos;s in the Box</span>
-                {openAccordion === "box" ? <ChevronUp /> : <ChevronDown />}
-              </button>
-              {openAccordion === "box" && (
-                <div className="px-6 pb-6 text-sm text-gray-700">
-                  <ul className="list-disc ml-5 space-y-1">
-                    {product.whatsInTheBox.map((item, i) => <li key={i}>{item}</li>)}
-                  </ul>
-                </div>
-              )}
+              {/* What's in the Box */}
+              <div>
+                <button onClick={() => toggleAccordion("box")} className="w-full px-6 py-4 flex items-center justify-between text-left">
+                  <span className="font-medium">What&apos;s in the Box</span>
+                  {openAccordion === "box" ? <ChevronUp /> : <ChevronDown />}
+                </button>
+                {openAccordion === "box" && (
+                  <div className="px-6 pb-6 text-sm text-gray-700">
+                    <ul className="list-disc ml-5 space-y-1">
+                      {product.whatsInTheBox.map((item, i) => <li key={i}>{item}</li>)}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
