@@ -37,7 +37,7 @@ export const products = [
       "/images/d3f/D3F-side.png",
 
     ],
-    features: ["37+ Mile Range", "15.5 MPH", "Ultra Compact", "Quick Fold"],
+    features: ["37+ Mile Range","Quick Fold", "15.5 MPH", "Ultra Compact" ],
     badge: "COMPACT KING",
     category: "Mini",
     rating: 4.5,
