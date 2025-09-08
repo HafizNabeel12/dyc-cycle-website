@@ -143,7 +143,7 @@ export interface ProductCard {
 export const PRODUCTS_DATA: ProductCard[] = [
   {
     id: "1",
-    name: "DYU D3F",
+    name: "DYU D3F 14 Inch Mini Folding Electric Bike",
     slug: "dyu-d3f-mini-folding-electric-bike",
     originalPrice: 899,
     price: 449,
@@ -158,12 +158,12 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "/images/d3f/D3F-5.png",
       "/images/d3f/D3F-6.png",
       "/images/d3f/D3F-7.png",
-      "/images/d3f/D3F-side.png",
+      // "/images/d3f/D3F-side.png",
     ],
     features: ["Ultra-compact 14\" design", "Quick fold", "Lightweight"],
     badge: "COMPACT KING",
     category: ["folding-bike", "commuter-ebike", "lightweight"],
-    rating: 4.5,
+    rating: 5,
     reviewCount: 178,
     specifications: {
       motor: "250W Rear Hub Motor",
@@ -299,7 +299,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   },
   {
     id: "2",
-    name: "DYU T1",
+    name: "DYU T1 20 Inch Foldable Electric Bike",
     slug: "dyu-t1-torque-sensor-electric-bike",
     originalPrice: 1299,
     price: 649,
@@ -458,7 +458,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   },
   {
     id: "3",
-    name: "DYU C1",
+    name: "DYU C1 26 Inch City Electric Bike",
     slug: "dyu-c1-26-inch-city-electric-bike",
     originalPrice: 1099,
     price: 599,
@@ -614,7 +614,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   },
   {
     id: "4",
-    name: "DYU C6",
+    name: "DYU C6 26 Inch City Electric Bike",
     slug: "dyu-c6-26-inch-city-electric-bike",
     originalPrice: 1199,
     price: 699,
@@ -770,7 +770,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   },
   {
     id: "5",
-    name: "DYU C9",
+    name: "DYU C9 20 Inch Long-Range Ebike",
     slug: "dyu-c9-20-inch-long-range-ebike",
     originalPrice: 1699,
     price: 899,
@@ -927,7 +927,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
   },
   {
     id: "6",
-    name: "DYU Stroll 1",
+    name: "DYU Stroll 1 700C City Electric Bike",
     slug: "dyu-stroll-1-700c-city-electric-bike",
     originalPrice: 1299,
     price: 799,

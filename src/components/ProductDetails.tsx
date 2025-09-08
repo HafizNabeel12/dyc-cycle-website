@@ -278,7 +278,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               </div>
 
               {/* Left Arrow */}
-              <button
+              {/* <button
                 onClick={() => {
                   const container = document.getElementById('thumbnailContainer');
                   if (container) container.scrollBy({ left: -150, behavior: 'smooth' });
@@ -286,10 +286,10 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-2 shadow-md z-10"
               >
                 <ChevronLeft size={16} className="text-gray-700" />
-              </button>
+              </button> */}
 
               {/* Right Arrow */}
-              <button
+              {/* <button
                 onClick={() => {
                   const container = document.getElementById('thumbnailContainer');
                   if (container) container.scrollBy({ left: 150, behavior: 'smooth' });
@@ -297,7 +297,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-2 shadow-md z-10"
               >
                 <ChevronRight size={16} className="text-gray-700" />
-              </button>
+              </button> */}
             </div>
           </div>
 
