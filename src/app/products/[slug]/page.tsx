@@ -20,7 +20,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="  ">
+    <div className="px-4 md:px-0">
       <ProductDetails product={product!} />
     </div>
   );
