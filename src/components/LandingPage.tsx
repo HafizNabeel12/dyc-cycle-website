@@ -78,7 +78,7 @@ const LandingPage = () => {
                                 <div className="pt-3 pb-4 sm:pt-3 sm:pb-4">
                                     {/* Brand and Product Name */}
                                     <div className="mb-2">
-                                        <div className="text-lg sm:text-xl text-gray-900 font-semibold mb-1 leading-tight">
+                                        <div className="text-lg sm:text-xl text-gray-900  mb-1 leading-tight">
                                             {product.name}
                                         </div>
                                         <div className="text-sm sm:text-lg text-gray-600">
