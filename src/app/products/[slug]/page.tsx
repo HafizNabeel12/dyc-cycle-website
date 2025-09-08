@@ -20,7 +20,7 @@ export default function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
+    <div className="  ">
       <ProductDetails product={product!} />
     </div>
   );

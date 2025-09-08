@@ -13,12 +13,12 @@ export default function TechnicalSpecifications({ product }: { product: any }) {
   return (
     <div className="mt-16 -mx-6 lg:-mx-8">
       <div className="bg-black w-full px-6 py-8 lg:px-8 lg:py-12">
-        <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2">
+        <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2 ">
           Technical Specifications
         </h2>
         <div className="w-full h-px bg-white mb-8"></div>
 
-        <div className="w-full max-w-6xl mx-auto space-y-0">
+        <div className="w-full   space-y-0 items-start">
           {/* GENERAL INFORMATION Section */}
           <div className="border-b border-gray-700">
             <button

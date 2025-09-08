@@ -256,7 +256,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
             <div className="relative">
               <div
                 id="thumbnailContainer"
-                className="flex gap-3 w-full "
+                className="flex gap-3 w-full justify-center "
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
                 {product.images.map((img, i) => (
