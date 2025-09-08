@@ -19,28 +19,35 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: 'Merker', href: '#' },
-    { name: 'Medlemstilbud', href: '#' },
-    { name: 'Klær', href: '#' },
-    { name: 'Sko', href: '#' },
-    { name: 'Ski', href: '#' },
+    // { name: 'Merker', href: '#' },
+    // { name: 'Medlemstilbud', href: '#' },
+    // { name: 'Klær', href: '#' },
+    // { name: 'Sko', href: '#' },
+    // { name: 'Ski', href: '#' },
     { name: 'Sykkel', href: '/cycle' },
-    { name: 'Trening', href: '#' },
-    { name: 'Turutstyr', href: '#' },
-    { name: 'Outlet', href: '#' },
-    { name: 'Idrettslag & Klubb', href: '#' },
+    // { name: 'Trening', href: '#' },
+    // { name: 'Turutstyr', href: '#' },
+    // { name: 'Outlet', href: '#' },
+    // { name: 'Idrettslag & Klubb', href: '#' },
   ];
+
+  const categories = [
+  { name: "Folding Bikes", slug: "folding-bike" },
+  { name: "Commuter E-Bikes", slug: "commuter-ebike" },
+  { name: "Step-Through E-Bikes", slug: "step-through"  },
+  { name: "Lightweight E-Bikes", slug: "lightweight" },
+];
+
 
   const toggleDropdown = (index: React.SetStateAction<null>) => {
     setActiveDropdown(activeDropdown === index ? null : index);
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300  ${
-      isScrolled 
-        ? 'bg-white shadow-lg' 
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300  ${isScrolled
+        ? 'bg-white shadow-lg'
         : 'bg-white'
-    }`}>
+      }`}>
       {/* Mobile Version */}
       <div className="md:hidden bg-white">
         {/* Top Row - Logo, User Icon, Cart */}
@@ -49,17 +56,17 @@ const Navbar = () => {
           <Link href="/">
             <img src="/images/logo.jpg" alt="Logo" className='h-8 w-auto' />
           </Link>
-          
+
           {/* Right Icons */}
           <div className="flex items-center space-x-4">
             {/* User Icon */}
             {/* <Link href="/login">
               <User className="w-5 h-5 text-gray-700" />
             </Link> */}
-            
+
             {/* Cart Icon */}
             <Link href="/cart">
-              <CartIcon className='text-gray-700'/>
+              <CartIcon className='text-gray-700' />
             </Link>
           </div>
         </div>
@@ -74,7 +81,7 @@ const Navbar = () => {
             >
               <Menu className="w-5 h-5 text-gray-700" />
             </button> */}
-            
+
             {/* Search Bar */}
             <div className="relative flex-1">
               <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
@@ -91,7 +98,7 @@ const Navbar = () => {
         <div className="px-2 py-2 overflow-hidden">
           {/* First Row */}
           <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm mb-2 items-center justify-center">
-            {navItems.slice(0, 6).map((item, index) => (
+            {navItems.map((item, index) => (
               <Link
                 key={index}
                 href={item.href}
@@ -99,9 +106,21 @@ const Navbar = () => {
               >
                 {item.name}
               </Link>
+              
             ))}
+
+            {/* ✅ Category Links */}
+              {categories.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/category/${cat.slug}`}
+                  className="whitespace-nowrap text-gray-700 hover:text-black transition-colors duration-200 border-b-2 border-transparent hover:border-yellow-400"
+                >
+                  {cat.name}
+                </Link>
+              ))}
           </div>
-          
+
           {/* Second Row */}
           <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm items-center justify-center">
             {navItems.slice(6).map((item, index) => (
@@ -145,7 +164,7 @@ const Navbar = () => {
                 Finn butikk
               </Link>
               <Link href="/cart">
-                <CartIcon className='hidden md:flex items-center space-x-2 text-gray-700 hover:text-black transition-colors'/>
+                <CartIcon className='hidden md:flex items-center space-x-2 text-gray-700 hover:text-black transition-colors' />
               </Link>
               {/* Mobile Menu Button */}
               <button
@@ -169,7 +188,19 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
+
+              {/* ✅ Category Links */}
+              {categories.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/category/${cat.slug}`}
+                  className="whitespace-nowrap text-gray-700 hover:text-black transition-colors duration-200 border-b-2 border-transparent hover:border-yellow-400"
+                >
+                  {cat.name}
+                </Link>
+              ))}
             </div>
+
           </div>
         </div>
       </div>
@@ -185,7 +216,7 @@ const Navbar = () => {
               <User className="w-5 h-5" />
               <span>Logg inn / Bli medlem</span>
             </Link>
-            
+
             <Link
               href="/"
               className="flex items-center space-x-3 py-4 text-gray-700 border-b border-gray-100 text-base"

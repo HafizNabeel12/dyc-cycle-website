@@ -5,8 +5,30 @@ import Image from "next/image";
 import { ProductCard } from "@/lib/productData";
 import Link from "next/link";
 import { AddToCartButton } from "./AddToCartButton";
-import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Minus, Plus } from "lucide-react";
+import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Minus, Plus , Star} from "lucide-react";
+
 import { useCart } from "./CartContext";
+import TechnicalSpecifications from "./TechnicalSpecs";
+
+function ReviewStars({ rating = 5, reviewCount = 14 }: { rating?: number; reviewCount?: number }) {
+  return (
+    <div className="flex items-center gap-2 mt-2">
+      <div className="flex items-center">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <Star
+            key={star}
+            className={`w-4 h-4 ${
+              star <= rating
+                ? "fill-yellow-400 text-yellow-400"
+                : "fill-gray-200 text-gray-200"
+            }`}
+          />
+        ))}
+      </div>
+      <span className="text-sm text-gray-600">{reviewCount} Reviews</span>
+    </div>
+  );
+}
 
 export default function ProductDetails({ product }: { product: ProductCard }) {
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
@@ -28,7 +50,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
   };
 
   return (
-    <div className="mt-40 md:mt-20 px-4 sm:px-6 lg:px-8">
+    <div className="mt-40 md:mt-20 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
         <ol className="mx-auto flex max-w-7xl items-center gap-2 px-0 sm:px-4 py-3 text-sm">
@@ -108,7 +130,10 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
 
         {/* MOBILE PRODUCT INFO */}
         <div className="mt-6 space-y-4">
-          <h1 className="text-xl font-bold text-black">{product.name}</h1>
+          <div>
+  <h1 className="text-xl font-bold text-black">{product.name}</h1>
+  <ReviewStars rating={product.rating || 5} reviewCount={product.reviewCount || 14} />
+</div>
 
           <div className="flex items-center gap-3">
             <span className="text-xl font-bold text-red-600">${product.price}</span>
@@ -280,8 +305,10 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
           {/* PRODUCT DETAILS */}
 
           <div className="mt-10 space-y-6   ">
-            <h1 className="text-2xl font-bold text-black">{product.name}</h1>
-
+          <div>
+  <h1 className="text-2xl font-bold text-black">{product.name}</h1>
+  <ReviewStars rating={product.rating || 5} reviewCount={product.reviewCount || 14} />
+</div>
 
 
             {/* DESCRIPTION */}
@@ -399,9 +426,15 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 )}
               </div>
             </div>
+
           </div>
         </div>
       </div>
+      
+
+      {/* TECHNICAL SPECIFICATIONS SECTION - Add this after the desktop layout closing div */}
+     <TechnicalSpecifications product={product}/>
+
     </div>
   );
 }

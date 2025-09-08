@@ -5,7 +5,7 @@ import { useCart, CartItem } from '@/components/CartContext'; // Adjust path as 
 import { ShoppingCart, Check } from 'lucide-react';
 
 interface AddToCartButtonProps {
-  product: Omit<CartItem, 'quantity'>;
+  product: Omit< CartItem, 'quantity'>;
   className?: string;
   children?: React.ReactNode;
 }
