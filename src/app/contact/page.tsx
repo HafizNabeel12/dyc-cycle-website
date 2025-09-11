@@ -78,7 +78,7 @@ const ContactUs: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 py-12 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Get in Touch</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Have questions about our e-bikes? We're here to help! Reach out to our team of experts for personalized assistance.
+            Have questions about our e-bikes? We&apos;re here to help! Reach out to our team of experts for personalized assistance.
           </p>
         </div>
       </div>
@@ -94,7 +94,7 @@ const ContactUs: React.FC = () => {
               {submitStatus === 'success' && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                   <p className="text-green-800">
-                    Thank you for your message! We'll get back to you within 24 hours.
+                    Thank you for your message! We&apos;ll get back to you within 24 hours.
                   </p>
                 </div>
               )}
