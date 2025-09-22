@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useCart } from '@/components/CartContext'; // Adjust path as needed
 import { CartSummary } from '../components/CartSummary'; // Adjust path as needed
 import { ArrowLeft, ShoppingBag, Trash2, Plus, Minus } from 'lucide-react';
-import CheckoutButton from '@/components/CheckoutButton'; // ✅ Import the Stripe button
+// import CheckoutButton from '@/components/CheckoutButton'; // ✅ Import the Stripe button
 
 const CartPage: React.FC = () => {
   const { items, totalItems, clearCart, isLoading, updateQuantity, removeFromCart } = useCart();
@@ -185,7 +185,7 @@ const CartPage: React.FC = () => {
           <div className="bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg">
             <CartSummary className="mb-3" />
             {/* ✅ Replaced old button with CheckoutButton */}
-            <CheckoutButton cartItems={items} />
+            {/* <CheckoutButton cartItems={items} /> */}
             
             <button
               onClick={handleContinueShopping}
@@ -288,7 +288,7 @@ const CartPage: React.FC = () => {
               <div className="sticky top-6 space-y-6">
                 <CartSummary />
                 {/* ✅ Replaced old button with CheckoutButton */}
-                <CheckoutButton cartItems={items} />
+                {/* <CheckoutButton cartItems={items} /> */}
                 
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                   <button
