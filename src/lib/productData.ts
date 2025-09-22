@@ -1082,18 +1082,17 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ]
   },
   {
-    id: "jobobike-lyon-pro",
+    id: "7",
     name: "JOBOBIKE Lyon Pro",
     slug: "jobobike-lyon-pro",
     originalPrice: 1899,
     price: 1599,
     discount: "16%",
-    image: "/images/jobobike-lyon-pro-main.jpg",
+    image: "/images/lyon/lyon-1.png",
     images: [
-      "/images/jobobike-lyon-pro-main.jpg",
-      "/images/jobobike-lyon-pro-side.jpg",
-      "/images/jobobike-lyon-pro-detail.jpg",
-      "/images/jobobike-lyon-pro-battery.jpg"
+      "/images/lyon/lyon-1.png",
+      "/images/lyon/lyon-2.png",
+      
     ],
     features: [
       "250W Mid-Drive Motor",
@@ -1245,18 +1244,17 @@ export const PRODUCTS_DATA: ProductCard[] = [
 
   // 2. Jobobike Dyno GT
   {
-    id: "jobobike-dyno-gt",
+    id: "8",
     name: "JOBOBIKE Dyno GT",
     slug: "jobobike-dyno-gt",
     originalPrice: 1699,
     price: 1449,
     discount: "15%",
-    image: "/images/jobobike-dyno-gt-main.jpg",
+    image: "/images/dyno/dyno-1.png",
     images: [
-      "/images/jobobike-dyno-gt-main.jpg",
-      "/images/jobobike-dyno-gt-side.jpg",
-      "/images/jobobike-dyno-gt-detail.jpg",
-      "/images/jobobike-dyno-gt-display.jpg"
+      "/images/dyno/dyno-1.png",
+      "/images/dyno/dyno-2.png",
+      
     ],
     features: [
       "250W Rear Hub Motor",
