@@ -45,15 +45,14 @@ const Navbar = () => {
     };
   }, [isMoreMenuOpen]);
 
-  const navItems = [
-    { name: 'Sykkel', href: '/cycle' },
-  ];
+  // const navItems = [
+  //   { name: 'Sykkel', href: '/cycle' },
+  // ];
 
   const categories = [
-    { name: "Folding Bikes", slug: "folding-bike" },
-    { name: "Commuter E-Bikes", slug: "commuter-ebike" },
-    { name: "Step-Through E-Bikes", slug: "step-through" },
-    { name: "Lightweight E-Bikes", slug: "lightweight" },
+    { name: "DYU Bikes", slug: "dyu" },
+    { name: "JOBO Bikes", slug: "jobo" },
+    
   ];
 
   const moreMenuItems = [
@@ -126,7 +125,7 @@ const Navbar = () => {
           <div className="px-2 py-2 overflow-hidden">
             {/* First Row */}
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm mb-2 items-center justify-center">
-              {navItems.map((item, index) => (
+              {/* {navItems.map((item, index) => (
                 <Link
                   key={index}
                   href={item.href}
@@ -134,7 +133,7 @@ const Navbar = () => {
                 >
                   {item.name}
                 </Link>
-              ))}
+              ))} */}
 
               {/* Category Links */}
               {categories.map((cat) => (
@@ -150,7 +149,7 @@ const Navbar = () => {
 
             {/* Second Row */}
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm items-center justify-center">
-              {navItems.slice(6).map((item, index) => (
+              {/* {navItems.slice(6).map((item, index) => (
                 <Link
                   key={index + 5}
                   href={item.href}
@@ -158,7 +157,7 @@ const Navbar = () => {
                 >
                   {item.name}
                 </Link>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
@@ -217,7 +216,7 @@ const Navbar = () => {
             {/* Navigation Menu - Desktop */}
             <div className="md:block">
               <div className="sm:grid sm:grid-cols-2 md:flex space-x-8 py-4 overflow-x-auto text-xl">
-                {navItems.map((item, index) => (
+                {/* {navItems.map((item, index) => (
                   <Link
                     key={index}
                     href={item.href}
@@ -225,7 +224,7 @@ const Navbar = () => {
                   >
                     {item.name}
                   </Link>
-                ))}
+                ))} */}
 
                 {/* Category Links */}
                 {categories.map((cat) => (

@@ -52,11 +52,11 @@ const LandingPage = () => {
             <section className="mb-24 px-4 sm:px-2">
                 <div className="max-w-7xl mx-auto">
                     {/* Mobile: Single column grid, Desktop: Multi-column grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden">
                         {PRODUCTS_DATA.map((product) => (
                             <div key={product.id} className="group bg-white hover:shadow-sm transition-shadow duration-200 cursor-pointer">
                                 {/* Product Image Container */}
-                                <div className="relative aspect-square bg-white overflow-hidden">
+                                <div className="relative  bg-white overflow-hidden">
                                     <Link href={`/products/${product.slug}`}>
                                         <img 
                                             className='object-cover sm:w-full sm:h-full w-[80%] h-[80%] m-auto sm:m-0'

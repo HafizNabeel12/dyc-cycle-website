@@ -226,7 +226,7 @@ const CartPage: React.FC = () => {
                                   alt={item.name}
                                   width={96}
                                   height={96}
-                                  className="w-full h-full object-cover"
+                                  className="w-full h-full "
                                 />
                               ) : (
                                 <div className="w-full h-full bg-gray-200 flex items-center justify-center">

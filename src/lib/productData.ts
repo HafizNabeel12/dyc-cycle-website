@@ -162,7 +162,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["Ultra-compact 14\" design", "Quick fold", "Lightweight"],
     badge: "COMPACT KING",
-    category: ["folding-bike", "commuter-ebike", "lightweight"],
+    category: ["dyu"],
     rating: 5,
     reviewCount: 178,
     specifications: {
@@ -317,7 +317,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["Torque sensor", "Removable battery", "Shimano gears"],
     badge: "SMART CHOICE",
-    category: ["folding-bike", "commuter-ebike", "step-through", "lightweight"],
+    category: ["dyu"],
     rating: 4.7,
     reviewCount: 156,
     specifications: {
@@ -476,7 +476,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["26\" wheels", "Front suspension", "Comfort geometry"],
     badge: "CITY CRUISER",
-    category: ["commuter-ebike", "step-through"],
+    category: ["dyu"],
     rating: 4.6,
     reviewCount: 134,
     specifications: {
@@ -632,7 +632,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["12.5Ah battery", "Dual suspension option (model)" , "LED display"],
     badge: "STUDENT FAVORITE",
-    category: ["commuter-ebike", "step-through"],
+    category: ["dyu"],
     rating: 4.8,
     reviewCount: 203,
     specifications: {
@@ -788,7 +788,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["Fat tires 20x3.0", "Exceptional range", "All-terrain capability"],
     badge: "LONG RANGE",
-    category: [],
+    category: ["dyu"],
     rating: 4.9,
     reviewCount: 89,
     specifications: {
@@ -945,7 +945,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["700C wheels", "Aluminum frame", "Hydraulic brakes"],
     badge: "PREMIUM STYLE",
-    category: ["commuter-ebike", "step-through", "lightweight"],
+    category: ["dyu"],
     rating: 4.7,
     reviewCount: 127,
     specifications: {
@@ -1102,7 +1102,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Bluetooth App Connectivity"
     ],
     badge: "Best Seller",
-    category: ["urban", "commuter", "men"],
+    category: ["jobo"],
     rating: 4.7,
     reviewCount: 142,
     specifications: {
@@ -1263,7 +1263,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Torque Sensor",
       "Smart LCD Display"
     ],
-    category: ["urban", "smart", "commuter"],
+    category: ["jobo"],
     rating: 4.5,
     reviewCount: 89,
     specifications: {
@@ -1429,7 +1429,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Foldable Design",
       "5 Assist Levels"
     ],
-    category: ["folding", "urban", "compact"],
+    category: ["jobo"],
     rating: 4.3,
     reviewCount: 67,
     specifications: {
@@ -1590,7 +1590,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Extra Long Frame"
     ],
     badge: "Family Choice",
-    category: ["cargo", "family", "utility"],
+    category: ["jobo"],
     rating: 4.8,
     reviewCount: 123,
     specifications: {
@@ -1751,7 +1751,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Comfortable Riding Position",
       "Integrated Lights"
     ],
-    category: ["urban", "comfort", "step-through"],
+    category: ["jobo"],
     rating: 4.4,
     reviewCount: 78,
     specifications: {
@@ -1912,7 +1912,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Front Suspension"
     ],
     badge: "Adventure Ready",
-    category: ["fat-tire", "all-terrain", "adventure"],
+    category: ["jobo"],
     rating: 4.6,
     reviewCount: 156,
     specifications: {
@@ -2071,7 +2071,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Integrated Design",
       "Urban Optimized"
     ],
-    category: ["urban", "smart", "modern"],
+    category: ["jobo"],
     rating: 4.5,
     reviewCount: 94,
     specifications: {
@@ -2230,7 +2230,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Professional Components"
     ],
     badge: "Pro Series",
-    category: ["mountain", "professional", "full-suspension"],
+    category: ["jobo"],
     rating: 4.9,
     reviewCount: 87,
     specifications: {
@@ -2391,7 +2391,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Simple Operation"
     ],
     badge: "Best Value",
-    category: ["budget", "entry-level", "urban"],
+    category: ["jobo"],
     rating: 4.2,
     reviewCount: 156,
     specifications: {
