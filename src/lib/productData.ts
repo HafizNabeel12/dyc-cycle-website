@@ -1404,18 +1404,23 @@ export const PRODUCTS_DATA: ProductCard[] = [
 
   // 3. Jobobike Sam
   {
-    id: "jobobike-sam",
+    id: "9",
     name: "JOBOBIKE Sam",
     slug: "jobobike-sam",
     originalPrice: 1299,
     price: 1099,
     discount: "15%",
-    image: "/images/jobobike-sam-main.jpg",
+    image: "/images/sam/sam-1.png",
     images: [
-      "/images/jobobike-sam-main.jpg",
-      "/images/jobobike-sam-side.jpg",
-      "/images/jobobike-sam-folded.jpg",
-      "/images/jobobike-sam-detail.jpg"
+      "/images/sam/sam-1.png",
+      "/images/sam/sam-2.png",
+      "/images/sam/sam-3.png",
+      "/images/sam/sam-4.png",
+      "/images/sam/sam-5.png",
+      "/images/sam/sam-6.png",
+      "/images/sam/sam-7.png",
+      "/images/sam/sam-8.png",
+     
     ],
     features: [
       "350W Rear Hub Motor",
@@ -1565,18 +1570,17 @@ export const PRODUCTS_DATA: ProductCard[] = [
 
   // 4. Jobobike Transer
   {
-    id: "jobobike-transer",
+    id: "10",
     name: "JOBOBIKE Transer",
     slug: "jobobike-transer",
     originalPrice: 2199,
     price: 1899,
     discount: "14%",
-    image: "/images/jobobike-transer-main.jpg",
+    image: "/images/transer/transer-1.png",
     images: [
-      "/images/jobobike-transer-main.jpg",
-      "/images/jobobike-transer-cargo.jpg",
-      "/images/jobobike-transer-family.jpg",
-      "/images/jobobike-transer-detail.jpg"
+      "/images/transer/transer-1.png",
+      "/images/transer/transer-2.png",
+      "/images/transer/transer-3.png",
     ],
     features: [
       "250W Mid-Drive Motor",
@@ -1728,18 +1732,17 @@ export const PRODUCTS_DATA: ProductCard[] = [
 
   // 5. Jobobike Mover
   {
-    id: "jobobike-mover",
+    id: "11",
     name: "JOBOBIKE Mover",
     slug: "jobobike-mover",
     originalPrice: 1399,
     price: 1199,
     discount: "14%",
-    image: "/images/jobobike-mover-main.jpg",
+    image: "/images/mover/mover-1.png",
     images: [
-      "/images/jobobike-mover-main.jpg",
-      "/images/jobobike-mover-side.jpg",
-      "/images/jobobike-mover-detail.jpg",
-      "/images/jobobike-mover-battery.jpg"
+      "/images/mover/mover-1.png",
+      "/images/mover/mover-2.png",
+      "/images/mover/mover-3.png",
     ],
     features: [
       "250W Rear Hub Motor",
@@ -1889,18 +1892,17 @@ export const PRODUCTS_DATA: ProductCard[] = [
 
   // 6. Jobobike Robin
   {
-    id: "jobobike-robin",
+    id: "12",
     name: "JOBOBIKE Robin",
     slug: "jobobike-robin",
     originalPrice: 1799,
     price: 1499,
     discount: "17%",
-    image: "/images/jobobike-robin-main.jpg",
+    image: "/images/robin/robin-1.png",
     images: [
-      "/images/jobobike-robin-main.jpg",
-      "/images/jobobike-robin-terrain.jpg",
-      "/images/jobobike-robin-detail.jpg",
-      "/images/jobobike-robin-battery.jpg"
+      "/images/robin/robin-1.png",
+      "/images/robin/robin-2.png",
+      "/images/robin/robin-3.png",
     ],
     features: [
       "500W Rear Hub Motor",
@@ -2057,12 +2059,10 @@ export const PRODUCTS_DATA: ProductCard[] = [
     originalPrice: 1599,
     price: 1349,
     discount: "16%",
-    image: "/images/jobobike-eddy-x-main.jpg",
+    image: "/images/eddy-x/eddy-1.png",
     images: [
-      "/images/jobobike-eddy-x-main.jpg",
-      "/images/jobobike-eddy-x-side.jpg",
-      "/images/jobobike-eddy-x-detail.jpg",
-      "/images/jobobike-eddy-x-display.jpg"
+     "/images/eddy-x/eddy-1.png",
+     "/images/eddy-x/eddy-2.png",
     ],
     features: [
       "250W Mid-Drive Motor",
@@ -2218,12 +2218,9 @@ export const PRODUCTS_DATA: ProductCard[] = [
     originalPrice: 2299,
     price: 1999,
     discount: "13%",
-    image: "/images/jobobike-romer-pro-main.jpg",
+    image: "/images/romer-pro/romer-1.png",
     images: [
-      "/images/jobobike-romer-pro-main.jpg",
-      "/images/jobobike-romer-pro-mountain.jpg",
-      "/images/jobobike-romer-pro-detail.jpg",
-      "/images/jobobike-romer-pro-suspension.jpg"
+      "/images/romer-pro/romer-1.png",
     ],
     features: [
       "750W Mid-Drive Motor",
@@ -2381,12 +2378,10 @@ export const PRODUCTS_DATA: ProductCard[] = [
     originalPrice: 1199,
     price: 999,
     discount: "17%",
-    image: "/images/jobobike-astra-main.jpg",
+    image: "/images/astra/astra-1.png",
     images: [
-      "/images/jobobike-astra-main.jpg",
-      "/images/jobobike-astra-side.jpg",
-      "/images/jobobike-astra-detail.jpg",
-      "/images/jobobike-astra-city.jpg"
+    "/images/astra/astra-1.png",
+    "/images/astra/astra-2.png",
     ],
     features: [
       "250W Front Hub Motor",
