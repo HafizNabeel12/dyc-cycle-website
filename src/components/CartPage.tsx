@@ -1,4 +1,3 @@
-// app/cart/page.tsx or pages/cart.tsx
 'use client';
 
 import React from 'react';
@@ -7,21 +6,13 @@ import Image from 'next/image';
 import { useCart } from '@/components/CartContext'; // Adjust path as needed
 import { CartSummary } from '../components/CartSummary'; // Adjust path as needed
 import { ArrowLeft, ShoppingBag, Trash2, Plus, Minus } from 'lucide-react';
+import CheckoutButton from '@/components/CheckoutButton'; // ✅ Import the Stripe button
 
 const CartPage: React.FC = () => {
   const { items, totalItems, clearCart, isLoading, updateQuantity, removeFromCart } = useCart();
   const router = useRouter();
 
-  const handleCheckout = () => {
-    // Your checkout logic here
-    clearCart();
-    alert('Order placed successfully! Cart has been cleared.');
-    // Optionally redirect to success page
-    // router.push('/checkout/success');
-  };
-
   const handleContinueShopping = () => {
-    // Navigate back to products or home page
     router.push('/'); // Adjust route as needed
   };
 
@@ -40,9 +31,7 @@ const CartPage: React.FC = () => {
   };
 
   const handleRemoveItem = (itemId: string) => {
-   
-      removeFromCart(itemId);
-    
+    removeFromCart(itemId);
   };
 
   if (isLoading) {
@@ -102,13 +91,6 @@ const CartPage: React.FC = () => {
                   <ArrowLeft className="h-4 w-4" />
                   Continue Shopping
                 </button>
-                
-                {/* <button
-                  onClick={handleStartFresh}
-                  className="bg-gray-100 text-gray-700 px-8 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all duration-200"
-                >
-                  Start Fresh Shopping
-                </button> */}
               </div>
             </div>
           </div>
@@ -122,7 +104,6 @@ const CartPage: React.FC = () => {
       <div className="container mx-auto px-4 py-6 sm:py-8 mt-48">
         {/* MOBILE LAYOUT */}
         <div className="lg:hidden">
-          {/* Mobile Header */}
           <div className="bg-white p-6 mb-4">
             <div className="flex items-center justify-between">
               <div>
@@ -131,11 +112,9 @@ const CartPage: React.FC = () => {
                   {totalItems} {totalItems === 1 ? 'item' : 'items'}
                 </p>
               </div>
-              
             </div>
           </div>
 
-          {/* Mobile Cart Items */}
           <div className="space-y-3 mb-4">
             {items.map((item) => (
               <div key={item.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
@@ -175,7 +154,6 @@ const CartPage: React.FC = () => {
                     </div>
                     
                     <div className="flex items-center justify-between mt-3">
-                      {/* Quantity Controls */}
                       <div className="flex items-center gap-3">
                         <button 
                           onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
@@ -192,7 +170,6 @@ const CartPage: React.FC = () => {
                         </button>
                       </div>
                       
-                      {/* Price */}
                       <div className="text-right">
                         <p className="text-lg font-bold text-yellow-500">${(item.price * item.quantity).toFixed(2)}</p>
                         <p className="text-xs text-gray-500">${item.price} each</p>
@@ -204,30 +181,25 @@ const CartPage: React.FC = () => {
             ))}
           </div>
 
-          {/* Mobile Cart Summary - Fixed Bottom */}
+          {/* Mobile Cart Summary */}
           <div className="bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg">
-            <CartSummary 
-              showCheckoutButton={true}
-              onCheckout={handleCheckout}
-              className="mb-3"
-            />
+            <CartSummary className="mb-3" />
+            {/* ✅ Replaced old button with CheckoutButton */}
+            <CheckoutButton cartItems={items} />
             
             <button
               onClick={handleContinueShopping}
-              className="w-full bg-gray-100 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:bg-gray-200 transition-all duration-200 flex items-center justify-center gap-2 text-sm"
+              className="w-full bg-gray-100 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:bg-gray-200 transition-all duration-200 flex items-center justify-center gap-2 text-sm mt-3"
             >
               <ArrowLeft className="h-4 w-4" />
               Continue Shopping
             </button>
           </div>
-
-          {/* Bottom Spacer for fixed cart summary */}
           <div className="h-32"></div>
         </div>
 
-        {/* DESKTOP LAYOUT - FUNCTIONAL */}
+        {/* DESKTOP LAYOUT */}
         <div className="hidden lg:block">
-          {/* Desktop Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Shopping Cart</h1>
@@ -235,11 +207,9 @@ const CartPage: React.FC = () => {
                 {totalItems} {totalItems === 1 ? 'item' : 'items'} in your cart
               </p>
             </div>
-           
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Cart Items */}
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100">
                 <div className="p-6">
@@ -272,7 +242,6 @@ const CartPage: React.FC = () => {
                             <p className="text-sm text-gray-500">Category: {item.category || 'General'}</p>
                             
                             <div className="flex items-center justify-between mt-4">
-                              {/* Quantity Controls */}
                               <div className="flex items-center gap-4">
                                 <span className="text-sm text-gray-600">Qty:</span>
                                 <div className="flex items-center gap-3">
@@ -292,7 +261,6 @@ const CartPage: React.FC = () => {
                                 </div>
                               </div>
                               
-                              {/* Price */}
                               <div className="text-right">
                                 <p className="text-2xl font-bold text-yellow-600">${(item.price * item.quantity).toFixed(2)}</p>
                                 <p className="text-sm text-gray-500">${item.price} each</p>
@@ -300,7 +268,6 @@ const CartPage: React.FC = () => {
                             </div>
                           </div>
 
-                          {/* Remove Button */}
                           <button 
                             onClick={() => handleRemoveItem(item.id)}
                             className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200"
@@ -319,12 +286,10 @@ const CartPage: React.FC = () => {
             {/* Order Summary */}
             <div className="lg:col-span-1">
               <div className="sticky top-6 space-y-6">
-                <CartSummary 
-                  showCheckoutButton={true}
-                  onCheckout={handleCheckout}
-                />
+                <CartSummary />
+                {/* ✅ Replaced old button with CheckoutButton */}
+                <CheckoutButton cartItems={items} />
                 
-                {/* Additional Actions */}
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                   <button
                     onClick={handleContinueShopping}
