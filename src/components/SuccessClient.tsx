@@ -3,8 +3,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { useCart } from './CartContext';
 
 export default function SuccessClient() {
+  const { clearCart } = useCart();
   const searchParams = useSearchParams();
   const router = useRouter();
   const sessionId = searchParams?.get('session_id');
@@ -38,6 +40,10 @@ export default function SuccessClient() {
         if (!res.ok) {
           setError(data?.error || `Server returned ${res.status}`);
           return;
+        }
+        
+        if (data.payment_status === 'paid') {
+          clearCart();
         }
 
         setSession(data);
