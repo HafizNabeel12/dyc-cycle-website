@@ -1,10 +1,12 @@
 // app/success/page.tsx
+export const dynamic = "force-dynamic";
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-export const dynamic = "force-dynamic";
+
 
 export default function SuccessPage() {
   const searchParams = useSearchParams();
