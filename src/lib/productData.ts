@@ -2531,14 +2531,20 @@ export const PRODUCTS_DATA: ProductCard[] = [
   },
  
   {
-    id: "kommoda-3-0",
+    id: "16",
     name: "Kommoda 3.0 Electric Bike",
     slug: "kommoda-3-0-electric-bike",
     originalPrice: 1999,
     price: 1799,
     discount: "10%",
-    image: "https://example.com/kommoda/main.jpg",
-    images: ["https://example.com/kommoda/1.jpg"],
+    image: "images/kommoda/kommoda-1.png",
+    images: [
+      "images/kommoda/kommoda-1.png",
+      "images/kommoda/kommoda-2.png",
+      "images/kommoda/kommoda-3.png",
+
+
+    ],
     features: ["Step-through frame", "Fat 20×4.0 tires", "Hydraulic disc brakes"],
     badge: "Best Seller",
     category: ["Electric Bike", "City"],
@@ -2586,14 +2592,18 @@ export const PRODUCTS_DATA: ProductCard[] = [
     whatsInTheBox: ["Bike", "Battery", "Charger", "Manual"]
   },
   {
-    id: "himiway-d5-zebra",
+    id: "17",
     name: "Himiway D5 Zebra Electric Bike",
     slug: "himiway-d5-zebra",
     originalPrice: 2299,
     price: 1699,
     discount: "26%",
-    image: "https://example.com/himiway/main.jpg",
-    images: ["https://example.com/himiway/1.jpg"],
+    image: "images/Himiway/himiway-1.png",
+    images: [
+      "images/Himiway/himiway-1.png",
+      "images/Himiway/himiway-2.png",
+
+    ],
     features: ["750W motor", "960Wh battery", "26×4.0 tires"],
     category: ["Electric Bike", "Mountain"],
     rating: 4.8,
@@ -2640,14 +2650,17 @@ export const PRODUCTS_DATA: ProductCard[] = [
     whatsInTheBox: ["Bike", "Battery", "Charger"]
   },
   {
-    id: "dotmall-c29-pro",
+    id: "18",
     name: "DOTMALL PASEBIKE C29 Pro",
     slug: "dotmall-c29-pro",
     originalPrice: 1599,
     price: 1399,
     discount: "12%",
-    image: "https://example.com/c29/main.jpg",
-    images: ["https://example.com/c29/1.jpg"],
+    image: "images/PASEBIKE/pase-1.jpg",
+    images: [
+      "images/PASEBIKE/pase-1.jpg",
+
+    ],
     features: ["500W motor", "29-inch wheels", "Shimano gears"],
     category: ["Electric Bike", "Mountain"],
     rating: 4.7,
@@ -2685,14 +2698,22 @@ export const PRODUCTS_DATA: ProductCard[] = [
     whatsInTheBox: ["Bike", "Battery", "Charger"]
   },
   {
-    id: "dotmall-250w-all-terrain",
+    id: "19",
     name: "DOTMALL 250W All Terrain",
     slug: "dotmall-250w-all-terrain",
     originalPrice: 1399,
     price: 1199,
     discount: "14%",
-    image: "https://example.com/dotmall250w/main.jpg",
-    images: ["https://example.com/dotmall250w/1.jpg"],
+    image: "images/DOTMALL/dotmall-1.png",
+    images: [
+      "images/DOTMALL/dotmall-1.png",
+      "images/DOTMALL/dotmall-2.png",
+      "images/DOTMALL/dotmall-3.png",
+      "images/DOTMALL/dotmall-4.png",
+      "images/DOTMALL/dotmall-5.png",
+      "images/DOTMALL/dotmall-6.png",
+
+    ],
     features: ["250W motor", "52V 20Ah battery", "All terrain"],
     category: ["Electric Bike", "Fat Tire"],
     rating: 4.6,
@@ -2730,14 +2751,22 @@ export const PRODUCTS_DATA: ProductCard[] = [
     whatsInTheBox: ["Bike", "Battery", "Charger"]
   },
   {
-    id: "eahora-juliet-iii",
+    id: "20",
     name: "Eahora Juliet III 2000W",
     slug: "eahora-juliet-iii",
     originalPrice: 2499,
     price: 1999,
     discount: "20%",
-    image: "https://example.com/juliet/main.jpg",
-    images: ["https://example.com/juliet/1.jpg"],
+    image: "images/Juliet/july-1.png",
+    images: [
+      "images/Juliet/july-1.png",
+      "images/Juliet/july-2.png",
+      "images/Juliet/july-3.png",
+      "images/Juliet/july-4.png",
+      "images/Juliet/july-5.png",
+      "images/Juliet/july-6.png",
+
+    ],
     features: ["2000W dual motor", "52V 20Ah battery", "Full suspension"],
     category: ["Electric Bike", "Mountain"],
     rating: 4.9,
@@ -2775,14 +2804,19 @@ export const PRODUCTS_DATA: ProductCard[] = [
     whatsInTheBox: ["Bike", "Battery", "Charger"]
   },
   {
-    id: "grace-city",
+    id: "21",
     name: "Grace Electric City Bike",
     slug: "grace-electric-city-bike",
     originalPrice: 1299,
     price: 1099,
     discount: "15%",
-    image: "https://example.com/grace/main.jpg",
-    images: ["https://example.com/grace/1.jpg"],
+    image: "images/Grace/grace-1.png",
+    images: [
+      "images/Grace/grace-1.png",
+      "images/Grace/grace-2.png",
+      "images/Grace/grace-3.png",
+
+    ],
     features: ["City commuter", "Lightweight frame", "Step-through"],
     category: ["Electric Bike", "City"],
     rating: 4.5,
@@ -2820,13 +2854,13 @@ export const PRODUCTS_DATA: ProductCard[] = [
     whatsInTheBox: ["Bike", "Battery", "Charger"]
   },
   {
-    id: "1000w-dual-motor",
+    id: "22",
     name: "1000W Dual Motor Electric Bike",
     slug: "1000w-dual-motor-electric-bike",
     originalPrice: 2399,
     price: 1899,
     discount: "21%",
-    image: "https://example.com/1000w/main.jpg",
+    image: "images/1000w/1000-1.png",
     images: ["https://example.com/1000w/1.jpg"],
     features: ["Dual motor", "Off-road", "Full suspension"],
     category: ["Electric Bike", "Mountain"],
