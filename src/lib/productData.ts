@@ -2547,7 +2547,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["Step-through frame", "Fat 20×4.0 tires", "Hydraulic disc brakes"],
     badge: "Best Seller",
-    category: ["yatdim"],
+    category: ["Electric Bike", "City" , "yatdim"],
     rating: 4.8,
     reviewCount: 110,
     specifications: {
@@ -2605,7 +2605,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
 
     ],
     features: ["750W motor", "960Wh battery", "26×4.0 tires"],
-    category: ["yatdim"],
+    category: ["Electric Bike", "Mountain" , "yatdim"],
     rating: 4.8,
     reviewCount: 62,
     specifications: {
@@ -2662,7 +2662,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
 
     ],
     features: ["500W motor", "29-inch wheels", "Shimano gears"],
-    category: ["yatdim"],
+    category: ["Electric Bike", "Mountain" , "yatdim"],
     rating: 4.7,
     reviewCount: 41,
     specifications: {
@@ -2715,7 +2715,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
 
     ],
     features: ["250W motor", "52V 20Ah battery", "All terrain"],
-    category: ["yatdim"],
+    category: ["Electric Bike", "Fat Tire" , "yatdim"],
     rating: 4.6,
     reviewCount: 30,
     specifications: {
@@ -2768,7 +2768,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
 
     ],
     features: ["2000W dual motor", "52V 20Ah battery", "Full suspension"],
-    category: ["yatdim"],
+    category: ["Electric Bike", "Mountain" , "yatdim"],
     rating: 4.9,
     reviewCount: 55,
     specifications: {
@@ -2818,7 +2818,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
 
     ],
     features: ["City commuter", "Lightweight frame", "Step-through"],
-    category: ["yatdim"],
+    category: ["Electric Bike", "City" , "yatdim"],
     rating: 4.5,
     reviewCount: 25,
     specifications: {
@@ -2868,7 +2868,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       
     ],
     features: ["Dual motor", "Off-road", "Full suspension"],
-    category: ["yatdim"],
+    category: ["Electric Bike", "Mountain" , "yatdim"],
     rating: 4.7,
     reviewCount: 38,
     specifications: {
@@ -2921,7 +2921,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
 
     ],
     features: ["750W motor", "Custom frame", "Comfort cruiser"],
-    category: ["yatdim"],
+    category: ["Electric Bike", "Cruiser" , "yatdim"],
     rating: 4.8,
     reviewCount: 47,
     specifications: {
