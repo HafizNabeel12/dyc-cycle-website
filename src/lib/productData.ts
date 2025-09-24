@@ -2627,3 +2627,7 @@ export const getStepThroughBikes = (): ProductCard[] => {
     product.category.includes('step-through')
   );
 };
+
+export const getProductById = (id: string) => {
+  return PRODUCTS_DATA.find(product => product.id === id);
+};

@@ -52,6 +52,7 @@ const Navbar = () => {
   const categories = [
     { name: "DYU Bikes", slug: "dyu" },
     { name: "JOBO Bikes", slug: "jobo" },
+    { name: "YATDIM Bikes", slug: "yatdim" }
     
   ];
 

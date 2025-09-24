@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useCart } from '@/components/CartContext'; // Adjust path as needed
 import { CartSummary } from '../components/CartSummary'; // Adjust path as needed
 import { ArrowLeft, ShoppingBag, Trash2, Plus, Minus } from 'lucide-react';
-// import CheckoutButton from '@/components/CheckoutButton'; // ✅ Import the Stripe button
+import BuyNowButton from './BuyNowButton'; // ✅ Import BuyNowButton
 
 const CartPage: React.FC = () => {
   const { items, totalItems, clearCart, isLoading, updateQuantity, removeFromCart } = useCart();
@@ -33,6 +33,35 @@ const CartPage: React.FC = () => {
   const handleRemoveItem = (itemId: string) => {
     removeFromCart(itemId);
   };
+  const handleCheckout = async () => {
+  try {
+    const res = await fetch("/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        cartItems: items.map(item => ({
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+        })),
+      }),
+    });
+
+    const data = await res.json();
+    console.log("Checkout response:", data); // 👈 log it
+
+    if (res.ok && data.url) {
+      window.location.href = data.url; // ✅ redirect to Stripe Checkout
+    } else {
+      alert(`Checkout failed: ${data.error || "Unknown error"}`);
+    }
+  } catch (err) {
+    console.error("Checkout fetch failed:", err);
+    alert("Something went wrong during checkout.");
+  }
+};
+
+
 
   if (isLoading) {
     return (
@@ -74,7 +103,7 @@ const CartPage: React.FC = () => {
             </div>
           </div>
 
-          {/* DESKTOP EMPTY CART - UNCHANGED */}
+          {/* DESKTOP EMPTY CART */}
           <div className="hidden lg:block ">
             <div className=" p-16 text-center max-w-2xl mx-auto">
               <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -98,6 +127,9 @@ const CartPage: React.FC = () => {
       </div>
     );
   }
+
+  // ✅ Calculate total
+  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -184,8 +216,15 @@ const CartPage: React.FC = () => {
           {/* Mobile Cart Summary */}
           <div className="bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg">
             <CartSummary className="mb-3" />
-            {/* ✅ Replaced old button with CheckoutButton */}
-            {/* <CheckoutButton cartItems={items} /> */}
+            
+            {/* ✅ BuyNowButton for first item */}
+           <button
+  onClick={handleCheckout}
+  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold mt-4"
+>
+  Checkout Now
+</button>
+
             
             <button
               onClick={handleContinueShopping}
@@ -287,9 +326,15 @@ const CartPage: React.FC = () => {
             <div className="lg:col-span-1">
               <div className="sticky top-6 space-y-6">
                 <CartSummary />
-                {/* ✅ Replaced old button with CheckoutButton */}
-                {/* <CheckoutButton cartItems={items} /> */}
-                
+
+                <button
+  onClick={handleCheckout}
+  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold mt-4"
+>
+  Checkout Now
+</button>
+
+
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                   <button
                     onClick={handleContinueShopping}
