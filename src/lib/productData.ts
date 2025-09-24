@@ -474,7 +474,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "/images/C1/c1-6.png",
       "/images/C1/c1-7.png"
     ],
-    features: ["26\" wheels", "Front suspension", "Comfort geometry"],
+    features: ["Comfort geometry", "Front suspension" , "26\" wheels" ],
     badge: "CITY CRUISER",
     category: ["dyu"],
     rating: 4.6,
@@ -630,7 +630,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "/images/C6/c6-6.png",
       "/images/C6/c6-7.png"
     ],
-    features: ["12.5Ah battery", "Dual suspension option (model)" , "LED display"],
+    features: ["12.5Ah battery", "LED display" , "Dual suspension option (model)" ],
     badge: "STUDENT FAVORITE",
     category: ["dyu"],
     rating: 4.8,
@@ -2860,7 +2860,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     originalPrice: 2399,
     price: 1899,
     discount: "21%",
-    image: "/images/1000w/1000-1.png",
+    image: "/images/1000W/pic-1.png",
     images: [
       "/images/1000W/pic-1.png",
       "/images/1000W/pic-2.png",
