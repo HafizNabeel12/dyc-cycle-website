@@ -2862,9 +2862,9 @@ export const PRODUCTS_DATA: ProductCard[] = [
     discount: "21%",
     image: "/images/1000w/1000-1.png",
     images: [
-      "/images/1000w/1000-1.png",
-      "/images/1000w/1000-2.png",
-      "/images/1000w/1000-3.png",
+      "/images/1000W/pic-1.png",
+      "/images/1000W/pic-2.png",
+      "/images/1000W/pic-3.png",
       
     ],
     features: ["Dual motor", "Off-road", "Full suspension"],
