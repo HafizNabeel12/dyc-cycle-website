@@ -34,8 +34,8 @@ export default function PaymentForm() {
 
   // 💱 Currency options
   const currencies = [
-    { code: 'PKR', rate: 1, symbol: '₨' },
-    { code: 'USD', rate: 0.0035, symbol: '$' }
+    { code: 'PKR', rate: 280, symbol: '₨' },
+    { code: 'USD', rate: 1, symbol: '$' }
   ];
 
   const currentCurrency = currencies.find(c => c.code === selectedCurrency) || currencies[0];
@@ -53,7 +53,7 @@ export default function PaymentForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/checkout/success`,
+        return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?payment_intent={payment_intent}`,
         receipt_email: email,
         shipping: {
           name: shippingInfo.fullName,
@@ -89,10 +89,10 @@ export default function PaymentForm() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Left Column - Order Summary */}
       <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <h2 className="text-lg font-medium mb-6">Choose a currency:</h2>
+        <h2 className="text-lg font-medium mb-6 text-black">Choose a currency:</h2>
         
         {/* Currency Selection */}
-        <div className="flex gap-3 mb-6">
+        <div className="flex gap-3 mb-6 text-black">
           {currencies.map((currency) => (
             <button
               key={currency.code}
@@ -120,31 +120,31 @@ export default function PaymentForm() {
                 )}
               </div>
               <div className="flex-1">
-                <p className="text-sm text-gray-600">{item.name}</p>
-                <p className="text-sm font-medium">
+                <p className="text-sm text-black">{item.name}</p>
+                <p className="text-sm font-medium text-black">
                   {currentCurrency.symbol} {convertPrice(item.price * item.quantity).toFixed(2)}
                 </p>
               </div>
-              <p className="text-sm text-gray-500">x{item.quantity}</p>
+              <p className="text-sm text-black">x{item.quantity}</p>
             </div>
           ))}
         </div>
 
         {/* Order Summary */}
         <div className="space-y-3 border-t pt-4">
-          <div className="flex justify-between text-sm">
+          <div className="flex justify-between text-sm text-black">
             <span>Subtotal</span>
             <span>{currentCurrency.symbol} {convertPrice(subtotal).toFixed(2)}</span>
           </div>
           <div className="flex justify-between text-sm text-green-600">
-            <span>💰 SAVED</span>
+            <span> SAVED</span>
             <span>{currentCurrency.symbol} {convertPrice(saved).toFixed(2)}</span>
           </div>
-          <div className="flex justify-between text-sm">
+          <div className="flex justify-between text-sm text-black">
             <span>Tax ID</span>
-            <span className="text-gray-500">Does not show for calculation</span>
+            <span className="text-black">Does not show for calculation</span>
           </div>
-          <div className="flex justify-between font-medium text-lg border-t pt-3">
+          <div className="flex justify-between font-medium text-lg border-t pt-3 text-black">
             <span>Total due</span>
             <span>{currentCurrency.symbol} {convertPrice(total).toFixed(2)}</span>
           </div>
@@ -154,19 +154,12 @@ export default function PaymentForm() {
       {/* Right Column - Payment Form */}
       <div className="bg-white p-6 rounded-lg border border-gray-200">
         <form onSubmit={handleSubmit}>
-          {/* Apple Pay Button */}
-          <button
-            type="button"
-            className="w-full bg-black text-white py-3 rounded-lg mb-4 flex items-center justify-center font-medium"
-          >
-            🍎 Pay
-          </button>
+         
           
-          <div className="text-center text-gray-400 text-sm mb-6">or</div>
 
           {/* Shipping Information */}
           <div className="mb-6">
-            <h3 className="font-medium mb-4">Shipping information</h3>
+            <h3 className="font-medium mb-4 text-black">Shipping information</h3>
             
             <div className="mb-4">
               <label className="block text-sm text-gray-600 mb-1">Email</label>
@@ -174,19 +167,18 @@ export default function PaymentForm() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
                 placeholder="mail@example.com"
                 required
               />
             </div>
 
-            {/* (shipping inputs remain same as your version) */}
-            {/* ... */}
+          
           </div>
 
           {/* Payment Method */}
           <div className="mb-6">
-            <h3 className="font-medium mb-4">Payment method</h3>
+            <h3 className="font-medium mb-4 text-black">Payment method</h3>
             <p className="text-sm text-gray-600 mb-4">Card information</p>
             
             <div className="border border-gray-300 rounded p-4 mb-4">
