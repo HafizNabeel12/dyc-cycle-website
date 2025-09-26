@@ -188,7 +188,7 @@ const Navbar = () => {
               <div className="flex items-center space-x-4">
                 <Link href="/" className="text-black hover:text-yellow-400 transition-colors flex items-center">
                   <MapPin className="w-4 h-4 mr-1" />
-                  Finn butikk
+                  Norge
                 </Link>
                 <Link href="/cart">
                   <CartIcon className='hidden md:flex items-center space-x-2 text-gray-700 hover:text-black transition-colors' />
@@ -259,7 +259,7 @@ const Navbar = () => {
                 className="flex items-center space-x-3 py-4 text-gray-700 border-b border-gray-100 text-base"
               >
                 <MapPin className="w-5 h-5" />
-                <span>Finn butikk</span>
+                <span>Norge</span>
               </Link>
             </div>
           </div>

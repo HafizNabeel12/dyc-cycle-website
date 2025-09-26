@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-08-27.basil", // ✅ or latest available
+  apiVersion: "2025-08-27.basil", // ✅ use your latest available version
 });
 
 export async function POST(req: Request) {
@@ -26,9 +26,24 @@ export async function POST(req: Request) {
         },
         quantity: item.quantity,
       })),
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
 
+      // ✅ Redirects
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cart`,
+
+      // ✅ Enable phone collection
+      phone_number_collection: {
+        enabled: true,
+      },
+
+      // ✅ Enable shipping address (choose countries)
+      shipping_address_collection: {
+        allowed_countries: ["US", "CA", "GB", "PK"], // add/remove as needed
+
+
+      },
+
+   
     });
 
     return NextResponse.json({ url: session.url });

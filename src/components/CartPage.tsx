@@ -34,31 +34,7 @@ const CartPage: React.FC = () => {
     removeFromCart(itemId);
   };
   const handleCheckout = async () => {
-  try {
-    const res = await fetch("/api/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        cartItems: items.map(item => ({
-          name: item.name,
-          price: item.price,
-          quantity: item.quantity,
-        })),
-      }),
-    });
-
-    const data = await res.json();
-    console.log("Checkout response:", data); // 👈 log it
-
-    if (res.ok && data.url) {
-      window.location.href = data.url; // ✅ redirect to Stripe Checkout
-    } else {
-      alert(`Checkout failed: ${data.error || "Unknown error"}`);
-    }
-  } catch (err) {
-    console.error("Checkout fetch failed:", err);
-    alert("Something went wrong during checkout.");
-  }
+ router.push("/checkout");
 };
 
 
