@@ -45,7 +45,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
         
         <div className="border-t pt-2">
           <div className="flex justify-between">
-            <span className="text-lg font-semibold">Total</span>
+            <span className="text-lg font-semibold text-black">Total</span>
             <span className="text-lg font-bold text-black">
               ${totalPrice.toFixed(2)}
             </span>
