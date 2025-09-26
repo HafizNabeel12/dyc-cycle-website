@@ -1,57 +1,90 @@
-// app/api/create-payment-intent/route.ts
-export const dynamic = "force-dynamic";
+import { NextRequest, NextResponse } from 'next/server';
+import Stripe from 'stripe';
 
-import { NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
-import { getProductById } from "@/lib/productData"; // your server-side product list
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2025-08-27.basil",
+});
 
-export async function POST(req: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const { cartItems, customerEmail, shipping } = await req.json();
-    // cartItems: [{ id, quantity }] -- only id + quantity from client
+    const body = await request.json();
+    console.log('Payment intent API received:', body);
+    
+    const { items = [] } = body;
 
-    if (!Array.isArray(cartItems) || cartItems.length === 0) {
-      return NextResponse.json({ error: "No items in cart" }, { status: 400 });
-    }
-
-    // Server-side calculate amount (in cents)
-    let amount = 0;
-    const line_items: any[] = [];
-
-    for (const ci of cartItems) {
-      const product = getProductById(ci.id);
-      if (!product) {
-        return NextResponse.json({ error: `Product ${ci.id} not found` }, { status: 400 });
+    // Calculate order amount based on items
+    const calculateOrderAmount = (items: any[]) => {
+      console.log('Calculating amount for items:', items);
+      
+      // If no items or empty array, use default amount
+      if (!items || items.length === 0) {
+        console.log('No items provided, using default amount');
+        return 335697; // Default amount in cents (PKR 3356.97)
       }
-      const qty = Number(ci.quantity) || 1;
-      const unitAmount = Math.round(product.price * 100); // price in dollars -> cents
-      amount += unitAmount * qty;
 
-      line_items.push({
-        name: product.name,
-        unit_amount: unitAmount,
-        quantity: qty,
-      });
+      // Example product prices (in cents for PKR)
+      const prices: { [key: string]: number } = {
+        'pure-glow-cream': 335697, // 3356.97 PKR in cents
+        'default': 335697,
+      };
+
+      const total = items.reduce((sum, item) => {
+        // Use provided price if available, otherwise lookup by ID
+        const price = item.price ? Math.round(item.price * 100) : (prices[item.id] || prices['default']);
+        const quantity = item.quantity || 1;
+        console.log(`Item: ${item.id}, Price: ${price}, Quantity: ${quantity}`);
+        return sum + (price * quantity);
+      }, 0);
+
+      console.log('Calculated total amount:', total);
+      return total;
+    };
+
+    const amount = calculateOrderAmount(items);
+
+    if (amount <= 0) {
+      throw new Error('Invalid amount calculated');
     }
 
-    // optional: add shipping cost or tax calculation here
-    // e.g., amount += shippingCostInCents;
+    console.log('Creating Stripe payment intent with amount:', amount);
 
-    // Create PaymentIntent
-    const pi = await stripe.paymentIntents.create({
-      amount,
-      currency: "usd",
-      automatic_payment_methods: { enabled: true }, // simplifies method handling
-      receipt_email: customerEmail || undefined,
+    // Create a PaymentIntent with the order amount and currency
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amount,
+      currency: 'pkr', // Pakistani Rupee
+      automatic_payment_methods: {
+        enabled: true,
+      },
       metadata: {
-        // optionally include order metadata (e.g., product ids)
-        items: JSON.stringify(cartItems),
+        order_id: `order_${Date.now()}`,
+        items: JSON.stringify(items),
       },
     });
 
-    return NextResponse.json({ clientSecret: pi.client_secret, paymentIntentId: pi.id });
-  } catch (err: any) {
-    console.error("create-payment-intent error:", err);
-    return NextResponse.json({ error: err.message || "Internal error" }, { status: 500 });
+    console.log('Payment intent created successfully:', paymentIntent.id);
+
+    return NextResponse.json({
+      clientSecret: paymentIntent.client_secret,
+      amount: amount,
+    });
+
+  } catch (error: any) {
+    console.error('Error creating payment intent:', error);
+    
+    return NextResponse.json(
+      { 
+        error: error.message || 'Internal server error',
+        details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      },
+      { status: 500 }
+    );
   }
+}
+
+// Optional: Handle GET requests for testing
+export async function GET() {
+  return NextResponse.json({ 
+    message: 'Payment Intent API is working',
+    timestamp: new Date().toISOString()
+  });
 }
