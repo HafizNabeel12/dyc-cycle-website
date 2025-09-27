@@ -1,12 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+// Check if Stripe secret key is configured
+if (!process.env.STRIPE_SECRET_KEY) {
+  console.error('❌ STRIPE_SECRET_KEY is not configured in environment variables');
+}
+
+const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2025-08-27.basil",
-});
+}) : null;
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if Stripe is properly configured
+    if (!stripe) {
+      console.error('❌ Stripe not configured - missing STRIPE_SECRET_KEY');
+      return NextResponse.json(
+        { 
+          error: 'Payment system not configured. Please contact support.',
+          code: 'STRIPE_NOT_CONFIGURED'
+        },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     console.log('Payment intent API received:', body);
     

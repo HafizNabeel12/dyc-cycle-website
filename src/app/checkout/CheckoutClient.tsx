@@ -132,8 +132,8 @@ export default function CheckoutClient() {
 
   return (
     <div className="space-y-4">
-      {/* Debug Panel - Only show in development */}
-      {process.env.NODE_ENV === 'development' && (
+      {/* Debug Panel - Disabled */}
+      {false && (
         <div className="bg-green-50 border border-green-200 rounded-lg p-4">
           <h3 className="font-semibold text-green-800 mb-2">✅ Cart Status (CartContext Only)</h3>
           <div className="text-sm text-green-700 space-y-1">
