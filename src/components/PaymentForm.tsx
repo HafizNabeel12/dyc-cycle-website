@@ -90,7 +90,7 @@ export default function PaymentForm() {
     };
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-20">
             {/* Left Column - Order Summary */}
             <div className="bg-white p-6 rounded-lg border border-gray-200">
                 <h2 className="text-lg font-medium mb-6 text-black">Choose a currency:</h2>
@@ -325,7 +325,7 @@ export default function PaymentForm() {
                     <button
                         type="submit"
                         disabled={isLoading || !stripe || !elements}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-4 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {isLoading ? 'Processing...' : 'Pay'}
                     </button>
