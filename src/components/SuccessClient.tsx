@@ -1,4 +1,4 @@
-// app/success/SuccessClient.tsx  (Client component)
+// app/success/SuccessClient.tsx
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -9,16 +9,16 @@ export default function SuccessClient() {
   const { clearCart } = useCart();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const sessionId = searchParams?.get('session_id');
+  const paymentIntentId = searchParams?.get('payment_intent');
 
-  const [loading, setLoading] = useState<boolean>(!!sessionId);
+  const [loading, setLoading] = useState<boolean>(!!paymentIntentId);
   const [error, setError] = useState<string | null>(null);
-  const [session, setSession] = useState<any>(null);
+  const [paymentIntent, setPaymentIntent] = useState<any>(null);
 
   useEffect(() => {
-    if (!sessionId) {
+    if (!paymentIntentId) {
       setLoading(false);
-      setError('No session_id found in URL. Make sure success_url contains ?session_id={CHECKOUT_SESSION_ID}');
+      setError('No payment_intent found in URL. Make sure return_url contains ?payment_intent={PAYMENT_INTENT_ID}');
       return;
     }
 
@@ -29,35 +29,35 @@ export default function SuccessClient() {
         setLoading(true);
         setError(null);
 
-        const res = await fetch(`/api/checkout-session?session_id=${encodeURIComponent(sessionId)}`, {
+        const res = await fetch(`/api/payment-status?payment_intent=${encodeURIComponent(paymentIntentId)}`, {
           method: 'GET',
           signal: controller.signal,
         });
 
         const data = await res.json();
-        console.log('GET /api/checkout-session response:', res.status, data);
+        console.log('GET /api/payment-intent response:', res.status, data);
 
         if (!res.ok) {
           setError(data?.error || `Server returned ${res.status}`);
           return;
         }
-        
-        if (data.payment_status === 'paid') {
+
+        if (data.status === 'succeeded') {
           clearCart();
         }
 
-        setSession(data);
+        setPaymentIntent(data);
       } catch (err: any) {
         if (err.name === 'AbortError') return;
-        console.error('Fetch /api/checkout-session failed:', err);
-        setError(err?.message || 'Network error while fetching session');
+        console.error('Fetch /api/payment-intent failed:', err);
+        setError(err?.message || 'Network error while fetching payment');
       } finally {
         setLoading(false);
       }
     })();
 
     return () => controller.abort();
-  }, [sessionId]);
+  }, [paymentIntentId]);
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center">
@@ -87,33 +87,17 @@ export default function SuccessClient() {
         <h1 className="text-2xl font-bold mb-2 text-black">Payment Successful</h1>
         <p className="text-gray-600 mb-4">Thank you for your purchase.</p>
 
-        {session ? (
-          <>
-            <div className="text-left mb-4 text-black">
-              <p><strong>Order ID:</strong> {session.id}</p>
-              <p><strong>Customer:</strong> {session.customer_details?.email || '—'}</p>
-              <p><strong>Amount:</strong> {session.amount_total ? `$${(session.amount_total / 100).toFixed(2)}` : '—'}</p>
-              <p className="mt-2"><strong>Payment status:</strong> {session.payment_status}</p>
-            </div>
-
-            <div className="text-left">
-              <h3 className="font-semibold mb-2">Items</h3>
-              {session.line_items?.data?.length ? (
-                <ul className="text-sm text-gray-700 space-y-2">
-                  {session.line_items.data.map((li: any) => (
-                    <li key={li.id} className="flex justify-between">
-                      <span>{li.description || li.price?.product || li.price?.nickname || 'Item'}</span>
-                      <span>{li.quantity} × ${(li.amount_subtotal / 100 / li.quantity).toFixed(2)}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-sm text-gray-500">No line items available.</p>
-              )}
-            </div>
-          </>
+        {paymentIntent ? (
+          <div className="text-left mb-4 text-black">
+            <p><strong>Payment ID:</strong> {paymentIntent.id}</p>
+            <p><strong>Status:</strong> {paymentIntent.status}</p>
+            <p><strong>Amount:</strong> 
+              {paymentIntent.amount ? `$${(paymentIntent.amount / 100).toFixed(2)}` : '—'}
+            </p>
+            <p><strong>Receipt Email:</strong> {paymentIntent.receipt_email || '—'}</p>
+          </div>
         ) : (
-          <p className="text-gray-500">Order details are not available.</p>
+          <p className="text-gray-500">Payment details are not available.</p>
         )}
 
         <div className="mt-6">
