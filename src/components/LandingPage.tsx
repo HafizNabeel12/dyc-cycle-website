@@ -19,7 +19,7 @@ const LandingPage = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 bg-white">
+      <section className="hidden md:block py-16 bg-white ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl text-center text-gray-800 mb-12">Hvorfor velge Sykkellageret?</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -60,7 +60,7 @@ const LandingPage = () => {
     Utvalgte produkter
   </h2>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto items-stretch">
+  <div className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden">
     {PRODUCTS_DATA.map((product) => (
       <div
         key={product.id}
