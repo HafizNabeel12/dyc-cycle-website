@@ -11,14 +11,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
-    const session_id = url.searchParams.get('session_id');
+    const paymentIntentId = url.searchParams?.get('payment_intent');
 
-    if (!session_id) {
+
+    if (!paymentIntentId) {
       return NextResponse.json({ error: 'Missing session_id query param' }, { status: 400 });
     }
 
     // Expand common objects so client can display useful info
-    const session = await stripe.checkout.sessions.retrieve(session_id, {
+    const session = await stripe.checkout.sessions.retrieve(paymentIntentId, {
       expand: ['line_items', 'payment_intent', 'customer_details'],
     });
 
