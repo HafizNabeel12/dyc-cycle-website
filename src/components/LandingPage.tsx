@@ -96,16 +96,23 @@ const LandingPage = () => {
           <p className="text-sm text-gray-500 mb-2">{product.category[1]}</p>
 
           {/* Pricing */}
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-xl font-semibold text-gray-900">
-              {product.price} kr
-            </span>
-            {product.originalPrice && (
-              <span className="text-sm line-through text-gray-400">
-                {product.originalPrice} kr
-              </span>
-            )}
-          </div>
+          <div className="flex-1 min-w-0">
+          {product.price < product.originalPrice ? (
+                    <div className="flex items-baseline gap-1 sm:gap-2 flex-wrap">
+                      <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
+                        {formatCurrency(product.price)}
+                      </span>
+                      <span className="text-xs sm:text-sm text-gray-500 line-through whitespace-nowrap">
+                        {formatCurrency(product.originalPrice)}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
+                      {formatCurrency(product.price)}
+                    </span>
+                  )}
+                  </div>
+           
 
           {/* Feature tags */}
           <div className="flex flex-wrap gap-2 mb-4">
@@ -293,5 +300,13 @@ const LandingPage = () => {
     </div>
   );
 };
+
+function formatCurrency(n: number) {
+  return new Intl.NumberFormat("nb-NO", {
+    style: "currency",
+    currency: "NOK",
+    maximumFractionDigits: 0,
+  }).format(n);
+}
 
 export default LandingPage;
