@@ -8,7 +8,7 @@ import { PRODUCTS_DATA } from "@/lib/productData";
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-white mt-56 md:mt-24">
-      
+
       {/* Hero Section */}
       <section className="flex justify-center items-center sm:m-0">
         <img
@@ -44,7 +44,7 @@ const LandingPage = () => {
             <div className="text-center">
               <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                  <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
                 </svg>
               </div>
               <h3 className="text-xl text-gray-800 mb-3">Gratis frakt</h3>
@@ -54,13 +54,13 @@ const LandingPage = () => {
         </div>
       </section>
 
-    {/* Featured Products */}
-<section className="mx-auto mt-6 max-w-7xl px-4 sm:px-2 mb-16">
-  <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12">
-    Utvalgte produkter
-  </h2>
+      {/* Featured Products */}
+      <section className="mx-auto mt-6 max-w-7xl px-4 sm:px-2 mb-16">
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12">
+          Utvalgte produkter
+        </h2>
 
-  <ul
+        <ul
           role="list"
           className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden"
         >
@@ -128,7 +128,7 @@ const LandingPage = () => {
             </li>
           ))}
         </ul>
-</section>
+      </section>
 
 
 
@@ -139,7 +139,7 @@ const LandingPage = () => {
             <h2 className="text-4xl text-gray-800 mb-4">Hva er elektriske sykler?</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">Opplev fremtiden for sykling med våre innovative e-bikes som kombinerer tradisjonell sykling med moderne teknologi</p>
           </div>
-          
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="flex items-start space-x-4">
@@ -153,7 +153,7 @@ const LandingPage = () => {
                   <p className="text-gray-600">Reduser karbonavtrykket ditt med null utslipp og bidra til en renere fremtid</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center">
                   <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
@@ -165,7 +165,7 @@ const LandingPage = () => {
                   <p className="text-gray-600">Unngå trafikk, parkeringsavgifter og drivstoffkostnader med smart pendling</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center">
                   <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
@@ -177,7 +177,7 @@ const LandingPage = () => {
                   <p className="text-gray-600">Få mosjon mens du pendler - perfekt balanse mellom trening og transport</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center">
                   <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
@@ -190,7 +190,7 @@ const LandingPage = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="relative">
               <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl p-8 text-black">
                 <h3 className="text-2xl mb-6">Perfekt for alle</h3>

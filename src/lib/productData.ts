@@ -630,7 +630,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "/images/C6/c6-6.png",
       "/images/C6/c6-7.png"
     ],
-    features: ["12.5Ah battery", "LED display" , "Dual suspension option (model)" ],
+    features: ["12.5Ah battery" , "Dual suspension option (model)" , "LED display" ],
     badge: "STUDENT FAVORITE",
     category: ["dyu"],
     rating: 4.8,
