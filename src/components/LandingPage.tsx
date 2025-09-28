@@ -55,12 +55,15 @@ const LandingPage = () => {
       </section>
 
     {/* Featured Products */}
-<section className="py-16 px-4 sm:px-6 lg:px-8">
+<section className="mx-auto mt-6 max-w-7xl px-4 sm:px-2 mb-16">
   <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12">
     Utvalgte produkter
   </h2>
 
-  <div className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden">
+  <ul
+          role="list"
+          className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden"
+        >
     {PRODUCTS_DATA.map((product) => (
       <div
         key={product.id}
@@ -115,10 +118,10 @@ const LandingPage = () => {
           </div>
 
           {/* Button pinned at bottom */}
-          <div className="mt-auto">
+          <div className="mt-2 sm:mt-0 sm:ml-2 flex-shrink-0">
             <AddToCartButton
               product={product}
-              className="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+              className="w-full sm:w-auto rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-black bg-yellow-400 hover:bg-yellow-300 transition sm:text-white sm:bg-black sm:hover:border-black sm:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
             >
               Add to Cart
             </AddToCartButton>
@@ -126,7 +129,7 @@ const LandingPage = () => {
         </div>
       </div>
     ))}
-  </div>
+   </ul>
 </section>
 
 
