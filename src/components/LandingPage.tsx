@@ -64,27 +64,22 @@ const LandingPage = () => {
           role="list"
           className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden"
         >
-    {PRODUCTS_DATA.map((product) => (
-      <li
+          {PRODUCTS_DATA.map((product) => (
+            <li
               key={product.id}
               className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black"
             >
-        {/* Product Image */}
-        <div className="relative mb-2 sm:mb-3">
-        <Link href={`/products/${product.slug}`} >
-          <img
-            className="object-cover w-[85%] h-[85%] sm:w-full sm:h-full m-auto sm:m-0 rounded-lg sm:rounded-xl"
-            src={product.image}
-            alt={product.name}
-          />
-        </Link>
-        </div>
+              <div className="relative mb-2 sm:mb-3">
+                <Link href={`/products/${product.slug}`}>
+                  <img
+                    className="object-cover w-[85%] h-[85%] sm:w-full sm:h-full m-auto sm:m-0 rounded-lg sm:rounded-xl"
+                    src={product.image}
+                    alt={product.name}
+                  />
+                </Link>
+              </div>
 
-
-        {/* Info */}
-        <div className="px-6 pb-6 flex flex-col flex-grow">
-          {/* Name */}
-          <div className="space-y-1">
+              <div className="space-y-1">
                 <h3 className="text-xs sm:text-sm font-medium text-black group-hover:underline leading-tight">
                   <Link href={`/products/${product.slug}`} className="break-words">
                     {product.name}
@@ -92,12 +87,9 @@ const LandingPage = () => {
                 </h3>
               </div>
 
-          {/* Category */}
-          <p className="text-sm text-gray-500 mb-2">{product.category[1]}</p>
-
-          {/* Pricing */}
-          <div className="flex-1 min-w-0">
-          {product.price < product.originalPrice ? (
+              <div className="mt-2 flex flex-col sm:flex-row sm:items-end sm:justify-between">
+                <div className="flex-1 min-w-0">
+                  {product.price < product.originalPrice ? (
                     <div className="flex items-baseline gap-1 sm:gap-2 flex-wrap">
                       <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
                         {formatCurrency(product.price)}
@@ -111,12 +103,8 @@ const LandingPage = () => {
                       {formatCurrency(product.price)}
                     </span>
                   )}
-                  </div>
-           
 
-          {/* Feature tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
-              {product.features?.length && (
+                  {product.features?.length && (
                     <ul className="mt-2 sm:mt-3 flex flex-wrap gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] text-gray-700">
                       {product.features.slice(0, 2).map((f: string, i: number) => (
                         <li
@@ -128,22 +116,18 @@ const LandingPage = () => {
                       ))}
                     </ul>
                   )}
-                
-          </div>
+                </div>
 
-          {/* Button pinned at bottom */}
-          <div className="mt-2 sm:mt-0 sm:ml-2 flex-shrink-0">
-            <AddToCartButton
-              product={product}
-              className="w-full sm:w-auto rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-black bg-yellow-400 hover:bg-yellow-300 transition sm:text-white sm:bg-black sm:hover:border-black sm:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
-            >
-              Add to Cart
-            </AddToCartButton>
-          </div>
-        </div>
-      </li>
-    ))}
-   </ul>
+                <div className="mt-2 sm:mt-0 sm:ml-2 flex-shrink-0">
+                  <AddToCartButton
+                    product={product}
+                    className="w-full sm:w-auto rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-black bg-yellow-400 hover:bg-yellow-300 transition sm:text-white sm:bg-black sm:hover:border-black sm:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
+                  />
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
 </section>
 
 
