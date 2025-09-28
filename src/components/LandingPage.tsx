@@ -65,25 +65,32 @@ const LandingPage = () => {
           className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden"
         >
     {PRODUCTS_DATA.map((product) => (
-      <div
-        key={product.id}
-        className="group bg-white border rounded-xl shadow-sm hover:shadow-lg transition-all cursor-pointer flex flex-col"
-      >
+      <li
+              key={product.id}
+              className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black"
+            >
         {/* Product Image */}
-        <Link href={`/products/${product.slug}`} className="relative">
+        <div className="relative mb-2 sm:mb-3">
+        <Link href={`/products/${product.slug}`} >
           <img
-            className="object-contain w-full h-64 sm:h-72 p-6"
+            className="object-cover w-[85%] h-[85%] sm:w-full sm:h-full m-auto sm:m-0 rounded-lg sm:rounded-xl"
             src={product.image}
             alt={product.name}
           />
         </Link>
+        </div>
+
 
         {/* Info */}
         <div className="px-6 pb-6 flex flex-col flex-grow">
           {/* Name */}
-          <h3 className="text-lg text-gray-900 mb-1 group-hover:text-yellow-600">
-            {product.name}
-          </h3>
+          <div className="space-y-1">
+                <h3 className="text-xs sm:text-sm font-medium text-black group-hover:underline leading-tight">
+                  <Link href={`/products/${product.slug}`} className="break-words">
+                    {product.name}
+                  </Link>
+                </h3>
+              </div>
 
           {/* Category */}
           <p className="text-sm text-gray-500 mb-2">{product.category[1]}</p>
@@ -127,7 +134,7 @@ const LandingPage = () => {
             </AddToCartButton>
           </div>
         </div>
-      </div>
+      </li>
     ))}
    </ul>
 </section>
