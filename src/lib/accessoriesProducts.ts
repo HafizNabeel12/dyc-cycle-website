@@ -31,9 +31,10 @@ export const accessoriesProducts: AccessoryProduct[] = [
     price: 45,
     currency: "€",
     images: [
-      "/images/accessories/front-rack-1.jpg",
-      "/images/accessories/front-rack-2.jpg",
-      "/images/accessories/front-rack-3.jpg"
+      "/images/front-rack/front-1.png",
+      "/images/front-rack/front-2.png",
+     
+     
     ],
     category: "Racks & Carriers",
     specifications: [
@@ -331,5 +332,4 @@ export const getAccessoryBySlug = (slug: string): AccessoryProduct | undefined =
 export const getAccessoriesByCategory = (category: string): AccessoryProduct[] => {
   return accessoriesProducts.filter(product => product.category === category);
 };
-
 
