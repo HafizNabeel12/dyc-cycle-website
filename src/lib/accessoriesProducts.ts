@@ -71,9 +71,9 @@ export const accessoriesProducts: AccessoryProduct[] = [
     price: 55,
     currency: "€",
     images: [
-      "/images/accessories/basket-wooden-1.jpg",
-      "/images/accessories/basket-wooden-2.jpg",
-      "/images/accessories/basket-wooden-3.jpg"
+      "/images/basket/basket-1.png",
+      "/images/basket/basket-2.png",
+     
     ],
     category: "Baskets & Storage",
     specifications: [
@@ -109,9 +109,10 @@ export const accessoriesProducts: AccessoryProduct[] = [
     price: 65,
     currency: "€",
     images: [
-      "/images/accessories/cover-bag-1.jpg",
-      "/images/accessories/cover-bag-2.jpg",
-      "/images/accessories/cover-bag-3.jpg"
+      "/images/Thermal/thermal-bag-1.png",
+      "/images/Thermal/thermal-bag-2.png",
+      "/images/Thermal/thermal-bag-3.png",
+     
     ],
     category: "Protection & Storage",
     specifications: [
