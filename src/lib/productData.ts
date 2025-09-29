@@ -160,7 +160,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "/images/d3f/D3F-7.png",
       // "/images/d3f/D3F-side.png",
     ],
-    features: ["Ultra-compact 14\" design", "Quick fold", "Lightweight"],
+    features: [ "Quick fold", "Lightweight" , "Ultra-compact 14\" design",],
     badge: "COMPACT KING",
     category: ["dyu"],
     rating: 5,
