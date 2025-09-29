@@ -2,14 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Menu, X, User, MapPin, ChevronDown, ShoppingBag, EllipsisVertical  } from 'lucide-react';
+import { Search, Menu, X, User, MapPin, ChevronDown, ShoppingBag, EllipsisVertical } from 'lucide-react';
 import { CartIcon } from './CartIcon';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState<null | number>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,8 +25,13 @@ const Navbar = () => {
       if (isMoreMenuOpen) {
         const drawer = document.getElementById('more-menu-drawer');
         const moreButton = document.getElementById('more-menu-button');
-        
-        if (drawer && moreButton && !drawer.contains(event.target as Node) && !moreButton.contains(event.target as Node)) {
+
+        if (
+          drawer &&
+          moreButton &&
+          !drawer.contains(event.target as Node) &&
+          !moreButton.contains(event.target as Node)
+        ) {
           setIsMoreMenuOpen(false);
         }
       }
@@ -45,15 +50,12 @@ const Navbar = () => {
     };
   }, [isMoreMenuOpen]);
 
-  // const navItems = [
-  //   { name: 'Sykkel', href: '/cycle' },
-  // ];
+  const navItems = [{ name: 'Accessories', href: '/accessorie' }];
 
   const categories = [
-    { name: "DYU Bikes", slug: "dyu" },
-    { name: "JOBO Bikes", slug: "jobo" },
-    { name: "YATDIM Bikes", slug: "yatdim" }
-    
+    { name: 'DYU Bikes', slug: 'dyu' },
+    { name: 'JOBO Bikes', slug: 'jobo' },
+    // { name: "YATDIM Bikes", slug: "yatdim" },
   ];
 
   const moreMenuItems = [
@@ -61,7 +63,7 @@ const Navbar = () => {
     { name: 'Contact Us', href: '/contact' },
   ];
 
-  const toggleDropdown = (index: React.SetStateAction<null>) => {
+  const toggleDropdown = (index: number) => {
     setActiveDropdown(activeDropdown === index ? null : index);
   };
 
@@ -75,24 +77,25 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300  ${isScrolled
-          ? 'bg-white shadow-lg'
-          : 'bg-white'
-        }`}>
+      <nav
+        className={`fixed top-0 w-full z-50 transition-all duration-300  ${
+          isScrolled ? 'bg-white shadow-lg' : 'bg-white'
+        }`}
+      >
         {/* Mobile Version */}
         <div className="md:hidden bg-white">
           {/* Top Row - Logo, User Icon, Cart */}
           <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200">
             {/* Logo */}
             <Link href="/">
-              <img src="/images/logo.jpg" alt="Logo" className='h-20 w-auto' />
+              <img src="/images/logo.jpg" alt="Logo" className="h-20 w-auto" />
             </Link>
 
             {/* Right Icons */}
             <div className="flex items-center space-x-4">
               {/* Cart Icon */}
               <Link href="/cart">
-                <CartIcon className='text-gray-700' />
+                <CartIcon className="text-gray-700" />
               </Link>
 
               {/* More Menu Button */}
@@ -102,7 +105,7 @@ const Navbar = () => {
                 className="flex-shrink-0 p-1"
                 aria-label="More menu"
               >
-                <EllipsisVertical  className="w-5 h-5 text-gray-700 hover:text-black transition-colors" />
+                <EllipsisVertical className="w-5 h-5 text-gray-700 hover:text-black transition-colors" />
               </button>
             </div>
           </div>
@@ -122,21 +125,10 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Navigation Items - Two Rows */}
+          {/* Navigation Items - Categories first, then Nav Items */}
           <div className="px-2 py-2 overflow-hidden">
-            {/* First Row */}
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm mb-2 items-center justify-center">
-              {/* {navItems.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className="text-gray-700 hover:text-black whitespace-nowrap"
-                >
-                  {item.name}
-                </Link>
-              ))} */}
-
-              {/* Category Links */}
+              {/* Category Links FIRST */}
               {categories.map((cat) => (
                 <Link
                   key={cat.slug}
@@ -146,19 +138,17 @@ const Navbar = () => {
                   {cat.name}
                 </Link>
               ))}
-            </div>
 
-            {/* Second Row */}
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm items-center justify-center">
-              {/* {navItems.slice(6).map((item, index) => (
+              {/* Then Nav Items */}
+              {navItems.map((item, index) => (
                 <Link
-                  key={index + 5}
+                  key={index}
                   href={item.href}
                   className="text-gray-700 hover:text-black whitespace-nowrap"
                 >
                   {item.name}
                 </Link>
-              ))} */}
+              ))}
             </div>
           </div>
         </div>
@@ -169,7 +159,7 @@ const Navbar = () => {
             <div className="flex justify-between items-center h-16">
               {/* Logo */}
               <Link href="/">
-                <img src="/images/logo.jpg" alt="" className='w-36 items-start' />
+                <img src="/images/logo.jpg" alt="" className="w-36 items-start" />
               </Link>
 
               {/* Search Bar - Desktop */}
@@ -186,12 +176,15 @@ const Navbar = () => {
 
               {/* Right Side Actions */}
               <div className="flex items-center space-x-4">
-                <Link href="/" className="text-black hover:text-yellow-400 transition-colors flex items-center">
+                <Link
+                  href="/"
+                  className="text-black hover:text-yellow-400 transition-colors flex items-center"
+                >
                   <MapPin className="w-4 h-4 mr-1" />
                   Norge
                 </Link>
                 <Link href="/cart">
-                  <CartIcon className='hidden md:flex items-center space-x-2 text-gray-700 hover:text-black transition-colors' />
+                  <CartIcon className="hidden md:flex items-center space-x-2 text-gray-700 hover:text-black transition-colors" />
                 </Link>
 
                 {/* More Menu Button - Desktop */}
@@ -201,7 +194,7 @@ const Navbar = () => {
                   className="flex items-center space-x-1 text-gray-700 hover:text-black transition-colors p-2"
                   aria-label="More menu"
                 >
-                  <EllipsisVertical  className="w-5 h-5" />
+                  <EllipsisVertical className="w-5 h-5" />
                 </button>
 
                 {/* Mobile Menu Button */}
@@ -209,7 +202,11 @@ const Navbar = () => {
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   className="md:hidden p-2"
                 >
-                  {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                  {isMobileMenuOpen ? (
+                    <X className="w-6 h-6" />
+                  ) : (
+                    <Menu className="w-6 h-6" />
+                  )}
                 </button>
               </div>
             </div>
@@ -217,17 +214,7 @@ const Navbar = () => {
             {/* Navigation Menu - Desktop */}
             <div className="md:block">
               <div className="sm:grid sm:grid-cols-2 md:flex space-x-8 py-4 overflow-x-auto text-xl">
-                {/* {navItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href}
-                    className="whitespace-nowrap text-gray-700 hover:text-black transition-colors duration-200 border-b-2 border-transparent hover:border-yellow-400"
-                  >
-                    {item.name}
-                  </Link>
-                ))} */}
-
-                {/* Category Links */}
+                {/* Category Links FIRST */}
                 {categories.map((cat) => (
                   <Link
                     key={cat.slug}
@@ -235,6 +222,17 @@ const Navbar = () => {
                     className="whitespace-nowrap text-gray-700 hover:text-black transition-colors duration-200 border-b-2 border-transparent hover:border-yellow-400"
                   >
                     {cat.name}
+                  </Link>
+                ))}
+
+                {/* Then Nav Items */}
+                {navItems.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.href}
+                    className="whitespace-nowrap text-gray-700 hover:text-black transition-colors duration-200 border-b-2 border-transparent hover:border-yellow-400"
+                  >
+                    {item.name}
                   </Link>
                 ))}
               </div>
@@ -271,7 +269,7 @@ const Navbar = () => {
         <>
           {/* Backdrop */}
           <div className="fixed inset-0 bg-black bg-opacity-25 z-50 transition-opacity duration-300" />
-          
+
           {/* Drawer */}
           <div
             id="more-menu-drawer"
