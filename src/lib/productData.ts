@@ -2056,8 +2056,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "13",
     name: "JOBOBIKE Eddy X",
     slug: "jobobike-eddy-x",
-    originalPrice: 1599,
-    price: 1349,
+    originalPrice: 15999,
+    price: 12999,
     discount: "16%",
     image: "/images/eddy-x/eddy-1.png",
     images: [
@@ -2375,8 +2375,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "15",
     name: "JOBOBIKE Astra",
     slug: "jobobike-astra",
-    originalPrice: 1199,
-    price: 999,
+    originalPrice: 18999,
+    price: 15999,
     discount: "17%",
     image: "/images/astra/astra-1.png",
     images: [
