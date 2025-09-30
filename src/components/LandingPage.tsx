@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { AddToCartButton } from './AddToCartButton';
 import { PRODUCTS_DATA } from "@/lib/productData";
+import { formatCurrency } from '@/utils/currency';
 
 const LandingPage = () => {
   return (
@@ -104,18 +105,7 @@ const LandingPage = () => {
                     </span>
                   )}
 
-                  {product.features?.length && (
-                    <ul className="mt-2 sm:mt-3 flex flex-wrap gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] text-gray-700">
-                      {product.features.slice(0, 2).map((f: string, i: number) => (
-                        <li
-                          key={i}
-                          className="rounded-md border border-gray-200 px-1.5 sm:px-2 py-0.5 whitespace-nowrap"
-                        >
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+
                 </div>
 
                 <div className="mt-2 sm:mt-0 sm:ml-2 flex-shrink-0">
@@ -285,12 +275,6 @@ const LandingPage = () => {
   );
 };
 
-function formatCurrency(n: number) {
-  return new Intl.NumberFormat("nb-NO", {
-    style: "currency",
-    currency: "NOK",
-    maximumFractionDigits: 0,
-  }).format(n);
-}
+
 
 export default LandingPage;

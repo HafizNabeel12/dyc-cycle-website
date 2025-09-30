@@ -5,6 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { useCart } from '@/components/CartContext'; // Import your CartContext
 import PaymentForm from '@/components/PaymentForm';
+import { formatCurrency } from '@/utils/currency';
 
 // Replace with your publishable key
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
@@ -148,11 +149,11 @@ export default function CheckoutClient() {
                 <p className="font-semibold">Cart Contents:</p>
                 {cartItems.map((item, i) => (
                   <p key={i} className="text-xs">
-                    • {item.name} - ${item.price} x {item.quantity} = ${(item.price * item.quantity).toFixed(2)}
+                    • {item.name} - {formatCurrency(item.price)} x {item.quantity} = {formatCurrency(item.price * item.quantity)}
                   </p>
                 ))}
                 <p className="text-xs font-semibold mt-1">
-                  Total: ${cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}
+                  Total: {formatCurrency(cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0))}
                 </p>
               </div>
             )}
@@ -238,7 +239,7 @@ export default function CheckoutClient() {
                 </p>
                 <div className="text-sm text-gray-500">
                   <p>Cart Items: {cartItems.length}</p>
-                  <p>Total: ${cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}</p>
+                  <p>Total: {formatCurrency(cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0))}</p>
                 </div>
               </div>
             </div>

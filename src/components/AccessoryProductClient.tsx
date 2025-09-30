@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AccessoryProduct } from '@/lib/accessoriesProducts';
+import { formatCurrency } from '@/utils/currency';
 
 interface AccessoryProductClientProps {
   product: AccessoryProduct;
@@ -54,7 +55,7 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
             </div>
 
             {/* Thumbnail Images */}
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-6 gap-2">
               {product.images.map((image, index) => (
                 <button
                   key={index}
@@ -72,19 +73,97 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                 </button>
               ))}
             </div>
+
+            {/* Compatibility - Desktop Only */}
+            {product.compatibility && product.compatibility.length > 0 && (
+              <div className="hidden lg:block border-t pt-6 mt-8">
+                <h2 className="text-xl font-bold text-gray-900 mb-3">Compatibility</h2>
+                <div className="flex flex-wrap gap-2">
+                  {product.compatibility.map((model, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    >
+                      {model}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Features - Desktop Only */}
+            {product.features && product.features.length > 0 && (
+              <div className="hidden lg:block border-t pt-6">
+                <h2 className="text-xl font-bold text-gray-900 mb-3">Features</h2>
+                <ul className="space-y-2">
+                  {product.features.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-2 text-gray-600">
+                      <span className="text-teal-500 mt-1">✓</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           {/* Product Details */}
           <div className="space-y-6">
-            {/* Title and Price */}
+            {/* Title and Description */}
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
                 {product.name}
               </h1>
               <p className="text-gray-600 mb-4">{product.description}</p>
+            </div>
+
+            {/* Price and Quantity - Mobile */}
+            <div className="lg:hidden">
+              <div className="flex items-center justify-between gap-4 mb-4 px-4">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-2xl font-bold text-gray-900">
+                    {formatCurrency(product.price)}
+                  </span>
+                  {!product.inStock && (
+                    <span className="text-red-600 text-sm font-medium">Out of Stock</span>
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="w-8 h-8 border border-yellow-400 rounded-lg bg-yellow-400 text-black hover:bg-yellow-500 transition-colors text-sm"
+                  >
+                    -
+                  </button>
+                  <span className="text-lg font-medium w-8 text-center text-black">{quantity}</span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="w-8 h-8 border border-yellow-400 rounded-lg bg-yellow-400 text-black hover:bg-yellow-500 transition-colors text-sm"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              
+              {/* Add to Cart - Mobile */}
+              <button
+                onClick={handleAddToCart}
+                disabled={!product.inStock}
+                className={`w-full py-4 rounded-lg font-medium transition-all mb-6 ${
+                  product.inStock
+                    ? 'bg-yellow-400 text-black hover:bg-yellow-500'
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
+              >
+                {product.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
+              </button>
+            </div>
+
+            {/* Price - Desktop */}
+            <div className="hidden lg:block">
               <div className="flex items-baseline gap-2">
                 <span className="text-4xl font-bold text-gray-900">
-                  {product.currency}{product.price}
+                  {formatCurrency(product.price)}
                 </span>
                 {!product.inStock && (
                   <span className="text-red-600 text-sm font-medium">Out of Stock</span>
@@ -140,44 +219,40 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               </div>
             )}
 
-            {/* Quantity Selector */}
-            <div>
+            {/* Quantity Selector - Desktop Only */}
+            <div className="hidden lg:block">
               <label className="block text-sm font-medium text-gray-900 mb-3">
                 Quantity:
               </label>
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-10 h-10 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="w-10 h-10 border border-yellow-400 rounded-lg bg-yellow-400 text-black hover:bg-yellow-500 transition-colors"
                 >
                   -
                 </button>
-                <span className="text-lg font-medium w-12 text-center">{quantity}</span>
+                <span className="text-lg font-medium w-12 text-center text-black">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-10 h-10 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="w-10 h-10 border border-yellow-400 rounded-lg bg-yellow-400 text-black hover:bg-yellow-500 transition-colors"
                 >
                   +
                 </button>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="space-y-3 pt-4">
+            {/* Add to Cart - Desktop */}
+            <div className="hidden lg:block space-y-3 pt-4">
               <button
                 onClick={handleAddToCart}
                 disabled={!product.inStock}
                 className={`w-full py-4 rounded-lg font-medium transition-all ${
                   product.inStock
-                    ? 'bg-teal-500 text-white hover:bg-teal-600'
+                    ? 'bg-yellow-400 text-black hover:bg-yellow-500'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >
                 {product.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
-              </button>
-              
-              <button className="w-full py-4 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors">
-                Shop on OL Website
               </button>
             </div>
 
@@ -187,24 +262,9 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               <p className="text-gray-600 leading-relaxed">{product.fullDescription}</p>
             </div>
 
-            {/* Features */}
-            {product.features && product.features.length > 0 && (
-              <div className="border-t pt-6">
-                <h2 className="text-xl font-bold text-gray-900 mb-3">Features</h2>
-                <ul className="space-y-2">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-2 text-gray-600">
-                      <span className="text-teal-500 mt-1">✓</span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             {/* Specifications */}
             {product.specifications && product.specifications.length > 0 && (
-              <div className="border-t pt-6">
+              <div className="border-t pt-6 mt-8">
                 <h2 className="text-xl font-bold text-gray-900 mb-3">Specifications</h2>
                 <div className="space-y-3">
                   {product.specifications.map((spec, index) => (
@@ -217,9 +277,9 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               </div>
             )}
 
-            {/* Compatibility */}
+            {/* Compatibility - Mobile Only */}
             {product.compatibility && product.compatibility.length > 0 && (
-              <div className="border-t pt-6">
+              <div className="lg:hidden border-t pt-6">
                 <h2 className="text-xl font-bold text-gray-900 mb-3">Compatibility</h2>
                 <div className="flex flex-wrap gap-2">
                   {product.compatibility.map((model, index) => (
@@ -231,6 +291,21 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                     </span>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {/* Features - Mobile Only */}
+            {product.features && product.features.length > 0 && (
+              <div className="lg:hidden border-t pt-6">
+                <h2 className="text-xl font-bold text-gray-900 mb-3">Features</h2>
+                <ul className="space-y-2">
+                  {product.features.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-2 text-gray-600">
+                      <span className="text-teal-500 mt-1">✓</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
           </div>

@@ -7,13 +7,14 @@ import {
     useElements
 } from '@stripe/react-stripe-js';
 import { useCart } from '@/components/CartContext';
+import { formatCurrency } from '@/utils/currency';
 
 export default function PaymentForm() {
     const stripe = useStripe();
     const elements = useElements();
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState<string | null>(null);
-    const [selectedCurrency, setSelectedCurrency] = useState('PKR');
+    const [selectedCurrency, setSelectedCurrency] = useState('NOK');
     const { items: cartItems, clearCart } = useCart();
     const [email, setEmail] = useState('');
     const [shippingInfo, setShippingInfo] = useState({
@@ -34,13 +35,12 @@ export default function PaymentForm() {
     const taxId = 0;
     const total = subtotal - saved + taxId;
 
-    // 💱 Currency options
+    // 💱 Currency options - Only NOK
     const currencies = [
-        { code: 'PKR', rate: 280, symbol: '₨' },
-        { code: 'USD', rate: 1, symbol: '$' }
+        { code: 'NOK', rate: 1, symbol: 'kr' }
     ];
 
-    const currentCurrency = currencies.find(c => c.code === selectedCurrency) || currencies[0];
+    const currentCurrency = currencies[0];
     const convertPrice = (price: number) => price * currentCurrency.rate;
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -93,23 +93,7 @@ export default function PaymentForm() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-20">
             {/* Left Column - Order Summary */}
             <div className="bg-white p-6 rounded-lg border border-gray-200">
-                <h2 className="text-lg font-medium mb-6 text-black">Choose a currency:</h2>
-
-                {/* Currency Selection */}
-                <div className="flex gap-3 mb-6 text-black">
-                    {currencies.map((currency) => (
-                        <button
-                            key={currency.code}
-                            onClick={() => setSelectedCurrency(currency.code)}
-                            className={`px-4 py-2 rounded border ${selectedCurrency === currency.code
-                                    ? 'border-black bg-white'
-                                    : 'border-gray-300 bg-gray-50'
-                                }`}
-                        >
-                            {currency.symbol} {currency.code}
-                        </button>
-                    ))}
-                </div>
+                <h2 className="text-lg font-medium mb-6 text-black">Order Summary</h2>
 
                 {/* 🛒 Dynamic Cart Items */}
                 <div className="space-y-4 mb-6">
@@ -125,7 +109,7 @@ export default function PaymentForm() {
                             <div className="flex-1">
                                 <p className="text-sm text-black">{item.name}</p>
                                 <p className="text-sm font-medium text-black">
-                                    {currentCurrency.symbol} {convertPrice(item.price * item.quantity).toFixed(2)}
+                                    {formatCurrency(convertPrice(item.price * item.quantity))}
                                 </p>
                             </div>
                             <p className="text-sm text-black">x{item.quantity}</p>
@@ -137,11 +121,11 @@ export default function PaymentForm() {
                 <div className="space-y-3 border-t pt-4">
                     <div className="flex justify-between text-sm text-black">
                         <span>Subtotal</span>
-                        <span>{currentCurrency.symbol} {convertPrice(subtotal).toFixed(2)}</span>
+                        <span>{formatCurrency(convertPrice(subtotal))}</span>
                     </div>
                     <div className="flex justify-between text-sm text-green-600">
                         <span> SAVED</span>
-                        <span>{currentCurrency.symbol} {convertPrice(saved).toFixed(2)}</span>
+                        <span>{formatCurrency(convertPrice(saved))}</span>
                     </div>
                     <div className="flex justify-between text-sm text-black">
                         <span>Tax ID</span>
@@ -149,7 +133,7 @@ export default function PaymentForm() {
                     </div>
                     <div className="flex justify-between font-medium text-lg border-t pt-3 text-black">
                         <span>Total due</span>
-                        <span>{currentCurrency.symbol} {convertPrice(total).toFixed(2)}</span>
+                        <span>{formatCurrency(convertPrice(total))}</span>
                     </div>
                 </div>
             </div>

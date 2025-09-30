@@ -30,7 +30,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Lightweight aluminum front rack with durable matte black powder coating, rustproof and perfect for all weather conditions.",
     fullDescription: "The JOBOBIKE front rack is made of lightweight aluminum with a durable, matte black powder coating. It is rustproof, making it perfect for all weather conditions. No matter whether you are traveling on rough terrain or in the city - the JOBOBIKE luggage rack is guaranteed not to fall down when suddenly turning or braking heavily.",
     price: 45,
-    currency: "€",
+    currency: "kr",
     image: "/images/front-rack/front-1.png",
     images: [
       "/images/front-rack/front-1.png",
@@ -71,7 +71,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Stylish integrated basket with wooden handle, perfect for carrying groceries and personal items on your e-bike.",
     fullDescription: "The JOBOBIKE basket with wooden handle combines functionality with elegant design. Made from durable materials with a beautiful wooden handle accent, it can be mounted on both front and rear racks. The integrated design ensures quick and easy installation without additional hardware.",
     price: 55,
-    currency: "€",
+    currency: "kr",
     image: "/images/basket/basket-1.png",
     images: [
       "/images/basket/basket-1.png",
@@ -110,7 +110,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Waterproof cover bag that protects your folding bike from dust, water and abrasions. Specially designed for JOBOBIKE Sam.",
     fullDescription: "This waterproof cover bag is specifically designed to protect your JOBOBIKE Sam folding bike from dust, water, and abrasions. The durable material ensures long-lasting protection, while the compact design makes it easy to store and transport your bike. Perfect for travel and storage.",
     price: 65,
-    currency: "€",
+    currency: "kr",
     image: "/images/Thermal/thermal-bag-1.png ",
     images: [
       "/images/Thermal/thermal-bag-1.png",
@@ -142,7 +142,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Heavy-duty bike lock providing maximum security for your e-bike with anti-theft protection and weather-resistant construction.",
     fullDescription: "The JOBOBIKE Lock offers premium security for your electric bike. Featuring a hardened steel construction with anti-pick and anti-drill protection, this lock ensures your bike stays safe. The weather-resistant design works in all conditions, and the compact size makes it easy to carry.",
     price: 35,
-    currency: "€",
+    currency: "kr",
     image : "/images/lock/lock-1.png",
     images: [
       "/images/lock/lock-1.png",
@@ -173,7 +173,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Secure phone holder with waterproof cover, allowing you to use your phone for navigation while protecting it from the elements.",
     fullDescription: "Keep your phone accessible and protected with the JOBOBIKE Phone Holder. The waterproof cover allows full touchscreen functionality while protecting against rain and dust. The secure mounting system ensures your phone stays in place even on rough terrain, making it perfect for GPS navigation.",
     price: 25,
-    currency: "€",
+    currency: "kr",
     image: "/images/holder/holder-1.png",
     images: [
       "/images/holder/holder-1.png",
@@ -205,7 +205,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "High-quality rearview mirror providing excellent visibility and safety while riding your e-bike.",
     fullDescription: "The JOBOBIKE Bicycle Mirror enhances your riding safety with a wide field of view and shatterproof glass. The adjustable arm allows you to find the perfect viewing angle, while the sturdy mounting system keeps it secure even on bumpy roads. The sleek design complements your bike's aesthetics.",
     price: 20,
-    currency: "€",
+    currency: "kr",
     image:"/images/mirror/mirror-1.png",
     images: [
       "/images/mirror/mirror-1.png",
@@ -236,7 +236,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "CE EN 1078 and CPSC certified safety helmet with impact-resistant construction and optimal ventilation for comfortable riding.",
     fullDescription: "The JOBOBIKE bicycle helmet was tested for safety by CE EN 1078 in Europe and CPSC in the USA. Impact-resistant PC material on the outside and a shock-absorbing EPS unibody on the inside provide maximum protection. The helmet features optimal ventilation, adjustable fit system, and removable padding for comfort during long rides.",
     price: 49,
-    currency: "€",
+    currency: "kr",
     image:"/images/helmet/helmet-1.png",
     images: [
       "/images/helmet/helmet-1.png",
@@ -270,7 +270,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Durable aluminum bottle holder that securely holds your water bottle during rides, easy to install and compatible with most bottles.",
     fullDescription: "Stay hydrated on your rides with the JOBOBIKE Bottle Holder. Made from lightweight aluminum with a secure grip design, it holds bottles firmly in place even on rough terrain. The universal mounting system fits all JOBOBIKE frames, and the sleek design matches your bike's aesthetic.",
     price: 15,
-    currency: "€",
+    currency: "kr",
     image:"/images/bottle/bottle-1.png",
     images: [
       "/images/bottle/bottle-1.png",
@@ -301,7 +301,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     description: "Spacious waterproof pannier bag with multiple compartments, perfect for commuting and touring with your e-bike.",
     fullDescription: "The JOBOBIKE Pannier Bag offers ample storage space for your daily commute or weekend adventures. With waterproof construction, multiple compartments, and reflective strips for safety, this bag combines functionality with durability. The quick-release mounting system makes it easy to attach and remove from your rack.",
     price: 75,
-    currency: "€",
+    currency: "kr",
     image:"/images/pannier/pannier-1.png",
     images: [
       "/images/pannier/pannier-1.png",

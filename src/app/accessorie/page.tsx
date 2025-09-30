@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { accessoriesProducts, } from '@/lib/accessoriesProducts';
 import { AddToCartButton } from '@/components/AddToCartButton';
+import { formatCurrency } from '@/utils/currency';
 
 export default function AccessoriesPage() {
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -57,7 +58,7 @@ export default function AccessoriesPage() {
                         {filteredProducts.map((product) => (
                             <li
                                 key={product.id}
-                                className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black"
+                                className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black flex flex-col h-full"
                             >
                                 {/* Product Image */}
                                 <div className="relative mb-2 sm:mb-3">
@@ -78,45 +79,29 @@ export default function AccessoriesPage() {
                                     </Link>
                                 </div>
 
-                                {/* Product Info */}
-                                <div className="p-4">
-                                    <Link href={`/accessories/${product.slug}`}>
-                                        <h3 className="text-lg font-semibold text-gray-900 mb-2 hover:text-yellow-500 transition-colors line-clamp-2 min-h-[3.5rem]">
-                                            {product.name}
+                                <div className="flex flex-col flex-grow mt-2">
+                                    <div className="space-y-1 flex-grow">
+                                        <h3 className="text-xs sm:text-sm font-medium text-black group-hover:underline leading-tight">
+                                            <Link href={`/accessories/${product.slug}`} className="break-words">
+                                                {product.name}
+                                            </Link>
                                         </h3>
-                                    </Link>
-
-                                    {/* Price */}
-                                    <div className="mb-4">
-                                        <span className="text-2xl font-bold text-gray-900">
-                                            {product.currency}{product.price}
-                                        </span>
                                     </div>
 
-                                    {/* Category & Compatibility Tags */}
+                                    <div className="mt-2 flex flex-col sm:flex-row sm:items-end sm:justify-between">
+                                        <div className="flex-1 min-w-0">
+                                            <span className="text-sm sm:text-base font-medium text-black whitespace-nowrap">
+                                                {formatCurrency(product.price)}
+                                            </span>
+                                        </div>
 
-                                    <div className="flex  gap-2 mb-4">
-                                        <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
-                                            {product.category}
-                                        </span>
-                                        {product.compatibility.length === 1 && product.compatibility[0].includes('Universal') ? (
-                                            <span className="px-3 py-1 bg-teal-50 text-teal-600 rounded-full text-xs font-medium">
-                                                Universal
-                                            </span>
-                                        ) : (
-                                            <span className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-medium">
-                                                {product.compatibility.length} Compatible Models
-                                            </span>
-                                        )}
-                                        {/* Add to Cart Button */}
-                                        <div className="mt-2 sm:mt-0 sm:ml-2">
+                                        <div className="mt-2 sm:mt-0 sm:ml-2 flex-shrink-0">
                                             <AddToCartButton
                                                 product={product}
                                                 className="w-full sm:w-auto rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-black bg-yellow-400 hover:bg-yellow-300 transition sm:text-white sm:bg-black sm:hover:border-black sm:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
                                             />
                                         </div>
                                     </div>
-
                                 </div>
                             </li>
                         ))}

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useCart } from '@/components/CartContext'; // Adjust path as needed
+import { formatCurrency } from '@/utils/currency';
 
 interface CartSummaryProps {
   className?: string;
@@ -35,7 +36,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
       <div className="space-y-2 mb-4">
         <div className="flex justify-between">
           <span className="text-gray-600">Items ({totalItems})</span>
-          <span className="font-medium">${totalPrice.toFixed(2)}</span>
+          <span className="font-medium">{formatCurrency(totalPrice)}</span>
         </div>
         
         <div className="flex justify-between">
@@ -47,7 +48,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
           <div className="flex justify-between">
             <span className="text-lg font-semibold text-black">Total</span>
             <span className="text-lg font-bold text-black">
-              ${totalPrice.toFixed(2)}
+              {formatCurrency(totalPrice)}
             </span>
           </div>
         </div>

@@ -9,6 +9,7 @@ import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Minus, Plus , Star} 
 
 import { useCart } from "./CartContext";
 import TechnicalSpecifications from "./TechnicalSpecs";
+import { formatCurrency } from "@/utils/currency";
 
 function ReviewStars({ rating = 5, reviewCount = 14 }: { rating?: number; reviewCount?: number }) {
   return (
@@ -136,8 +137,8 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
 </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-xl font-bold text-red-600">${product.price}</span>
-            <span className="line-through text-gray-500 text-sm">${product.originalPrice}</span>
+            <span className="text-xl font-bold text-red-600">{formatCurrency(product.price)}</span>
+            <span className="line-through text-gray-500 text-sm">{formatCurrency(product.originalPrice)}</span>
             <span className="text-green-600 text-sm">{product.discount}</span>
           </div>
 
@@ -328,8 +329,8 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
             </div>
             <div className="flex items-center gap-4">
 
-              <span className="text-2xl font-bold text-red-600 ">${product.price}</span>
-              <span className="line-through text-gray-500">${product.originalPrice}</span>
+              <span className="text-2xl font-bold text-red-600 ">{formatCurrency(product.price)}</span>
+              <span className="line-through text-gray-500">{formatCurrency(product.originalPrice)}</span>
               <span className="text-green-600">{product.discount}</span>
             </div>
 

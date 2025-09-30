@@ -3,6 +3,7 @@
 import React from 'react';
 import { useCart, CartItem } from '@/components/CartContext'; // Adjust path as needed
 import { Plus, Minus, Trash2 } from 'lucide-react';
+import { formatCurrency } from '@/utils/currency';
 
 interface CartItemRowProps {
   item: CartItem;
@@ -29,7 +30,7 @@ export const CartItemRow: React.FC<CartItemRowProps> = ({ item, className = '' }
         {item.category && (
           <p className="text-sm text-gray-600">Category: {item.category}</p>
         )}
-        <p className="text-lg font-bold text-yellow-500">${item.price.toFixed(2)}</p>
+        <p className="text-lg font-bold text-yellow-500">{formatCurrency(item.price)}</p>
       </div>
 
       <div className="flex items-center gap-3">
@@ -67,7 +68,7 @@ export const CartItemRow: React.FC<CartItemRowProps> = ({ item, className = '' }
 
       <div className="text-right">
         <p className="font-semibold text-gray-900">
-          ${(item.price * item.quantity).toFixed(2)}
+          {formatCurrency(item.price * item.quantity)}
         </p>
       </div>
     </div>
