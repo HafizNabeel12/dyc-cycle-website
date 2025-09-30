@@ -1085,8 +1085,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "7",
     name: "JOBOBIKE Lyon Pro",
     slug: "jobobike-lyon-pro",
-    originalPrice: 1899,
-    price: 1599,
+    originalPrice: 24999,
+    price: 18999,
     discount: "16%",
     image: "/images/lyon/lyon-1.png",
     images: [
@@ -1247,8 +1247,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "8",
     name: "JOBOBIKE Dyno GT",
     slug: "jobobike-dyno-gt",
-    originalPrice: 1699,
-    price: 1449,
+    originalPrice: 18999,
+    price: 16999,
     discount: "15%",
     image: "/images/dyno/dyno-1.png",
     images: [
@@ -1573,8 +1573,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "10",
     name: "JOBOBIKE Transer",
     slug: "jobobike-transer",
-    originalPrice: 2199,
-    price: 1899,
+    originalPrice: 28999,
+    price: 26999,
     discount: "14%",
     image: "/images/transer/transer-1.png",
     images: [
@@ -1735,8 +1735,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "11",
     name: "JOBOBIKE Mover",
     slug: "jobobike-mover",
-    originalPrice: 1399,
-    price: 1199,
+    originalPrice: 23999,
+    price: 19999,
     discount: "14%",
     image: "/images/mover/mover-1.png",
     images: [
