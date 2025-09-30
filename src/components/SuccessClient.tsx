@@ -84,11 +84,11 @@ export default function SuccessClient() {
     );
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-white px-4 mt-32">
       <div className="w-full max-w-md text-center">
         {/* Green check */}
         <div className="flex justify-center mb-4">
-          <div className="w-16 h-16 rounded-full bg-green-700 flex items-center justify-center">
+          <div className="w-16 h-16 rounded-full bg-yellow-500 flex items-center justify-center">
             <Check className="w-10 h-10 text-white" />
           </div>
         </div>
@@ -132,15 +132,12 @@ export default function SuccessClient() {
         {/* Continue button */}
         <button
           onClick={() => router.push('/')}
-          className="w-full py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition"
+          className="w-full py-3 bg-yellow-500 text-white font-medium rounded-lg hover:bg-yellow-600 transition"
         >
           Fortsett å handle
         </button>
 
-        {/* Receipt link */}
-        <p className="mt-4 text-sm text-gray-600 underline cursor-pointer">
-          Last ned kvittering
-        </p>
+      
       </div>
     </div>
   );

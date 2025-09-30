@@ -7,6 +7,7 @@ import { useCart } from '@/components/CartContext'; // Adjust path as needed
 import { CartSummary } from '../components/CartSummary'; // Adjust path as needed
 import { ArrowLeft, ShoppingBag, Trash2, Plus, Minus } from 'lucide-react';
 import BuyNowButton from './BuyNowButton'; // ✅ Import BuyNowButton
+import { formatCurrency } from '@/utils/currency';
 
 const CartPage: React.FC = () => {
   const { items, totalItems, clearCart, isLoading, updateQuantity, removeFromCart } = useCart();
@@ -202,8 +203,8 @@ const CartPage: React.FC = () => {
                       </div>
                       
                       <div className="text-right flex-shrink-0">
-                        <p className="text-lg font-bold text-yellow-600">${(item.price * item.quantity).toFixed(2)}</p>
-                        <p className="text-xs text-gray-500">${item.price} each</p>
+                        <p className="text-lg font-bold text-yellow-600">{formatCurrency(item.price * item.quantity)}</p>
+                        <p className="text-xs text-gray-500">{formatCurrency(item.price)}each</p>
                       </div>
                     </div>
                   </div>
@@ -295,8 +296,8 @@ const CartPage: React.FC = () => {
                               </div>
                               
                               <div className="text-right">
-                                <p className="text-3xl font-bold text-yellow-600">${(item.price * item.quantity).toFixed(2)}</p>
-                                <p className="text-sm text-gray-600 font-medium">${item.price} each</p>
+                                <p className="text-3xl font-bold text-yellow-600">{formatCurrency(item.price * item.quantity)}</p>
+                                <p className="text-sm text-gray-600 font-medium">{formatCurrency(item.price)} each</p>
                               </div>
                             </div>
                           </div>
