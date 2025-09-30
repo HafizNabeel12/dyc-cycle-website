@@ -35,7 +35,7 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
           <span className="mx-2">/</span>
           <Link href="/accessorie" className="hover:text-gray-900">Accessories</Link>
           <span className="mx-2">/</span>
-          <span className="text-gray-900">{product.title}</span>
+          <span className="text-gray-900">{product.name}</span>
         </nav>
       </div>
 
@@ -47,7 +47,7 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
             <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden">
               <Image
                 src={product.images[selectedImage]}
-                alt={product.title}
+                alt={product.name}
                 fill
                 className="object-cover"
               />
@@ -65,7 +65,7 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                 >
                   <Image
                     src={image}
-                    alt={`${product.title} - View ${index + 1}`}
+                    alt={`${product.name} - View ${index + 1}`}
                     fill
                     className="object-cover"
                   />
@@ -79,7 +79,7 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
             {/* Title and Price */}
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                {product.title}
+                {product.name}
               </h1>
               <p className="text-gray-600 mb-4">{product.description}</p>
               <div className="flex items-baseline gap-2">

@@ -3,13 +3,14 @@
 export interface AccessoryProduct {
   id: string;
   slug: string;
-  title: string;
+  name: string;
   description: string;
   fullDescription: string;
   price: number;
   currency: string;
+  image: string;
   images: string[];
-  category: string;
+  category: string[];
   specifications: {
     label: string;
     value: string;
@@ -25,18 +26,19 @@ export const accessoriesProducts: AccessoryProduct[] = [
   {
     id: "1",
     slug: "jobobike-front-rack",
-    title: "JOBOBIKE Front Rack",
+    name: "JOBOBIKE Front Rack",
     description: "Lightweight aluminum front rack with durable matte black powder coating, rustproof and perfect for all weather conditions.",
     fullDescription: "The JOBOBIKE front rack is made of lightweight aluminum with a durable, matte black powder coating. It is rustproof, making it perfect for all weather conditions. No matter whether you are traveling on rough terrain or in the city - the JOBOBIKE luggage rack is guaranteed not to fall down when suddenly turning or braking heavily.",
     price: 45,
     currency: "€",
+    image: "/images/front-rack/front-1.png",
     images: [
       "/images/front-rack/front-1.png",
       "/images/front-rack/front-2.png",
      
      
     ],
-    category: "Racks & Carriers",
+    category: ["Racks & Carriers"],
     specifications: [
       { label: "Material", value: "Aluminum Alloy" },
       { label: "Finish", value: "Matte Black Powder Coating" },
@@ -65,17 +67,18 @@ export const accessoriesProducts: AccessoryProduct[] = [
   {
     id: "2",
     slug: "jobobike-basket-with-wooden",
-    title: "JOBOBIKE Basket with Wooden Handle",
+    name: "JOBOBIKE Basket with Wooden Handle",
     description: "Stylish integrated basket with wooden handle, perfect for carrying groceries and personal items on your e-bike.",
     fullDescription: "The JOBOBIKE basket with wooden handle combines functionality with elegant design. Made from durable materials with a beautiful wooden handle accent, it can be mounted on both front and rear racks. The integrated design ensures quick and easy installation without additional hardware.",
     price: 55,
     currency: "€",
+    image: "/images/basket/basket-1.png",
     images: [
       "/images/basket/basket-1.png",
       "/images/basket/basket-2.png",
      
     ],
-    category: "Baskets & Storage",
+    category: ["Baskets & Storage"],
     specifications: [
       { label: "Material", value: "Aluminum Alloy with Wooden Handle" },
       { label: "Finish", value: "Matte Black" },
@@ -103,18 +106,19 @@ export const accessoriesProducts: AccessoryProduct[] = [
   {
     id: "3",
     slug: "jobobike-cover-bag-sam",
-    title: "JOBOBIKE Cover Bag for Sam",
+    name: "JOBOBIKE Cover Bag for Sam",
     description: "Waterproof cover bag that protects your folding bike from dust, water and abrasions. Specially designed for JOBOBIKE Sam.",
     fullDescription: "This waterproof cover bag is specifically designed to protect your JOBOBIKE Sam folding bike from dust, water, and abrasions. The durable material ensures long-lasting protection, while the compact design makes it easy to store and transport your bike. Perfect for travel and storage.",
     price: 65,
     currency: "€",
+    image: "/images/Thermal/thermal-bag-1.png ",
     images: [
       "/images/Thermal/thermal-bag-1.png",
       "/images/Thermal/thermal-bag-2.png",
       "/images/Thermal/thermal-bag-3.png",
      
     ],
-    category: "Protection & Storage",
+    category: ["Protection & Storage"],
     specifications: [
       { label: "Material", value: "600D Oxford Fabric" },
       { label: "Water Resistance", value: "IPX4" },
@@ -134,17 +138,18 @@ export const accessoriesProducts: AccessoryProduct[] = [
   {
     id: "4",
     slug: "jobobike-lock",
-    title: "JOBOBIKE Lock",
+    name: "JOBOBIKE Lock",
     description: "Heavy-duty bike lock providing maximum security for your e-bike with anti-theft protection and weather-resistant construction.",
     fullDescription: "The JOBOBIKE Lock offers premium security for your electric bike. Featuring a hardened steel construction with anti-pick and anti-drill protection, this lock ensures your bike stays safe. The weather-resistant design works in all conditions, and the compact size makes it easy to carry.",
     price: 35,
     currency: "€",
+    image : "/images/lock/lock-1.png",
     images: [
-      "/images/accessories/lock-1.jpg",
-      "/images/accessories/lock-2.jpg",
-      "/images/accessories/lock-3.jpg"
+      "/images/lock/lock-1.png",
+      "/images/lock/lock-2.png",
+      
     ],
-    category: "Security",
+    category: ["Security"],
     specifications: [
       { label: "Material", value: "Hardened Steel" },
       { label: "Security Level", value: "Level 9" },
@@ -164,17 +169,19 @@ export const accessoriesProducts: AccessoryProduct[] = [
   {
     id: "5",
     slug: "jobobike-phone-holder-waterproof",
-    title: "JOBOBIKE Phone Holder with Waterproof Cover",
+    name: "JOBOBIKE Phone Holder (Waterproof Cover)",
     description: "Secure phone holder with waterproof cover, allowing you to use your phone for navigation while protecting it from the elements.",
     fullDescription: "Keep your phone accessible and protected with the JOBOBIKE Phone Holder. The waterproof cover allows full touchscreen functionality while protecting against rain and dust. The secure mounting system ensures your phone stays in place even on rough terrain, making it perfect for GPS navigation.",
     price: 25,
     currency: "€",
+    image: "/images/holder/holder-1.png",
     images: [
-      "/images/accessories/phone-holder-1.jpg",
-      "/images/accessories/phone-holder-2.jpg",
-      "/images/accessories/phone-holder-3.jpg"
+      "/images/holder/holder-1.png",
+      "/images/holder/holder-2.png",
+      "/images/holder/holder-3.png",
+      
     ],
-    category: "Electronics & Holders",
+    category: ["Electronics & Holders"],
     specifications: [
       { label: "Compatibility", value: "Phones up to 6.7 inches" },
       { label: "Water Resistance", value: "IPX6" },
@@ -194,17 +201,18 @@ export const accessoriesProducts: AccessoryProduct[] = [
   {
     id: "6",
     slug: "jobobike-bicycle-mirror",
-    title: "JOBOBIKE Bicycle Mirror",
+    name: "JOBOBIKE Bicycle Mirror",
     description: "High-quality rearview mirror providing excellent visibility and safety while riding your e-bike.",
     fullDescription: "The JOBOBIKE Bicycle Mirror enhances your riding safety with a wide field of view and shatterproof glass. The adjustable arm allows you to find the perfect viewing angle, while the sturdy mounting system keeps it secure even on bumpy roads. The sleek design complements your bike's aesthetics.",
     price: 20,
     currency: "€",
+    image:"/images/mirror/mirror-1.png",
     images: [
-      "/images/accessories/mirror-1.jpg",
-      "/images/accessories/mirror-2.jpg",
-      "/images/accessories/mirror-3.jpg"
+      "/images/mirror/mirror-1.png",
+      "/images/mirror/mirror-2.png",
+      
     ],
-    category: "Safety & Visibility",
+    category: ["Safety & Visibility"],
     specifications: [
       { label: "Mirror Size", value: "80mm diameter" },
       { label: "Material", value: "Shatterproof Glass" },
@@ -224,17 +232,18 @@ export const accessoriesProducts: AccessoryProduct[] = [
   {
     id: "7",
     slug: "jobobike-helmet",
-    title: "JOBOBIKE Bicycle Helmet",
+    name: "JOBOBIKE Bicycle Helmet",
     description: "CE EN 1078 and CPSC certified safety helmet with impact-resistant construction and optimal ventilation for comfortable riding.",
     fullDescription: "The JOBOBIKE bicycle helmet was tested for safety by CE EN 1078 in Europe and CPSC in the USA. Impact-resistant PC material on the outside and a shock-absorbing EPS unibody on the inside provide maximum protection. The helmet features optimal ventilation, adjustable fit system, and removable padding for comfort during long rides.",
     price: 49,
     currency: "€",
+    image:"/images/helmet/helmet-1.png",
     images: [
-      "/images/accessories/helmet-1.jpg",
-      "/images/accessories/helmet-2.jpg",
-      "/images/accessories/helmet-3.jpg"
+      "/images/helmet/helmet-1.png",
+      "/images/helmet/helmet-2.png",
+      
     ],
-    category: "Safety & Visibility",
+    category: ["Safety & Visibility"],
     specifications: [
       { label: "Certification", value: "CE EN 1078, CPSC" },
       { label: "Material", value: "PC Shell + EPS Foam" },
@@ -257,17 +266,18 @@ export const accessoriesProducts: AccessoryProduct[] = [
   {
     id: "8",
     slug: "jobobike-bottle-holder",
-    title: "JOBOBIKE Bottle Holder",
+    name: "JOBOBIKE Bottle Holder",
     description: "Durable aluminum bottle holder that securely holds your water bottle during rides, easy to install and compatible with most bottles.",
     fullDescription: "Stay hydrated on your rides with the JOBOBIKE Bottle Holder. Made from lightweight aluminum with a secure grip design, it holds bottles firmly in place even on rough terrain. The universal mounting system fits all JOBOBIKE frames, and the sleek design matches your bike's aesthetic.",
     price: 15,
     currency: "€",
+    image:"/images/bottle/bottle-1.png",
     images: [
-      "/images/accessories/bottle-holder-1.jpg",
-      "/images/accessories/bottle-holder-2.jpg",
-      "/images/accessories/bottle-holder-3.jpg"
+      "/images/bottle/bottle-1.png",
+      "/images/bottle/bottle-2.png",
+     
     ],
-    category: "Accessories",
+    category: ["Accessories"],
     specifications: [
       { label: "Material", value: "Aluminum Alloy" },
       { label: "Finish", value: "Matte Black" },
@@ -287,17 +297,19 @@ export const accessoriesProducts: AccessoryProduct[] = [
   {
     id: "9",
     slug: "jobobike-pannier-bag",
-    title: "JOBOBIKE Pannier Bag",
+    name: "JOBOBIKE Pannier Bag",
     description: "Spacious waterproof pannier bag with multiple compartments, perfect for commuting and touring with your e-bike.",
     fullDescription: "The JOBOBIKE Pannier Bag offers ample storage space for your daily commute or weekend adventures. With waterproof construction, multiple compartments, and reflective strips for safety, this bag combines functionality with durability. The quick-release mounting system makes it easy to attach and remove from your rack.",
     price: 75,
     currency: "€",
+    image:"/images/pannier/pannier-1.png",
     images: [
-      "/images/accessories/pannier-bag-1.jpg",
-      "/images/accessories/pannier-bag-2.jpg",
-      "/images/accessories/pannier-bag-3.jpg"
+      "/images/pannier/pannier-1.png",
+      "/images/pannier/pannier-2.png",
+      "/images/pannier/pannier-3.png",
+      
     ],
-    category: "Baskets & Storage",
+    category:[ "Baskets & Storage"],
     specifications: [
       { label: "Material", value: "600D Polyester" },
       { label: "Water Resistance", value: "IPX5" },
@@ -330,7 +342,7 @@ export const getAccessoryBySlug = (slug: string): AccessoryProduct | undefined =
 };
 
 // Helper function to get products by category
-export const getAccessoriesByCategory = (category: string): AccessoryProduct[] => {
+export const getAccessoriesByCategory = (category: string[]): AccessoryProduct[] => {
   return accessoriesProducts.filter(product => product.category === category);
 };
 
