@@ -2,14 +2,26 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Menu, X, User, MapPin, ChevronDown, ShoppingBag, EllipsisVertical } from 'lucide-react';
+import {
+  Search,
+  Menu,
+  X,
+  User,
+  MapPin,
+  ShoppingBag,
+  EllipsisVertical,
+} from 'lucide-react';
 import { CartIcon } from './CartIcon';
+import { searchProducts } from '@/lib/productData'; // adjust import path
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<null | number>(null);
+
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState<any[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +67,6 @@ const Navbar = () => {
   const categories = [
     { name: 'DYU Bikes', slug: 'dyu' },
     { name: 'JOBO Bikes', slug: 'jobo' },
-    // { name: "YATDIM Bikes", slug: "yatdim" },
   ];
 
   const moreMenuItems = [
@@ -75,10 +86,21 @@ const Navbar = () => {
     setIsMoreMenuOpen(false);
   };
 
+  // Handle search input
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setQuery(value);
+    if (value.trim()) {
+      setResults(searchProducts(value));
+    } else {
+      setResults([]);
+    }
+  };
+
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300  ${
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           isScrolled ? 'bg-white shadow-lg' : 'bg-white'
         }`}
       >
@@ -111,24 +133,47 @@ const Navbar = () => {
           </div>
 
           {/* Menu + Search Row */}
-          <div className="px-4 py-3 border-b border-gray-200">
+          <div className="px-4 py-3 border-b border-gray-200 relative">
             <div className="flex items-center space-x-3">
               {/* Search Bar */}
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
                 <input
                   type="text"
+                  value={query}
+                  onChange={handleSearchChange}
                   placeholder="Hva leter du etter?"
-                  className="w-full pl-10 pr-4 py-2 text-sm bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-yellow-400"
+                  className="w-full pl-10 pr-4 py-2 text-sm text-black bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-yellow-400"
                 />
               </div>
             </div>
+
+            {/* Results Dropdown */}
+            {results.length > 0 && (
+              <div className="absolute top-14 left-0 w-full bg-white shadow-lg rounded-lg border border-gray-200 z-50 max-h-64 overflow-y-auto">
+                {results.map((product) => (
+                  <Link
+                    key={product.id}
+                    href={`/products/${product.slug}`}
+                    className="flex items-center justify-between px-4 py-2 hover:bg-gray-100 transition-colors"
+                  >
+                    <span className="text-sm font-medium text-black">
+                      {product.name}
+                    </span>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-12 h-12 object-contain rounded-md border border-gray-200 ml-2"
+                    />
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Navigation Items - Categories first, then Nav Items */}
+          {/* Navigation Items */}
           <div className="px-2 py-2 overflow-hidden">
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm mb-2 items-center justify-center">
-              {/* Category Links FIRST */}
               {categories.map((cat) => (
                 <Link
                   key={cat.slug}
@@ -139,7 +184,6 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              {/* Then Nav Items */}
               {navItems.map((item, index) => (
                 <Link
                   key={index}
@@ -163,15 +207,39 @@ const Navbar = () => {
               </Link>
 
               {/* Search Bar - Desktop */}
-              <div className="hidden md:flex flex-1 max-w-lg mx-8">
+              <div className="hidden md:flex flex-1 max-w-lg mx-8 relative">
                 <div className="relative w-full">
                   <input
                     type="text"
+                    value={query}
+                    onChange={handleSearchChange}
                     placeholder="Hva leter du etter?"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
+                    className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
                   />
                   <Search className="absolute right-3 top-2.5 w-5 h-5 text-gray-400" />
                 </div>
+
+                {/* Results Dropdown */}
+                {results.length > 0 && (
+                  <div className="absolute top-12 left-0 w-full bg-white shadow-lg rounded-lg border border-gray-200 z-50 max-h-64 overflow-y-auto">
+                    {results.map((product) => (
+                      <Link
+                        key={product.id}
+                        href={`/products/${product.slug}`}
+                        className="flex items-center justify-between px-4 py-2 hover:bg-gray-100 transition-colors"
+                      >
+                        <span className="text-sm font-medium text-black">
+                          {product.name}
+                        </span>
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-12 h-12 object-contain rounded-md border border-gray-200 ml-2"
+                        />
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Right Side Actions */}
@@ -214,7 +282,6 @@ const Navbar = () => {
             {/* Navigation Menu - Desktop */}
             <div className="md:block">
               <div className="sm:grid sm:grid-cols-2 md:flex space-x-8 py-4 overflow-x-auto text-xl">
-                {/* Category Links FIRST */}
                 {categories.map((cat) => (
                   <Link
                     key={cat.slug}
@@ -225,7 +292,6 @@ const Navbar = () => {
                   </Link>
                 ))}
 
-                {/* Then Nav Items */}
                 {navItems.map((item, index) => (
                   <Link
                     key={index}
@@ -240,7 +306,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Overlay - Optional additional menu */}
+        {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-white border-b border-gray-200 max-h-screen overflow-y-auto">
             <div className="px-4 py-2">
@@ -264,20 +330,17 @@ const Navbar = () => {
         )}
       </nav>
 
-      {/* More Menu Drawer/Sheet */}
+      {/* More Menu Drawer */}
       {isMoreMenuOpen && (
         <>
-          {/* Backdrop */}
           <div className="fixed inset-0 bg-black bg-opacity-25 z-50 transition-opacity duration-300" />
 
-          {/* Drawer */}
           <div
             id="more-menu-drawer"
             className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
               isMoreMenuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
           >
-            {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <h2 className="text-lg font-semibold text-gray-900">More Options</h2>
               <button
@@ -289,7 +352,6 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* Menu Content */}
             <div className="flex flex-col p-4 space-y-2">
               {moreMenuItems.map((item, index) => (
                 <Link
@@ -303,7 +365,6 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* Footer */}
             <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 bg-gray-50">
               <p className="text-sm text-gray-500 text-center">
                 Need help? Contact our support team
