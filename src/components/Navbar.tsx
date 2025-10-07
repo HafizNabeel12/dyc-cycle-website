@@ -27,6 +27,8 @@ const Navbar = () => {
   const navItems = [
     { name: 'E-Bikes', href: '/', dropdown: true },
     { name: 'Accessories', href: '/accessorie' },
+    { name: 'Terms of Service', href: '/terms' },
+    { name: 'Contact Us', href: '/contact' },
   ];
 
   const categories = [
@@ -181,7 +183,7 @@ const Navbar = () => {
 
                     {/* Dropdown for Categories */}
                     {item.dropdown && activeDropdown === index && (
-                      <div className="absolute left-0 top-full mt-3 w-[550px] bg-white shadow-xl rounded-xl border border-gray-100 p-6 grid grid-cols-2 gap-6 z-50">
+                      <div className="absolute left-0 top-full  w-[550px] bg-white shadow-xl rounded-xl border border-gray-100 p-6 grid grid-cols-2 gap-6 z-50">
                         {categories.map((cat) => (
                           <Link
                             key={cat.slug}
