@@ -28,30 +28,30 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'DYU Cycle - Back to School | Premium E-Bikes for Students',
-  description: 'Transform your campus experience with DYU premium e-bikes. Up to 50% OFF Back to School Sale. Free shipping, 2-year warranty, perfect for students.',
-  keywords: 'e-bikes, electric bikes, student bikes, campus transportation, DYU, back to school, folding bikes',
-  authors: [{ name: 'DYU Cycle Team' }],
+  title: 'Sykkellageret | Premium E-Bikes',
+  description: 'Transform your campus experience with Sykkellageret premium e-bikes. Up to 50% OFF Back to School Sale. Free shipping, 2-year warranty, perfect for students.',
+  keywords: 'e-bikes, electric bikes, student bikes, campus transportation, sykkellageret, back to school, folding bikes',
+  authors: [{ name: 'Sykkellageret Cycle Team' }],
   viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   openGraph: {
-    title: 'DYU Cycle - Back to School E-Bikes',
+    title: 'Sykkellageret',
     description: 'Premium e-bikes designed for students. Up to 50% OFF + Free Shipping.',
     type: 'website',
-    url: 'https://dyucycle.com',
-    siteName: 'DYU Cycle',
+    url: 'https://sykkellageret.no',
+    siteName: 'Sykkellageret',
     images: [
       {
         url: '/og-image.jpg', // Add your OpenGraph image
         width: 1200,
         height: 630,
-        alt: 'DYU E-Bikes for Students',
+        alt: 'Sykkellageret E-Bikes for Students',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DYU Cycle - Back to School E-Bikes',
+    title: 'Sykkellageret',
     description: 'Premium e-bikes designed for students. Up to 50% OFF + Free Shipping.',
     images: ['/twitter-image.jpg'], // Add your Twitter image
   },
