@@ -4,24 +4,17 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Search,
-  Menu,
-  X,
-  User,
   MapPin,
-  ShoppingBag,
+  ChevronDown,
   EllipsisVertical,
+  X,
 } from 'lucide-react';
 import { CartIcon } from './CartIcon';
-import { searchProducts } from '@/lib/productData'; // adjust import path
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<null | number>(null);
-
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState<any[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,42 +24,24 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close drawer when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (isMoreMenuOpen) {
-        const drawer = document.getElementById('more-menu-drawer');
-        const moreButton = document.getElementById('more-menu-button');
-
-        if (
-          drawer &&
-          moreButton &&
-          !drawer.contains(event.target as Node) &&
-          !moreButton.contains(event.target as Node)
-        ) {
-          setIsMoreMenuOpen(false);
-        }
-      }
-    };
-
-    if (isMoreMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'hidden'; // Prevent background scroll
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'unset';
-    };
-  }, [isMoreMenuOpen]);
-
-  const navItems = [{ name: 'Accessories', href: '/accessorie' }];
+  const navItems = [
+    { name: 'E-Bikes', href: '/', dropdown: true },
+    { name: 'Accessories', href: '/accessorie' },
+  ];
 
   const categories = [
-    { name: 'DYU Bikes', slug: 'dyu' },
-    { name: 'JOBO Bikes', slug: 'jobo' },
+    {
+      name: 'DYU Bikes',
+      slug: 'dyu',
+      tagline: 'Smart Compact Mobility',
+      image: '/images/d3f/d3f-main.png',
+    },
+    {
+      name: 'JOBO Bikes',
+      slug: 'jobo',
+      tagline: 'Adventure with Power',
+      image: '/images/lyon/lyon-1.png',
+    },
   ];
 
   const moreMenuItems = [
@@ -82,21 +57,6 @@ const Navbar = () => {
     setIsMoreMenuOpen(!isMoreMenuOpen);
   };
 
-  const closeMoreMenu = () => {
-    setIsMoreMenuOpen(false);
-  };
-
-  // Handle search input
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setQuery(value);
-    if (value.trim()) {
-      setResults(searchProducts(value));
-    } else {
-      setResults([]);
-    }
-  };
-
   return (
     <>
       <nav
@@ -106,21 +66,16 @@ const Navbar = () => {
       >
         {/* Mobile Version */}
         <div className="md:hidden bg-white">
-          {/* Top Row - Logo, User Icon, Cart */}
           <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200">
-            {/* Logo */}
             <Link href="/">
               <img src="/images/logo.jpg" alt="Logo" className="h-20 w-auto" />
             </Link>
 
-            {/* Right Icons */}
             <div className="flex items-center space-x-4">
-              {/* Cart Icon */}
               <Link href="/cart">
                 <CartIcon className="text-gray-700" />
               </Link>
 
-              {/* More Menu Button */}
               <button
                 id="more-menu-button"
                 onClick={toggleMoreMenu}
@@ -132,58 +87,21 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Menu + Search Row */}
-          <div className="px-4 py-3 border-b border-gray-200 relative">
-            <div className="flex items-center space-x-3">
-              {/* Search Bar */}
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                <input
-                  type="text"
-                  value={query}
-                  onChange={handleSearchChange}
-                  placeholder="Hva leter du etter?"
-                  className="w-full pl-10 pr-4 py-2 text-sm text-black bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-yellow-400"
-                />
-              </div>
+          {/* Mobile Search */}
+          <div className="px-4 py-3 border-b border-gray-200">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Hva leter du etter?"
+                className="w-full pl-10 pr-4 py-2 text-sm bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-yellow-400"
+              />
             </div>
-
-            {/* Results Dropdown */}
-            {results.length > 0 && (
-              <div className="absolute top-14 left-0 w-full bg-white shadow-lg rounded-lg border border-gray-200 z-50 max-h-64 overflow-y-auto">
-                {results.map((product) => (
-                  <Link
-                    key={product.id}
-                    href={`/products/${product.slug}`}
-                    className="flex items-center justify-between px-4 py-2 hover:bg-gray-100 transition-colors"
-                  >
-                    <span className="text-sm font-medium text-black">
-                      {product.name}
-                    </span>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-12 h-12 object-contain rounded-md border border-gray-200 ml-2"
-                    />
-                  </Link>
-                ))}
-              </div>
-            )}
           </div>
 
-          {/* Navigation Items */}
+          {/* Mobile Nav Items */}
           <div className="px-2 py-2 overflow-hidden">
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm mb-2 items-center justify-center">
-              {categories.map((cat) => (
-                <Link
-                  key={cat.slug}
-                  href={`/category/${cat.slug}`}
-                  className="whitespace-nowrap text-gray-700 hover:text-black transition-colors duration-200 border-b-2 border-transparent hover:border-yellow-400"
-                >
-                  {cat.name}
-                </Link>
-              ))}
-
               {navItems.map((item, index) => (
                 <Link
                   key={index}
@@ -201,49 +119,24 @@ const Navbar = () => {
         <div className="hidden md:block bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex justify-between items-center h-16">
-              {/* Logo */}
               <Link href="/">
-                <img src="/images/logo.jpg" alt="" className="w-36 items-start" />
+                <img src="/images/logo.jpg" alt="Logo" className="w-36" />
               </Link>
 
-              {/* Search Bar - Desktop */}
-              <div className="hidden md:flex flex-1 max-w-lg mx-8 relative">
+              {/* Search Bar */}
+              <div className="hidden md:flex flex-1 max-w-lg mx-8">
                 <div className="relative w-full">
                   <input
                     type="text"
-                    value={query}
-                    onChange={handleSearchChange}
                     placeholder="Hva leter du etter?"
-                    className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
                   />
                   <Search className="absolute right-3 top-2.5 w-5 h-5 text-gray-400" />
                 </div>
-
-                {/* Results Dropdown */}
-                {results.length > 0 && (
-                  <div className="absolute top-12 left-0 w-full bg-white shadow-lg rounded-lg border border-gray-200 z-50 max-h-64 overflow-y-auto">
-                    {results.map((product) => (
-                      <Link
-                        key={product.id}
-                        href={`/products/${product.slug}`}
-                        className="flex items-center justify-between px-4 py-2 hover:bg-gray-100 transition-colors"
-                      >
-                        <span className="text-sm font-medium text-black">
-                          {product.name}
-                        </span>
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-12 h-12 object-contain rounded-md border border-gray-200 ml-2"
-                        />
-                      </Link>
-                    ))}
-                  </div>
-                )}
               </div>
 
-              {/* Right Side Actions */}
-              <div className="flex items-center space-x-4">
+              {/* Right Side */}
+              <div className="flex items-center space-x-4 relative">
                 <Link
                   href="/"
                   className="text-black hover:text-yellow-400 transition-colors flex items-center"
@@ -255,123 +148,98 @@ const Navbar = () => {
                   <CartIcon className="hidden md:flex items-center space-x-2 text-gray-700 hover:text-black transition-colors" />
                 </Link>
 
-                {/* More Menu Button - Desktop */}
+                {/* More Menu Button */}
                 <button
-                  id="more-menu-button"
                   onClick={toggleMoreMenu}
                   className="flex items-center space-x-1 text-gray-700 hover:text-black transition-colors p-2"
-                  aria-label="More menu"
                 >
                   <EllipsisVertical className="w-5 h-5" />
-                </button>
-
-                {/* Mobile Menu Button */}
-                <button
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="md:hidden p-2"
-                >
-                  {isMobileMenuOpen ? (
-                    <X className="w-6 h-6" />
-                  ) : (
-                    <Menu className="w-6 h-6" />
-                  )}
                 </button>
               </div>
             </div>
 
-            {/* Navigation Menu - Desktop */}
-            <div className="md:block">
-              <div className="sm:grid sm:grid-cols-2 md:flex space-x-8 py-4 overflow-x-auto text-xl">
-                {categories.map((cat) => (
-                  <Link
-                    key={cat.slug}
-                    href={`/category/${cat.slug}`}
-                    className="whitespace-nowrap text-gray-700 hover:text-black transition-colors duration-200 border-b-2 border-transparent hover:border-yellow-400"
-                  >
-                    {cat.name}
-                  </Link>
-                ))}
-
+            {/* Desktop Nav */}
+            <div className="relative">
+              <div className="flex space-x-8 py-4 text-lg">
                 {navItems.map((item, index) => (
-                  <Link
+                  <div
                     key={index}
-                    href={item.href}
-                    className="whitespace-nowrap text-gray-700 hover:text-black transition-colors duration-200 border-b-2 border-transparent hover:border-yellow-400"
+                    className="relative group"
+                    onMouseEnter={() => toggleDropdown(index)}
+                    onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    {item.name}
-                  </Link>
+                    <button
+                      className={`flex items-center space-x-1 text-gray-700 hover:text-black transition-colors duration-200 ${
+                        item.dropdown ? 'cursor-pointer' : ''
+                      }`}
+                    >
+                      <span>{item.name}</span>
+                      {item.dropdown && (
+                        <ChevronDown className="w-4 h-4 text-gray-500" />
+                      )}
+                    </button>
+
+                    {/* Dropdown for Categories */}
+                    {item.dropdown && activeDropdown === index && (
+                      <div className="absolute left-0 top-full mt-3 w-[550px] bg-white shadow-xl rounded-xl border border-gray-100 p-6 grid grid-cols-2 gap-6 z-50">
+                        {categories.map((cat) => (
+                          <Link
+                            key={cat.slug}
+                            href={`/category/${cat.slug}`}
+                            className="flex items-center justify-between group hover:bg-gray-50 p-3 rounded-lg transition-all"
+                          >
+                            <div>
+                              <h3 className="text-black font-semibold text-base">
+                                {cat.name}
+                              </h3>
+                              <p className="text-sm text-gray-600">
+                                {cat.tagline}
+                              </p>
+                            </div>
+                            <img
+                              src={cat.image}
+                              alt={cat.name}
+                              className="w-20 h-20 object-contain rounded-md border border-gray-200"
+                            />
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
           </div>
         </div>
-
-        {/* Mobile Menu Overlay */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-white border-b border-gray-200 max-h-screen overflow-y-auto">
-            <div className="px-4 py-2">
-              <Link
-                href="/login"
-                className="flex items-center space-x-3 py-4 text-gray-700 border-b border-gray-100 text-base"
-              >
-                <User className="w-5 h-5" />
-                <span>Logg inn / Bli medlem</span>
-              </Link>
-
-              <Link
-                href="/"
-                className="flex items-center space-x-3 py-4 text-gray-700 border-b border-gray-100 text-base"
-              >
-                <MapPin className="w-5 h-5" />
-                <span>Norge</span>
-              </Link>
-            </div>
-          </div>
-        )}
       </nav>
 
-      {/* More Menu Drawer */}
+      {/* Right-Side Drawer for More Menu */}
       {isMoreMenuOpen && (
-        <>
-          <div className="fixed inset-0 bg-black bg-opacity-25 z-50 transition-opacity duration-300" />
-
-          <div
-            id="more-menu-drawer"
-            className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
-              isMoreMenuOpen ? 'translate-x-0' : 'translate-x-full'
-            }`}
-          >
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-900">More Options</h2>
-              <button
-                onClick={closeMoreMenu}
-                className="p-2 rounded-md hover:bg-gray-100 transition-colors"
-                aria-label="Close menu"
-              >
-                <X className="w-5 h-5 text-gray-500" />
+        <div className="fixed inset-0 z-50 flex justify-end bg-black bg-opacity-30">
+          <div className="w-80 bg-white h-full shadow-lg transform transition-transform duration-300 ease-in-out">
+            <div className="flex justify-between items-center p-4 border-b">
+              <h2 className="text-lg font-semibold text-gray-700">More Options</h2>
+              <button onClick={toggleMoreMenu}>
+                <X className="w-5 h-5 text-gray-600 hover:text-black" />
               </button>
             </div>
-
-            <div className="flex flex-col p-4 space-y-2">
-              {moreMenuItems.map((item, index) => (
+            <div className="p-6 space-y-4">
+              {moreMenuItems.map((item) => (
                 <Link
-                  key={index}
+                  key={item.name}
                   href={item.href}
-                  onClick={closeMoreMenu}
-                  className="flex items-center px-4 py-3 text-gray-700 hover:text-black hover:bg-gray-50 rounded-lg transition-colors duration-200 group"
+                  className="block text-gray-700 hover:text-black"
+                  onClick={toggleMoreMenu}
                 >
-                  <span className="text-base font-medium">{item.name}</span>
+                  {item.name}
                 </Link>
               ))}
             </div>
-
-            <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 bg-gray-50">
-              <p className="text-sm text-gray-500 text-center">
-                Need help? Contact our support team
-              </p>
+            <div className="absolute bottom-0 w-full p-4 border-t text-center text-sm text-gray-500">
+              Need help? Contact our support team
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );

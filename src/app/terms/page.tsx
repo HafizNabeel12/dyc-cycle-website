@@ -26,9 +26,12 @@ const TermsOfService: React.FC = () => {
     {
       id: 'bestilling',
       title: '2. Bestilling',
-      content: `Når du legger inn en bestilling, mottar du en ordrebekreftelse på e-post.
+      content: `Når du legger inn en bestilling, mottar du en ordrebekreftelse på e-post. 
 
-Avtalen er bindende når du har mottatt ordrebekreftelsen.`
+Du vil også motta en digital bruksanvisning for produktet på e-post.
+
+Avtalen er bindende når du har mottatt ordrebekreftelsen.
+`
     },
     {
       id: 'betaling',

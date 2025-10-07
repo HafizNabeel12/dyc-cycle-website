@@ -20,40 +20,7 @@ const LandingPage = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="hidden md:block py-16 bg-white ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl text-center text-gray-800 mb-12">Hvorfor velge Sykkellageret?</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <h3 className="text-xl text-gray-800 mb-3">Kraftig ytelse</h3>
-              <p className="text-gray-600">Opptil 60km rekkevidde med våre avanserte batterier</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <h3 className="text-xl text-gray-800 mb-3">2 års garanti</h3>
-              <p className="text-gray-600">Full garanti på alle våre elektriske sykler</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
-                </svg>
-              </div>
-              <h3 className="text-xl text-gray-800 mb-3">Gratis frakt</h3>
-              <p className="text-gray-600">Fri levering til hele Norge på alle bestillinger</p>
-            </div>
-          </div>
-        </div>
-      </section>
+     
 
       {/* Featured Products */}
       <section className="mx-auto mt-6 max-w-7xl px-4 sm:px-2 mb-16">
@@ -126,8 +93,9 @@ const LandingPage = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl text-gray-800 mb-4">Hva er elektriske sykler?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Opplev fremtiden for sykling med våre innovative e-bikes som kombinerer tradisjonell sykling med moderne teknologi</p>
+            <h2 className="text-4xl text-gray-800 mb-4">Sykkellageret – spesialisten på el-sykler i Norge</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Oppdag el-sykler som kombinerer sykkelglede med smart teknologi. Hos Sykkellageret får du kvalitet, service og trygg handel – derfor velger flere oss.
+</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -187,24 +155,33 @@ const LandingPage = () => {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Pendlere som vil spare tid</span>
+                    <span>Pendlere som vil spare tid og komme raskere frem.</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Eldre som ønsker lettere sykling</span>
+                    <span>Deg som ønsker en lettere og mer behagelig sykkeltur</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Familier med barn og bagasje</span>
+                    <span>Familier med barn og bagasje som trenger ekstra kraft.</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Miljøbevisste som vil gjøre en forskjell</span>
+                    <span>Miljøbevisste som vil gjøre en grønn forskjell i hverdagen.</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Alle som elsker å sykle</span>
+                    <span>Sykkelentusiaster som bare elsker friheten på to hjul.</span>
                   </div>
+                   <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-black rounded-full"></div>
+                    <span>Eventyrlystne som vil på tur og utforske naturen.</span>
+                  </div>
+                   <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-black rounded-full"></div>
+                    <span>Byutforskere som vil oppdage nye steder på en enkel og morsom måte.</span>
+                  </div>
+                
                 </div>
               </div>
             </div>
@@ -243,6 +220,41 @@ const LandingPage = () => {
               </div>
               <p className="text-gray-600 mb-4">&quot;Elsker min nye e-bike! Gjør pendlingen så mye mer behagelig. Anbefaler DYU til alle.&quot;</p>
               <div className="text-sm text-gray-500">- Anne, Trondheim</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+ <section className="hidden md:block py-16 bg-white ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl text-center text-gray-800 mb-12">Sykkellageret – valgt av kunder over hele Norge</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-xl text-gray-800 mb-3">Kraftig ytelse</h3>
+              <p className="text-gray-600">Opptil 60km rekkevidde med våre avanserte batterier</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-xl text-gray-800 mb-3">2 års garanti</h3>
+              <p className="text-gray-600">Full garanti på alle våre elektriske sykler</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+                </svg>
+              </div>
+              <h3 className="text-xl text-gray-800 mb-3">Gratis frakt</h3>
+              <p className="text-gray-600">Fri levering til hele Norge på alle bestillinger</p>
             </div>
           </div>
         </div>

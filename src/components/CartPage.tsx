@@ -18,7 +18,7 @@ const CartPage: React.FC = () => {
   };
 
   const handleStartFresh = () => {
-    if (confirm('This will clear your current cart. Are you sure?')) {
+    if (confirm('Dette vil tømme handlekurven din. Er du sikker?')) {
       clearCart();
     }
   };
@@ -37,7 +37,7 @@ const CartPage: React.FC = () => {
   const handleCheckout = async () => {
     try {
       if (!items || items.length === 0) {
-        alert('Your cart is empty. Please add items before checkout.');
+        alert('Handlekurven din er tom. Legg til varer før du går til kassen.');
         return;
       }
       
@@ -52,14 +52,14 @@ const CartPage: React.FC = () => {
       );
       
       if (!validItems) {
-        alert('There seems to be an issue with your cart items. Please refresh and try again.');
+        alert('Det ser ut til å være et problem med varene i handlekurven. Oppdater siden og prøv igjen.');
         return;
       }
       
       router.push("/checkout");
     } catch (error) {
       console.error('Checkout error:', error);
-      alert('There was an error proceeding to checkout. Please try again.');
+      alert('Det oppstod en feil ved å gå til kassen. Prøv igjen.');
     }
   };
 
@@ -71,7 +71,7 @@ const CartPage: React.FC = () => {
         <div className="container mx-auto px-4 py-8">
           <div className="flex justify-center items-center h-64">
             <div className="animate-spin rounded-full h-12 w-12 border-4 border-yellow-200 border-t-yellow-600"></div>
-            <span className="ml-4 text-gray-700 font-medium">Loading your cart...</span>
+            <span className="ml-4 text-gray-700 font-medium">Laster handlekurven...</span>
           </div>
         </div>
       </div>
@@ -88,9 +88,9 @@ const CartPage: React.FC = () => {
               <div className="w-20 h-20 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center mx-auto mb-6">
                 <ShoppingBag className="h-10 w-10 text-yellow-600" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-3">Your cart is empty</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">Handlekurven din er tom</h2>
               <p className="text-gray-600 mb-8 text-sm leading-relaxed">
-                Discover amazing products and add them to your cart to get started.
+                Oppdag fantastiske produkter og legg dem til i handlekurven for å komme i gang.
               </p>
               
               <div className="space-y-3">
@@ -99,7 +99,7 @@ const CartPage: React.FC = () => {
                   className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-4 rounded-xl font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 flex items-center gap-2 justify-center text-sm shadow-lg transform hover:scale-105"
                 >
                   <ArrowLeft className="h-4 w-4" />
-                  Start Shopping
+                  Start å handle
                 </button>
               </div>
             </div>
@@ -111,8 +111,8 @@ const CartPage: React.FC = () => {
               <div className="w-28 h-28 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center mx-auto mb-8">
                 <ShoppingBag className="h-14 w-14 text-yellow-600" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Your cart is empty</h2>
-              <p className="text-gray-600 mb-10 text-lg">Looks like you haven&apos;t added anything to your cart yet.</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Handlekurven din er tom</h2>
+              <p className="text-gray-600 mb-10 text-lg">Det ser ut som du ikke har lagt til noe i handlekurven ennå.</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
@@ -120,7 +120,7 @@ const CartPage: React.FC = () => {
                   className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-10 py-4 rounded-xl font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 flex items-center gap-3 justify-center shadow-lg transform hover:scale-105"
                 >
                   <ArrowLeft className="h-5 w-5" />
-                  Continue Shopping
+                  Fortsett å handle
                 </button>
               </div>
             </div>
@@ -141,9 +141,9 @@ const CartPage: React.FC = () => {
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Shopping Cart</h1>
+                <h1 className="text-2xl font-bold text-gray-900">Handlekurv</h1>
                 <p className="text-sm text-gray-600 mt-1 font-medium">
-                  {totalItems} {totalItems === 1 ? 'item' : 'items'}
+                  {totalItems} {totalItems === 1 ? 'vare' : 'varer'}
                 </p>
               </div>
               <div className="w-12 h-12 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center">
@@ -169,7 +169,7 @@ const CartPage: React.FC = () => {
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                          <span className="text-gray-500 text-xs font-medium">No image</span>
+                          <span className="text-gray-500 text-xs font-medium">Ingen bilde</span>
                         </div>
                       )}
                     </div>
@@ -180,7 +180,7 @@ const CartPage: React.FC = () => {
                     <div className="flex justify-between items-start mb-2">
                       <div className="flex-1 min-w-0 pr-2">
                         <h3 className="font-bold text-gray-900 text-sm leading-tight">{item.name}</h3>
-                        <p className="text-xs text-gray-600 mt-1">{item.category || 'General'}</p>
+                        <p className="text-xs text-gray-600 mt-1">{item.category || 'Generell'}</p>
                       </div>
                       <button 
                         onClick={() => handleRemoveItem(item.id)}
@@ -192,7 +192,7 @@ const CartPage: React.FC = () => {
                     
                     <div className="flex items-center justify-between mt-3">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-600">Qty:</span>
+                        <span className="text-xs text-gray-600">Antall:</span>
                         <input
                           type="number"
                           min="1"
@@ -204,7 +204,7 @@ const CartPage: React.FC = () => {
                       
                       <div className="text-right flex-shrink-0">
                         <p className="text-lg font-bold text-yellow-600">{formatCurrency(item.price * item.quantity)}</p>
-                        <p className="text-xs text-gray-500">{formatCurrency(item.price)}each</p>
+                        <p className="text-xs text-gray-500">{formatCurrency(item.price)} per stk</p>
                       </div>
                     </div>
                   </div>
@@ -221,7 +221,7 @@ const CartPage: React.FC = () => {
               onClick={handleCheckout}
               className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 shadow-lg transform hover:scale-105 mb-3"
             >
-              Proceed to Checkout
+              Gå til kassen
             </button>
             
             <button
@@ -229,7 +229,7 @@ const CartPage: React.FC = () => {
               className="w-full bg-gray-100 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:bg-gray-200 transition-all duration-200 flex items-center justify-center gap-2 text-sm border border-gray-200"
             >
               <ArrowLeft className="h-4 w-4" />
-              Continue Shopping
+              Fortsett å handle
             </button>
           </div>
           <div className="h-32"></div>
@@ -240,9 +240,9 @@ const CartPage: React.FC = () => {
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-8">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-4xl font-bold text-gray-900">Shopping Cart</h1>
+                <h1 className="text-4xl font-bold text-gray-900">Handlekurv</h1>
                 <p className="text-gray-600 mt-2 font-medium text-lg">
-                  {totalItems} {totalItems === 1 ? 'item' : 'items'} in your cart
+                  {totalItems} {totalItems === 1 ? 'vare' : 'varer'} i handlekurven
                 </p>
               </div>
               <div className="w-16 h-16 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center">
@@ -272,7 +272,7 @@ const CartPage: React.FC = () => {
                                 />
                               ) : (
                                 <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                                  <span className="text-gray-500 text-sm font-medium">No image</span>
+                                  <span className="text-gray-500 text-sm font-medium">Ingen bilde</span>
                                 </div>
                               )}
                             </div>
@@ -281,11 +281,11 @@ const CartPage: React.FC = () => {
                           {/* Product Details */}
                           <div className="flex-1 min-w-0">
                             <h3 className="font-bold text-gray-900 text-xl mb-2">{item.name}</h3>
-                            <p className="text-sm text-gray-600 font-medium mb-4">Category: {item.category || 'General'}</p>
+                            <p className="text-sm text-gray-600 font-medium mb-4">Kategori: {item.category || 'Generell'}</p>
                             
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-6">
-                                <span className="text-sm text-gray-700 font-medium">Quantity:</span>
+                                <span className="text-sm text-gray-700 font-medium">Antall:</span>
                                 <input
                                   type="number"
                                   min="1"
@@ -297,7 +297,7 @@ const CartPage: React.FC = () => {
                               
                               <div className="text-right">
                                 <p className="text-3xl font-bold text-yellow-600">{formatCurrency(item.price * item.quantity)}</p>
-                                <p className="text-sm text-gray-600 font-medium">{formatCurrency(item.price)} each</p>
+                                <p className="text-sm text-gray-600 font-medium">{formatCurrency(item.price)} per stk</p>
                               </div>
                             </div>
                           </div>
@@ -326,7 +326,7 @@ const CartPage: React.FC = () => {
                   onClick={handleCheckout}
                   className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 shadow-lg transform hover:scale-105"
                 >
-                  Proceed to Checkout
+                  Gå til kassen
                 </button>
 
                 <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
@@ -335,7 +335,7 @@ const CartPage: React.FC = () => {
                     className="w-full bg-gray-100 text-gray-700 py-4 px-6 rounded-xl font-semibold hover:bg-gray-200 transition-all duration-200 flex items-center justify-center gap-3 border border-gray-200"
                   >
                     <ArrowLeft className="h-5 w-5" />
-                    Continue Shopping
+                    Fortsett å handle
                   </button>
                   
                   <div className="text-center mt-8 pt-6 border-t border-gray-200">
@@ -343,13 +343,13 @@ const CartPage: React.FC = () => {
                       <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
                         <span className="text-green-600 text-sm font-bold">✓</span>
                       </div>
-                      <span className="font-medium">Secure checkout with SSL encryption</span>
+                      <span className="font-medium">Kopi av E-sykkel manualen vil bli sendt på e-post med sporingsnummer</span>
                     </div>
                     <div className="flex items-center justify-center gap-3 text-sm text-gray-600">
                       <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center">
                         <span className="text-yellow-600 text-sm font-bold">💾</span>
                       </div>
-                      <span className="font-medium">Your cart is automatically saved</span>
+                      <span className="font-medium">Handlekurven din lagres automatisk</span>
                     </div>
                   </div>
                 </div>

@@ -122,7 +122,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-gray-200 py-4">
         <div className="max-w-7xl mx-auto px-6 text-center text-xs text-gray-500">
-          © 2025 <span className="text-yellow-500 font-semibold">Sykkellageret <span className="text-gray-500">-</span> Jalut AI Launchlabs</span>. Org nr: 931361414. Alle rettigheter forbeholdt.
+          © 2025 <span className="text-yellow-500 font-semibold">Sykkellageret <span className="text-gray-500">-</span>Jalut Holdings</span>. Org nr: 931946641. Alle rettigheter forbeholdt.
         </div>
       </div>
     </footer>
