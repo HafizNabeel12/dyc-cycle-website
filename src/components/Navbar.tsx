@@ -15,6 +15,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<null | number>(null);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,6 +58,10 @@ const Navbar = () => {
 
   const toggleMoreMenu = () => {
     setIsMoreMenuOpen(!isMoreMenuOpen);
+  };
+
+  const toggleMobileDropdown = () => {
+    setMobileDropdownOpen(!mobileDropdownOpen);
   };
 
   return (
@@ -102,18 +107,54 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Nav Items */}
-          <div className="px-2 py-2 overflow-hidden">
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm mb-2 items-center justify-center">
-              {navItems.map((item, index) => (
+          <div className="px-2 py-3 space-y-1">
+            {/* E-Bikes with expandable dropdown */}
+            <button
+              onClick={toggleMobileDropdown}
+              className="flex items-center justify-between w-full px-4 py-2 text-gray-800 font-medium rounded-md hover:bg-gray-100 transition"
+            >
+              <span>E-Bikes</span>
+              <ChevronDown
+                className={`w-4 h-4 transition-transform duration-200 ${
+                  mobileDropdownOpen ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+
+            {mobileDropdownOpen && (
+              <div className="ml-6 mt-2 space-y-2">
+                {categories.map((cat) => (
+                  <Link
+                    key={cat.slug}
+                    href={`/category/${cat.slug}`}
+                    className="flex items-center justify-between bg-gray-50 p-2 rounded-md hover:bg-gray-100 transition"
+                  >
+                    <div>
+                      <p className="text-gray-800 font-medium">{cat.name}</p>
+                      <p className="text-xs text-gray-600">{cat.tagline}</p>
+                    </div>
+                    <img
+                      src={cat.image}
+                      alt={cat.name}
+                      className="w-12 h-12 object-contain rounded border border-gray-200"
+                    />
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {/* Other nav items */}
+            {navItems
+              .filter((item) => item.name !== 'E-Bikes')
+              .map((item, index) => (
                 <Link
                   key={index}
                   href={item.href}
-                  className="text-gray-700 hover:text-black whitespace-nowrap"
+                  className="block px-4 py-2 text-gray-800 rounded-md hover:bg-gray-100 transition"
                 >
                   {item.name}
                 </Link>
               ))}
-            </div>
           </div>
         </div>
 
@@ -183,7 +224,7 @@ const Navbar = () => {
 
                     {/* Dropdown for Categories */}
                     {item.dropdown && activeDropdown === index && (
-                      <div className="absolute left-0 top-full  w-[550px] bg-white shadow-xl rounded-xl border border-gray-100 p-6 grid grid-cols-2 gap-6 z-50">
+                      <div className="absolute left-0 top-full w-[550px] bg-white shadow-xl rounded-xl border border-gray-100 p-6 grid grid-cols-2 gap-6 z-50">
                         {categories.map((cat) => (
                           <Link
                             key={cat.slug}
