@@ -23,16 +23,24 @@ const LandingPage = () => {
      
 
       {/* Featured Products */}
-      <section className="mx-auto mt-6 max-w-7xl px-4 sm:px-2 mb-16">
+      <section id="products" className="mx-auto mt-6 max-w-7xl px-4 sm:px-2 mb-16">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12">
-          Utvalgte produkter
+          Bestselgere
         </h2>
 
         <ul
           role="list"
-          className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden"
+          className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 overflow-hidden"
         >
-          {PRODUCTS_DATA.map((product) => (
+          {(() => {
+            const dyuProducts = PRODUCTS_DATA.filter(product => 
+              product.category.includes('by-pendler') || product.category.includes('sammenleggbar')
+            ).slice(0, 3);
+            const joboProducts = PRODUCTS_DATA.filter(product => 
+              product.category.includes('terreng') || product.category.includes('lastesykkel') || product.name.includes('JOBOBIKE')
+            ).slice(0, 3);
+            return [...dyuProducts, ...joboProducts];
+          })().map((product) => (
             <li
               key={product.id}
               className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black"
@@ -155,31 +163,31 @@ const LandingPage = () => {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Pendlere som vil spare tid og komme raskere frem.</span>
+                    <span><strong>Pendlere</strong> som vil spare tid og komme raskere frem.</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Deg som ønsker en lettere og mer behagelig sykkeltur</span>
+                    <span><strong>Deg</strong> som ønsker en lettere og mer behagelig sykkeltur</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Familier med barn og bagasje som trenger ekstra kraft.</span>
+                    <span><strong>Familier</strong> med barn og bagasje som trenger ekstra kraft.</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Miljøbevisste som vil gjøre en grønn forskjell i hverdagen.</span>
+                    <span><strong>Miljøbevisste</strong> som vil gjøre en grønn forskjell i hverdagen.</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Sykkelentusiaster som bare elsker friheten på to hjul.</span>
+                    <span><strong>Sykkelentusiaster</strong> som bare elsker friheten på to hjul.</span>
                   </div>
                    <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Eventyrlystne som vil på tur og utforske naturen.</span>
+                    <span><strong>Eventyrlystne</strong> som vil på tur og utforske naturen.</span>
                   </div>
                    <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-black rounded-full"></div>
-                    <span>Byutforskere som vil oppdage nye steder på en enkel og morsom måte.</span>
+                    <span><strong>Byutforskere</strong> som vil oppdage nye steder på en enkel og morsom måte.</span>
                   </div>
                 
                 </div>
@@ -244,8 +252,8 @@ const LandingPage = () => {
                   <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h3 className="text-xl text-gray-800 mb-3">2 års garanti</h3>
-              <p className="text-gray-600">Full garanti på alle våre elektriske sykler</p>
+              <h3 className="text-xl text-gray-800 mb-3">Angrerett</h3>
+              <p className="text-gray-600">14 dager etter levering</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">

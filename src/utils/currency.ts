@@ -3,5 +3,6 @@ export function formatCurrency(amount: number): string {
     style: "currency",
     currency: "NOK",
     maximumFractionDigits: 0,
+    useGrouping: true,
   }).format(amount);
 }

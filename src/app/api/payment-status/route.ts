@@ -1,25 +1,28 @@
-import { NextRequest, NextResponse } from 'next/server';
-import Stripe from 'stripe';
+import { NextResponse } from "next/server";
+import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-08-27.basil",
 });
 
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const payment_intent = searchParams.get('payment_intent');
-
-  if (!payment_intent) {
-    return NextResponse.json({ error: 'Missing payment_intent param' }, { status: 400 });
-  }
-
+export async function GET(req: Request) {
   try {
-    const intent = await stripe.paymentIntents.retrieve(payment_intent, {
-      expand: ['latest_charge'],
+    const { searchParams } = new URL(req.url);
+    const paymentIntentId = searchParams.get('payment_intent');
+
+    if (!paymentIntentId) {
+      return NextResponse.json({ error: 'Payment intent ID required' }, { status: 400 });
+    }
+
+    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId, {
+      expand: ['payment_method']
     });
 
-    return NextResponse.json(intent);
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({
+      payment_method: paymentIntent.payment_method
+    });
+  } catch (err: any) {
+    console.error('Payment status error:', err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }

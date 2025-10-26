@@ -107,7 +107,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
             </p>
           )}
           
-          <h3 className="font-semibold text-lg text-black mb-2 group-hover:text-gray-700 transition-colors line-clamp-2">
+          <h3 className="font-semibold text-lg text-black mb-2 group-hover:text-gray-700 transition-colors line-clamp-2 h-14 flex items-center">
             {product.name}
           </h3>
           

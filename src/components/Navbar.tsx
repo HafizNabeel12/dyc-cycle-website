@@ -65,7 +65,7 @@ export default function Navbar() {
     return () => clearTimeout(id);
   }, [query]);
 
-  // Close search dropdown on outside click
+  // Close search dropdown and mobile dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as Node;
@@ -73,6 +73,12 @@ export default function Navbar() {
       const insideMobile = mobileSearchRef.current?.contains(target);
       if (!insideDesktop && !insideMobile) {
         setShowResults(false);
+      }
+      
+      // Close mobile dropdown if clicking outside
+      const mobileNavElement = document.querySelector('.mobile-nav-container');
+      if (mobileNavElement && !mobileNavElement.contains(target)) {
+        setMobileDropdownOpen(false);
       }
     };
 
@@ -94,30 +100,47 @@ export default function Navbar() {
   };
 
   const navItems = [
-    { name: 'E-Bikes', href: '/', dropdown: true },
-    { name: 'Accessories', href: '/accessorie' },
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Contact Us', href: '/contact' },
+    { name: 'E-Sykler', href: '', dropdown: true, mobileHref: '#products' },
+    { name: 'Sykkelutstyr', href: '/accessorie' },
+    { name: 'Kontakt oss', href: '/contact' },
   ];
 
   const categories = [
     {
-      name: 'DYU Bikes',
-      slug: 'dyu',
-      tagline: 'Smart Compact Mobility',
+      name: 'By og Pendler',
+      slug: 'by-pendler',
+      image: '/images/Stroll1/stroll1-main.png',
+    },
+    {
+      name: 'Terreng',
+      slug: 'terreng',
+      image: '/images/dyno/dyno-1.png',
+    },
+    {
+      name: 'Hybrid',
+      slug: 'hybrid',
+      image: '/images/lyon/lyon-1.png',
+    },
+    {
+      name: 'Sammenleggbar',
+      slug: 'sammenleggbar',
       image: '/images/d3f/d3f-main.png',
     },
     {
-      name: 'JOBO Bikes',
-      slug: 'jobo',
-      tagline: 'Adventure with Power',
-      image: '/images/lyon/lyon-1.png',
+      name: 'Lastesykkel',
+      slug: 'lastesykkel',
+      image: '/images/transer/transer-1.png',
+    },
+    {
+      name: 'Fatbike',
+      slug: 'fatbike',
+      image: '/images/C9/c9-main.png',
     },
   ];
 
   const moreMenuItems = [
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Contact Us', href: '/contact' },
+    { name: 'Vilkår for tjeneste', href: '/terms' },
+    { name: 'Kontakt oss', href: '/contact' },
   ];
 
   const toggleDropdown = (index: number) =>
@@ -153,7 +176,7 @@ export default function Navbar() {
                 id="more-menu-button"
                 onClick={toggleMoreMenu}
                 className="flex-shrink-0 p-1"
-                aria-label="More menu"
+                aria-label="Mer meny"
               >
                 <EllipsisVertical className="w-5 h-5 text-gray-700 hover:text-black transition-colors" />
               </button>
@@ -208,53 +231,45 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile nav (with E-Bikes accordion + other items) */}
-          <div className="px-2 py-3 space-y-1">
-            <button
-              onClick={toggleMobileDropdown}
-              className="flex items-center justify-between w-full px-4 py-2 text-gray-800 font-medium rounded-md hover:bg-gray-100 transition"
-            >
-              <span>E-Bikes</span>
-              <ChevronDown
-                className={`w-4 h-4 transition-transform duration-200 ${
-                  mobileDropdownOpen ? 'rotate-180' : ''
-                }`}
-              />
-            </button>
-
+          {/* Mobile nav (horizontal layout) */}
+          <div className="px-2 py-3 mobile-nav-container relative">
+            <div className="flex gap-1 overflow-x-auto">
+              {navItems.map((item) => (
+                <div key={item.name} className="flex-shrink-0">
+                  {item.dropdown ? (
+                    <button
+                      onClick={toggleMobileDropdown}
+                      className="px-2 py-2 text-xs text-gray-800 rounded-md hover:bg-gray-100 transition whitespace-nowrap flex items-center gap-1"
+                    >
+                      {item.name}
+                      <ChevronDown className={`w-3 h-3 transition-transform ${mobileDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                  ) : (
+                    <a
+                      href={item.mobileHref || item.href}
+                      className="px-2 py-2 text-xs text-gray-800 rounded-md hover:bg-gray-100 transition whitespace-nowrap"
+                    >
+                      {item.name}
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+            {/* Mobile dropdown outside overflow container */}
             {mobileDropdownOpen && (
-              <div className="ml-6 mt-2 space-y-2">
+              <div className="absolute top-full left-2 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-[60]">
                 {categories.map((cat) => (
                   <Link
                     key={cat.slug}
                     href={`/category/${cat.slug}`}
-                    className="flex items-center justify-between bg-gray-50 p-2 rounded-md hover:bg-gray-100 transition"
+                    className="block px-3 py-2 text-xs text-gray-800 hover:bg-gray-100 transition"
+                    onClick={() => setMobileDropdownOpen(false)}
                   >
-                    <div>
-                      <p className="text-gray-800 font-medium">{cat.name}</p>
-                      <p className="text-xs text-gray-600">{cat.tagline}</p>
-                    </div>
-                    <img
-                      src={cat.image}
-                      alt={cat.name}
-                      className="w-12 h-12 object-contain rounded border border-gray-200"
-                    />
+                    {cat.name}
                   </Link>
                 ))}
               </div>
             )}
-
-            {navItems
-              .filter((i) => i.name !== 'E-Bikes')
-              .map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block px-4 py-2 text-gray-800 rounded-md hover:bg-gray-100 transition"
-                >
-                  {item.name}
-                </Link>
-              ))}
           </div>
         </div>
 
@@ -337,32 +352,41 @@ export default function Navbar() {
                   <div
                     key={index}
                     className="relative group"
-                    onMouseEnter={() => toggleDropdown(index)}
+                    onMouseEnter={() => item.dropdown && toggleDropdown(index)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    <button
-                      className={`flex items-center space-x-1 text-gray-700 hover:text-black transition-colors duration-200 ${item.dropdown ? 'cursor-pointer' : ''}`}
+                    <Link
+                      href={item.href}
+                      className="flex items-center space-x-1 text-gray-700 hover:text-black transition-colors duration-200"
                     >
                       <span>{item.name}</span>
                       {item.dropdown && <ChevronDown className="w-4 h-4 text-gray-500" />}
-                    </button>
+                    </Link>
 
-                    {/* Dropdown for E-Bikes on desktop */}
+                    {/* Improved dropdown for E-Bikes on desktop */}
                     {item.dropdown && activeDropdown === index && (
-                      <div className="absolute left-0 top-full w-[550px] bg-white shadow-xl rounded-xl border border-gray-100 p-6 grid grid-cols-2 gap-6 z-50">
-                        {categories.map((cat) => (
-                          <Link
-                            key={cat.slug}
-                            href={`/category/${cat.slug}`}
-                            className="flex items-center justify-between group hover:bg-gray-50 p-3 rounded-lg transition-all"
-                          >
-                            <div>
-                              <h3 className="text-black font-semibold text-base">{cat.name}</h3>
-                              <p className="text-sm text-gray-600">{cat.tagline}</p>
-                            </div>
-                            <img src={cat.image} alt={cat.name} className="w-20 h-20 object-contain rounded-md border border-gray-200" />
-                          </Link>
-                        ))}
+                      <div className="absolute left-0 top-full w-[700px] bg-white shadow-2xl rounded-xl border border-gray-100 p-6 z-50">
+                        <div className="mb-6">
+                          <h3 className="text-xl font-bold text-gray-900 mb-2">Velg din perfekte e-sykkel</h3>
+                          <p className="text-gray-600">Utforsk vårt utvalg av høykvalitets elektriske sykler</p>
+                        </div>
+                        <div className="grid grid-cols-3 gap-4">
+                          {categories.map((cat) => (
+                            <Link
+                              key={cat.slug}
+                              href={`/category/${cat.slug}`}
+                              className="group hover:bg-gray-50 p-4 rounded-xl transition-all border border-gray-100 hover:border-yellow-300 hover:shadow-md"
+                              onClick={() => setActiveDropdown(null)}
+                            >
+                              <div className="flex flex-col items-center text-center">
+                                {/* <img src={cat.image} alt={cat.name} className="w-16 h-16 object-contain rounded-lg border border-gray-200 group-hover:scale-105 transition-transform mb-2" /> */}
+                                <div>
+                                  <h4 className="text-black font-semibold text-sm group-hover:text-yellow-600 transition-colors">{cat.name}</h4>
+                                </div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -378,7 +402,7 @@ export default function Navbar() {
         <div className="fixed inset-0 z-50 flex justify-end bg-black bg-opacity-30">
           <div className="w-80 bg-white h-full shadow-lg transform transition-transform duration-300 ease-in-out">
             <div className="flex justify-between items-center p-4 border-b">
-              <h2 className="text-lg font-semibold text-gray-700">More Options</h2>
+              <h2 className="text-lg font-semibold text-gray-700">Flere alternativer</h2>
               <button onClick={toggleMoreMenu}>
                 <X className="w-5 h-5 text-gray-600 hover:text-black" />
               </button>
@@ -392,7 +416,7 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="absolute bottom-0 w-full p-4 border-t text-center text-sm text-gray-500">Need help? Contact our support team</div>
+            <div className="absolute bottom-0 w-full p-4 border-t text-center text-sm text-gray-500">Trenger du hjelp? Kontakt vårt supportteam</div>
           </div>
         </div>
       )}

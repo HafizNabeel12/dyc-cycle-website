@@ -21,7 +21,7 @@ const TermsOfService: React.FC = () => {
     {
       id: 'parter',
       title: '1. Parter',
-      content: `Disse vilkårene gjelder mellom Sykkellageret AS (org.nr [sett inn org.nr]) og kunden («du/deg»). Ved å handle på sykkellageret.no aksepterer du disse vilkårene.`
+      content: `Disse vilkårene gjelder mellom JALUT AI INNOSCRIBE (org.nr 932806517) og kunden («du/deg»). Ved å handle på sykkellageret.no aksepterer du disse vilkårene.`
     },
     {
       id: 'bestilling',
@@ -30,7 +30,7 @@ const TermsOfService: React.FC = () => {
 
 Du vil også motta en digital bruksanvisning for produktet på e-post.
 
-Avtalen er bindende når du har mottatt ordrebekreftelsen.
+Bestillingen er bindende når du har mottatt ordrebekreftelsen.
 `
     },
     {
@@ -38,7 +38,7 @@ Avtalen er bindende når du har mottatt ordrebekreftelsen.
       title: '3. Betaling',
       content: `Vi tilbyr betaling med Vipps, Visa, Mastercard og Klarna.
 
-Beløpet trekkes når varen sendes fra vårt lager.`
+Beløpet trekkes når du fullfører bestillingen.`
     },
     {
       id: 'levering',

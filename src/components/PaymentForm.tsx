@@ -55,7 +55,7 @@ export default function PaymentForm() {
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?payment_intent={payment_intent}`,
+                return_url: `${window.location.origin}/success?payment_intent={payment_intent}`,
                 receipt_email: email,
                 shipping: {
                     name: shippingInfo.fullName,
@@ -77,9 +77,9 @@ export default function PaymentForm() {
 
         if (error) {
             if (error.type === "card_error" || error.type === "validation_error") {
-                setMessage(error.message || "An error occurred");
+                setMessage(error.message || "En feil oppstod");
             } else {
-                setMessage("An unexpected error occurred.");
+                setMessage("En uventet feil oppstod.");
             }
         } else {
             // ✅ Clear the cart after successful payment
@@ -93,7 +93,7 @@ export default function PaymentForm() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-20">
             {/* Left Column - Order Summary */}
             <div className="bg-white p-6 rounded-lg border border-gray-200">
-                <h2 className="text-lg font-medium mb-6 text-black">Order Summary</h2>
+                <h2 className="text-lg font-medium mb-6 text-black">Bestillingsoversikt</h2>
 
                 {/* 🛒 Dynamic Cart Items */}
                 <div className="space-y-4 mb-6">
@@ -101,7 +101,7 @@ export default function PaymentForm() {
                         <div key={item.id} className="flex items-center gap-3">
                             <div className="w-12 h-12 bg-blue-100 rounded flex items-center justify-center">
                                 {item.image ? (
-                                    <img src={item.image} alt={item.name} className="w-10 h-10 object-cover rounded" />
+                                    <img src={item.image} alt={item.name} className="w-10 h-10 object-contain rounded" />
                                 ) : (
                                     <span className="text-blue-600 text-sm">📦</span>
                                 )}
@@ -124,15 +124,15 @@ export default function PaymentForm() {
                         <span>{formatCurrency(convertPrice(subtotal))}</span>
                     </div>
                     <div className="flex justify-between text-sm text-green-600">
-                        <span> SAVED</span>
+                        <span>SPART</span>
                         <span>{formatCurrency(convertPrice(saved))}</span>
                     </div>
                     <div className="flex justify-between text-sm text-black">
-                        <span>Tax ID</span>
-                        <span className="text-black">Does not show for calculation</span>
+                        <span>MVA</span>
+                        <span className="text-black">Vises ikke i beregning</span>
                     </div>
                     <div className="flex justify-between font-medium text-lg border-t pt-3 text-black">
-                        <span>Total due</span>
+                        <span>Totalt å betale</span>
                         <span>{formatCurrency(convertPrice(total))}</span>
                     </div>
                 </div>
@@ -146,10 +146,10 @@ export default function PaymentForm() {
 
                     {/* Shipping Information */}
                     <div className="mb-6">
-                        <h3 className="font-medium mb-4 text-black">Shipping information</h3>
+                        <h3 className="font-medium mb-4 text-black">Leveringsinformasjon</h3>
 
                         <div className="mb-4">
-                            <label className="block text-sm text-gray-600 mb-1">Email</label>
+                            <label className="block text-sm text-gray-600 mb-1">E-post</label>
                             <input
                                 type="email"
                                 value={email}
@@ -164,7 +164,7 @@ export default function PaymentForm() {
 
                         {/* Full Name */}
                         <div className="mb-4">
-                            <label className="block text-sm text-gray-600 mb-1">Full Name</label>
+                            <label className="block text-sm text-gray-600 mb-1">Fullt navn</label>
                             <input
                                 type="text"
                                 value={shippingInfo.fullName}
@@ -172,14 +172,14 @@ export default function PaymentForm() {
                                     setShippingInfo({ ...shippingInfo, fullName: e.target.value })
                                 }
                                 className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
-                                placeholder="John Doe"
+                                placeholder="Ola Nordmann"
                                 required
                             />
                         </div>
 
                         {/* Phone Number */}
                         <div className="mb-4">
-                            <label className="block text-sm text-gray-600 mb-1">Phone</label>
+                            <label className="block text-sm text-gray-600 mb-1">Telefon</label>
                             <input
                                 type="tel"
                                 value={shippingInfo.phone || ""}
@@ -187,14 +187,14 @@ export default function PaymentForm() {
                                     setShippingInfo({ ...shippingInfo, phone: e.target.value })
                                 }
                                 className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
-                                placeholder="+1 555-555-5555"
+                                placeholder="+47 123 45 678"
                                 required
                             />
                         </div>
 
                         {/* Country */}
                         <div className="mb-4">
-                            <label className="block text-sm text-gray-600 mb-1">Country</label>
+                            <label className="block text-sm text-gray-600 mb-1">Land</label>
                             <select
                                 value={shippingInfo.country}
                                 onChange={(e) =>
@@ -202,18 +202,18 @@ export default function PaymentForm() {
                                 }
                                 className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
                             >
-                                <option>United States</option>
-                                <option>Pakistan</option>
-                                <option>Canada</option>
-                                <option>United Kingdom</option>
-                                <option>India</option>
-                                <option>Australia</option>
+                                <option>Norge</option>
+                                <option>Sverige</option>
+                                <option>Danmark</option>
+                                <option>Finland</option>
+                                <option>Tyskland</option>
+                                <option>Nederland</option>
                             </select>
                         </div>
 
                         {/* Address Line 1 */}
                         <div className="mb-4">
-                            <label className="block text-sm text-gray-600 mb-1">Address Line 1</label>
+                            <label className="block text-sm text-gray-600 mb-1">Adresselinje 1</label>
                             <input
                                 type="text"
                                 value={shippingInfo.addressLine1}
@@ -221,14 +221,14 @@ export default function PaymentForm() {
                                     setShippingInfo({ ...shippingInfo, addressLine1: e.target.value })
                                 }
                                 className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
-                                placeholder="123 Main St"
+                                placeholder="Storgata 1"
                                 required
                             />
                         </div>
 
                         {/* Address Line 2 */}
                         <div className="mb-4">
-                            <label className="block text-sm text-gray-600 mb-1">Address Line 2</label>
+                            <label className="block text-sm text-gray-600 mb-1">Adresselinje 2</label>
                             <input
                                 type="text"
                                 value={shippingInfo.addressLine2}
@@ -236,7 +236,7 @@ export default function PaymentForm() {
                                     setShippingInfo({ ...shippingInfo, addressLine2: e.target.value })
                                 }
                                 className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
-                                placeholder="Apartment, Suite, etc. (optional)"
+                                placeholder="Leilighet, suite, etc. (valgfritt)"
                             />
                         </div>
 
@@ -249,7 +249,7 @@ export default function PaymentForm() {
                                     setShippingInfo({ ...shippingInfo, city: e.target.value })
                                 }
                                 className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
-                                placeholder="City"
+                                placeholder="By"
                                 required
                             />
                             <input
@@ -259,7 +259,7 @@ export default function PaymentForm() {
                                     setShippingInfo({ ...shippingInfo, state: e.target.value })
                                 }
                                 className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
-                                placeholder="State / Province"
+                                placeholder="Fylke / Region"
                                 required
                             />
                             <input
@@ -269,7 +269,7 @@ export default function PaymentForm() {
                                     setShippingInfo({ ...shippingInfo, postal_code: e.target.value })
                                 }
                                 className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
-                                placeholder="ZIP / Postal Code"
+                                placeholder="Postnummer"
                                 required
                             />
                         </div>
@@ -284,8 +284,8 @@ export default function PaymentForm() {
 
                     {/* Payment Method */}
                     <div className="mb-6">
-                        <h3 className="font-medium mb-4 text-black">Payment method</h3>
-                        <p className="text-sm text-gray-600 mb-4">Card information</p>
+                        <h3 className="font-medium mb-4 text-black">Betalingsmåte</h3>
+                        <p className="text-sm text-gray-600 mb-4">Kortinformasjon</p>
 
                         <div className="border border-gray-300 rounded p-4 mb-4">
                             <PaymentElement
@@ -311,7 +311,7 @@ export default function PaymentForm() {
                         disabled={isLoading || !stripe || !elements}
                         className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-4 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {isLoading ? 'Processing...' : 'Pay'}
+                        {isLoading ? 'Behandler...' : 'Betal'}
                     </button>
                 </form>
             </div>

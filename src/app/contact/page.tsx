@@ -238,8 +238,8 @@ const ContactUs: React.FC = () => {
                   <div>
                     <h4 className="font-medium text-gray-900">Adresse</h4>
                     <p className="text-gray-600 mt-1">
-                     
-                       Oslo Norge
+                      Niels Juels Gate 70<br/>
+                      Oslo, Norge
                     </p>
                   </div>
                 </div>
@@ -251,8 +251,8 @@ const ContactUs: React.FC = () => {
                   <div>
                     <h4 className="font-medium text-gray-900">Telefon</h4>
                     <p className="text-gray-600 mt-1">
-                      <a href="tel:+4722334455" className="hover:text-yellow-500 transition-colors">
-                        +47 405 56 333
+                      <a href="tel:+4740556333" className="hover:text-yellow-500 transition-colors">
+                        +47 40 55 63 33
                       </a>
                     </p>
                   </div>

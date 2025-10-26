@@ -145,8 +145,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "1",
     name: "DYU D3F 14 Inch Mini Folding Electric Bike",
     slug: "dyu-d3f-mini-folding-electric-bike",
-    originalPrice: 899,
-    price: 449,
+    originalPrice: 5700,
+    price: 5700,
     discount: "50% OFF",
     image: "/images/d3f/d3f-main.png",
     images: [
@@ -162,7 +162,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: [ "Quick fold", "Lightweight" , "Ultra-compact 14\" design",],
     badge: "COMPACT KING",
-    category: ["dyu"],
+    category: ["sammenleggbar", "by-pendler"],
     rating: 5,
     reviewCount: 178,
     specifications: {
@@ -301,8 +301,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "2",
     name: "DYU T1 20 Inch Foldable Electric Bike",
     slug: "dyu-t1-torque-sensor-electric-bike",
-    originalPrice: 1299,
-    price: 649,
+    originalPrice: 7999,
+    price: 7999,
     discount: "50% OFF",
     image: "/images/T1/t1-main.png",
     images: [
@@ -317,7 +317,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["Torque sensor", "Removable battery", "Shimano gears"],
     badge: "SMART CHOICE",
-    category: ["dyu"],
+    category: ["sammenleggbar", "by-pendler"],
     rating: 4.7,
     reviewCount: 156,
     specifications: {
@@ -460,8 +460,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "3",
     name: "DYU C1 26 Inch City Electric Bike",
     slug: "dyu-c1-26-inch-city-electric-bike",
-    originalPrice: 1099,
-    price: 599,
+    originalPrice: 9999,
+    price: 9999,
     discount: "45% OFF",
     image: "/images/C1/c1-main.png",
     images: [
@@ -476,7 +476,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["Comfort geometry", "Front suspension" , "26\" wheels" ],
     badge: "CITY CRUISER",
-    category: ["dyu"],
+    category: ["by-pendler", "hybrid"],
     rating: 4.6,
     reviewCount: 134,
     specifications: {
@@ -616,8 +616,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "4",
     name: "DYU C6 26 Inch City Electric Bike",
     slug: "dyu-c6-26-inch-city-electric-bike",
-    originalPrice: 1199,
-    price: 699,
+    originalPrice: 7999,
+    price: 7999,
     discount: "42% OFF",
     image: "/images/C6/c6-main.png",
     images: [
@@ -632,7 +632,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["12.5Ah battery" , "Dual suspension option (model)" , "LED display" ],
     badge: "STUDENT FAVORITE",
-    category: ["dyu"],
+    category: ["by-pendler", "hybrid"],
     rating: 4.8,
     reviewCount: 203,
     specifications: {
@@ -772,8 +772,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "5",
     name: "DYU C9 20 Inch Long-Range Ebike",
     slug: "dyu-c9-20-inch-long-range-ebike",
-    originalPrice: 1699,
-    price: 899,
+    originalPrice: 12999,
+    price: 12999,
     discount: "47% OFF",
     image: "/images/C9/c9-main.png",
     images: [
@@ -788,7 +788,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["Fat tires 20x3.0", "Exceptional range", "All-terrain capability"],
     badge: "LONG RANGE",
-    category: ["dyu"],
+    category: ["fatbike", "sammenleggbar"],
     rating: 4.9,
     reviewCount: 89,
     specifications: {
@@ -929,8 +929,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "6",
     name: "DYU Stroll 1 700C City Electric Bike",
     slug: "dyu-stroll-1-700c-city-electric-bike",
-    originalPrice: 1299,
-    price: 799,
+    originalPrice: 9999,
+    price: 9999,
     discount: "38% OFF",
     image: "/images/Stroll1/stroll1-main.png",
     images: [
@@ -945,7 +945,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["700C wheels", "Aluminum frame", "Hydraulic brakes"],
     badge: "PREMIUM STYLE",
-    category: ["dyu"],
+    category: ["by-pendler", "hybrid"],
     rating: 4.7,
     reviewCount: 127,
     specifications: {
@@ -1085,8 +1085,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "7",
     name: "JOBOBIKE Lyon Pro",
     slug: "jobobike-lyon-pro",
-    originalPrice: 1899,
-    price: 1599,
+    originalPrice: 18999,
+    price: 18999,
     discount: "16%",
     image: "/images/lyon/lyon-1.png",
     images: [
@@ -1102,7 +1102,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Bluetooth App Connectivity"
     ],
     badge: "Best Seller",
-    category: ["jobo"],
+    category: ["by-pendler", "hybrid"],
     rating: 4.7,
     reviewCount: 142,
     specifications: {
@@ -1247,8 +1247,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "8",
     name: "JOBOBIKE Dyno GT",
     slug: "jobobike-dyno-gt",
-    originalPrice: 1699,
-    price: 1449,
+    originalPrice: 16999,
+    price: 16999,
     discount: "15%",
     image: "/images/dyno/dyno-1.png",
     images: [
@@ -1263,7 +1263,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Torque Sensor",
       "Smart LCD Display"
     ],
-    category: ["jobo"],
+    category: ["terreng", "hybrid"],
     rating: 4.5,
     reviewCount: 89,
     specifications: {
@@ -1403,178 +1403,178 @@ export const PRODUCTS_DATA: ProductCard[] = [
   },
 
   // 3. Jobobike Sam
-  // {
-  //   id: "9",
-  //   name: "JOBOBIKE Sam",
-  //   slug: "jobobike-sam",
-  //   originalPrice: 1299,
-  //   price: 1099,
-  //   discount: "15%",
-  //   image: "/images/sam/sam-1.png",
-  //   images: [
-  //     "/images/sam/sam-1.png",
-  //     "/images/sam/sam-2.png",
-  //     "/images/sam/sam-3.png",
-  //     "/images/sam/sam-4.png",
-  //     "/images/sam/sam-5.png",
-  //     "/images/sam/sam-6.png",
-  //     "/images/sam/sam-7.png",
-  //     "/images/sam/sam-8.png",
+  {
+    id: "9",
+    name: "JOBOBIKE Sam",
+    slug: "jobobike-sam",
+    originalPrice: 1299,
+    price: 1099,
+    discount: "15%",
+    image: "/images/sam/sam-1.png",
+    images: [
+      "/images/sam/sam-1.png",
+      "/images/sam/sam-2.png",
+      "/images/sam/sam-3.png",
+      "/images/sam/sam-4.png",
+      "/images/sam/sam-5.png",
+      "/images/sam/sam-6.png",
+      "/images/sam/sam-7.png",
+      "/images/sam/sam-8.png",
      
-  //   ],
-  //   features: [
-  //     "350W Rear Hub Motor",
-  //     "36V 12.8Ah Battery",
-  //     "20\" Fat Tires",
-  //     "Foldable Design",
-  //     "5 Assist Levels"
-  //   ],
-  //   category: ["jobo"],
-  //   rating: 4.3,
-  //   reviewCount: 67,
-  //   specifications: {
-  //     motor: "350W Rear Hub",
-  //     battery: "36V 12.8Ah (461Wh)",
-  //     range: "60-80 km",
-  //     speed: "25 km/h",
-  //     weight: "22 kg",
-  //     wheelSize: "20\"",
-  //     foldable: true,
-  //     brakes: "Disc Brakes",
-  //     frame: "Aluminum Alloy",
-  //     drivetrain: "7-Speed"
-  //   },
-  //   technicalSpecifications: {
-  //     general: {
-  //       model: "Sam",
-  //       frameType: "Foldable",
-  //       frameMaterial: "6061 Aluminum Alloy",
-  //       foldable: true,
-  //       dimensions: {
-  //         unfolded: "160 x 58 x 100 cm",
-  //         folded: "80 x 58 x 70 cm"
-  //       },
-  //       weight: "22 kg",
-  //       maxLoad: "100 kg",
-  //       recommendedHeight: "155-185 cm"
-  //     },
-  //     motor: {
-  //       type: "Rear Hub",
-  //       power: "350W",
-  //       peakPower: "500W",
-  //       torque: "40 N.m",
-  //       location: "Rear Wheel",
-  //       torqueSensor: false
-  //     },
-  //     battery: {
-  //       type: "Lithium-ion",
-  //       voltage: "36V",
-  //       capacity: "12.8Ah",
-  //       capacityWh: "461Wh",
-  //       removable: true,
-  //       chargingTime: "4-5 hours",
-  //       batteryLife: "600+ cycles"
-  //     },
-  //     performance: {
-  //       maxSpeed: "25 km/h",
-  //       range: {
-  //         pureElectric: "45 km",
-  //         pedalAssist: "60-80 km",
-  //         combined: "50-70 km"
-  //       },
-  //       gradability: "15°"
-  //     },
-  //     wheels: {
-  //       size: "20\"",
-  //       tireType: "Fat Tire",
-  //       tireSize: "20 x 4.0\"",
-  //       rimMaterial: "Aluminum Alloy"
-  //     },
-  //     brakes: {
-  //       front: "Mechanical Disc",
-  //       rear: "Mechanical Disc",
-  //       type: "160mm Rotors"
-  //     },
-  //     transmission: {
-  //       type: "Derailleur",
-  //       gears: "7-Speed",
-  //       shifter: "Shimano"
-  //     },
-  //     electrical: {
-  //       display: "LCD Display",
-  //       lights: {
-  //         front: true,
-  //         rear: true,
-  //         type: "LED"
-  //       },
-  //       horn: false,
-  //       throttle: true,
-  //       assistLevels: "5 levels"
-  //     },
-  //     comfort: {
-  //       suspension: {
-  //         front: true,
-  //         rear: false,
-  //         type: "Spring Fork"
-  //       },
-  //       seat: {
-  //         type: "Comfort Saddle",
-  //         adjustable: true,
-  //         material: "PU Leather"
-  //       },
-  //       handlebar: {
-  //         type: "Foldable",
-  //         adjustable: true,
-  //         material: "Steel"
-  //       }
-  //     },
-  //     safety: {
-  //       reflectors: true,
-  //       bell: true,
-  //       waterResistance: "IPX4",
-  //       certification: ["EN15194", "CE"]
-  //     },
-  //     connectivity: {
-  //       app: false,
-  //       gps: false,
-  //       bluetooth: false,
-  //       usb: true
-  //     },
-  //     accessories: {
-  //       kickstand: true,
-  //       mudguards: true,
-  //       rack: false,
-  //       basket: false,
-  //       bottleHolder: false
-  //     }
-  //   },
-  //   description: "The JOBOBIKE Sam is a versatile folding e-bike perfect for urban commuters who need portability without sacrificing performance. Its compact design makes storage and transport effortless.",
-  //   keyFeatures: [
-  //     "Quick-fold mechanism for easy storage",
-  //     "Fat tires for enhanced stability and comfort",
-  //     "Powerful 350W motor for city riding",
-  //     "Removable battery for convenient charging",
-  //     "Compact size perfect for apartments and offices"
-  //   ],
-  //   availableColors: ["Matte Black", "White", "Red"],
-  //   availableSizes: ["One Size"],
-  //   whatsInTheBox: [
-  //     "JOBOBIKE Sam E-bike",
-  //     "36V 12.8Ah Battery",
-  //     "Battery Charger",
-  //     "User Manual",
-  //     "Folding Guide",
-  //     "Keys (2x)"
-  //   ]
-  // },
+    ],
+    features: [
+      "350W Rear Hub Motor",
+      "36V 12.8Ah Battery",
+      "20\" Fat Tires",
+      "Foldable Design",
+      "5 Assist Levels"
+    ],
+    category: ["jobo"],
+    rating: 4.3,
+    reviewCount: 67,
+    specifications: {
+      motor: "350W Rear Hub",
+      battery: "36V 12.8Ah (461Wh)",
+      range: "60-80 km",
+      speed: "25 km/h",
+      weight: "22 kg",
+      wheelSize: "20\"",
+      foldable: true,
+      brakes: "Disc Brakes",
+      frame: "Aluminum Alloy",
+      drivetrain: "7-Speed"
+    },
+    technicalSpecifications: {
+      general: {
+        model: "Sam",
+        frameType: "Foldable",
+        frameMaterial: "6061 Aluminum Alloy",
+        foldable: true,
+        dimensions: {
+          unfolded: "160 x 58 x 100 cm",
+          folded: "80 x 58 x 70 cm"
+        },
+        weight: "22 kg",
+        maxLoad: "100 kg",
+        recommendedHeight: "155-185 cm"
+      },
+      motor: {
+        type: "Rear Hub",
+        power: "350W",
+        peakPower: "500W",
+        torque: "40 N.m",
+        location: "Rear Wheel",
+        torqueSensor: false
+      },
+      battery: {
+        type: "Lithium-ion",
+        voltage: "36V",
+        capacity: "12.8Ah",
+        capacityWh: "461Wh",
+        removable: true,
+        chargingTime: "4-5 hours",
+        batteryLife: "600+ cycles"
+      },
+      performance: {
+        maxSpeed: "25 km/h",
+        range: {
+          pureElectric: "45 km",
+          pedalAssist: "60-80 km",
+          combined: "50-70 km"
+        },
+        gradability: "15°"
+      },
+      wheels: {
+        size: "20\"",
+        tireType: "Fat Tire",
+        tireSize: "20 x 4.0\"",
+        rimMaterial: "Aluminum Alloy"
+      },
+      brakes: {
+        front: "Mechanical Disc",
+        rear: "Mechanical Disc",
+        type: "160mm Rotors"
+      },
+      transmission: {
+        type: "Derailleur",
+        gears: "7-Speed",
+        shifter: "Shimano"
+      },
+      electrical: {
+        display: "LCD Display",
+        lights: {
+          front: true,
+          rear: true,
+          type: "LED"
+        },
+        horn: false,
+        throttle: true,
+        assistLevels: "5 levels"
+      },
+      comfort: {
+        suspension: {
+          front: true,
+          rear: false,
+          type: "Spring Fork"
+        },
+        seat: {
+          type: "Comfort Saddle",
+          adjustable: true,
+          material: "PU Leather"
+        },
+        handlebar: {
+          type: "Foldable",
+          adjustable: true,
+          material: "Steel"
+        }
+      },
+      safety: {
+        reflectors: true,
+        bell: true,
+        waterResistance: "IPX4",
+        certification: ["EN15194", "CE"]
+      },
+      connectivity: {
+        app: false,
+        gps: false,
+        bluetooth: false,
+        usb: true
+      },
+      accessories: {
+        kickstand: true,
+        mudguards: true,
+        rack: false,
+        basket: false,
+        bottleHolder: false
+      }
+    },
+    description: "The JOBOBIKE Sam is a versatile folding e-bike perfect for urban commuters who need portability without sacrificing performance. Its compact design makes storage and transport effortless.",
+    keyFeatures: [
+      "Quick-fold mechanism for easy storage",
+      "Fat tires for enhanced stability and comfort",
+      "Powerful 350W motor for city riding",
+      "Removable battery for convenient charging",
+      "Compact size perfect for apartments and offices"
+    ],
+    availableColors: ["Matte Black", "White", "Red"],
+    availableSizes: ["One Size"],
+    whatsInTheBox: [
+      "JOBOBIKE Sam E-bike",
+      "36V 12.8Ah Battery",
+      "Battery Charger",
+      "User Manual",
+      "Folding Guide",
+      "Keys (2x)"
+    ]
+  },
 
   // 4. Jobobike Transer
   {
     id: "10",
     name: "JOBOBIKE Transer",
     slug: "jobobike-transer",
-    originalPrice: 2199,
-    price: 1899,
+    originalPrice: 26999,
+    price: 26999,
     discount: "14%",
     image: "/images/transer/transer-1.png",
     images: [
@@ -1590,7 +1590,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Extra Long Frame"
     ],
     badge: "Family Choice",
-    category: ["jobo"],
+    category: ["lastesykkel", "hybrid"],
     rating: 4.8,
     reviewCount: 123,
     specifications: {
@@ -1735,8 +1735,8 @@ export const PRODUCTS_DATA: ProductCard[] = [
     id: "11",
     name: "JOBOBIKE Mover",
     slug: "jobobike-mover",
-    originalPrice: 1399,
-    price: 1199,
+    originalPrice: 19999,
+    price: 19999,
     discount: "14%",
     image: "/images/mover/mover-1.png",
     images: [
@@ -1751,7 +1751,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Comfortable Riding Position",
       "Integrated Lights"
     ],
-    category: ["jobo"],
+    category: ["by-pendler", "hybrid"],
     rating: 4.4,
     reviewCount: 78,
     specifications: {
@@ -1891,173 +1891,173 @@ export const PRODUCTS_DATA: ProductCard[] = [
   },
 
   // 6. Jobobike Robin
-  // {
-  //   id: "12",
-  //   name: "JOBOBIKE Robin",
-  //   slug: "jobobike-robin",
-  //   originalPrice: 1799,
-  //   price: 1499,
-  //   discount: "17%",
-  //   image: "/images/robin/robin-1.png",
-  //   images: [
-  //     "/images/robin/robin-1.png",
-  //     "/images/robin/robin-2.png",
-  //     "/images/robin/robin-3.png",
-  //   ],
-  //   features: [
-  //     "500W Rear Hub Motor",
-  //     "48V 15Ah Battery",
-  //     "26\" Fat Tires",
-  //     "All-Terrain Capability",
-  //     "Front Suspension"
-  //   ],
-  //   badge: "Adventure Ready",
-  //   category: ["jobo"],
-  //   rating: 4.6,
-  //   reviewCount: 156,
-  //   specifications: {
-  //     motor: "500W Rear Hub",
-  //     battery: "48V 15Ah (720Wh)",
-  //     range: "70-90 km",
-  //     speed: "25 km/h",
-  //     weight: "28 kg",
-  //     wheelSize: "26\"",
-  //     foldable: false,
-  //     brakes: "Hydraulic Disc",
-  //     frame: "Aluminum Fat",
-  //     drivetrain: "7-Speed"
-  //   },
-  //   technicalSpecifications: {
-  //     general: {
-  //       model: "Robin",
-  //       frameType: "Fat Bike",
-  //       frameMaterial: "6061 Aluminum Alloy",
-  //       foldable: false,
-  //       dimensions: {
-  //         unfolded: "185 x 70 x 110 cm",
-  //         folded: "N/A"
-  //       },
-  //       weight: "28 kg",
-  //       maxLoad: "130 kg",
-  //       recommendedHeight: "165-200 cm"
-  //     },
-  //     motor: {
-  //       type: "Rear Hub",
-  //       power: "500W",
-  //       peakPower: "750W",
-  //       torque: "60 N.m",
-  //       location: "Rear Wheel",
-  //       torqueSensor: false
-  //     },
-  //     battery: {
-  //       type: "Lithium-ion",
-  //       voltage: "48V",
-  //       capacity: "15Ah",
-  //       capacityWh: "720Wh",
-  //       removable: true,
-  //       chargingTime: "4-6 hours",
-  //       batteryLife: "800+ cycles"
-  //     },
-  //     performance: {
-  //       maxSpeed: "25 km/h",
-  //       range: {
-  //         pureElectric: "55 km",
-  //         pedalAssist: "70-90 km",
-  //         combined: "60-80 km"
-  //       },
-  //       gradability: "25°"
-  //     },
-  //     wheels: {
-  //       size: "26\"",
-  //       tireType: "Fat Tire",
-  //       tireSize: "26 x 4.0\"",
-  //       rimMaterial: "Double Wall Aluminum"
-  //     },
-  //     brakes: {
-  //       front: "Hydraulic Disc",
-  //       rear: "Hydraulic Disc",
-  //       type: "180mm Rotors"
-  //     },
-  //     transmission: {
-  //       type: "Derailleur",
-  //       gears: "7-Speed",
-  //       shifter: "Shimano"
-  //     },
-  //     electrical: {
-  //       display: "LCD Color Display",
-  //       lights: {
-  //         front: true,
-  //         rear: true,
-  //         type: "High-Power LED"
-  //       },
-  //       horn: true,
-  //       throttle: true,
-  //       assistLevels: "5 levels"
-  //     },
-  //     comfort: {
-  //       suspension: {
-  //         front: true,
-  //         rear: false,
-  //         type: "Fat Fork Suspension"
-  //       },
-  //       seat: {
-  //         type: "Wide Comfort Saddle",
-  //         adjustable: true,
-  //         material: "Memory Foam"
-  //       },
-  //       handlebar: {
-  //         type: "Wide Fat Bar",
-  //         adjustable: false,
-  //         material: "Aluminum"
-  //       }
-  //     },
-  //     safety: {
-  //       reflectors: true,
-  //       bell: true,
-  //       waterResistance: "IPX5",
-  //       certification: ["EN15194", "CE"]
-  //     },
-  //     connectivity: {
-  //       app: false,
-  //       gps: false,
-  //       bluetooth: false,
-  //       usb: true
-  //     },
-  //     accessories: {
-  //       kickstand: true,
-  //       mudguards: false,
-  //       rack: false,
-  //       basket: false,
-  //       bottleHolder: true
-  //     }
-  //   },
-  //   description: "The JOBOBIKE Robin is built for adventure with its powerful motor and fat tires. Whether you're exploring trails or conquering city streets, this all-terrain e-bike delivers exceptional performance and comfort.",
-  //   keyFeatures: [
-  //     "Powerful 500W motor for challenging terrain",
-  //     "Fat tires provide superior traction and comfort",
-  //     "Front suspension smooths out rough rides",
-  //     "High-capacity battery for long adventures",
-  //     "Robust construction for reliable performance"
-  //   ],
-  //   availableColors: ["Stealth Black", "Army Green", "Sand Beige"],
-  //   availableSizes: ["One Size"],
-  //   whatsInTheBox: [
-  //     "JOBOBIKE Robin E-bike",
-  //     "48V 15Ah Battery",
-  //     "Battery Charger",
-  //     "User Manual",
-  //     "Assembly Tools",
-  //     "Keys (2x)"
-  //   ]
-  // },
+  {
+    id: "12",
+    name: "JOBOBIKE Robin",
+    slug: "jobobike-robin",
+    originalPrice: 1799,
+    price: 1499,
+    discount: "17%",
+    image: "/images/robin/robin-1.png",
+    images: [
+      "/images/robin/robin-1.png",
+      "/images/robin/robin-2.png",
+      "/images/robin/robin-3.png",
+    ],
+    features: [
+      "500W Rear Hub Motor",
+      "48V 15Ah Battery",
+      "26\" Fat Tires",
+      "All-Terrain Capability",
+      "Front Suspension"
+    ],
+    badge: "Adventure Ready",
+    category: ["jobo"],
+    rating: 4.6,
+    reviewCount: 156,
+    specifications: {
+      motor: "500W Rear Hub",
+      battery: "48V 15Ah (720Wh)",
+      range: "70-90 km",
+      speed: "25 km/h",
+      weight: "28 kg",
+      wheelSize: "26\"",
+      foldable: false,
+      brakes: "Hydraulic Disc",
+      frame: "Aluminum Fat",
+      drivetrain: "7-Speed"
+    },
+    technicalSpecifications: {
+      general: {
+        model: "Robin",
+        frameType: "Fat Bike",
+        frameMaterial: "6061 Aluminum Alloy",
+        foldable: false,
+        dimensions: {
+          unfolded: "185 x 70 x 110 cm",
+          folded: "N/A"
+        },
+        weight: "28 kg",
+        maxLoad: "130 kg",
+        recommendedHeight: "165-200 cm"
+      },
+      motor: {
+        type: "Rear Hub",
+        power: "500W",
+        peakPower: "750W",
+        torque: "60 N.m",
+        location: "Rear Wheel",
+        torqueSensor: false
+      },
+      battery: {
+        type: "Lithium-ion",
+        voltage: "48V",
+        capacity: "15Ah",
+        capacityWh: "720Wh",
+        removable: true,
+        chargingTime: "4-6 hours",
+        batteryLife: "800+ cycles"
+      },
+      performance: {
+        maxSpeed: "25 km/h",
+        range: {
+          pureElectric: "55 km",
+          pedalAssist: "70-90 km",
+          combined: "60-80 km"
+        },
+        gradability: "25°"
+      },
+      wheels: {
+        size: "26\"",
+        tireType: "Fat Tire",
+        tireSize: "26 x 4.0\"",
+        rimMaterial: "Double Wall Aluminum"
+      },
+      brakes: {
+        front: "Hydraulic Disc",
+        rear: "Hydraulic Disc",
+        type: "180mm Rotors"
+      },
+      transmission: {
+        type: "Derailleur",
+        gears: "7-Speed",
+        shifter: "Shimano"
+      },
+      electrical: {
+        display: "LCD Color Display",
+        lights: {
+          front: true,
+          rear: true,
+          type: "High-Power LED"
+        },
+        horn: true,
+        throttle: true,
+        assistLevels: "5 levels"
+      },
+      comfort: {
+        suspension: {
+          front: true,
+          rear: false,
+          type: "Fat Fork Suspension"
+        },
+        seat: {
+          type: "Wide Comfort Saddle",
+          adjustable: true,
+          material: "Memory Foam"
+        },
+        handlebar: {
+          type: "Wide Fat Bar",
+          adjustable: false,
+          material: "Aluminum"
+        }
+      },
+      safety: {
+        reflectors: true,
+        bell: true,
+        waterResistance: "IPX5",
+        certification: ["EN15194", "CE"]
+      },
+      connectivity: {
+        app: false,
+        gps: false,
+        bluetooth: false,
+        usb: true
+      },
+      accessories: {
+        kickstand: true,
+        mudguards: false,
+        rack: false,
+        basket: false,
+        bottleHolder: true
+      }
+    },
+    description: "The JOBOBIKE Robin is built for adventure with its powerful motor and fat tires. Whether you're exploring trails or conquering city streets, this all-terrain e-bike delivers exceptional performance and comfort.",
+    keyFeatures: [
+      "Powerful 500W motor for challenging terrain",
+      "Fat tires provide superior traction and comfort",
+      "Front suspension smooths out rough rides",
+      "High-capacity battery for long adventures",
+      "Robust construction for reliable performance"
+    ],
+    availableColors: ["Stealth Black", "Army Green", "Sand Beige"],
+    availableSizes: ["One Size"],
+    whatsInTheBox: [
+      "JOBOBIKE Robin E-bike",
+      "48V 15Ah Battery",
+      "Battery Charger",
+      "User Manual",
+      "Assembly Tools",
+      "Keys (2x)"
+    ]
+  },
 
   // 7. Jobobike Eddy X
   {
     id: "13",
     name: "JOBOBIKE Eddy X",
     slug: "jobobike-eddy-x",
-    originalPrice: 1599,
-    price: 1349,
+    originalPrice: 12999,
+    price: 12999,
     discount: "16%",
     image: "/images/eddy-x/eddy-1.png",
     images: [
@@ -2071,7 +2071,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Integrated Design",
       "Urban Optimized"
     ],
-    category: ["jobo"],
+    category: ["by-pendler", "hybrid"],
     rating: 4.5,
     reviewCount: 94,
     specifications: {
@@ -2211,172 +2211,172 @@ export const PRODUCTS_DATA: ProductCard[] = [
   },
 
   // 8. Jobobike Romer Pro
-  // {
-  //   id: "14",
-  //   name: "JOBOBIKE Romer Pro",
-  //   slug: "jobobike-romer-pro",
-  //   originalPrice: 2299,
-  //   price: 1999,
-  //   discount: "13%",
-  //   image: "/images/romer-pro/romer-1.png",
-  //   images: [
-  //     "/images/romer-pro/romer-1.png",
-  //   ],
-  //   features: [
-  //     "750W Mid-Drive Motor",
-  //     "48V 20Ah Battery",
-  //     "Full Suspension",
-  //     "Mountain Bike Design",
-  //     "Professional Components"
-  //   ],
-  //   badge: "Pro Series",
-  //   category: ["jobo"],
-  //   rating: 4.9,
-  //   reviewCount: 87,
-  //   specifications: {
-  //     motor: "750W Mid-Drive",
-  //     battery: "48V 20Ah (960Wh)",
-  //     range: "60-80 km",
-  //     speed: "25 km/h",
-  //     weight: "30 kg",
-  //     wheelSize: "27.5\"",
-  //     foldable: false,
-  //     brakes: "Hydraulic Disc",
-  //     frame: "Carbon Fiber",
-  //     drivetrain: "11-Speed"
-  //   },
-  //   technicalSpecifications: {
-  //     general: {
-  //       model: "Romer Pro",
-  //       frameType: "Full Suspension MTB",
-  //       frameMaterial: "Carbon Fiber",
-  //       foldable: false,
-  //       dimensions: {
-  //         unfolded: "185 x 65 x 115 cm",
-  //         folded: "N/A"
-  //       },
-  //       weight: "30 kg",
-  //       maxLoad: "140 kg",
-  //       recommendedHeight: "170-200 cm"
-  //     },
-  //     motor: {
-  //       type: "Mid-Drive",
-  //       power: "750W",
-  //       peakPower: "1200W",
-  //       torque: "160 N.m",
-  //       location: "Center",
-  //       torqueSensor: true
-  //     },
-  //     battery: {
-  //       type: "Lithium-ion",
-  //       voltage: "48V",
-  //       capacity: "20Ah",
-  //       capacityWh: "960Wh",
-  //       removable: true,
-  //       chargingTime: "6-7 hours",
-  //       batteryLife: "1000+ cycles"
-  //     },
-  //     performance: {
-  //       maxSpeed: "25 km/h",
-  //       range: {
-  //         pureElectric: "45 km",
-  //         pedalAssist: "60-80 km",
-  //         combined: "50-70 km"
-  //       },
-  //       gradability: "35°"
-  //     },
-  //     wheels: {
-  //       size: "27.5\"",
-  //       tireType: "Mountain",
-  //       tireSize: "27.5 x 2.8\"",
-  //       rimMaterial: "Carbon Fiber"
-  //     },
-  //     brakes: {
-  //       front: "Hydraulic Disc",
-  //       rear: "Hydraulic Disc",
-  //       type: "203mm Rotors"
-  //     },
-  //     transmission: {
-  //       type: "Derailleur",
-  //       gears: "11-Speed",
-  //       shifter: "Shimano XT"
-  //     },
-  //     electrical: {
-  //       display: "Professional Color Display",
-  //       lights: {
-  //         front: true,
-  //         rear: true,
-  //         type: "High-Intensity LED"
-  //       },
-  //       horn: false,
-  //       throttle: false,
-  //       assistLevels: "7 levels"
-  //     },
-  //     comfort: {
-  //       suspension: {
-  //         front: true,
-  //         rear: true,
-  //         type: "Air Shock System"
-  //       },
-  //       seat: {
-  //         type: "MTB Racing Saddle",
-  //         adjustable: true,
-  //         material: "Carbon Rails"
-  //       },
-  //       handlebar: {
-  //         type: "MTB Flat Bar",
-  //         adjustable: false,
-  //         material: "Carbon Fiber"
-  //       }
-  //     },
-  //     safety: {
-  //       reflectors: false,
-  //       bell: false,
-  //       waterResistance: "IPX6",
-  //       certification: ["EN15194", "CE"]
-  //     },
-  //     connectivity: {
-  //       app: true,
-  //       gps: true,
-  //       bluetooth: true,
-  //       usb: true
-  //     },
-  //     accessories: {
-  //       kickstand: false,
-  //       mudguards: false,
-  //       rack: false,
-  //       basket: false,
-  //       bottleHolder: true
-  //     }
-  //   },
-  //   description: "The JOBOBIKE Romer Pro is a premium full-suspension e-mountain bike designed for serious riders. With its powerful motor, long-range battery, and professional-grade components, it's built to conquer any trail.",
-  //   keyFeatures: [
-  //     "Ultra-powerful 750W mid-drive motor with massive torque",
-  //     "Premium carbon fiber frame and components",
-  //     "Full air suspension system for maximum comfort",
-  //     "Massive 960Wh battery for extended adventures",
-  //     "Professional-grade Shimano XT drivetrain"
-  //   ],
-  //   availableColors: ["Matte Black", "Racing Red", "Electric Yellow"],
-  //   availableSizes: ["M", "L", "XL"],
-  //   whatsInTheBox: [
-  //     "JOBOBIKE Romer Pro E-bike",
-  //     "48V 20Ah Battery",
-  //     "Fast Charger",
-  //     "Professional Manual",
-  //     "GPS Setup Guide",
-  //     "Premium Tool Kit",
-  //     "Keys (2x)"
-  //   ]
-  // },
+  {
+    id: "14",
+    name: "JOBOBIKE Romer Pro",
+    slug: "jobobike-romer-pro",
+    originalPrice: 2299,
+    price: 1999,
+    discount: "13%",
+    image: "/images/romer-pro/romer-1.png",
+    images: [
+      "/images/romer-pro/romer-1.png",
+    ],
+    features: [
+      "750W Mid-Drive Motor",
+      "48V 20Ah Battery",
+      "Full Suspension",
+      "Mountain Bike Design",
+      "Professional Components"
+    ],
+    badge: "Pro Series",
+    category: ["jobo"],
+    rating: 4.9,
+    reviewCount: 87,
+    specifications: {
+      motor: "750W Mid-Drive",
+      battery: "48V 20Ah (960Wh)",
+      range: "60-80 km",
+      speed: "25 km/h",
+      weight: "30 kg",
+      wheelSize: "27.5\"",
+      foldable: false,
+      brakes: "Hydraulic Disc",
+      frame: "Carbon Fiber",
+      drivetrain: "11-Speed"
+    },
+    technicalSpecifications: {
+      general: {
+        model: "Romer Pro",
+        frameType: "Full Suspension MTB",
+        frameMaterial: "Carbon Fiber",
+        foldable: false,
+        dimensions: {
+          unfolded: "185 x 65 x 115 cm",
+          folded: "N/A"
+        },
+        weight: "30 kg",
+        maxLoad: "140 kg",
+        recommendedHeight: "170-200 cm"
+      },
+      motor: {
+        type: "Mid-Drive",
+        power: "750W",
+        peakPower: "1200W",
+        torque: "160 N.m",
+        location: "Center",
+        torqueSensor: true
+      },
+      battery: {
+        type: "Lithium-ion",
+        voltage: "48V",
+        capacity: "20Ah",
+        capacityWh: "960Wh",
+        removable: true,
+        chargingTime: "6-7 hours",
+        batteryLife: "1000+ cycles"
+      },
+      performance: {
+        maxSpeed: "25 km/h",
+        range: {
+          pureElectric: "45 km",
+          pedalAssist: "60-80 km",
+          combined: "50-70 km"
+        },
+        gradability: "35°"
+      },
+      wheels: {
+        size: "27.5\"",
+        tireType: "Mountain",
+        tireSize: "27.5 x 2.8\"",
+        rimMaterial: "Carbon Fiber"
+      },
+      brakes: {
+        front: "Hydraulic Disc",
+        rear: "Hydraulic Disc",
+        type: "203mm Rotors"
+      },
+      transmission: {
+        type: "Derailleur",
+        gears: "11-Speed",
+        shifter: "Shimano XT"
+      },
+      electrical: {
+        display: "Professional Color Display",
+        lights: {
+          front: true,
+          rear: true,
+          type: "High-Intensity LED"
+        },
+        horn: false,
+        throttle: false,
+        assistLevels: "7 levels"
+      },
+      comfort: {
+        suspension: {
+          front: true,
+          rear: true,
+          type: "Air Shock System"
+        },
+        seat: {
+          type: "MTB Racing Saddle",
+          adjustable: true,
+          material: "Carbon Rails"
+        },
+        handlebar: {
+          type: "MTB Flat Bar",
+          adjustable: false,
+          material: "Carbon Fiber"
+        }
+      },
+      safety: {
+        reflectors: false,
+        bell: false,
+        waterResistance: "IPX6",
+        certification: ["EN15194", "CE"]
+      },
+      connectivity: {
+        app: true,
+        gps: true,
+        bluetooth: true,
+        usb: true
+      },
+      accessories: {
+        kickstand: false,
+        mudguards: false,
+        rack: false,
+        basket: false,
+        bottleHolder: true
+      }
+    },
+    description: "The JOBOBIKE Romer Pro is a premium full-suspension e-mountain bike designed for serious riders. With its powerful motor, long-range battery, and professional-grade components, it's built to conquer any trail.",
+    keyFeatures: [
+      "Ultra-powerful 750W mid-drive motor with massive torque",
+      "Premium carbon fiber frame and components",
+      "Full air suspension system for maximum comfort",
+      "Massive 960Wh battery for extended adventures",
+      "Professional-grade Shimano XT drivetrain"
+    ],
+    availableColors: ["Matte Black", "Racing Red", "Electric Yellow"],
+    availableSizes: ["M", "L", "XL"],
+    whatsInTheBox: [
+      "JOBOBIKE Romer Pro E-bike",
+      "48V 20Ah Battery",
+      "Fast Charger",
+      "Professional Manual",
+      "GPS Setup Guide",
+      "Premium Tool Kit",
+      "Keys (2x)"
+    ]
+  },
 
   // 9. Jobobike Astra
   {
     id: "15",
     name: "JOBOBIKE Astra",
     slug: "jobobike-astra",
-    originalPrice: 1199,
-    price: 999,
+    originalPrice: 15999,
+    price: 15999,
     discount: "17%",
     image: "/images/astra/astra-1.png",
     images: [
@@ -2391,7 +2391,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "Simple Operation"
     ],
     badge: "Best Value",
-    category: ["jobo"],
+    category: ["by-pendler", "hybrid"],
     rating: 4.2,
     reviewCount: 156,
     specifications: {

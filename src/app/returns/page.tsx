@@ -22,13 +22,17 @@ Kontakt oss på support@sykkellageret.no før du sender varen tilbake.
   {
     title: "Reklamasjon",
     content: `
-Du har 2 års reklamasjonsrett i henhold til norsk forbrukerkjøpslov.
+Retur må alltid avtales med oss på forhånd. Når vi har bekreftet at returen oppfyller våre retningslinjer, vil du motta nødvendig informasjon som returadresse og videre prosedyre.
 
-Reklamasjonen gjelder feil og mangler som ikke skyldes vanlig slitasje eller feil bruk.
+Vi tilbyr 14 dagers angrerett fra den dagen du mottar varen, i tråd med angrerettloven.
 
-Dersom varen er defekt, dekker vi returfrakt og sender reparert eller nytt produkt.
+Produktet må returneres i original stand og emballasje.
 
-Vi behandler reklamasjoner normalt innen 1–2 uker.
+Kunden dekker returkostnader med mindre annet er avtalt.
+
+Ved feil eller mangler dekkes returkostnadene av oss.
+
+For å avtale retur, kontakt oss på support@sykkellageret.no med ordrenummer og informasjon om varen du ønsker å returnere.
     `,
   },
 ];

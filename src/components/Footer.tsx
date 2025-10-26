@@ -48,81 +48,63 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Handle */}
+          {/* Support Links */}
           <div>
-            <h3 className="font-semibold mb-3 text-base">Handle</h3>
-            <ul className="space-y-2 text-sm text-gray-700">
-              <li><Link href="/el-sykler" className="hover:text-yellow-500">Alle el-sykler</Link></li>
-              <li><Link href="/tilbehor" className="hover:text-yellow-500">Tilbehør</Link></li>
-              <li><Link href="/reservedeler" className="hover:text-yellow-500">Reservedeler</Link></li>
-              <li><Link href="/kampanjer" className="hover:text-yellow-500">Nyheter og kampanjer</Link></li>
-              <li><Link href="/gavekort" className="hover:text-yellow-500">Gavekort</Link></li>
-            </ul>
-          </div>
-
-          {/* Sykkellageret */}
-          <div>
-            <h3 className="font-semibold mb-3 text-base">SYKKELLAGERET</h3>
-            <ul className="space-y-2 text-sm text-gray-700">
-              <li><Link href="/om-oss" className="hover:text-yellow-500">Om oss</Link></li>
-              <li><Link href="/barekraft" className="hover:text-yellow-500">Bærekraft og miljø</Link></li>
-              <li><Link href="/b2b" className="hover:text-yellow-500">Bedriftsavtaler (B2B)</Link></li>
-              <li><Link href="/affiliate" className="hover:text-yellow-500">Samarbeidspartner</Link></li>
-              <li><Link href="/blogg" className="hover:text-yellow-500">Blogg & artikler</Link></li>
-            </ul>
-          </div>
-
-          {/* Kundeservice */}
-          <div>
-            <h3 className="font-semibold mb-3 text-base">Kundeservice</h3>
+            <h3 className="font-semibold mb-3 text-base">Support</h3>
             <ul className="space-y-2 text-sm text-gray-700">
               <li><Link href="/faq" className="hover:text-yellow-500">FAQ</Link></li>
               <li><Link href="/contact" className="hover:text-yellow-500">Kontakt oss</Link></li>
               <li><Link href="/returns" className="hover:text-yellow-500">Retur og reklamasjon</Link></li>
-              <li><Link href="/privacypolicy" className="hover:text-yellow-500">Personvernerklæring</Link></li>
-              <li><Link href="/terms" className="hover:text-yellow-500">Kjøpsvilkår</Link></li>
-              <li><Link href="/bruksanvisninger" className="hover:text-yellow-500">Bruksanvisninger</Link></li>
             </ul>
           </div>
-        </div>
 
-        {/* Contact + Payments */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-200 pt-6 text-sm">
-          {/* Contact */}
+          {/* Legal */}
           <div>
-            <h4 className="font-semibold mb-3">Kontakt oss</h4>
-            <ul className="space-y-2 text-gray-700">
+            <h3 className="font-semibold mb-3 text-base">Juridisk</h3>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li><Link href="/privacypolicy" className="hover:text-yellow-500">Personvernerklæring</Link></li>
+              <li><Link href="/terms" className="hover:text-yellow-500">Kjøpsvilkår</Link></li>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="font-semibold mb-3 text-base">Kontakt</h3>
+            <ul className="space-y-2 text-sm text-gray-700">
               <li className="flex items-center gap-2">
                 <HiOutlineEnvelope className="w-4 h-4 text-yellow-500" />
                 support@sykkellageret.no
               </li>
               <li className="flex items-center gap-2">
                 <HiOutlinePhone className="w-4 h-4 text-yellow-500" />
-                [sett inn tlf.nr]
+                +47 40 55 63 33
               </li>
               <li className="flex items-center gap-2">
                 <HiOutlineBuildingOffice2 className="w-4 h-4 text-yellow-500" />
-                [adresse]
+                Niels Juels Gate 70, Oslo, Norge
+              </li>
+              <li className="mt-3">
+                <div className="text-gray-600 font-bold mb-1">Returadresse:</div>
+                <div>Gromadzka 505-806 Sokołów, Polen</div>
               </li>
             </ul>
           </div>
-
-          {/* Payments */}
-          <div className="md:text-right">
-            <h4 className="font-semibold mb-3 pr-24">Betalingsmetoder</h4>
-            <div className="flex gap-4 justify-center md:justify-end">
-              <img src="/images/vipps.png" alt="Vipps" className="h-8 object-contain" />
-              <img src="/images/visa.png" alt="Visa" className="h-8 object-contain" />
-              <img src="/images/mastercard.png" alt="Mastercard" className="h-8 object-contain" />
-            </div>
-          </div>
         </div>
+
+
       </div>
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-200 py-4">
-        <div className="max-w-7xl mx-auto px-6 text-center text-xs text-gray-500">
-          © 2025 <span className="text-yellow-500 font-semibold">Sykkellageret <span className="text-gray-500">-</span>Jalut Holdings</span>. Org nr: 931946641. Alle rettigheter forbeholdt.
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-xs text-gray-500">
+          <div>
+            © 2025 <span className="text-yellow-500 font-semibold">JALUT AI INNOSCRIBE</span>. Org nr: 932806517. Alle rettigheter forbeholdt.
+          </div>
+          <div className="flex gap-4">
+            <img src="/images/vipps.png" alt="Vipps" className="h-6 object-contain" />
+            <img src="/images/visa.png" alt="Visa" className="h-6 object-contain" />
+            <img src="/images/mastercard.png" alt="Mastercard" className="h-6 object-contain" />
+          </div>
         </div>
       </div>
     </footer>

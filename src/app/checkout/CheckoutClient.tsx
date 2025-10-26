@@ -51,7 +51,7 @@ export default function CheckoutClient() {
     // Check if cart is empty
     if (!cartItems || cartItems.length === 0) {
       console.log('Cart is empty');
-      setError('Your cart is empty. Please add some products to your cart before checkout.');
+      setError('Handlekurven din er tom. Legg til produkter i handlekurven før du går til kassen.');
       setLoading(false);
       return;
     }
@@ -121,10 +121,10 @@ export default function CheckoutClient() {
     return (
       <div className="space-y-4">
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h3 className="font-semibold text-blue-800 mb-2">Loading your cart...</h3>
+          <h3 className="font-semibold text-blue-800 mb-2">Laster handlekurven din...</h3>
           <div className="flex items-center gap-3">
             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-            <p className="text-sm text-blue-700">Please wait while we load your cart items</p>
+            <p className="text-sm text-blue-700">Vennligst vent mens vi laster handlekurven din</p>
           </div>
         </div>
       </div>
@@ -171,14 +171,14 @@ export default function CheckoutClient() {
               </svg>
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-red-800">Setup Error</h3>
+              <h3 className="text-sm font-medium text-red-800">Oppsettsfeil</h3>
               <p className="mt-1 text-sm text-red-700">{error}</p>
               <div className="mt-3 space-x-3">
                 <button
                   onClick={() => window.history.back()}
                   className="text-sm text-red-800 underline hover:text-red-600"
                 >
-                  ← Go back to cart
+                  ← Gå tilbake til handlekurv
                 </button>
                 <button
                   onClick={() => {
@@ -189,7 +189,7 @@ export default function CheckoutClient() {
                   }}
                   className="text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
                 >
-                  Try Again
+                  Prøv igjen
                 </button>
               </div>
             </div>
@@ -201,7 +201,7 @@ export default function CheckoutClient() {
       {loading && cartItems.length > 0 && (
         <div className="bg-white p-8 rounded-lg border text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4">Setting up your payment...</p>
+          <p className="mt-4">Setter opp betalingen din...</p>
         </div>
       )}
 
@@ -232,14 +232,14 @@ export default function CheckoutClient() {
             </Elements>
           ) : (
             <div className="p-6">
-              <h2 className="text-lg font-semibold mb-4">Complete Your Order ({cartItems.length} items)</h2>
+              <h2 className="text-lg font-semibold mb-4">Fullfør bestillingen din ({cartItems.length} varer)</h2>
               <div className="text-center p-8 border-2 border-dashed border-gray-300 rounded">
                 <p className="text-gray-600 mb-4">
-                  {clientSecret ? 'Loading payment form...' : 'Setting up payment...'}
+                  {clientSecret ? 'Laster betalingsskjema...' : 'Setter opp betaling...'}
                 </p>
                 <div className="text-sm text-gray-500">
-                  <p>Cart Items: {cartItems.length}</p>
-                  <p>Total: {formatCurrency(cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0))}</p>
+                  <p>Handlekurv varer: {cartItems.length}</p>
+                  <p>Totalt: {formatCurrency(cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0))}</p>
                 </div>
               </div>
             </div>

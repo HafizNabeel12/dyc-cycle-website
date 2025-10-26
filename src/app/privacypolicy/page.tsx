@@ -5,7 +5,7 @@ import React, { useState } from "react";
 const sections = [
   {
     title: "1. Behandlingsansvarlig",
-    content: `Det er Sykkellageret AS (org.nr. [sett inn org.nr]) som er behandlingsansvarlig for personopplysninger som behandles. Vår registrerte adresse er [sett inn adresse], Norge. Spørsmål om personvern kan sendes til support@sykkellageret.no.`,
+    content: `Det er JALUT AI INNOSCRIBE (org.nr. 932806517) som er behandlingsansvarlig for personopplysninger som behandles. Vår registrerte adresse er Niels Juels Gate 70, Oslo, Norge. Spørsmål om personvern kan sendes til support@sykkellageret.no.`,
   },
   {
     title: "2. Innsamling og behandling av personopplysninger",
@@ -33,11 +33,11 @@ const sections = [
   },
   {
     title: "8. Dine rettigheter",
-    content: `Du har rett til innsyn, retting, sletting, begrensning av behandling, dataportabilitet og å trekke tilbake samtykke. Du kan klage til Datatilsynet dersom du mener vi bryter regelverket.`,
+    content: `Du har rett til innsyn, retting, sletting, begrensning av behandling, dataportabilitet og å trekke tilbake samtykke.`,
   },
   {
     title: "9. Kontakt",
-    content: `For spørsmål om personvern eller for å utøve dine rettigheter, kontakt oss på support@sykkellageret.no.`,
+    content: `For spørsmål om personvern kontakt oss på support@sykkellageret.no.`,
   },
 ];
 

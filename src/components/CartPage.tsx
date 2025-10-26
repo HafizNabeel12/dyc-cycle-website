@@ -165,7 +165,7 @@ const CartPage: React.FC = () => {
                           alt={item.name}
                           width={64}
                           height={64}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
@@ -268,7 +268,7 @@ const CartPage: React.FC = () => {
                                   alt={item.name}
                                   width={112}
                                   height={112}
-                                  className="w-full h-full object-cover"
+                                  className="w-full h-full object-contain"
                                 />
                               ) : (
                                 <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">

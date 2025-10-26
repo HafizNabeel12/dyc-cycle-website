@@ -46,12 +46,12 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
       {justAdded ? (
         <>
           <Check className="h-4 w-4" />
-          Added to Cart!
+          Lagt til!
         </>
       ) : (
         <>
           <ShoppingCart className="h-4 w-4" />
-          {children || 'Add to Cart'}
+          {children || 'Legg i kurv'}
         </>
       )}
     </button>

@@ -22,16 +22,16 @@ export default function AccessoriesPage() {
 
 
     return (
-        <div className="min-h-screen bg-white mt-32">
+        <div className="min-h-screen bg-white mt-52 md:mt-32">
             {/* Breadcrumb */}
             <div className="border-b">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <nav className="text-sm text-gray-600">
                         <Link href="/" className="hover:text-gray-900">
-                            Home
+                            Hjem
                         </Link>
                         <span className="mx-2">/</span>
-                        <span className="text-gray-900">Accessories</span>
+                        <span className="text-gray-900">Tilbehør</span>
                     </nav>
                 </div>
             </div>
@@ -39,10 +39,10 @@ export default function AccessoriesPage() {
             {/* Page Header */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <h1 className="text-4xl font-bold text-gray-900 text-center mb-2">
-                    Accessories
+                    Tilbehør
                 </h1>
                 <p className="text-gray-600 text-center mb-8">
-                    {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
+                    {filteredProducts.length} {filteredProducts.length === 1 ? 'produkt' : 'produkter'}
                 </p>
 
 
@@ -71,7 +71,7 @@ export default function AccessoriesPage() {
                                         {!product.inStock && (
                                             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                                                 <span className="bg-white text-gray-900 px-4 py-2 rounded-full font-medium text-sm">
-                                                    Out of Stock
+                                                    Utsolgt
                                                 </span>
                                             </div>
                                         )}

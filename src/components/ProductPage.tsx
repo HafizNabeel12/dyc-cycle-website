@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { AddToCartButton } from "./AddToCartButton";
 import { PRODUCTS_DATA } from "@/lib/productData";  // ✅ Import products from data file
+import { formatCurrency } from '@/utils/currency';
 
 /**
  * ProductPage.tsx
@@ -83,7 +84,7 @@ export default function ProductPage() {
 
         {/* Grid - Mobile: 2 columns, Desktop: 3 columns */}
         <ul role="list" className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden">
-          {PRODUCTS_DATA.map((product) => (
+          {product.map((product) => (
             <li key={product.id} className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black">
               <div className="relative mb-2 sm:mb-3">
                 <div className="w-full rounded-lg sm:rounded-xl bg-white" />
@@ -183,6 +184,4 @@ function SortSelect({ value, onChange }: { value: string; onChange: (v: string) 
   );
 }
 
-function formatCurrency(n: number) {
-  return new Intl.NumberFormat("nb-NO", { style: "currency", currency: "NOK", maximumFractionDigits: 0 }).format(n);
-}
+
