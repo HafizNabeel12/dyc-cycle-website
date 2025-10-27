@@ -100,7 +100,7 @@ const Footer = () => {
           <div>
             © 2025 <span className="text-yellow-500 font-semibold">JALUT AI INNOSCRIBE</span>. Org nr: 932806517. Alle rettigheter forbeholdt.
           </div>
-          <div className="flex gap-4">
+          <div className="sm:flex gap-4">
             <img src="/images/vipps.png" alt="Vipps" className="h-6 object-contain" />
             <img src="/images/visa.png" alt="Visa" className="h-6 object-contain" />
             <img src="/images/mastercard.png" alt="Mastercard" className="h-6 object-contain" />
