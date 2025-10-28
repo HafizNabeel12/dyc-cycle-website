@@ -306,9 +306,9 @@ export const accessoriesProducts: AccessoryProduct[] = [
     fullDescription: "Integrated basket, specially designed for e-bikes. It can be mounted directly on the front or rear rack of the e-bike without the need for an additional front rack. Installation is quick and easy. The basket is made of aluminum alloy and features a durable matte black powder coating for excellent rust resistance. This makes it suitable for all weather conditions and ensures a long service life. The basket's design combines modern urban style with natural wood elements.",
     price: 88,
     currency: "EUR",
-    image: "/images/integrated-basket/basket.png.png",
+    image: "/images/Integrated-basket/basket.png.png",
     images: [
-     "/images/integrated-basket/basket.png.png",
+     "/images/Integrated-basket/basket.png.png",
     ],
     category: ["Baskets", "Storage", "Cargo"],
     specifications: [
