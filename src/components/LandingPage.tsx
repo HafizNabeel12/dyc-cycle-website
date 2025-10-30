@@ -1,12 +1,24 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { AddToCartButton } from './AddToCartButton';
 import { PRODUCTS_DATA } from "@/lib/productData";
 import { formatCurrency } from '@/utils/currency';
+import EbikeCalculator from './EbikeFinder/EbikeCalculator';
+import { Minus, Plus } from 'lucide-react';
 
 const LandingPage = () => {
+
+  const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
+
+  const handleQuantityChange = (productId: string, newQuantity: number) => {
+    if (newQuantity < 1) return;
+    setQuantities(prev => ({ ...prev, [productId]: newQuantity }));
+  };
+
+  const getQuantity = (productId: string) => quantities[productId] || 1;
+  
   return (
     <div className="min-h-screen bg-white mt-56 md:mt-24">
 
@@ -22,25 +34,19 @@ const LandingPage = () => {
       {/* Why Choose Us Section */}
      
 
-      {/* Featured Products */}
-      <section id="products" className="mx-auto mt-6 max-w-7xl px-4 sm:px-2 mb-16">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12">
-          Bestselgere
-        </h2>
+       {/* Featured Products */}
+      <section className="mx-auto mt-6 max-w-7xl px-4 sm:px-2 mb-16">
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-black mb-2">
+            Bestselgere
+          </h2>
+        </div>
 
         <ul
           role="list"
-          className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 overflow-hidden"
+          className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden"
         >
-          {(() => {
-            const dyuProducts = PRODUCTS_DATA.filter(product => 
-              product.category.includes('by-pendler') || product.category.includes('sammenleggbar')
-            ).slice(0, 3);
-            const joboProducts = PRODUCTS_DATA.filter(product => 
-              product.category.includes('terreng') || product.category.includes('lastesykkel') || product.name.includes('JOBOBIKE')
-            ).slice(0, 3);
-            return [...dyuProducts, ...joboProducts];
-          })().map((product) => (
+          {PRODUCTS_DATA.slice(0, 6).map((product) => (
             <li
               key={product.id}
               className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black"
@@ -70,29 +76,55 @@ const LandingPage = () => {
                       <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
                         {formatCurrency(product.price)}
                       </span>
-                      <span className="text-xs sm:text-sm text-gray-500 line-through whitespace-nowrap">
+                      {/* <span className="text-xs sm:text-sm text-gray-500 line-through whitespace-nowrap">
                         {formatCurrency(product.originalPrice)}
-                      </span>
+                      </span> */}
                     </div>
                   ) : (
                     <span className="text-sm sm:text-base font-semibold text-black whitespace-nowrap">
                       {formatCurrency(product.price)}
                     </span>
                   )}
-
-
                 </div>
 
-                <div className="mt-2 sm:mt-0 sm:ml-2 flex-shrink-0">
+                {/* Quantity + Add to Cart */}
+                <div className="mt-2 sm:mt-0 flex flex-col sm:flex-row sm:items-center gap-2">
+                  {/* Compact Quantity Selector */}
+                  <div className="flex items-center border border-gray-200 rounded-md w-fit">
+                    <button
+                      onClick={() => handleQuantityChange(product.id, getQuantity(product.id) - 1)}
+                      className="w-6 h-6 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                    >
+                      <Minus className="h-3 w-3 text-gray-600" />
+                    </button>
+                    <span className="text-xs font-semibold min-w-[16px] text-center text-black px-1">
+                      {getQuantity(product.id)}
+                    </span>
+                    <button
+                      onClick={() => handleQuantityChange(product.id, getQuantity(product.id) + 1)}
+                      className="w-6 h-6 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                    >
+                      <Plus className="h-3 w-3 text-gray-600" />
+                    </button>
+                  </div>
+
+                  {/* Add to Cart Button */}
                   <AddToCartButton
                     product={product}
-                    className="w-full sm:w-auto rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-black bg-yellow-400 hover:bg-yellow-300 transition sm:text-white sm:bg-black sm:hover:border-black sm:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
+                    quantity={getQuantity(product.id)}
+                    className="w-full sm:flex-1 rounded-full border border-gray-300 px-1 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-white bg-[#12b190] hover:bg-[#12b190] transition sm:bg-black sm:hover:border-black sm:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
                   />
                 </div>
               </div>
             </li>
           ))}
         </ul>
+      </section>
+
+
+       <section>
+
+        <EbikeCalculator products={PRODUCTS_DATA} />
       </section>
 
 

@@ -8,6 +8,7 @@ interface AddToCartButtonProps {
   product: Omit< CartItem, 'quantity'>;
   className?: string;
   children?: React.ReactNode;
+  quantity?: number;
 }
 
 export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
