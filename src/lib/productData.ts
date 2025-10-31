@@ -162,7 +162,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: [ "Quick fold", "Lightweight" , "Ultra-compact 14\" design",],
     badge: "COMPACT KING",
-    category: ["sammenleggbar", "by-pendler"],
+    category: ["Sammenleggbar", "Pendler"],
     rating: 5,
     reviewCount: 178,
     specifications: {
@@ -317,7 +317,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["Torque sensor", "Removable battery", "Shimano gears"],
     badge: "SMART CHOICE",
-    category: ["sammenleggbar", "by-pendler"],
+    category: ["Sammenleggbar", "Pendler"],
     rating: 4.7,
     reviewCount: 156,
     specifications: {
@@ -476,7 +476,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["Comfort geometry", "Front suspension" , "26\" wheels" ],
     badge: "CITY CRUISER",
-    category: ["by-pendler", "hybrid"],
+    category: ["Pendler", "Hybrid"],
     rating: 4.6,
     reviewCount: 134,
     specifications: {
@@ -632,7 +632,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["12.5Ah battery" , "Dual suspension option (model)" , "LED display" ],
     badge: "STUDENT FAVORITE",
-    category: ["by-pendler", "hybrid"],
+    category: ["Pendler", "Hybrid"],
     rating: 4.8,
     reviewCount: 203,
     specifications: {
@@ -788,7 +788,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["Fat tires 20x3.0", "Exceptional range", "All-terrain capability"],
     badge: "LONG RANGE",
-    category: ["fatbike", "sammenleggbar"],
+    category: ["Fatbike", "Sammenleggbar"],
     rating: 4.9,
     reviewCount: 89,
     specifications: {
@@ -945,7 +945,7 @@ export const PRODUCTS_DATA: ProductCard[] = [
     ],
     features: ["700C wheels", "Aluminum frame", "Hydraulic brakes"],
     badge: "PREMIUM STYLE",
-    category: ["by-pendler", "hybrid"],
+    category: ["Pendler", "Hybrid"],
     rating: 4.7,
     reviewCount: 127,
     specifications: {

@@ -108,33 +108,33 @@ export default function Navbar() {
 
   const categories = [
     {
-      name: 'By og Pendler',
-      slug: 'by-pendler',
+      name: 'Pendler',
+      slug: 'Pendler',
       image: '/images/Stroll1/stroll1-main.png',
     },
     {
       name: 'Terreng',
-      slug: 'terreng',
+      slug: 'Terreng',
       image: '/images/dyno/dyno-1.png',
     },
     {
       name: 'Hybrid',
-      slug: 'hybrid',
+      slug: 'Hybrid',
       image: '/images/lyon/lyon-1.png',
     },
     {
       name: 'Sammenleggbar',
-      slug: 'sammenleggbar',
+      slug: 'Sammenleggbar',
       image: '/images/d3f/d3f-main.png',
     },
     {
       name: 'Lastesykkel',
-      slug: 'lastesykkel',
+      slug: 'Lastesykkel',
       image: '/images/transer/transer-1.png',
     },
     {
       name: 'Fatbike',
-      slug: 'fatbike',
+      slug: 'Fatbike',
       image: '/images/C9/c9-main.png',
     },
   ];
