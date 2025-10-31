@@ -9,6 +9,7 @@ import {
   ChevronDown,
   EllipsisVertical,
   X,
+  ChevronRight,
 } from 'lucide-react';
 import { CartIcon } from './CartIcon';
 import { searchProducts } from '@/lib/productData'; // <-- adjust path if needed
@@ -268,6 +269,16 @@ export default function Navbar() {
                     {cat.name}
                   </Link>
                 ))}
+            <div className="px-8 py-4 border-t border-gray-200 text-center flex-shrink-0">
+                          <Link
+                            href="/cycle"
+                            className="inline-flex items-center gap-2 text-xs text-yellow-500 transition-colors"
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            View All E-Bikes
+                            <ChevronRight className="w-4 h-4" />
+                          </Link>
+                        </div>
               </div>
             )}
           </div>
@@ -326,7 +337,9 @@ export default function Navbar() {
                       </Link>
                     ))}
                   </div>
+                  
                 )}
+                 
               </div>
 
               {/* Right side icons */}
@@ -386,6 +399,17 @@ export default function Navbar() {
                               </div>
                             </Link>
                           ))}
+
+                        </div>
+                          <div className="px-8 py-4 border-t border-gray-200 text-center flex-shrink-0">
+                          <Link
+                            href="/cycle"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-yellow-600 hover:text-yellow-700 transition-colors"
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            View All E-Bikes
+                            <ChevronRight className="w-4 h-4" />
+                          </Link>
                         </div>
                       </div>
                     )}
