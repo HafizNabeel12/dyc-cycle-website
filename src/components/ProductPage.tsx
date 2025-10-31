@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Minus, Plus } from "lucide-react";
 import Link from "next/link";
 import { AddToCartButton } from "./AddToCartButton";
 import { PRODUCTS_DATA } from "@/lib/productData";  // ✅ Import products from data file
@@ -50,8 +50,19 @@ export default function ProductPage() {
     return arr.slice((page - 1) * perPage, page * perPage);
   }, [sort, page]);
 
+
+  const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
+
+  const handleQuantityChange = (productId: string, newQuantity: number) => {
+    if (newQuantity < 1) return;
+    setQuantities(prev => ({ ...prev, [productId]: newQuantity }));
+  };
+
+  const getQuantity = (productId: string) => quantities[productId] || 1;
+
+
   return (
-    <main className="bg-white text-gray-900 mt-52 md:mt-36">     
+    <main className="bg-white text-gray-900 mt-52 md:mt-36">
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="border-b border-gray-200">
         <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-2 py-3 text-sm">
@@ -79,20 +90,20 @@ export default function ProductPage() {
         {/* Toolbar */}
         <div className="mb-2 flex items-center justify-between text-sm text-gray-700">
           <div className="text-xs sm:text-sm">{total} produkter</div>
-        
+
         </div>
 
         {/* Grid - Mobile: 2 columns, Desktop: 3 columns */}
         <ul role="list" className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3 lg:grid-cols-3 overflow-hidden">
-          {product.map((product) => (
+          {PRODUCTS_DATA.map((product) => (
             <li key={product.id} className="group rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-3 transition hover:border-black">
               <div className="relative mb-2 sm:mb-3">
                 <div className="w-full rounded-lg sm:rounded-xl bg-white" />
                 <Link href={`/products/${product.slug}`}>
-                  <img 
+                  <img
                     className='object-cover w-[85%] h-[85%] sm:w-full sm:h-full m-auto sm:m-0 rounded-lg sm:rounded-xl'
-                    src={product.image} 
-                    alt={product.name} 
+                    src={product.image}
+                    alt={product.name}
                   />
                 </Link>
               </div>
@@ -131,14 +142,36 @@ export default function ProductPage() {
                   )}
                 </div>
 
-                {/* Add to Cart Button */}
-                <div className="mt-2 sm:mt-0 sm:ml-2 flex-shrink-0">
-                  <AddToCartButton 
-                    product={product}  
-                    className="w-full sm:w-auto rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-black bg-yellow-400 hover:bg-yellow-300 transition sm:text-white sm:bg-black sm:hover:border-black sm:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
+                {/* Quantity + Add to Cart */}
+                <div className="mt-2 sm:mt-0 flex flex-col sm:flex-row sm:items-center gap-2">
+                  {/* Compact Quantity Selector */}
+                  <div className="flex items-center border border-gray-200 rounded-md w-fit">
+                    <button
+                      onClick={() => handleQuantityChange(product.id, getQuantity(product.id) - 1)}
+                      className="w-6 h-6 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                    >
+                      <Minus className="h-3 w-3 text-gray-600" />
+                    </button>
+                    <span className="text-xs font-semibold min-w-[16px] text-center text-black px-1">
+                      {getQuantity(product.id)}
+                    </span>
+                    <button
+                      onClick={() => handleQuantityChange(product.id, getQuantity(product.id) + 1)}
+                      className="w-6 h-6 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                    >
+                      <Plus className="h-3 w-3 text-gray-600" />
+                    </button>
+                  </div>
+
+                  {/* Add to Cart Button */}
+                  <AddToCartButton
+                    product={product}
+                    quantity={getQuantity(product.id)}
+                    className="w-full sm:flex-1 rounded-full border border-gray-300 px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium text-white sm:bg-[#12b190] sm:hover:bg-[#29ecc5] transition md:text-white md:hover:border-black md:bg-black md:hover:bg-gray-50 sm:hover:text-black whitespace-nowrap"
                   />
                 </div>
-              </div> 
+              </div>
+
             </li>
           ))}
         </ul>
