@@ -1,4 +1,4 @@
-﻿﻿'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -504,20 +504,8 @@ export default function Navbar() {
               >
                 Sykkelutstyr
               </Link>
-              <Link
-                href="/bli-forhandler"
-                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
-              >
-                Bli forhandler
-              </Link>
-              <Link
-                href="/about"
-                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
-              >
-                Om oss
-              </Link>
+             
+             
               <Link
                 href="/contact"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
@@ -525,13 +513,7 @@ export default function Navbar() {
               >
                 Kontakt oss
               </Link>
-              <Link
-                href="/privacy"
-                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
-              >
-                Personvernerklæring
-              </Link>
+             
               <Link
                 href="/terms"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
