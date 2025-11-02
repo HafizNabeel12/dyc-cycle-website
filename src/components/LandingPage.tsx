@@ -31,7 +31,77 @@ const LandingPage = () => {
         />
       </section>
 
-      {/* Why Choose Us Section */}
+       {/* ===== Popular Categories Section ===== */}
+      <section className="py-12 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center text-black mb-12">
+            POPULÆRE KATEGORIER
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 items-center justify-center text-center">
+            {/* Fat Tire */}
+            <Link href="/category/Fatbike">
+              <div>
+                <img
+                  src="/images/mover/mover-1.png"
+                  alt="Fat Tire"
+                  className="mx-auto w-72 h-60 object-contain"
+                />
+                <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
+                  <span>Fatbike</span>
+                  <span className="text-[#12b190]">➜</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* lightweight */}
+            <Link href="/category/Pendler ">
+              <div>
+                <img
+                  src="/images/lyon/lyon-1.png"
+                  alt="Step-thru"
+                  className="mx-auto w-72 h-60 object-contain"
+                />
+                <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
+                  <span>Lettvekt</span>
+                  <span className="text-[#12b190]">➜</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Cargo & Family */}
+            <Link href="/category/Lastesykkel">
+              <div>
+                <img
+                  src="/images/eddy-x/eddy-1.png"
+                  alt="Cargo & Family"
+                  className="mx-auto w-72 h-60 object-contain"
+                />
+                <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
+                  <span>Last & Familie</span>
+                  <span className="text-[#12b190]">➜</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+          
+          {/* View All E-bikes Button */}
+          <div className="flex justify-center mt-12">
+            <Link href="/cycle">
+              <button className="group relative px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative flex items-center gap-3">
+                  <span className="text-lg">Se alle el-sykler</span>
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
      
 
        {/* Featured Products */}
@@ -119,6 +189,21 @@ const LandingPage = () => {
             </li>
           ))}
         </ul>
+
+        {/* View All E-bikes Button */}
+          <div className="flex justify-center mt-12">
+            <Link href="/cycle">
+              <button className="group relative px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative flex items-center gap-3">
+                  <span className="text-lg">Se alle el-sykler</span>
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </button>
+            </Link>
+          </div>
       </section>
 
 
