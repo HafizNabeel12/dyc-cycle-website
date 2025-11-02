@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { AddToCartButton } from './AddToCartButton';
 import { PRODUCTS_DATA } from "@/lib/productData";
 import { formatCurrency } from '@/utils/currency';
@@ -31,54 +32,63 @@ const LandingPage = () => {
         />
       </section>
 
-       {/* ===== Popular Categories Section ===== */}
-      <section className="py-12 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center text-black mb-12">
+        {/* ===== Popular Categories Section ===== */}
+      <section className="py-12 md:py-16 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-center text-black mb-8">
             POPULÆRE KATEGORIER
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 items-center justify-center text-center">
-            {/* Fat Tire */}
-            <Link href="/category/Fatbike">
-              <div>
-                <img
-                  src="/images/mover/mover-1.png"
-                  alt="Fat Tire"
-                  className="mx-auto w-72 h-60 object-contain"
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center justify-center text-center">
+            {/* Pendler */}
+            <Link href="/category/Pendler">
+              <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
+                <Image
+                  src="/images/lyon/lyon-1.png"
+                  alt="Pendler"
+                  width={200}
+                  height={200}
+                  priority
+                  className="mx-auto w-48 h-48 object-contain"
                 />
-                <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
+                <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-base">
+                  <span>Pendler</span>
+                  <span className="text-yellow-500">➜</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Fatbike */}
+            <Link href="/category/Fatbike">
+              <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
+                <Image
+                  src="/images/mover/mover-1.png"
+                  alt="Fatbike"
+                  width={200}
+                  height={200}
+                  priority
+                  className="mx-auto w-48 h-48 object-contain"
+                />
+                <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-base">
                   <span>Fatbike</span>
                   <span className="text-yellow-500">➜</span>
                 </div>
               </div>
             </Link>
 
-            {/* lightweight */}
-            <Link href="/category/Pendler ">
-              <div>
-                <img
-                  src="/images/lyon/lyon-1.png"
-                  alt="Step-thru"
-                  className="mx-auto w-72 h-60 object-contain"
-                />
-                <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
-                  <span>Lettvekt</span>
-                  <span className="text-yellow-500">➜</span>
-                </div>
-              </div>
-            </Link>
-
-            {/* Cargo & Family */}
-            <Link href="/category/Lastesykkel">
-              <div>
-                <img
+            {/* Sammenleggbar */}
+            <Link href="/category/Sammenleggbar">
+              <div className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
+                <Image
                   src="/images/eddy-x/eddy-1.png"
-                  alt="Cargo & Family"
-                  className="mx-auto w-72 h-60 object-contain"
+                  alt="Sammenleggbar"
+                  width={200}
+                  height={200}
+                  priority
+                  className="mx-auto w-48 h-48 object-contain"
                 />
-                <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
-                  <span>Last & Familie</span>
+                <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-base">
+                  <span>Sammenleggbar</span>
                   <span className="text-yellow-500">➜</span>
                 </div>
               </div>

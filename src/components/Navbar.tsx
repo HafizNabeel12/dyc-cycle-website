@@ -1,4 +1,4 @@
-﻿'use client';
+﻿﻿'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -32,6 +32,8 @@ export default function Navbar() {
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   // desktop e-bikes accordion
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
+  // navbar dropdown
+  const [navbarDropdownOpen, setNavbarDropdownOpen] = useState(false);
 
   // dynamic categories
   const [categories, setCategories] = useState<any[]>([]);
@@ -39,6 +41,7 @@ export default function Navbar() {
   // refs
   const desktopSearchRef = useRef<HTMLDivElement | null>(null);
   const mobileSearchRef = useRef<HTMLDivElement | null>(null);
+  const navbarDropdownRef = useRef<HTMLDivElement | null>(null);
 
   // fetch categories from products
   useEffect(() => {
@@ -123,14 +126,20 @@ export default function Navbar() {
     return () => clearTimeout(id);
   }, [query]);
 
-  // close search dropdown on outside click
+  // close search dropdown and navbar dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as Node;
       const insideDesktop = desktopSearchRef.current?.contains(target);
       const insideMobile = mobileSearchRef.current?.contains(target);
+      const insideNavbarDropdown = navbarDropdownRef.current?.contains(target);
+      
       if (!insideDesktop && !insideMobile) {
         setShowResults(false);
+      }
+      
+      if (!insideNavbarDropdown) {
+        setNavbarDropdownOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -157,6 +166,8 @@ export default function Navbar() {
     { name: 'El-sykler', href: '/', dropdown: true },
     { name: 'Sykkelutstyr', href: '/accessorie' },
     { name: 'Kontakt oss', href: '/contact' },
+    { name: 'Personvernerklæring', href: '/privacy' },
+    { name: 'Vilkår for tjeneste', href: '/terms' },
   ];
 
   const toggleDropdown = (index: number) =>
@@ -175,9 +186,9 @@ export default function Navbar() {
 
   return (
     <>
-      
+     
 
-      <nav className="fixed top-5 w-full z-40 bg-white ">
+      <nav className="fixed top-0 w-full z-50 bg-white border-b shadow-sm">
         {/* TOP ROW like the screenshot */}
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16 gap-4">
@@ -207,7 +218,7 @@ export default function Navbar() {
                   }}
                   type="text"
                   placeholder="Hva leter du etter?"
-                  className="w-full pl-12 pr-12 py-2.5 rounded-lg bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-sm text-black"
+                  className="w-full pl-12 pr-12 py-2.5 rounded-lg bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#12b190]/20 focus:border-[#12b190] text-sm text-black"
                 />
                 {query && (
                   <button
@@ -296,26 +307,78 @@ export default function Navbar() {
         </div>
 
         {/* BOTTOM ROW - Secondary Navigation */}
-        <div className="border-t border-gray-100">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex items-center h-14 gap-8">
+        <div className="border-t border-gray-100 hidden md:block">
+          <div className="max-w-7xl mx-auto px-2">
+            <div className="flex items-center h-14 gap-2 md:gap-8 relative overflow-x-auto overflow-y-visible">
+              <div className="relative flex-shrink-0" ref={navbarDropdownRef}>
+                <button
+                  onClick={() => setNavbarDropdownOpen(!navbarDropdownOpen)}
+                  className="flex items-center gap-1 text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap"
+                >
+                  <span>El-sykler</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${navbarDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+              </div>
               <Link
-                href="/about"
-                className="text-base font-medium text-gray-700 hover:text-yellow-500 transition-colors"
+                href="/accessorie"
+                className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
               >
-                Om oss
+                Sykkelutstyr
               </Link>
+              
               <Link
-                href="/bli-forhandler"
-                className="text-base font-medium text-gray-700 hover:text-yellow-500 transition-colors"
+                href="/contact"
+                className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
               >
-                Bli forhandler
+                Kontakt oss
               </Link>
             </div>
           </div>
         </div>
 
       </nav>
+
+      {/* Navbar Dropdown - Fixed Position */}
+      {navbarDropdownOpen && (
+        <div className="fixed top-[150px] w-full z-[100]">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="bg-white border border-gray-200 rounded-lg shadow-xl p-3 w-[500px]">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                {categories.length > 0 ? categories.map((cat) => (
+                  <Link
+                    key={cat.slug}
+                    href={`/category/${cat.slug}`}
+                    className="flex flex-col items-center p-2 hover:bg-gray-50 rounded-lg transition-colors border border-gray-100"
+                    onClick={() => setNavbarDropdownOpen(false)}
+                  >
+                    <img
+                      src={cat.image}
+                      alt={cat.name}
+                      className="w-14 h-14 object-contain rounded-md border border-gray-200 mb-1 flex-shrink-0"
+                    />
+                    <div className="text-center">
+                      <div className="text-sm font-medium text-gray-900">{cat.name}</div>
+                      <div className="text-xs text-gray-500">{cat.tagline}</div>
+                    </div>
+                  </Link>
+                )) : (
+                  <div className="col-span-full text-center py-4 text-gray-500">
+                    Laster kategorier...
+                  </div>
+                )}
+              </div>
+              <Link
+                href="/cycle"
+                className="block p-2 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
+                onClick={() => setNavbarDropdownOpen(false)}
+              >
+                Se alle el-sykler
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* MOBILE MENU (unchanged logic, only header matches new top row) */}
       {isMobileMenuOpen && (
@@ -352,7 +415,7 @@ export default function Navbar() {
                   }}
                   type="text"
                   placeholder="Søk produkter..."
-                  className="w-full pl-10 pr-4 py-2.5 text-sm text-black bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/20"
+                  className="w-full pl-10 pr-4 py-2.5 text-sm text-black bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-[#12b190] focus:ring-2 focus:ring-[#12b190]/20"
                 />
 
                 {showResults && results.length > 0 && (
@@ -425,7 +488,7 @@ export default function Navbar() {
                     ))}
                     <Link
                       href="/cycle"
-                      className="block p-3 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center"
+                      className="block p-3 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center"
                       onClick={toggleMobileMenu}
                     >
                       Se alle el-sykler
@@ -443,11 +506,39 @@ export default function Navbar() {
                 Sykkelutstyr
               </Link>
               <Link
+                href="/bli-forhandler"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Bli forhandler
+              </Link>
+              <Link
+                href="/about"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Om oss
+              </Link>
+              <Link
                 href="/contact"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
                 onClick={toggleMobileMenu}
               >
                 Kontakt oss
+              </Link>
+              <Link
+                href="/privacy"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Personvernerklæring
+              </Link>
+              <Link
+                href="/terms"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Vilkår for tjeneste
               </Link>
 
             </div>
@@ -476,7 +567,7 @@ export default function Navbar() {
                   <div key={item.name} className="space-y-2">
                     <button
                       onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}
-                      className="flex items-center justify-between w-full text-left text-gray-900 font-semibold hover:text-yellow-500 transition-colors"
+                      className="flex items-center justify-between w-full text-left text-gray-900 font-semibold hover:text-[#12b190] transition-colors"
                     >
                       <span>{item.name}</span>
                       <ChevronRight className={`w-4 h-4 text-gray-400 transition-transform ${desktopDropdownOpen ? 'rotate-90' : ''}`} />
@@ -503,7 +594,7 @@ export default function Navbar() {
                         ))}
                         <Link
                           href="/cycle"
-                          className="block p-2 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
+                          className="block p-2 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
                           onClick={toggleMoreMenu}
                         >
                           Se alle el-sykler
