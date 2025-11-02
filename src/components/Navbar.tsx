@@ -218,7 +218,7 @@ export default function Navbar() {
                   }}
                   type="text"
                   placeholder="Hva leter du etter?"
-                  className="w-full pl-12 pr-12 py-2.5 rounded-lg bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#12b190]/20 focus:border-[#12b190] text-sm text-black"
+                  className="w-full pl-12 pr-12 py-2.5 rounded-lg bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-sm text-black"
                 />
                 {query && (
                   <button
@@ -313,7 +313,7 @@ export default function Navbar() {
               <div className="relative flex-shrink-0" ref={navbarDropdownRef}>
                 <button
                   onClick={() => setNavbarDropdownOpen(!navbarDropdownOpen)}
-                  className="flex items-center gap-1 text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap"
+                  className="flex items-center mt-0 gap-1 text-sm md:text-base font-medium text-gray-700 hover:text-yellow-500 transition-colors whitespace-nowrap"
                 >
                   <span>El-sykler</span>
                   <ChevronDown className={`w-4 h-4 transition-transform ${navbarDropdownOpen ? 'rotate-180' : ''}`} />
@@ -322,14 +322,13 @@ export default function Navbar() {
               </div>
               <Link
                 href="/accessorie"
-                className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
+                className="text-sm md:text-base font-medium text-gray-700 hover:text-yellow-500 transition-colors whitespace-nowrap flex-shrink-0"
               >
                 Sykkelutstyr
               </Link>
-              
               <Link
                 href="/contact"
-                className="text-sm md:text-base font-medium text-gray-700 hover:text-[#12b190] transition-colors whitespace-nowrap flex-shrink-0"
+                className="text-sm md:text-base font-medium text-gray-700 hover:text-yellow-500 transition-colors whitespace-nowrap flex-shrink-0"
               >
                 Kontakt oss
               </Link>
@@ -341,9 +340,9 @@ export default function Navbar() {
 
       {/* Navbar Dropdown - Fixed Position */}
       {navbarDropdownOpen && (
-        <div className="fixed top-[150px] w-full z-[100]">
+        <div className="fixed top-[120px] w-full z-[100]">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="bg-white border border-gray-200 rounded-lg shadow-xl p-3 w-[500px]">
+            <div className="bg-white border border-gray-200 rounded-b-lg shadow-xl p-3 w-[500px] border-t-0">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 {categories.length > 0 ? categories.map((cat) => (
                   <Link
@@ -370,7 +369,7 @@ export default function Navbar() {
               </div>
               <Link
                 href="/cycle"
-                className="block p-2 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
+                className="block p-2 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
                 onClick={() => setNavbarDropdownOpen(false)}
               >
                 Se alle el-sykler
@@ -415,7 +414,7 @@ export default function Navbar() {
                   }}
                   type="text"
                   placeholder="Søk produkter..."
-                  className="w-full pl-10 pr-4 py-2.5 text-sm text-black bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-[#12b190] focus:ring-2 focus:ring-[#12b190]/20"
+                  className="w-full pl-10 pr-4 py-2.5 text-sm text-black bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/20"
                 />
 
                 {showResults && results.length > 0 && (
@@ -488,7 +487,7 @@ export default function Navbar() {
                     ))}
                     <Link
                       href="/cycle"
-                      className="block p-3 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center"
+                      className="block p-3 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center"
                       onClick={toggleMobileMenu}
                     >
                       Se alle el-sykler
@@ -567,7 +566,7 @@ export default function Navbar() {
                   <div key={item.name} className="space-y-2">
                     <button
                       onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}
-                      className="flex items-center justify-between w-full text-left text-gray-900 font-semibold hover:text-[#12b190] transition-colors"
+                      className="flex items-center justify-between w-full text-left text-gray-900 font-semibold hover:text-yellow-500 transition-colors"
                     >
                       <span>{item.name}</span>
                       <ChevronRight className={`w-4 h-4 text-gray-400 transition-transform ${desktopDropdownOpen ? 'rotate-90' : ''}`} />
@@ -594,7 +593,7 @@ export default function Navbar() {
                         ))}
                         <Link
                           href="/cycle"
-                          className="block p-2 text-sm text-[#12b190] hover:text-[#0f9a7a] font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
+                          className="block p-2 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
                           onClick={toggleMoreMenu}
                         >
                           Se alle el-sykler
