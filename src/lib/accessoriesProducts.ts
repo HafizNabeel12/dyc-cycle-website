@@ -350,16 +350,16 @@ export const accessoriesProducts: AccessoryProduct[] = [
   {
     id: "acc-phone-holder-shockproof-001",
     slug: "phone-holder-shockproof",
-    name: "JOBOBIKE Shockproof Phone Holder",
-    description: "Universal shockproof phone mount with anti-slip silicone pads and 360° rotation. Tool-free installation, fits phones 4.8\"-7.0\".",
-    fullDescription: "Secure your phone on every ride with this shockproof, universal e-bike phone mount. Built to handle rough roads and daily commutes, it features a non-slip clamp, 360° adjustable viewing, and a quick-install system – no tools needed. Compatible with phones 132–182mm long (about 4.8\" to 7.0\") and mounts on handlebars up to 46mm in diameter. Full silicone padding protects your phone from scratches and shocks, while the safety lock clip enhances grip and stability during rides.",
+    name: "JOBOBIKE Støtsikker Telefon Holder",
+    description: "Universal støtsikker telefon holder med anti-skli silikon puter og 360° rotasjon. Verktøyfri installasjon, passer telefoner 4.8\"-7.0\".",
+    fullDescription: "Sikre telefonen din på hver tur med denne støtsikre, universelle el-sykkel telefon holderen. Bygget for å håndtere røffe veier og daglige pendlerturer, har den en anti-skli klemme, 360° justerbar visning, og et hurtig-installasjonssystem – ingen verktøy nødvendig. Kompatibel med telefoner 132–182mm lange (ca 4.8\" til 7.0\") og monteres på styre opptil 46mm i diameter. Full silikon polstring beskytter telefonen din mot riper og støt, mens sikkerhetslås klemmen forbedrer grep og stabilitet under turer.",
     price: 29,
-    currency: "EUR",
+    currency: "kr",
     image: "/images/holder-shock/holder.png.png",
     images: [
      "/images/holder-shock/holder.png.png",
     ],
-    category: ["Phone Holders", "Accessories", "Navigation"],
+    category: ["Telefon Holdere", "Tilbehør", "Navigasjon"],
     specifications: [
       { label: "Phone Size", value: "132-182mm (4.8\"-7.0\")" },
       { label: "Handlebar Diameter", value: "Up to 46mm" },
