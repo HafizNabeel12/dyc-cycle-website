@@ -166,8 +166,10 @@ export default function Navbar() {
     { name: 'El-sykler', href: '/', dropdown: true },
     { name: 'Sykkelutstyr', href: '/accessorie' },
     { name: 'Kontakt oss', href: '/contact' },
-    { name: 'Personvernerklæring', href: '/privacy' },
+    { name: 'Personvernerklæring', href: '/privacypolicy' },
+    { name: 'Retur og reklamasjon', href: '/returns' },
     { name: 'Vilkår for tjeneste', href: '/terms' },
+    { name: 'FAQ', href: '/faq' },
   ];
 
   const toggleDropdown = (index: number) =>
@@ -512,6 +514,27 @@ export default function Navbar() {
                 onClick={toggleMobileMenu}
               >
                 Kontakt oss
+              </Link>
+              <Link
+                href="/privacypolicy"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Personvernerklæring
+              </Link>
+              <Link
+                href="/returns"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Retur og reklamasjon
+              </Link>
+              <Link
+                href="/faq"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+               FAQs
               </Link>
              
               <Link
