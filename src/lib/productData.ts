@@ -315,22 +315,22 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "/images/T1/t1-6.png",
       "/images/T1/t1-7.png"
     ],
-    features: ["Torque sensor", "Removable battery", "Shimano gears"],
-    badge: "SMART CHOICE",
+    features: ["Dreiemoment sensor", "Avtakbart batteri", "Shimano gir"],
+    badge: "SMART VALG",
     category: ["Sammenleggbar", "Pendler"],
     rating: 4.7,
     reviewCount: 156,
     specifications: {
-      motor: "250W Mid-Drive with Torque Sensor",
-      battery: "36V 12.5Ah removable",
-      range: "35-50 miles",
-      speed: "20 mph",
-      weight: "42 lbs",
-      wheelSize: "20 inch",
+      motor: "250W Midt-motor med Dreiemoment Sensor",
+      battery: "36V 12.5Ah avtakbart",
+      range: "56-80 km",
+      speed: "32 km/t",
+      weight: "19 kg",
+      wheelSize: "20 tommer",
       foldable: true,
-      brakes: "Disc brakes",
-      frame: "Magnesium alloy",
-      drivetrain: "Shimano derailleur"
+      brakes: "Skivebremser",
+      frame: "Magnesium legering",
+      drivetrain: "Shimano gir"
     },
     technicalSpecifications: {
       general: {
@@ -438,22 +438,22 @@ export const PRODUCTS_DATA: ProductCard[] = [
       }
     },
     description:
-      "DYU T1 features a torque sensor for natural pedal assist and a premium lightweight frame — ideal if you want a refined e-bike riding experience.",
+      "DYU T1 har dreiemoment sensor for naturlig pedalassistanse og et premium lettvekts ramme — ideell hvis du ønsker en raffinert el-sykkel opplevelse.",
     keyFeatures: [
-      "Torque sensor for natural pedal assist",
-      "Removable battery",
-      "Magnesium alloy frame",
-      "Shimano derailleur system",
-      "Smart features"
+      "Dreiemoment sensor for naturlig pedalassistanse",
+      "Avtakbart batteri",
+      "Magnesium legering ramme",
+      "Shimano gir system",
+      "Smarte funksjoner"
     ],
-    availableColors: ["Glossy Black", "Glossy White", "Deep Ocean Green"],
-    availableSizes: ["20 inch frame"],
+    availableColors: ["Blank Svart", "Blank Hvit", "Dyp Havgrønn"],
+    availableSizes: ["20 tommer ramme"],
     whatsInTheBox: [
-      "DYU T1 E-bike",
-      "Removable battery",
-      "Charger",
-      "Tool kit",
-      "User manual"
+      "DYU T1 El-sykkel",
+      "Avtakbart batteri",
+      "Lader",
+      "Verktøysett",
+      "Brukermanual"
     ]
   },
   {
@@ -474,21 +474,21 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "/images/C1/c1-6.png",
       "/images/C1/c1-7.png"
     ],
-    features: ["Comfort geometry", "Front suspension" , "26\" wheels" ],
-    badge: "CITY CRUISER",
+    features: ["Komfort geometri", "Frontdempning" , "26\" hjul" ],
+    badge: "BY CRUISER",
     category: ["Pendler", "Hybrid"],
     rating: 4.6,
     reviewCount: 134,
     specifications: {
-      motor: "250W / 500W peak hub motor",
-      battery: "36V 10Ah detachable",
-      range: "37-60 miles",
-      speed: "25 mph",
-      weight: "55 lbs",
-      wheelSize: "26 inch",
+      motor: "250W / 500W topp nav motor",
+      battery: "36V 10Ah avtakbart",
+      range: "60-96 km",
+      speed: "40 km/t",
+      weight: "25 kg",
+      wheelSize: "26 tommer",
       foldable: true,
-      brakes: "Disc brakes",
-      frame: "Aluminum alloy"
+      brakes: "Skivebremser",
+      frame: "Aluminium legering"
     },
     technicalSpecifications: {
       general: {
@@ -594,22 +594,22 @@ export const PRODUCTS_DATA: ProductCard[] = [
       }
     },
     description:
-      "DYU C1 is made for city riders who need a comfortable, reliable e-bike with front suspension and stable 26\" wheels.",
+      "DYU C1 er laget for bysyklister som trenger en komfortabel, pålitelig el-sykkel med frontdempning og stabile 26\" hjul.",
     keyFeatures: [
-      "26-inch wheels for stability",
-      "Front suspension",
-      "Shimano 7-speed transmission (varies)",
-      "Detachable battery",
-      "Comfortable riding position"
+      "26-tommer hjul for stabilitet",
+      "Frontdempning",
+      "Shimano 7-trinns giring (varierer)",
+      "Avtakbart batteri",
+      "Komfortabel sittestilling"
     ],
-    availableColors: ["Matte Gray", "Midnight Blue"],
+    availableColors: ["Matt Grå", "Midnattsblå"],
     availableSizes: ["M", "L"],
     whatsInTheBox: [
-      "DYU C1 E-bike",
-      "Charger",
-      "Owner manual",
-      "Bell",
-      "Basic tool kit"
+      "DYU C1 El-sykkel",
+      "Lader",
+      "Eiermannual",
+      "Bjelle",
+      "Grunnleggende verktøysett"
     ]
   },
   {
@@ -630,21 +630,21 @@ export const PRODUCTS_DATA: ProductCard[] = [
       "/images/C6/c6-6.png",
       "/images/C6/c6-7.png"
     ],
-    features: ["12.5Ah battery" , "Dual suspension option (model)" , "LED display" ],
-    badge: "STUDENT FAVORITE",
+    features: ["12.5Ah batteri" , "Dobbel dempning alternativ (modell)" , "LED display" ],
+    badge: "STUDENT FAVORITT",
     category: ["Pendler", "Hybrid"],
     rating: 4.8,
     reviewCount: 203,
     specifications: {
-      motor: "250W rear hub motor",
-      battery: "36V 12.5Ah detachable",
-      range: "Up to 60 km",
-      speed: "25 km/h",
+      motor: "250W bakre nav motor",
+      battery: "36V 12.5Ah avtakbart",
+      range: "Opptil 60 km",
+      speed: "25 km/t",
       weight: "25 kg",
-      wheelSize: "26 inch",
+      wheelSize: "26 tommer",
       foldable: true,
-      brakes: "Hydraulic disc brakes",
-      frame: "Aluminum"
+      brakes: "Hydrauliske skivebremser",
+      frame: "Aluminium"
     },
     technicalSpecifications: {
       general: {

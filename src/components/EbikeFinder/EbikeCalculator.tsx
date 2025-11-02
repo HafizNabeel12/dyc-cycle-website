@@ -43,10 +43,10 @@ export default function EbikeCalculator({ products = [] }: EbikeCalculatorProps)
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-black mb-4">
-            Find Your Perfect E-Bike
+            Finn din perfekte el-sykkel
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Answer a few questions and we&apos;ll recommend the best e-bikes tailored to your needs
+            Svar på noen spørsmål og vi anbefaler de beste el-syklene tilpasset dine behov
           </p>
         </div>
 

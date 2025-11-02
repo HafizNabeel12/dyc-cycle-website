@@ -10,13 +10,18 @@ const sections: Section[] = [
   {
     title: "Retur",
     content: `
-Du har 14 dagers angrerett på alle kjøp gjort i vår nettbutikk.
+Retur må alltid avtales med oss på forhånd. Når vi har bekreftet at 
+returen oppfyller våre retningslinjer, vil du motta nødvendig informasjon 
+som returadresse og videre prosedyre. 
 
-Varen må returneres ubrukt, i original stand og emballasje.
+Vi tilbyr 14 dagers angrerett fra den dagen du mottar varen, i tråd med 
+angrerettloven. 
+● Produktet må returneres i original stand og emballasje. 
+● Kunden dekker returkostnader med mindre annet er avtalt. 
+● Ved feil eller mangler dekkes returkostnadene av oss. 
 
-Kunden betaler returfrakt, med mindre returen skyldes en feil fra vår side.
-
-Kontakt oss på support@sykkellageret.no før du sender varen tilbake.
+For å avtale retur, kontakt oss på support@sykkellageret.no med ordrenummer og 
+informasjon om varen du ønsker å returnere. 
     `,
   },
   {

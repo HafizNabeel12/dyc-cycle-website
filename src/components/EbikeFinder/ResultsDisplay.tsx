@@ -40,16 +40,16 @@ export default function ResultsDisplay({
       <div className="text-center py-12 bg-gray-800 rounded-2xl">
         <div className="text-6xl mb-4">😕</div>
         <h3 className="text-2xl font-bold text-white mb-4">
-          No Perfect Match Found
+          Ingen perfekt match funnet
         </h3>
         <p className="text-gray-400 mb-8">
-          We couldn&apos;t find e-bikes matching all your criteria. Try adjusting your preferences.
+          Vi kunne ikke finne el-sykler som matcher alle dine kriterier. Prøv å justere preferansene dine.
         </p>
         <button
           onClick={onReset}
           className="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
         >
-          Try Again
+          Prøv igjen
         </button>
       </div>
     );
@@ -59,22 +59,22 @@ export default function ResultsDisplay({
     <div className="space-y-8 bg-white">
       {/* User Summary */}
       <div className="bg-white rounded-2xl p-6 ">
-        <h3 className="text-lg font-semibold text-black mb-3">Your Profile</h3>
+        <h3 className="text-lg font-semibold text-black mb-3">Din profil</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
           <div>
-            <span className="text-gray-900">Height:</span>
+            <span className="text-gray-900">Høyde:</span>
             <span className="ml-2 font-medium text-gray-700">{userPreferences.height} cm</span>
           </div>
           <div>
-            <span className="text-gray-900">Terrain:</span>
+            <span className="text-gray-900">Terreng:</span>
             <span className="ml-2 font-medium text-gray-700">{userPreferences.terrain}</span>
           </div>
           <div>
-            <span className="text-gray-900">Distance:</span>
+            <span className="text-gray-900">Avstand:</span>
             <span className="ml-2 font-medium text-gray-700">{userPreferences.distancePerTrip} km</span>
           </div>
           <div>
-            <span className="text-gray-900">Budget:</span>
+            <span className="text-gray-900">Budsjett:</span>
             <span className="ml-2 font-medium text-gray-700">{userPreferences.budget.toLocaleString()} NOK</span>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default function ResultsDisplay({
           <div className="flex items-center justify-between">
             <div>
               <span className="inline-block bg-white text-yellow-500 px-3 py-1 rounded-full text-sm font-bold mb-2">
-                BEST MATCH
+                BESTE MATCH
               </span>
               <h3 className="text-2xl font-bold text-black">
                 {topRecommendation.name}
@@ -123,7 +123,7 @@ export default function ResultsDisplay({
 
             <div className="space-y-4">
               <div>
-                <h4 className="font-semibold text-black mb-3">Why this is perfect for you:</h4>
+                <h4 className="font-semibold text-black mb-3">Hvorfor dette er perfekt for deg:</h4>
                 <ul className="space-y-2">
                   {topRecommendation.matchReasons.map((reason, index) => (
                     <li key={index} className="flex items-start">
@@ -137,25 +137,25 @@ export default function ResultsDisplay({
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-300">
                 {topRecommendation.motor_watt && (
                   <div>
-                    <div className="text-sm text-gray-600">Motor Power</div>
+                    <div className="text-sm text-gray-600">Motoreffekt</div>
                     <div className="font-semibold text-black">{topRecommendation.motor_watt}W</div>
                   </div>
                 )}
                 {topRecommendation.range_km && (
                   <div>
-                    <div className="text-sm text-gray-600">Range</div>
+                    <div className="text-sm text-gray-600">Rekkevidde</div>
                     <div className="font-semibold text-black">{topRecommendation.range_km} km</div>
                   </div>
                 )}
                 {topRecommendation.weight_kg && (
                   <div>
-                    <div className="text-sm text-gray-600">Weight</div>
+                    <div className="text-sm text-gray-600">Vekt</div>
                     <div className="font-semibold text-black">{topRecommendation.weight_kg} kg</div>
                   </div>
                 )}
                 {topRecommendation.battery_Ah && (
                   <div>
-                    <div className="text-sm text-gray-600">Battery</div>
+                    <div className="text-sm text-gray-600">Batteri</div>
                     <div className="font-semibold text-black">{topRecommendation.battery_Ah} Ah</div>
                   </div>
                 )}
@@ -171,7 +171,7 @@ export default function ResultsDisplay({
                     className="flex-1"
                   >
                     <button className="w-full bg-yellow-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-yellow-600 transition-colors">
-                      View Details
+                      Se detaljer
                     </button>
                   </Link>
                   
@@ -186,7 +186,7 @@ export default function ResultsDisplay({
       {alternatives.length > 0 && (
         <div>
           <h3 className="text-2xl font-bold text-black mb-6">
-            Other Great Options
+            Andre gode alternativer
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
             {alternatives.map((bike) => (
@@ -227,7 +227,7 @@ export default function ResultsDisplay({
                   <div className="flex items-center justify-between mb-4">
                     {bike.range_km && (
                       <div className="text-sm">
-                        <span className="text-gray-600">Range:</span>
+                        <span className="text-gray-600">Rekkevidde:</span>
                         <span className="ml-1 font-medium text-black">{bike.range_km}km</span>
                       </div>
                     )}
@@ -249,7 +249,7 @@ export default function ResultsDisplay({
                       className="flex-1"
                     >
                       <button className="w-full bg-gray-100 text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors border border-gray-300">
-                        View
+                        Se
                       </button>
                     </Link>
                    <AddToCartButton product={bike} className='border rounded-lg text-white'/>
@@ -267,13 +267,13 @@ export default function ResultsDisplay({
           onClick={onReset}
           className="px-8 py-3 border-2 border-gray-300 bg-white rounded-lg font-medium text-gray-700 hover:bg-gray-100 transition-colors"
         >
-          Start Over
+          Start på nytt
         </button>
         {selectedForCompare.length >= 2 && (
           <button
             className="px-8 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
           >
-            Compare Selected ({selectedForCompare.length})
+            Sammenlign valgte ({selectedForCompare.length})
           </button>
         )}
       </div>

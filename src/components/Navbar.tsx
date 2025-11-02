@@ -275,7 +275,7 @@ export default function Navbar() {
                             className="inline-flex items-center gap-2 text-xs text-yellow-500 transition-colors"
                             onClick={() => setActiveDropdown(null)}
                           >
-                            View All E-Bikes
+                            Se alle el-sykler
                             <ChevronRight className="w-4 h-4" />
                           </Link>
                         </div>
@@ -380,7 +380,7 @@ export default function Navbar() {
                     {item.dropdown && activeDropdown === index && (
                       <div className="absolute left-0 top-full w-[700px] bg-white shadow-2xl rounded-xl border border-gray-100 p-6 z-50">
                         <div className="mb-6">
-                          <h3 className="text-xl font-bold text-gray-900 mb-2">Velg din perfekte e-sykkel</h3>
+                          <h3 className="text-xl font-bold text-gray-900 mb-2">Velg din perfekte el-sykkel</h3>
                           <p className="text-gray-600">Utforsk vårt utvalg av høykvalitets elektriske sykler</p>
                         </div>
                         <div className="grid grid-cols-3 gap-4">
@@ -407,7 +407,7 @@ export default function Navbar() {
                             className="inline-flex items-center gap-2 text-sm font-semibold text-yellow-600 hover:text-yellow-700 transition-colors"
                             onClick={() => setActiveDropdown(null)}
                           >
-                            View All E-Bikes
+                            Se alle el-sykler
                             <ChevronRight className="w-4 h-4" />
                           </Link>
                         </div>

@@ -258,7 +258,7 @@ const LandingPage = () => {
                   <span key={i} className="text-yellow-400">★</span>
                 ))}
               </div>
-              <p className="text-gray-600 mb-4">&quot;Elsker min nye e-bike! Gjør pendlingen så mye mer behagelig. Anbefaler DYU til alle.&quot;</p>
+              <p className="text-gray-600 mb-4">&quot;Elsker min nye el-sykkel! Gjør pendlingen så mye mer behagelig. Anbefaler DYU til alle.&quot;</p>
               <div className="text-sm text-gray-500">- Anne, Trondheim</div>
             </div>
           </div>

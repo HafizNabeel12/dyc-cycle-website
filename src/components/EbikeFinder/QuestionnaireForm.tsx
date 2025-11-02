@@ -111,7 +111,7 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
       {/* Progress Bar */}
       <div className="mb-8">
         <div className="flex justify-between mb-2">
-          <span className="text-sm font-medium text-black">Step {currentPage} of {totalPages}</span>
+          <span className="text-sm font-medium text-black">Steg {currentPage} av {totalPages}</span>
           <span className="text-sm font-medium text-black">{Math.round((currentPage / totalPages) * 100)}%</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
@@ -125,24 +125,24 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
       {/* Page 1: Personal Info */}
       {currentPage === 1 && (
         <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-black mb-6">Tell us about yourself</h3>
+          <h3 className="text-2xl font-bold text-black mb-6">Fortell oss om deg selv</h3>
           
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Kjønn</label>
               <select 
                 value={formData.gender}
                 onChange={(e) => handleChange('gender', e.target.value)}
                 className="w-full px-4 py-3 bg-white border border-gray-600 text-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
+                <option value="male">Mann</option>
+                <option value="female">Kvinne</option>
+                <option value="other">Annet</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Age</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Alder</label>
               <input 
                 type="number"
                 value={formData.age}
@@ -156,7 +156,7 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Height (cm)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Høyde (cm)</label>
               <input 
                 type="number"
                 value={formData.height}
@@ -168,7 +168,7 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Weight (kg)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Vekt (kg)</label>
               <input 
                 type="number"
                 value={formData.weight}
@@ -181,7 +181,7 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Budget (NOK)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Budsjett (NOK)</label>
             <input 
               type="range"
               value={formData.budget}
@@ -203,10 +203,10 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
       {/* Page 2: Usage & Terrain */}
       {currentPage === 2 && (
         <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-black mb-6">How will you use it?</h3>
+          <h3 className="text-2xl font-bold text-black mb-6">Hvordan vil du bruke den?</h3>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Usage Type (Select all that apply)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Brukstype (Velg alle som passer)</label>
             <div className="grid grid-cols-2 gap-3">
               {['Commuting', 'Off-road', 'City', 'Touring', 'Family', 'Sport'].map(type => (
                 <button
@@ -226,7 +226,7 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Terrain</label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Terreng</label>
             <div className="grid grid-cols-2 gap-3">
               {['Flat', 'Small hills', 'Hilly', 'Mountain'].map(terrain => (
                 <button
@@ -246,13 +246,13 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Distance per trip</label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Avstand per tur</label>
             <select 
               value={formData.distancePerTrip}
               onChange={(e) => handleChange('distancePerTrip', e.target.value)}
               className="w-full px-4 py-3 bg-white border border-gray-600 text-gray-700 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
             >
-              <option value="<5">Less than 5 km</option>
+              <option value="<5">Mindre enn 5 km</option>
               <option value="5-15">5-15 km</option>
               <option value="15-30">15-30 km</option>
               <option value="30+">30+ km</option>
@@ -260,7 +260,7 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Minimum Range Required (km)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Minimum rekkevidde nødvendig (km)</label>
             <input 
               type="range"
               value={formData.rangeRequirement}
@@ -282,79 +282,91 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
       {/* Page 3: Preferences */}
       {currentPage === 3 && (
         <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-black mb-6">Final preferences</h3>
+          <h3 className="text-2xl font-bold text-black mb-6">Siste preferanser</h3>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Comfort Level</label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Komfortnivå</label>
             <div className="grid grid-cols-3 gap-3 sm:text-sm md:text-base ">
-              {['Sporty', 'Normal', 'Extra comfort'].map(comfort => (
+              {['Sporty', 'Normal', 'Ekstra komfort'].map((comfort, index) => {
+                const originalComforts = ['Sporty', 'Normal', 'Extra comfort'];
+                const originalComfort = originalComforts[index];
+                return (
                 <button
                   key={comfort}
                   type="button"
-                  onClick={() => handleChange('comfortLevel', comfort)}
+                  onClick={() => handleChange('comfortLevel', originalComfort)}
                   className={`px-4 py-3 rounded-lg border-2 transition-all ${
-                    formData.comfortLevel === comfort
+                    formData.comfortLevel === originalComfort
                       ? 'border-yellow-500 bg-yellow-500 text-white font-medium'
                       : 'border-gray-600 bg-white text-gray-700 hover:border-gray-500'
                   }`}
                 >
                   {comfort}
                 </button>
-              ))}
+                );
+              })}
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Weight Preference</label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Vektpreferanse</label>
             <div className="grid grid-cols-3 gap-3">
-              {['Light', 'Medium', 'Heavy'].map(weight => (
+              {['Lett', 'Medium', 'Tung'].map((weight, index) => {
+                const originalWeights = ['Light', 'Medium', 'Heavy'];
+                const originalWeight = originalWeights[index];
+                return (
                 <button
                   key={weight}
                   type="button"
-                  onClick={() => handleChange('weightPreference', weight)}
+                  onClick={() => handleChange('weightPreference', originalWeight.toLowerCase())}
                   className={`px-4 py-3 rounded-lg border-2 transition-all ${
-                    formData.weightPreference === weight.toLowerCase()
+                    formData.weightPreference === originalWeight.toLowerCase()
                       ? 'border-yellow-500 bg-yellow-500 text-white font-medium'
                       : 'border-gray-600 bg-white text-gray-700 hover:border-gray-500'
                   }`}
                 >
                   {weight}
                 </button>
-              ))}
+                );
+              })}
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Motor Preference</label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Motorpreferanse</label>
             <select 
               value={formData.motorPreference}
               onChange={(e) => handleChange('motorPreference', e.target.value)}
               className="w-full px-4 py-3 bg-white border border-gray-600 text-gray-700 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
             >
-              <option value="Not sure">Not sure / No preference</option>
-              <option value="Front hub">Front hub</option>
-              <option value="Rear hub">Rear hub</option>
-              <option value="Mid-drive">Mid-drive</option>
+              <option value="Not sure">Ikke sikker / Ingen preferanse</option>
+              <option value="Front hub">Front nav</option>
+              <option value="Rear hub">Bakre nav</option>
+              <option value="Mid-drive">Midt-motor</option>
             </select>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">Extra Features (Optional)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Ekstra funksjoner (Valgfritt)</label>
             <div className="grid grid-cols-2 gap-3">
-              {['Luggage rack', 'Child seat', 'Foldable', 'Off-road tires'].map(feature => (
+              {['Bagasjebrett', 'Barnesete', 'Sammenleggbar', 'Terrengdekk'].map((feature, index) => {
+                const originalFeatures = ['Luggage rack', 'Child seat', 'Foldable', 'Off-road tires'];
+                const originalFeature = originalFeatures[index];
+                return (
                 <button
                   key={feature}
                   type="button"
-                  onClick={() => handleMultiSelect('extraNeeds', feature)}
+                  onClick={() => handleMultiSelect('extraNeeds', originalFeature)}
                   className={`px-4 py-3 rounded-lg border-2 transition-all ${
-                    formData.extraNeeds?.includes(feature)
+                    formData.extraNeeds?.includes(originalFeature)
                       ? 'border-yellow-500 bg-yellow-500 text-white font-medium'
                       : 'border-gray-600 bg-white text-gray-700 hover:border-gray-500'
                   }`}
                 >
                   {feature}
                 </button>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -368,7 +380,7 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
             onClick={prevPage}
             className="sm:px-2 md:px-6 py-3 border-2 border-yellow-500 bg-yellow-500 rounded-lg font-medium text-white hover:bg-yellow-600 transition-colors"
           >
-            ← Previous
+← Forrige
           </button>
         )}
         
@@ -381,7 +393,7 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
             }}
             className="ml-auto px-6 py-3 bg-yellow-500 text-white rounded-lg font-medium hover:bg-yellow-600 transition-colors"
           >
-            Next →
+Neste →
           </button>
         ) : (
           <button
@@ -389,7 +401,7 @@ export default function QuestionnaireForm({ onSubmit }: QuestionnaireFormProps) 
             disabled={!isFormValid()}
             className="ml-auto sm:px-2 md:px-8 py-3 bg-yellow-500 text-white rounded-lg sm:font-medium hover:bg-yellow-600 transition-colors disabled:bg-gray-600 disabled:cursor-not-allowed"
           >
-            Find My E-Bike 
+Finn min el-sykkel 
           </button>
         )}
       </div>
