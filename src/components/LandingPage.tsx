@@ -49,7 +49,7 @@ const LandingPage = () => {
                 />
                 <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
                   <span>Fatbike</span>
-                  <span className="text-[#12b190]">➜</span>
+                  <span className="text-yellow-500">➜</span>
                 </div>
               </div>
             </Link>

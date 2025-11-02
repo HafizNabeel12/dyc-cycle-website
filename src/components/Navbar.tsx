@@ -1,4 +1,4 @@
-﻿﻿'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
@@ -177,7 +177,7 @@ export default function Navbar() {
     <>
       
 
-      <nav className="fixed top-5 w-full z-40 bg-white border-b shadow-sm">
+      <nav className="fixed top-5 w-full z-40 bg-white ">
         {/* TOP ROW like the screenshot */}
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16 gap-4">
