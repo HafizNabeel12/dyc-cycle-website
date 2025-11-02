@@ -64,7 +64,7 @@ const LandingPage = () => {
                 />
                 <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
                   <span>Lettvekt</span>
-                  <span className="text-[#12b190]">➜</span>
+                  <span className="text-yellow-500">➜</span>
                 </div>
               </div>
             </Link>
@@ -79,7 +79,7 @@ const LandingPage = () => {
                 />
                 <div className="mt-3 flex justify-center items-center gap-1 text-black font-medium text-lg">
                   <span>Last & Familie</span>
-                  <span className="text-[#12b190]">➜</span>
+                  <span className="text-yellow-500">➜</span>
                 </div>
               </div>
             </Link>

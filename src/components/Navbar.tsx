@@ -1,46 +1,95 @@
-'use client';
+﻿﻿'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
   Search,
-  MapPin,
   ChevronDown,
-  EllipsisVertical,
   X,
   ChevronRight,
+  Menu,
+  EllipsisVertical,
 } from 'lucide-react';
 import { CartIcon } from './CartIcon';
-import { searchProducts } from '@/lib/productData'; // <-- adjust path if needed
+import { searchProducts, getProductBySlug, getAllProductSlugs } from '@/lib/productData';
+import { accessoriesProducts } from '@/lib/accessoriesProducts';
 
 export default function Navbar() {
   const router = useRouter();
 
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<null | number>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
 
-  // Search state
+  // search state
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<any[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
 
-  // Mobile e-bikes accordion
+  // mobile e-bikes accordion
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+  // desktop e-bikes accordion
+  const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
 
-  // Refs to detect outside click for search dropdown (desktop + mobile)
+  // dynamic categories
+  const [categories, setCategories] = useState<any[]>([]);
+
+  // refs
   const desktopSearchRef = useRef<HTMLDivElement | null>(null);
   const mobileSearchRef = useRef<HTMLDivElement | null>(null);
 
+  // fetch categories from products
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 0);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    try {
+      const slugs = getAllProductSlugs();
+      const categoryMap = new Map();
+
+      slugs.forEach((slug) => {
+        const product = getProductBySlug(slug);
+        if (product && product.category && Array.isArray(product.category)) {
+          product.category.forEach((cat: string) => {
+            if (!categoryMap.has(cat)) {
+              categoryMap.set(cat, {
+                name: formatCategoryName(cat),
+                slug: cat,
+                tagline: getCategoryTagline(cat),
+                image: product.image || '/images/placeholder.png',
+                description: '',
+              });
+            }
+          });
+        }
+      });
+
+      setCategories(Array.from(categoryMap.values()));
+    } catch (err) {
+      console.error('Error loading categories:', err);
+    }
   }, []);
 
-  // Debounced search: wait 250ms after user stops typing
+  // helper
+  const formatCategoryName = (category: string): string => {
+    return category
+      .split('-')
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
+  };
+
+  const getCategoryTagline = (category: string): string => {
+    const taglines: { [key: string]: string } = {
+      Hybrid: 'Smart kompakt mobilitet',
+      Pendler: 'Urban mobilitet og glede',
+      Sammenleggbar: 'Brett, kjør, erobre',
+      Fatbike: 'Stabil terreng allround',
+      Lastesykkel: 'Mer kraft når du bærer last',
+      Terreng: 'Kraft, teknikk, utmerket',
+    };
+    return taglines[category] || 'Utforsk vårt utvalg';
+  };
+
+  // debounced search
   useEffect(() => {
     if (!query.trim()) {
       setResults([]);
@@ -52,8 +101,16 @@ export default function Navbar() {
     setIsSearching(true);
     const id = setTimeout(() => {
       try {
-        const found = searchProducts(query);
-        setResults(found || []);
+        const bikeResults = searchProducts(query);
+        const accessoryResults = accessoriesProducts.filter(product => 
+          product.name.toLowerCase().includes(query.toLowerCase()) ||
+          product.description.toLowerCase().includes(query.toLowerCase()) ||
+          product.features?.some(f => f.toLowerCase().includes(query.toLowerCase())) ||
+          product.category.some(c => c.toLowerCase().includes(query.toLowerCase()))
+        ).map(acc => ({ ...acc, isAccessory: true }));
+        
+        const allResults = [...bikeResults, ...accessoryResults];
+        setResults(allResults || []);
         setShowResults(true);
       } catch (err) {
         console.error('searchProducts error', err);
@@ -61,12 +118,12 @@ export default function Navbar() {
       } finally {
         setIsSearching(false);
       }
-    }, 250);
+    }, 500);
 
     return () => clearTimeout(id);
   }, [query]);
 
-  // Close search dropdown and mobile dropdown on outside click
+  // close search dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as Node;
@@ -75,24 +132,15 @@ export default function Navbar() {
       if (!insideDesktop && !insideMobile) {
         setShowResults(false);
       }
-      
-      // Close mobile dropdown if clicking outside
-      const mobileNavElement = document.querySelector('.mobile-nav-container');
-      if (mobileNavElement && !mobileNavElement.contains(target)) {
-        setMobileDropdownOpen(false);
-      }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Keyboard: Escape closes results, Enter performs a full search page redirect
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Escape') {
       setShowResults(false);
     } else if (e.key === 'Enter') {
-      // Go to search page with query
       if (query.trim()) {
         router.push(`/search?query=${encodeURIComponent(query.trim())}`);
         setShowResults(false);
@@ -101,346 +149,384 @@ export default function Navbar() {
   };
 
   const navItems = [
-    { name: 'E-Sykler', href: '', dropdown: true, mobileHref: '#products' },
     { name: 'Sykkelutstyr', href: '/accessorie' },
     { name: 'Kontakt oss', href: '/contact' },
   ];
 
-  const categories = [
-    {
-      name: 'Pendler',
-      slug: 'Pendler',
-      image: '/images/Stroll1/stroll1-main.png',
-    },
-    {
-      name: 'Terreng',
-      slug: 'Terreng',
-      image: '/images/dyno/dyno-1.png',
-    },
-    {
-      name: 'Hybrid',
-      slug: 'Hybrid',
-      image: '/images/lyon/lyon-1.png',
-    },
-    {
-      name: 'Sammenleggbar',
-      slug: 'Sammenleggbar',
-      image: '/images/d3f/d3f-main.png',
-    },
-    {
-      name: 'Lastesykkel',
-      slug: 'Lastesykkel',
-      image: '/images/transer/transer-1.png',
-    },
-    {
-      name: 'Fatbike',
-      slug: 'Fatbike',
-      image: '/images/C9/c9-main.png',
-    },
-  ];
-
   const moreMenuItems = [
-    { name: 'Vilkår for tjeneste', href: '/terms' },
+    { name: 'El-sykler', href: '/', dropdown: true },
+    { name: 'Sykkelutstyr', href: '/accessorie' },
     { name: 'Kontakt oss', href: '/contact' },
   ];
 
   const toggleDropdown = (index: number) =>
     setActiveDropdown(activeDropdown === index ? null : index);
 
-  const toggleMoreMenu = () => {
-    setIsMoreMenuOpen(!isMoreMenuOpen);
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    if (isMobileMenuOpen) {
+      setMobileDropdownOpen(false);
+    }
   };
 
-  const toggleMobileDropdown = () =>
-    setMobileDropdownOpen((s) => !s);
+  const toggleMobileDropdown = () => setMobileDropdownOpen((s) => !s);
+
+  const toggleMoreMenu = () => setIsMoreMenuOpen(!isMoreMenuOpen);
 
   return (
     <>
-      <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-white shadow-lg' : 'bg-white'
-        }`}
-      >
-        {/* MOBILE */}
-        <div className="md:hidden bg-white">
-          <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200">
-            <Link href="/">
-              <img src="/images/logo.jpg" alt="Logo" className="h-20 w-auto" />
+      
+
+      <nav className="fixed top-5 w-full z-40 bg-white border-b shadow-sm">
+        {/* TOP ROW like the screenshot */}
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between h-16 gap-4">
+            {/* Logo */}
+            <Link href="/" className="flex-shrink-0 flex items-center">
+              <img
+                src="/images/logo.jpg"
+                alt="Logo"
+                className="h-9 w-auto md:h-10"
+              />
             </Link>
 
-            <div className="flex items-center space-x-4">
-              <Link href="/cart">
-                <CartIcon className="text-gray-700" />
-              </Link>
-
-              <button
-                id="more-menu-button"
-                onClick={toggleMoreMenu}
-                className="flex-shrink-0 p-1"
-                aria-label="Mer meny"
-              >
-                <EllipsisVertical className="w-5 h-5 text-gray-700 hover:text-black transition-colors" />
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Search */}
-          <div className="px-4 py-3 border-b border-gray-200" ref={mobileSearchRef}>
-            <div className="relative">
-              <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={handleKeyDown}
-                onFocus={() => { if (results.length) setShowResults(true); }}
-                type="text"
-                placeholder="Hva leter du etter?"
-                className="w-full pl-10 pr-4 py-2 text-sm bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:border-yellow-400"
-              />
-
-              {/* Mobile search results (expand under input) */}
-              {showResults && results.length > 0 && (
-                <div className="mt-2 bg-white border border-gray-200 rounded-md shadow max-h-64 overflow-y-auto">
-                  {results.slice(0, 8).map((product) => (
-                    <Link
-                      key={product.id}
-                      href={`/products/${product.slug}`}
-                      className="flex items-center justify-between px-3 py-2 hover:bg-gray-50"
-                      onClick={() => {
-                        setShowResults(false);
-                        setQuery('');
-                      }}
-                    >
-                      <div className="text-left">
-                        <div className="text-sm font-medium text-black">{product.name}</div>
-                        {product.price !== undefined && (
-                          <div className="text-xs text-gray-500 mt-1">
-                            {typeof product.price === 'number' ? `${product.price} kr` : product.price}
-                          </div>
-                        )}
-                      </div>
-                      <img
-                        src={product.image || '/images/placeholder.png'}
-                        alt={product.name}
-                        className="w-12 h-12 object-contain rounded-md border border-gray-200 ml-2"
-                      />
-                    </Link>
-                  ))}
-                </div>
-              )}
-
-            </div>
-          </div>
-
-          {/* Mobile nav (horizontal layout) */}
-          <div className="px-2 py-3 mobile-nav-container relative">
-            <div className="flex gap-1 overflow-x-auto">
-              {navItems.map((item) => (
-                <div key={item.name} className="flex-shrink-0">
-                  {item.dropdown ? (
-                    <button
-                      onClick={toggleMobileDropdown}
-                      className="px-2 py-2 text-xs text-gray-800 rounded-md hover:bg-gray-100 transition whitespace-nowrap flex items-center gap-1"
-                    >
-                      {item.name}
-                      <ChevronDown className={`w-3 h-3 transition-transform ${mobileDropdownOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                  ) : (
-                    <a
-                      href={item.mobileHref || item.href}
-                      className="px-2 py-2 text-xs text-gray-800 rounded-md hover:bg-gray-100 transition whitespace-nowrap"
-                    >
-                      {item.name}
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
-            {/* Mobile dropdown outside overflow container */}
-            {mobileDropdownOpen && (
-              <div className="absolute top-full left-2 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-[60]">
-                {categories.map((cat) => (
-                  <Link
-                    key={cat.slug}
-                    href={`/category/${cat.slug}`}
-                    className="block px-3 py-2 text-xs text-gray-800 hover:bg-gray-100 transition"
-                    onClick={() => setMobileDropdownOpen(false)}
+            {/* Search (desktop) */}
+            <div
+              className="hidden md:block flex-1 max-w-3xl mx-4"
+              ref={desktopSearchRef}
+            >
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  id="desktop-search-input"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  onFocus={() => {
+                    if (results.length) setShowResults(true);
+                  }}
+                  type="text"
+                  placeholder="Hva leter du etter?"
+                  className="w-full pl-12 pr-12 py-2.5 rounded-lg bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-sm text-black"
+                />
+                {query && (
+                  <button
+                    onClick={() => {
+                      setQuery('');
+                      setShowResults(false);
+                    }}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded-full"
                   >
-                    {cat.name}
-                  </Link>
-                ))}
-            <div className="px-8 py-4 border-t border-gray-200 text-center flex-shrink-0">
-                          <Link
-                            href="/cycle"
-                            className="inline-flex items-center gap-2 text-xs text-yellow-500 transition-colors"
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            Se alle el-sykler
-                            <ChevronRight className="w-4 h-4" />
-                          </Link>
-                        </div>
-              </div>
-            )}
-          </div>
-        </div>
+                    <X className="w-4 h-4 text-gray-500" />
+                  </button>
+                )}
 
-        {/* DESKTOP */}
-        <div className="hidden md:block bg-white border-b border-gray-100">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex justify-between items-center h-16">
-              <Link href="/">
-                <img src="/images/logo.jpg" alt="Logo" className="w-36" />
-              </Link>
-
-              {/* Desktop Search (with results dropdown) */}
-              <div className="hidden md:flex flex-1 max-w-lg mx-8 relative" ref={desktopSearchRef}>
-                <div className="relative w-full">
-                  <input
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    onFocus={() => { if (results.length) setShowResults(true); }}
-                    type="text"
-                    placeholder="Hva leter du etter?"
-                    className="w-full px-4 py-2 text-black border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400"
-                  />
-                  <Search className="absolute right-3 top-2.5 w-5 h-5 text-gray-400" />
-                </div>
-
-                {/* Desktop results dropdown */}
+                {/* search results */}
                 {showResults && results.length > 0 && (
-                  <div className="absolute top-full left-0 mt-2 w-full bg-white shadow-lg rounded-lg border border-gray-200 z-50 max-h-72 overflow-y-auto">
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-xl max-h-96 overflow-y-auto z-50">
                     {results.slice(0, 8).map((product) => (
                       <Link
                         key={product.id}
-                        href={`/products/${product.slug}`}
-                        className="flex items-center justify-between px-4 py-2 hover:bg-gray-50 transition-colors"
+                        href={product.isAccessory ? `/accessories/${product.slug}` : `/products/${product.slug}`}
+                        className="flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
                         onClick={() => {
                           setShowResults(false);
                           setQuery('');
                         }}
                       >
-                        <div className="text-left">
-                          <div className="text-sm font-medium text-black">{product.name}</div>
+                        <div className="text-left flex-1 min-w-0 pr-4">
+                          <div className="text-sm font-medium text-black truncate">
+                            {product.name}
+                          </div>
                           {product.price !== undefined && (
                             <div className="text-xs text-gray-500 mt-1">
-                              {typeof product.price === 'number' ? `${product.price} kr` : product.price}
+                              {typeof product.price === 'number'
+                                ? `${product.price} kr`
+                                : product.price}
                             </div>
                           )}
                         </div>
-
                         <img
                           src={product.image || '/images/placeholder.png'}
                           alt={product.name}
-                          className="w-12 h-12 object-contain rounded-md border border-gray-200 ml-2"
+                          className="w-14 h-14 object-contain rounded-md border border-gray-200 flex-shrink-0"
                         />
                       </Link>
                     ))}
                   </div>
-                  
                 )}
-                 
-              </div>
-
-              {/* Right side icons */}
-              <div className="flex items-center space-x-4 relative">
-                <Link href="/" className="text-black hover:text-yellow-400 transition-colors flex items-center">
-                  <MapPin className="w-4 h-4 mr-1" /> Norge
-                </Link>
-                <Link href="/cart">
-                  <CartIcon className="hidden md:flex items-center space-x-2 text-gray-700 hover:text-black transition-colors" />
-                </Link>
-
-                {/* More menu button */}
-                <button onClick={toggleMoreMenu} className="flex items-center space-x-1 text-gray-700 hover:text-black transition-colors p-2">
-                  <EllipsisVertical className="w-5 h-5" />
-                </button>
               </div>
             </div>
 
-            {/* Desktop nav: hover dropdown for E-Bikes */}
-            <div className="relative">
-              <div className="flex space-x-8 py-4 text-lg">
-                {navItems.map((item, index) => (
-                  <div
-                    key={index}
-                    className="relative group"
-                    onMouseEnter={() => item.dropdown && toggleDropdown(index)}
-                    onMouseLeave={() => setActiveDropdown(null)}
-                  >
-                    <Link
-                      href={item.href}
-                      className="flex items-center space-x-1 text-gray-700 hover:text-black transition-colors duration-200"
-                    >
-                      <span>{item.name}</span>
-                      {item.dropdown && <ChevronDown className="w-4 h-4 text-gray-500" />}
-                    </Link>
-
-                    {/* Improved dropdown for E-Bikes on desktop */}
-                    {item.dropdown && activeDropdown === index && (
-                      <div className="absolute left-0 top-full w-[700px] bg-white shadow-2xl rounded-xl border border-gray-100 p-6 z-50">
-                        <div className="mb-6">
-                          <h3 className="text-xl font-bold text-gray-900 mb-2">Velg din perfekte el-sykkel</h3>
-                          <p className="text-gray-600">Utforsk vårt utvalg av høykvalitets elektriske sykler</p>
-                        </div>
-                        <div className="grid grid-cols-3 gap-4">
-                          {categories.map((cat) => (
-                            <Link
-                              key={cat.slug}
-                              href={`/category/${cat.slug}`}
-                              className="group hover:bg-gray-50 p-4 rounded-xl transition-all border border-gray-100 hover:border-yellow-300 hover:shadow-md"
-                              onClick={() => setActiveDropdown(null)}
-                            >
-                              <div className="flex flex-col items-center text-center">
-                                {/* <img src={cat.image} alt={cat.name} className="w-16 h-16 object-contain rounded-lg border border-gray-200 group-hover:scale-105 transition-transform mb-2" /> */}
-                                <div>
-                                  <h4 className="text-black font-semibold text-sm group-hover:text-yellow-600 transition-colors">{cat.name}</h4>
-                                </div>
-                              </div>
-                            </Link>
-                          ))}
-
-                        </div>
-                          <div className="px-8 py-4 border-t border-gray-200 text-center flex-shrink-0">
-                          <Link
-                            href="/cycle"
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-yellow-600 hover:text-yellow-700 transition-colors"
-                            onClick={() => setActiveDropdown(null)}
-                          >
-                            Se alle el-sykler
-                            <ChevronRight className="w-4 h-4" />
-                          </Link>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
+            {/* Right side */}
+            <div className="flex items-center gap-2">
+              {/* Location (desktop) */}
+              <div className="hidden md:flex items-center gap-1 text-sm text-gray-700">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                </svg>
+                <span>Norge</span>
               </div>
+
+              {/* Cart */}
+              <Link
+                href="/cart"
+                className="relative p-2 hover:bg-gray-100 rounded-full transition-colors inline-flex items-center justify-center"
+              >
+                <CartIcon />
+              </Link>
+
+              {/* More */}
+              <button
+                onClick={toggleMoreMenu}
+                className="hidden md:inline-flex p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <EllipsisVertical className="w-5 h-5 text-gray-700" />
+              </button>
+
+              {/* Mobile buttons */}
+              <button
+                onClick={toggleMobileMenu}
+                className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <Menu className="w-6 h-6 text-gray-700" />
+              </button>
             </div>
           </div>
         </div>
+
+        {/* BOTTOM ROW - Secondary Navigation */}
+        <div className="border-t border-gray-100">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex items-center h-14 gap-8">
+              <Link
+                href="/about"
+                className="text-base font-medium text-gray-700 hover:text-yellow-500 transition-colors"
+              >
+                Om oss
+              </Link>
+              <Link
+                href="/bli-forhandler"
+                className="text-base font-medium text-gray-700 hover:text-yellow-500 transition-colors"
+              >
+                Bli forhandler
+              </Link>
+            </div>
+          </div>
+        </div>
+
       </nav>
 
-      {/* Right-side drawer for More Menu */}
+      {/* MOBILE MENU (unchanged logic, only header matches new top row) */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div className="fixed inset-0 bg-black bg-opacity-50" onClick={toggleMobileMenu}></div>
+
+          <div className="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white shadow-xl transform transition-transform duration-300 ease-in-out overflow-y-auto" style={{marginTop: '0px'}}>
+            <div className="flex justify-between items-center p-4 border-b border-gray-200">
+              <div className="flex items-center gap-3">
+                <img
+                  src="/images/logo.jpg"
+                  alt="JOBOBIKE"
+                  className="h-8 w-auto"
+                />
+              </div>
+              <button
+                onClick={toggleMobileMenu}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-700" />
+              </button>
+            </div>
+
+            {/* mobile search */}
+            <div className="p-4 border-b border-gray-200" ref={mobileSearchRef}>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  onFocus={() => {
+                    if (results.length) setShowResults(true);
+                  }}
+                  type="text"
+                  placeholder="Søk produkter..."
+                  className="w-full pl-10 pr-4 py-2.5 text-sm text-black bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/20"
+                />
+
+                {showResults && results.length > 0 && (
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg max-h-72 overflow-y-auto z-50">
+                    {results.slice(0, 8).map((product) => (
+                      <Link
+                        key={product.id}
+                        href={product.isAccessory ? `/accessories/${product.slug}` : `/products/${product.slug}`}
+                        className="flex items-center justify-between px-3 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
+                        onClick={() => {
+                          setShowResults(false);
+                          setQuery('');
+                          toggleMobileMenu();
+                        }}
+                      >
+                        <div className="text-left flex-1 min-w-0 pr-3">
+                          <div className="text-sm font-medium text-black truncate">
+                            {product.name}
+                          </div>
+                          {product.price !== undefined && (
+                            <div className="text-xs text-gray-500 mt-0.5">
+                              {typeof product.price === 'number'
+                                ? `${product.price} kr`
+                                : product.price}
+                            </div>
+                          )}
+                        </div>
+                        <img
+                          src={product.image || '/images/placeholder.png'}
+                          alt={product.name}
+                          className="w-14 h-14 object-contain rounded-md border border-gray-200 flex-shrink-0"
+                        />
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* mobile navigation */}
+            <div className="p-4 space-y-2">
+              {/* El-sykler dropdown with images */}
+              <div>
+                <button
+                  onClick={toggleMobileDropdown}
+                  className="flex items-center justify-between w-full p-3 text-left text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+                >
+                  <span className="font-medium">El-sykler</span>
+                  <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform ${mobileDropdownOpen ? 'rotate-90' : ''}`} />
+                </button>
+                {mobileDropdownOpen && (
+                  <div className="mt-2 space-y-2">
+                    {categories.map((cat) => (
+                      <Link
+                        key={cat.slug}
+                        href={`/category/${cat.slug}`}
+                        className="flex items-center p-3 hover:bg-gray-50 rounded-lg transition-colors border border-gray-100"
+                        onClick={toggleMobileMenu}
+                      >
+                        <img
+                          src={cat.image}
+                          alt={cat.name}
+                          className="w-12 h-12 object-contain rounded-md border border-gray-200 mr-3 flex-shrink-0"
+                        />
+                        <div className="flex-1">
+                          <div className="text-sm font-medium text-gray-900">{cat.name}</div>
+                          <div className="text-xs text-gray-500 mt-0.5">{cat.tagline}</div>
+                        </div>
+                      </Link>
+                    ))}
+                    <Link
+                      href="/cycle"
+                      className="block p-3 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center"
+                      onClick={toggleMobileMenu}
+                    >
+                      Se alle el-sykler
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Sidebar menu items only */}
+              <Link
+                href="/accessorie"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Sykkelutstyr
+              </Link>
+              <Link
+                href="/contact"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={toggleMobileMenu}
+              >
+                Kontakt oss
+              </Link>
+
+            </div>
+
+
+          </div>
+        </div>
+      )}
+
+      {/* right-side drawer for More */}
       {isMoreMenuOpen && (
         <div className="fixed inset-0 z-50 flex justify-end bg-black bg-opacity-30">
-          <div className="w-80 bg-white h-full shadow-lg transform transition-transform duration-300 ease-in-out">
+          <div className="w-80 bg-white h-full shadow-lg">
             <div className="flex justify-between items-center p-4 border-b">
-              <h2 className="text-lg font-semibold text-gray-700">Flere alternativer</h2>
+              <h2 className="text-lg font-semibold text-gray-700">
+                Flere alternativer
+              </h2>
               <button onClick={toggleMoreMenu}>
                 <X className="w-5 h-5 text-gray-600 hover:text-black" />
               </button>
             </div>
 
             <div className="p-6 space-y-4">
-              {moreMenuItems.map((item) => (
-                <Link key={item.name} href={item.href} className="block text-gray-700 hover:text-black" onClick={toggleMoreMenu}>
-                  {item.name}
-                </Link>
+              {moreMenuItems.map((item, index) => (
+                item.dropdown ? (
+                  <div key={item.name} className="space-y-2">
+                    <button
+                      onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}
+                      className="flex items-center justify-between w-full text-left text-gray-900 font-semibold hover:text-yellow-500 transition-colors"
+                    >
+                      <span>{item.name}</span>
+                      <ChevronRight className={`w-4 h-4 text-gray-400 transition-transform ${desktopDropdownOpen ? 'rotate-90' : ''}`} />
+                    </button>
+                    {desktopDropdownOpen && (
+                      <div className="pl-4 space-y-2">
+                        {categories.map((cat) => (
+                          <Link
+                            key={cat.slug}
+                            href={`/category/${cat.slug}`}
+                            className="flex items-center p-2 hover:bg-gray-50 rounded-lg transition-colors border border-gray-100"
+                            onClick={toggleMoreMenu}
+                          >
+                            <img
+                              src={cat.image}
+                              alt={cat.name}
+                              className="w-10 h-10 object-contain rounded-md border border-gray-200 mr-3 flex-shrink-0"
+                            />
+                            <div className="flex-1">
+                              <div className="text-sm font-medium text-gray-900">{cat.name}</div>
+                              <div className="text-xs text-gray-500 mt-0.5">{cat.tagline}</div>
+                            </div>
+                          </Link>
+                        ))}
+                        <Link
+                          href="/cycle"
+                          className="block p-2 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
+                          onClick={toggleMoreMenu}
+                        >
+                          Se alle el-sykler
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="block text-gray-700 hover:text-black"
+                    onClick={toggleMoreMenu}
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
             </div>
 
-            <div className="absolute bottom-0 w-full p-4 border-t text-center text-sm text-gray-500">Trenger du hjelp? Kontakt vårt supportteam</div>
+            <div className="absolute bottom-0 w-full p-4 border-t text-center text-sm text-gray-500">
+              Trenger du hjelp? Kontakt vårt supportteam
+            </div>
           </div>
         </div>
       )}
