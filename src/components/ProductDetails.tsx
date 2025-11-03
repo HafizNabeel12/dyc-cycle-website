@@ -26,7 +26,7 @@ function ReviewStars({ rating = 5, reviewCount = 14 }: { rating?: number; review
           />
         ))}
       </div>
-      <span className="text-sm text-gray-600">{reviewCount} Reviews</span>
+      <span className="text-sm text-gray-600">{reviewCount} Anmeldelser</span>
     </div>
   );
 }
@@ -150,13 +150,13 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
 
           {/* Mobile Description */}
           <div className="mt-6">
-            <h2 className="text-lg font-bold mb-3 text-black">About the Product</h2>
+            <h2 className="text-lg font-bold mb-3 text-black">Om produktet</h2>
             <p className="text-gray-700 text-sm leading-relaxed">{product.description}</p>
           </div>
 
           {/* Mobile Key Features */}
           <div className="mt-6">
-            <h3 className="font-semibold mb-3 text-black">Key Features:</h3>
+            <h3 className="font-semibold mb-3 text-black">Hovedfunksjoner:</h3>
             <ul className="list-disc ml-5 space-y-2 text-gray-700 text-sm">
               {product.keyFeatures.map((f, i) => (
                 <li key={i}>{f}</li>
@@ -172,7 +172,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 onClick={() => toggleAccordion("specs")}
                 className="w-full px-4 py-4 flex items-center justify-between text-left"
               >
-                <span className="font-medium">Specs</span>
+                <span className="font-medium">Spesifikasjoner</span>
                 {openAccordion === "specs" ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
               </button>
               {openAccordion === "specs" && (
@@ -197,13 +197,13 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 onClick={() => toggleAccordion("size")}
                 className="w-full px-4 py-4 flex items-center justify-between text-left"
               >
-                <span className="font-medium">Size</span>
+                <span className="font-medium">Størrelse</span>
                 {openAccordion === "size" ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
               </button>
               {openAccordion === "size" && (
                 <div className="px-4 pb-4 text-sm text-gray-700">
                   {product.availableSizes.length === 0 ? (
-                    <p>One-size / folding model</p>
+                    <p>En størrelse / sammenleggbar modell</p>
                   ) : (
                     <div className="grid grid-cols-2 gap-2">
                       {product.availableSizes.map((s) => (
@@ -221,7 +221,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 onClick={() => toggleAccordion("box")}
                 className="w-full px-4 py-4 flex items-center justify-between text-left"
               >
-                <span className="font-medium">What&apos;s in the Box</span>
+                <span className="font-medium">Hva er i esken</span>
                 {openAccordion === "box" ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
               </button>
               {openAccordion === "box" && (
@@ -312,13 +312,13 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
 
             {/* DESCRIPTION */}
             <div className="mt-8">
-              <h2 className="text-xl font-bold mb-2 text-black">About the Product</h2>
+              <h2 className="text-xl font-bold mb-2 text-black">Om produktet</h2>
               <p className="text-gray-700">{product.description}</p>
             </div>
 
             {/* KEY FEATURES */}
             <div className="mt-6">
-              <h3 className="font-semibold mb-2 text-black">Key Features:</h3>
+              <h3 className="font-semibold mb-2 text-black">Hovedfunksjoner:</h3>
               <ul className="list-disc ml-6 space-y-1 text-gray-700">
                 {product.keyFeatures.map((f, i) => (
                   <li key={i}>{f}</li>
@@ -334,7 +334,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
             <div className="flex items-center gap-6 mt-6">
               {/* Quantity Controls */}
               <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-600">Qty:</span>
+                <span className="text-sm text-gray-600">Antall:</span>
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleQuantityChange(quantity - 1)}
@@ -367,7 +367,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               {/* Specs */}
               <div className="border-b border-gray-100">
                 <button onClick={() => toggleAccordion("specs")} className="w-full px-6 py-4 flex items-center justify-between text-left">
-                  <span className="font-medium">Specs</span>
+                  <span className="font-medium">Spesifikasjoner</span>
                   {openAccordion === "specs" ? <ChevronUp /> : <ChevronDown />}
                 </button>
                 {openAccordion === "specs" && (
@@ -389,13 +389,13 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               {/* Size */}
               <div className="border-b border-gray-100">
                 <button onClick={() => toggleAccordion("size")} className="w-full px-6 py-4 flex items-center justify-between text-left">
-                  <span className="font-medium">Size</span>
+                  <span className="font-medium">Størrelse</span>
                   {openAccordion === "size" ? <ChevronUp /> : <ChevronDown />}
                 </button>
                 {openAccordion === "size" && (
                   <div className="px-6 pb-4 text-sm text-gray-700">
                     {product.availableSizes.length === 0 ? (
-                      <p>One-size / folding model</p>
+                      <p>En størrelse / sammenleggbar modell</p>
                     ) : (
                       <div className="grid grid-cols-2 gap-2">
                         {product.availableSizes.map((s) => (
@@ -410,7 +410,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               {/* What's in the Box */}
               <div>
                 <button onClick={() => toggleAccordion("box")} className="w-full px-6 py-4 flex items-center justify-between text-left">
-                  <span className="font-medium">What&apos;s in the Box</span>
+                  <span className="font-medium">Hva er i esken</span>
                   {openAccordion === "box" ? <ChevronUp /> : <ChevronDown />}
                 </button>
                 {openAccordion === "box" && (
