@@ -71,7 +71,7 @@ export default function AccessoriesPage() {
                                         {!product.inStock && (
                                             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                                                 <span className="bg-white text-gray-900 px-4 py-2 rounded-full font-medium text-sm">
-                                                    Utsolgt
+                                                    Ikke på lager
                                                 </span>
                                             </div>
                                         )}

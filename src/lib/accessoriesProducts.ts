@@ -188,6 +188,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
       { label: "Montering", value: "Styrefeste" },
       { label: "Rotasjon", value: "360°" }
     ],
+    colors: ["Svart", "Blå", "Rød"],
     features: [
       "Vanntett berøringsskjerm deksel",
       "360° rotasjon",
@@ -261,7 +262,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     compatibility: ["Universal"],
     inStock: true,
     sizes: ["S (52-56cm)", "M (56-60cm)", "L (60-64cm)"],
-    colors: ["Svart", "Hvit", "Blå", "Rød"]
+    colors: ["Svart", "Blå" ]
   },
   {
     id: "8",

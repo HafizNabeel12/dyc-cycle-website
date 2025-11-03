@@ -195,7 +195,7 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               </div>
             )}
 
-            {/* Color Selection */}
+             {/* Color Selection */}
             {product.colors && product.colors.length > 0 && (
               <div>
                 <label className="block text-sm font-medium text-gray-900 mb-3">
@@ -206,7 +206,7 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                     <button
                       key={color}
                       onClick={() => setSelectedColor(color)}
-                      className={`px-6 py-3 border rounded-lg font-medium transition-all ${
+                      className={`px-4 py-2 border rounded-lg font-medium transition-all ${
                         selectedColor === color
                           ? 'bg-black text-white border-black'
                           : 'bg-white text-gray-900 border-gray-300 hover:border-black'
@@ -240,6 +240,8 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                 </button>
               </div>
             </div>
+
+           
 
             {/* Add to Cart - Desktop */}
             <div className="hidden lg:block space-y-3 pt-4">

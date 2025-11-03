@@ -164,6 +164,28 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
             </ul>
           </div>
 
+          {/* Mobile Color Selection */}
+          {product.availableColors && product.availableColors.length > 0 && (
+            <div className="mt-6">
+              <h3 className="font-semibold mb-3 text-black">Farge:</h3>
+              <div className="flex flex-wrap gap-2">
+                {product.availableColors.map((color) => (
+                  <button
+                    key={color}
+                    onClick={() => setSelectedColor(color)}
+                    className={`px-4 py-2 border rounded-lg font-medium transition-all ${
+                      selectedColor === color
+                        ? 'bg-black text-white border-black'
+                        : 'bg-white text-gray-900 border-gray-300 hover:border-black'
+                    }`}
+                  >
+                    {color}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Mobile Accordion */}
           <div className="mt-6 bg-white border border-gray-200 rounded-lg text-black">
             {/* Specs */}
@@ -329,6 +351,27 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               <span className="text-2xl font-bold text-black">{formatCurrency(product.originalPrice)}</span>
             </div>
 
+            {/* Desktop Color Selection */}
+            {product.availableColors && product.availableColors.length > 0 && (
+              <div className="mt-6">
+                <h3 className="font-semibold mb-3 text-black">Farge:</h3>
+                <div className="flex flex-wrap gap-2">
+                  {product.availableColors.map((color) => (
+                    <button
+                      key={color}
+                      onClick={() => setSelectedColor(color)}
+                      className={`px-4 py-2 border rounded-lg font-medium transition-all ${
+                        selectedColor === color
+                          ? 'bg-black text-white border-black'
+                          : 'bg-white text-gray-900 border-gray-300 hover:border-black'
+                      }`}
+                    >
+                      {color}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Quantity + Add to Cart in one row */}
             <div className="flex items-center gap-6 mt-6">
