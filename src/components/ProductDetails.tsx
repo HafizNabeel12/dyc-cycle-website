@@ -168,7 +168,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
           <div className="mt-4">
             <AddToCartButton
               product={product}
-              className="w-full bg-[#12b190] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0f9a7a]"
+              className="w-full bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600"
             />
           </div>
 
