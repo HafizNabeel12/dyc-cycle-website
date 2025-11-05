@@ -21,7 +21,7 @@ const LandingPage = () => {
   const getQuantity = (productId: string) => quantities[productId] || 1;
   
   return (
-    <div className="min-h-screen bg-white mt-32 md:mt-24">
+    <div className="min-h-screen bg-white mt-24 md:mt-24">
 
       {/* Hero Section */}
       <section className="flex justify-center items-center sm:m-0">

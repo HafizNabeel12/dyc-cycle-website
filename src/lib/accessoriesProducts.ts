@@ -175,10 +175,10 @@ export const accessoriesProducts: AccessoryProduct[] = [
     fullDescription: "Hold telefonen din tilgjengelig og beskyttet med JOBOBIKE Telefon Holder. Det vanntette dekselet tillater full berøringsskjerm funksjonalitet mens det beskytter mot regn og støv. Det sikre monteringssystemet sikrer at telefonen din forblir på plass selv i røft terreng, noe som gjør den perfekt for GPS navigasjon.",
     price: 75,
     currency: "kr",
-    image: "/images/holder/holder-1.png",
+    image: "/images/holder/holder-2.png",
     images: [
-      "/images/holder/holder-1.png",
       "/images/holder/holder-2.png",
+      "/images/holder/holder-1.png",
       "/images/holder/holder-3.png",
       
     ],
