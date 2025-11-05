@@ -20,7 +20,7 @@ function ReviewStars({ rating = 5, reviewCount = 14 }: { rating?: number; review
             key={star}
             className={`w-4 h-4 ${
               star <= rating
-                ? "fill-[#12b190] text-[#12b190]"
+                ? "fill-yellow-500 text-yellow-500"
                 : "fill-gray-200 text-gray-200"
             }`}
           />
@@ -411,7 +411,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               {/* Add to Cart Button */}
               <AddToCartButton
                 product={product}
-                className="w-44 bg-[#12b190] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0f9a7a]"
+                className="w-44 bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600"
               />
             </div>
 

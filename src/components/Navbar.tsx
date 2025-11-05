@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import {
   Search,
   ChevronDown,
@@ -17,6 +17,7 @@ import { accessoriesProducts } from '@/lib/accessoriesProducts';
 
 export default function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
 
   const [activeDropdown, setActiveDropdown] = useState<null | number>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -53,7 +54,7 @@ export default function Navbar() {
         const product = getProductBySlug(slug);
         if (product && product.category && Array.isArray(product.category)) {
           product.category.forEach((cat: string) => {
-            if (!categoryMap.has(cat)) {
+            if (cat && cat.trim() && !categoryMap.has(cat)) {
               categoryMap.set(cat, {
                 name: formatCategoryName(cat),
                 slug: cat,
@@ -126,25 +127,26 @@ export default function Navbar() {
     return () => clearTimeout(id);
   }, [query]);
 
-  // close search dropdown and navbar dropdown on outside click
+  // close search dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as Node;
       const insideDesktop = desktopSearchRef.current?.contains(target);
       const insideMobile = mobileSearchRef.current?.contains(target);
-      const insideNavbarDropdown = navbarDropdownRef.current?.contains(target);
       
       if (!insideDesktop && !insideMobile) {
         setShowResults(false);
-      }
-      
-      if (!insideNavbarDropdown) {
-        setNavbarDropdownOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // close dropdowns on route change
+  useEffect(() => {
+    setNavbarDropdownOpen(false);
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Escape') {
@@ -162,7 +164,7 @@ export default function Navbar() {
     { name: 'Kontakt oss', href: '/contact' },
   ];
 
-  const moreMenuItems = [
+   const moreMenuItems = [
     { name: 'El-sykler', href: '/', dropdown: true },
     { name: 'Sykkelutstyr', href: '/accessorie' },
     { name: 'Kontakt oss', href: '/contact' },
@@ -188,7 +190,6 @@ export default function Navbar() {
 
   return (
     <>
-     
 
       <nav className="fixed top-0 w-full z-50 bg-white border-b shadow-sm">
         {/* TOP ROW like the screenshot */}
@@ -315,12 +316,11 @@ export default function Navbar() {
               <div className="relative flex-shrink-0" ref={navbarDropdownRef}>
                 <button
                   onClick={() => setNavbarDropdownOpen(!navbarDropdownOpen)}
-                  className="flex items-center mt-0 gap-1 text-sm md:text-base font-medium text-gray-700 hover:text-yellow-500 transition-colors whitespace-nowrap"
+                  className="flex items-center gap-1 text-sm md:text-base font-medium text-gray-700 hover:text-yellow-500 transition-colors whitespace-nowrap"
                 >
                   <span>El-sykler</span>
                   <ChevronDown className={`w-4 h-4 transition-transform ${navbarDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
-
               </div>
               <Link
                 href="/accessorie"
@@ -328,6 +328,7 @@ export default function Navbar() {
               >
                 Sykkelutstyr
               </Link>
+             
               <Link
                 href="/contact"
                 className="text-sm md:text-base font-medium text-gray-700 hover:text-yellow-500 transition-colors whitespace-nowrap flex-shrink-0"
@@ -342,16 +343,15 @@ export default function Navbar() {
 
       {/* Navbar Dropdown - Fixed Position */}
       {navbarDropdownOpen && (
-        <div className="fixed top-[120px] w-full z-[100]">
+        <div className="fixed top-[142px] w-full z-[100]">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="bg-white border border-gray-200 rounded-b-lg shadow-xl p-3 w-[500px] border-t-0">
+            <div className="bg-white border border-gray-200 rounded-lg shadow-xl p-3 w-[500px]">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                 {categories.length > 0 ? categories.map((cat) => (
                   <Link
                     key={cat.slug}
                     href={`/category/${cat.slug}`}
                     className="flex flex-col items-center p-2 hover:bg-gray-50 rounded-lg transition-colors border border-gray-100"
-                    onClick={() => setNavbarDropdownOpen(false)}
                   >
                     <img
                       src={cat.image}
@@ -369,15 +369,12 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-              <button
-                onClick={() => {
-                  setNavbarDropdownOpen(false);
-                  router.push('/cycle');
-                }}
-                className="block w-full p-2 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
+              <Link
+                href="/cycle"
+                className="block p-2 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
               >
                 Se alle el-sykler
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -506,45 +503,36 @@ export default function Navbar() {
               <Link
                 href="/accessorie"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
               >
                 Sykkelutstyr
               </Link>
-             
-             
+              <Link
+                href="/returns"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+              >
+                Retur og reklamasjon
+              </Link>
+              <Link
+                href="/terms"
+                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+              >
+                Vilkår for tjeneste
+              </Link>
               <Link
                 href="/contact"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
               >
                 Kontakt oss
               </Link>
               <Link
                 href="/privacypolicy"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
               >
                 Personvernerklæring
               </Link>
               <Link
-                href="/returns"
-                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
-              >
-                Retur og reklamasjon
-              </Link>
-              <Link
-                href="/faq"
-                className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
-              >
-               FAQs
-              </Link>
-             
-              <Link
                 href="/terms"
                 className="block p-3 text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                onClick={toggleMobileMenu}
               >
                 Vilkår for tjeneste
               </Link>
@@ -587,7 +575,6 @@ export default function Navbar() {
                             key={cat.slug}
                             href={`/category/${cat.slug}`}
                             className="flex items-center p-2 hover:bg-gray-50 rounded-lg transition-colors border border-gray-100"
-                            onClick={toggleMoreMenu}
                           >
                             <img
                               src={cat.image}
