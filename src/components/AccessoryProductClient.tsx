@@ -52,6 +52,33 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                 fill
                 className="object-cover"
               />
+              {/* Navigation Arrows */}
+              {product.images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => {
+                      const prevIndex = selectedImage === 0 ? product.images.length - 1 : selectedImage - 1;
+                      setSelectedImage(prevIndex);
+                    }}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                  >
+                    <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => {
+                      const nextIndex = selectedImage === product.images.length - 1 ? 0 : selectedImage + 1;
+                      setSelectedImage(nextIndex);
+                    }}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                  >
+                    <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
+              )}
             </div>
 
             {/* Thumbnail Images */}
@@ -131,14 +158,14 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-8 h-8 border border-yellow-400 rounded-lg bg-yellow-400 text-black hover:bg-yellow-500 transition-colors text-sm"
+                    className="w-8 h-8 border border-[#12b190] rounded-lg bg-[#12b190] text-white hover:bg-[#0f9a7a] transition-colors text-sm"
                   >
                     -
                   </button>
                   <span className="text-lg font-medium w-8 text-center text-black">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-8 h-8 border border-yellow-400 rounded-lg bg-yellow-400 text-black hover:bg-yellow-500 transition-colors text-sm"
+                    className="w-8 h-8 border border-[#12b190] rounded-lg bg-[#12b190] text-white hover:bg-[#0f9a7a] transition-colors text-sm"
                   >
                     +
                   </button>
@@ -151,7 +178,7 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                 disabled={!product.inStock}
                 className={`w-full py-4 rounded-lg font-medium transition-all mb-6 ${
                   product.inStock
-                    ? 'bg-yellow-400 text-black hover:bg-yellow-500'
+                    ? 'bg-[#12b190] text-white hover:bg-[#0f9a7a]'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >
@@ -201,20 +228,38 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                 <label className="block text-sm font-medium text-gray-900 mb-3">
                   Farge:
                 </label>
-                <div className="flex flex-wrap gap-2">
-                  {product.colors.map((color) => (
-                    <button
-                      key={color}
-                      onClick={() => setSelectedColor(color)}
-                      className={`px-4 py-2 border rounded-lg font-medium transition-all ${
-                        selectedColor === color
-                          ? 'bg-black text-white border-black'
-                          : 'bg-white text-gray-900 border-gray-300 hover:border-black'
-                      }`}
-                    >
-                      {color}
-                    </button>
-                  ))}
+                <div className="flex flex-wrap gap-3">
+                  {product.colors.map((color, index) => {
+                    const colorMap: { [key: string]: string } = {
+                      'Svart': '#000000',
+                      'Blå': '#0066CC',
+                      'Rød': '#CC0000',
+                      'Grå': '#808080',
+                      'Hvit': '#FFFFFF'
+                    };
+                    return (
+                      <button
+                        key={color}
+                        onClick={() => {
+                          setSelectedColor(color);
+                          if (product.colorImages && product.colorImages[color]) {
+                            const colorImageUrl = product.colorImages[color];
+                            const imageIndex = product.images.findIndex(img => img === colorImageUrl);
+                            if (imageIndex !== -1) {
+                              setSelectedImage(imageIndex);
+                            }
+                          }
+                        }}
+                        className={`w-8 h-8 rounded-full border-2 transition-all ${
+                          selectedColor === color
+                            ? 'border-black scale-110 shadow-lg'
+                            : 'border-gray-300 hover:border-gray-500'
+                        }`}
+                        style={{ backgroundColor: colorMap[color] || color }}
+                        title={color}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -227,14 +272,14 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-10 h-10 border border-yellow-400 rounded-lg bg-yellow-400 text-black hover:bg-yellow-500 transition-colors"
+                  className="w-10 h-10 border border-[#12b190] rounded-lg bg-[#12b190] text-white hover:bg-[#0f9a7a] transition-colors"
                 >
                   -
                 </button>
                 <span className="text-lg font-medium w-12 text-center text-black">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-10 h-10 border border-yellow-400 rounded-lg bg-yellow-400 text-black hover:bg-yellow-500 transition-colors"
+                  className="w-10 h-10 border border-[#12b190] rounded-lg bg-[#12b190] text-white hover:bg-[#0f9a7a] transition-colors"
                 >
                   +
                 </button>
@@ -250,7 +295,7 @@ export default function AccessoryProductClient({ product }: AccessoryProductClie
                 disabled={!product.inStock}
                 className={`w-full py-4 rounded-lg font-medium transition-all ${
                   product.inStock
-                    ? 'bg-yellow-400 text-black hover:bg-yellow-500'
+                    ? 'bg-[#12b190] text-white hover:bg-[#0f9a7a]'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >

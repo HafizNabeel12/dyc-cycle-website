@@ -1,4 +1,4 @@
-// lib/accessoriesProducts.ts
+﻿// lib/accessoriesProducts.ts
 
 export interface AccessoryProduct {
   id: string;
@@ -20,6 +20,7 @@ export interface AccessoryProduct {
   inStock: boolean;
   sizes?: string[];
   colors?: string[];
+  colorImages?: { [color: string]: string };
 }
 
 export const accessoriesProducts: AccessoryProduct[] = [
@@ -111,7 +112,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     fullDescription: "Denne vanntette deksel vesken er spesielt designet for å beskytte din JOBOBIKE Sam sammenleggbare sykkel mot støv, vann og skraper. Det holdbare materialet sikrer langvarig beskyttelse, mens den kompakte designen gjør det enkelt å oppbevare og transportere sykkelen din. Perfekt for reise og oppbevaring.",
     price: 65,
     currency: "kr",
-    image: "/images/Thermal/thermal-bag-1.png ",
+    image: "/images/Thermal/thermal-bag-1.png",
     images: [
       "/images/Thermal/thermal-bag-1.png",
       "/images/Thermal/thermal-bag-2.png",
@@ -189,6 +190,11 @@ export const accessoriesProducts: AccessoryProduct[] = [
       { label: "Rotasjon", value: "360°" }
     ],
     colors: ["Svart", "Blå", "Rød"],
+    colorImages: {
+      "Rød": "/images/holder/holder-1.png",
+      "Svart": "/images/holder/holder-2.png",
+      "Blå": "/images/holder/holder-3.png"
+    },
     features: [
       "Vanntett berøringsskjerm deksel",
       "360° rotasjon",
@@ -262,7 +268,11 @@ export const accessoriesProducts: AccessoryProduct[] = [
     compatibility: ["Universal"],
     inStock: true,
     sizes: ["S (52-56cm)", "M (56-60cm)", "L (60-64cm)"],
-    colors: ["Svart", "Blå" ]
+    colors: ["Svart", "Blå" ],
+    colorImages: {
+      "Svart": "/images/helmet/helmet-1.png",
+      "Blå": "/images/helmet/helmet-2.png"
+    }
   },
   {
     id: "8",
@@ -343,7 +353,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
       "Transer"
     ],
     inStock: true,
-    colors: ["Black"]
+    colors: ["Svart"]
   },
 
  
@@ -384,7 +394,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["All models"],
     inStock: true,
-    colors: ["Black"]
+    colors: ["Svart"]
   },
 
   
@@ -433,7 +443,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
       "Lyon Pro"
     ],
     inStock: true,
-    colors: ["Black"]
+    colors: ["Svart"]
   },
 
   // 12. Magnet Water Bottle Holder
@@ -471,7 +481,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["All models"],
     inStock: true,
-    colors: ["Black", "Grey"]
+    colors: ["Svart", "Gr�"]
   },
 
   // 13. Single Side Pannier Bag
@@ -512,7 +522,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["All models with rear rack"],
     inStock: true,
-    colors: ["Blue"]
+    colors: ["Bl�"]
   },
 
   // 14. Double Side Pannier Bag
@@ -553,7 +563,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["All models with rear rack"],
     inStock: true,
-    colors: ["Black", "Grey"]
+    colors: ["Svart"]
   },
 
   // 15. Canopy
@@ -593,7 +603,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["Transer", "Mover"],
     inStock: true,
-    colors: ["Black"]
+    colors: ["Svart"]
   },
 
   // 16. Monkey Bar
@@ -631,7 +641,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["Transer", "Mover"],
     inStock: true,
-    colors: ["Black"]
+    colors: ["Svart"]
   },
 
   // 17. Captain Chair
@@ -671,7 +681,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["Transer", "Mover"],
     inStock: true,
-    colors: ["Black"]
+    colors: ["Svart"]
   },
 
   // 18. Armrest
@@ -708,7 +718,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["Transer"],
     inStock: true,
-    colors: ["Black"]
+    colors: ["Svart"]
   },
 
   // 19. Safety Belt
@@ -745,7 +755,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["All models with rear rack"],
     inStock: true,
-    colors: ["Black"]
+    colors: ["Svart"]
   },
 
   // 20. Cushion
@@ -783,7 +793,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["All models with rear rack"],
     inStock: true,
-    colors: ["Black"]
+    colors: ["Svart"]
   },
 
   // 21. Loading-Bearing Plate
@@ -821,7 +831,7 @@ export const accessoriesProducts: AccessoryProduct[] = [
     ],
     compatibility: ["Transer", "Mover"],
     inStock: true,
-    colors: ["Black"]
+    colors: ["Svart"]
   }
 ];
 
@@ -834,4 +844,3 @@ export const getAccessoryBySlug = (slug: string): AccessoryProduct | undefined =
 export const getAccessoriesByCategory = (category: string[]): AccessoryProduct[] => {
   return accessoriesProducts.filter(product => product.category === category);
 };
-
