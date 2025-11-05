@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import Cookies from 'js-cookie';
@@ -21,7 +21,7 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: 'ADD_TO_CART'; payload: Omit<CartItem, 'quantity'> }
+  | { type: 'ADD_TO_CART'; payload: Omit<CartItem, 'quantity'> & { quantity?: number } }
   | { type: 'REMOVE_FROM_CART'; payload: string }
   | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
   | { type: 'CLEAR_CART' }
@@ -29,7 +29,7 @@ type CartAction =
   | { type: 'SET_LOADING'; payload: boolean };
 
 interface CartContextType extends CartState {
-  addToCart: (item: Omit<CartItem, 'quantity'>) => void;
+  addToCart: (item: Omit<CartItem, 'quantity'>, quantity?: number) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
@@ -115,16 +115,18 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 
     case 'ADD_TO_CART': {
       const existingItem = state.items.find(item => item.id === action.payload.id);
+      const quantityToAdd = action.payload.quantity || 1;
       
       let newItems: CartItem[];
       if (existingItem) {
         newItems = state.items.map(item =>
           item.id === action.payload.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantityToAdd }
             : item
         );
       } else {
-        newItems = [...state.items, { ...action.payload, quantity: 1 }];
+        const { quantity, ...itemWithoutQuantity } = action.payload;
+        newItems = [...state.items, { ...itemWithoutQuantity, quantity: quantityToAdd }];
       }
       
       const { totalItems, totalPrice } = calculateTotals(newItems);
@@ -194,8 +196,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [state.items, state.isLoading]);
 
-  const addToCart = (item: Omit<CartItem, 'quantity'>) => {
-    dispatch({ type: 'ADD_TO_CART', payload: item });
+  const addToCart = (item: Omit<CartItem, 'quantity'>, quantity: number = 1) => {
+    dispatch({ type: 'ADD_TO_CART', payload: { ...item, quantity } });
   };
 
   const removeFromCart = (id: string) => {

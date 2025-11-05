@@ -63,7 +63,7 @@ export default function SuccessClient() {
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
       <div className="text-center">
         <div className="relative">
-          <div className="animate-spin rounded-full h-16 w-16 border-4 border-[#12b190] border-b-transparent mb-6 mx-auto" />
+          <div className="animate-spin rounded-full h-16 w-16 border-4 border-yellow-500 border-b-transparent mb-6 mx-auto" />
           <div className="absolute inset-0 rounded-full h-16 w-16 border-4 border-gray-200 mx-auto" />
         </div>
         <h2 className="text-xl font-semibold text-gray-900 mb-2">Behandler din bestilling...</h2>
@@ -130,7 +130,7 @@ export default function SuccessClient() {
                 </div>
                 <div className="flex justify-between items-center py-2">
                   <span className="text-gray-600">Beløp:</span>
-                  <span className="text-xl font-bold text-[#12b190]">
+                  <span className="text-xl font-bold text-yellow-500">
                     {paymentIntent.amount ? `${(paymentIntent.amount / 100).toLocaleString('no-NO')} NOK` : '—'}
                   </span>
                 </div>

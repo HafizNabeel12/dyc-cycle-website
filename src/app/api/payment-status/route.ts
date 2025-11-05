@@ -19,6 +19,10 @@ export async function GET(req: Request) {
     });
 
     return NextResponse.json({
+      id: paymentIntent.id,
+      status: paymentIntent.status,
+      amount: paymentIntent.amount,
+      currency: paymentIntent.currency,
       payment_method: paymentIntent.payment_method
     });
   } catch (err: any) {
