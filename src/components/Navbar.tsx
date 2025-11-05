@@ -369,13 +369,15 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-              <Link
-                href="/cycle"
-                className="block p-2 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
-                onClick={() => setNavbarDropdownOpen(false)}
+              <button
+                onClick={() => {
+                  setNavbarDropdownOpen(false);
+                  router.push('/cycle');
+                }}
+                className="block w-full p-2 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
               >
                 Se alle el-sykler
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -487,13 +489,15 @@ export default function Navbar() {
                         </div>
                       </Link>
                     ))}
-                    <Link
-                      href="/cycle"
-                      className="block p-3 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center"
-                      onClick={toggleMobileMenu}
+                    <button
+                      onClick={() => {
+                        toggleMobileMenu();
+                        router.push('/cycle');
+                      }}
+                      className="block w-full p-3 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center"
                     >
                       Se alle el-sykler
-                    </Link>
+                    </button>
                   </div>
                 )}
               </div>
@@ -596,13 +600,15 @@ export default function Navbar() {
                             </div>
                           </Link>
                         ))}
-                        <Link
-                          href="/cycle"
-                          className="block p-2 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
-                          onClick={toggleMoreMenu}
+                        <button
+                          onClick={() => {
+                            toggleMoreMenu();
+                            router.push('/cycle');
+                          }}
+                          className="block w-full p-2 text-sm text-yellow-500 hover:text-yellow-600 font-medium rounded-lg bg-gray-50 transition-colors text-center mt-2"
                         >
                           Se alle el-sykler
-                        </Link>
+                        </button>
                       </div>
                     )}
                   </div>

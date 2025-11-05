@@ -20,7 +20,7 @@ function ReviewStars({ rating = 5, reviewCount = 14 }: { rating?: number; review
             key={star}
             className={`w-4 h-4 ${
               star <= rating
-                ? "fill-yellow-400 text-yellow-400"
+                ? "fill-[#12b190] text-[#12b190]"
                 : "fill-gray-200 text-gray-200"
             }`}
           />
@@ -32,9 +32,8 @@ function ReviewStars({ rating = 5, reviewCount = 14 }: { rating?: number; review
 }
 
 export default function ProductDetails({ product }: { product: ProductCard }) {
-  const [selectedImage, setSelectedImage] = useState(product.images[0]);
-  const [selectedColor, setSelectedColor] = useState(product.availableColors[0]);
-  const [selectedSize, setSelectedSize] = useState(product.availableSizes[0]);
+  const [selectedImage, setSelectedImage] = useState(product.images?.[0] || "");
+  const [selectedSize, setSelectedSize] = useState(product.availableSizes?.[0] || "");
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const { updateQuantity } = useCart();
 
@@ -70,7 +69,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
         {/* MOBILE IMAGE SECTION */}
         <div className="mt-6">
           {/* Main Image */}
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <Image
               src={selectedImage}
               alt={product.name}
@@ -78,6 +77,31 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               height={600}
               className="w-full h-auto object-contain rounded-lg"
             />
+            {/* Navigation Arrows */}
+            {product.images.length > 1 && (
+              <>
+                <button
+                  onClick={() => {
+                    const currentIndex = product.images.indexOf(selectedImage);
+                    const prevIndex = currentIndex === 0 ? product.images.length - 1 : currentIndex - 1;
+                    setSelectedImage(product.images[prevIndex]);
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                >
+                  <ChevronLeft size={20} className="text-gray-700" />
+                </button>
+                <button
+                  onClick={() => {
+                    const currentIndex = product.images.indexOf(selectedImage);
+                    const nextIndex = currentIndex === product.images.length - 1 ? 0 : currentIndex + 1;
+                    setSelectedImage(product.images[nextIndex]);
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                >
+                  <ChevronRight size={20} className="text-gray-700" />
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile Thumbnails - Arrow Navigation */}
@@ -144,9 +168,11 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
           <div className="mt-4">
             <AddToCartButton
               product={product}
-              className="w-full bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600"
+              className="w-full bg-[#12b190] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0f9a7a]"
             />
           </div>
+
+
 
           {/* Mobile Description */}
           <div className="mt-6">
@@ -164,27 +190,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
             </ul>
           </div>
 
-          {/* Mobile Color Selection */}
-          {product.availableColors && product.availableColors.length > 0 && (
-            <div className="mt-6">
-              <h3 className="font-semibold mb-3 text-black">Farge:</h3>
-              <div className="flex flex-wrap gap-2">
-                {product.availableColors.map((color) => (
-                  <button
-                    key={color}
-                    onClick={() => setSelectedColor(color)}
-                    className={`px-4 py-2 border rounded-lg font-medium transition-all ${
-                      selectedColor === color
-                        ? 'bg-black text-white border-black'
-                        : 'bg-white text-gray-900 border-gray-300 hover:border-black'
-                    }`}
-                  >
-                    {color}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+
 
           {/* Mobile Accordion */}
           <div className="mt-6 bg-white border border-gray-200 rounded-lg text-black">
@@ -264,7 +270,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
         <div className=" justify-center grid grid-cols-[3fr_2fr] gap-6 w-full">
           <div className=" w-full max-w-5xl ">
             {/* MAIN IMAGE */}
-            <div>
+            <div className="relative">
               <Image
                 src={selectedImage}
                 alt={product.name}
@@ -272,6 +278,31 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
                 height={800}
                 className="w-full max-h-[600px] object-contain"
               />
+              {/* Navigation Arrows */}
+              {product.images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => {
+                      const currentIndex = product.images.indexOf(selectedImage);
+                      const prevIndex = currentIndex === 0 ? product.images.length - 1 : currentIndex - 1;
+                      setSelectedImage(product.images[prevIndex]);
+                    }}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                  >
+                    <ChevronLeft size={20} className="text-gray-700" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      const currentIndex = product.images.indexOf(selectedImage);
+                      const nextIndex = currentIndex === product.images.length - 1 ? 0 : currentIndex + 1;
+                      setSelectedImage(product.images[nextIndex]);
+                    }}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-300 rounded-full p-3 shadow-lg z-10"
+                  >
+                    <ChevronRight size={20} className="text-gray-700" />
+                  </button>
+                </>
+              )}
             </div>
 
             <div className="relative">
@@ -351,27 +382,7 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               <span className="text-2xl font-bold text-black">{formatCurrency(product.originalPrice)}</span>
             </div>
 
-            {/* Desktop Color Selection */}
-            {product.availableColors && product.availableColors.length > 0 && (
-              <div className="mt-6">
-                <h3 className="font-semibold mb-3 text-black">Farge:</h3>
-                <div className="flex flex-wrap gap-2">
-                  {product.availableColors.map((color) => (
-                    <button
-                      key={color}
-                      onClick={() => setSelectedColor(color)}
-                      className={`px-4 py-2 border rounded-lg font-medium transition-all ${
-                        selectedColor === color
-                          ? 'bg-black text-white border-black'
-                          : 'bg-white text-gray-900 border-gray-300 hover:border-black'
-                      }`}
-                    >
-                      {color}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+
 
             {/* Quantity + Add to Cart in one row */}
             <div className="flex items-center gap-6 mt-6">
@@ -400,9 +411,11 @@ export default function ProductDetails({ product }: { product: ProductCard }) {
               {/* Add to Cart Button */}
               <AddToCartButton
                 product={product}
-                className="w-44 bg-yellow-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-yellow-600"
+                className="w-44 bg-[#12b190] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0f9a7a]"
               />
             </div>
+
+
 
 
             {/* SPECIFICATIONS */}

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useCart } from '@/components/CartContext'; // Adjust path as needed
 import { CartSummary } from '../components/CartSummary'; // Adjust path as needed
 import { ArrowLeft, ShoppingBag, Trash2, Plus, Minus } from 'lucide-react';
-import BuyNowButton from './BuyNowButton'; // ✅ Import BuyNowButton
+import BuyNowButton from './BuyNowButton'; // âœ… Import BuyNowButton
 import { formatCurrency } from '@/utils/currency';
 
 const CartPage: React.FC = () => {
@@ -59,7 +59,7 @@ const CartPage: React.FC = () => {
       router.push("/checkout");
     } catch (error) {
       console.error('Checkout error:', error);
-      alert('Det oppstod en feil ved å gå til kassen. Prøv igjen.');
+      alert('Det oppstod en feil ved å Gå til kassen. prøv igjen.');
     }
   };
 
@@ -70,7 +70,7 @@ const CartPage: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex justify-center items-center">
         <div className="container mx-auto px-4 py-8">
           <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-4 border-yellow-200 border-t-yellow-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-yellow-500 border-t-yellow-500"></div>
             <span className="ml-4 text-gray-700 font-medium">Laster handlekurven...</span>
           </div>
         </div>
@@ -85,8 +85,8 @@ const CartPage: React.FC = () => {
           {/* MOBILE EMPTY CART */}
           <div className="lg:hidden">
             <div className="bg-white rounded-3xl shadow-xl border border-gray-200 p-8 text-center backdrop-blur-sm">
-              <div className="w-20 h-20 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <ShoppingBag className="h-10 w-10 text-yellow-600" />
+              <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                <ShoppingBag className="h-10 w-10 text-white" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-3">Handlekurven din er tom</h2>
               <p className="text-gray-600 mb-8 text-sm leading-relaxed">
@@ -96,7 +96,7 @@ const CartPage: React.FC = () => {
               <div className="space-y-3">
                 <button
                   onClick={handleContinueShopping}
-                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-4 rounded-xl font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 flex items-center gap-2 justify-center text-sm shadow-lg transform hover:scale-105"
+                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-500 text-white px-6 py-4 rounded-xl font-semibold hover:from-yellow-600 hover:to-yellow-600 transition-all duration-300 flex items-center gap-2 justify-center text-sm shadow-lg transform hover:scale-105"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Start å handle
@@ -108,8 +108,8 @@ const CartPage: React.FC = () => {
           {/* DESKTOP EMPTY CART */}
           <div className="hidden lg:block">
             <div className="bg-white rounded-3xl shadow-xl border border-gray-200 p-16 text-center max-w-2xl mx-auto backdrop-blur-sm">
-              <div className="w-28 h-28 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center mx-auto mb-8">
-                <ShoppingBag className="h-14 w-14 text-yellow-600" />
+              <div className="w-28 h-28 bg-gradient-to-br from-yellow-500 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-8">
+                <ShoppingBag className="h-14 w-14 text-white" />
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Handlekurven din er tom</h2>
               <p className="text-gray-600 mb-10 text-lg">Det ser ut som du ikke har lagt til noe i handlekurven ennå.</p>
@@ -117,7 +117,7 @@ const CartPage: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   onClick={handleContinueShopping}
-                  className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-10 py-4 rounded-xl font-semibold hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 flex items-center gap-3 justify-center shadow-lg transform hover:scale-105"
+                  className="bg-gradient-to-r from-yellow-500 to-yellow-500 text-white px-10 py-4 rounded-xl font-semibold hover:from-yellow-600 hover:to-yellow-600 transition-all duration-300 flex items-center gap-3 justify-center shadow-lg transform hover:scale-105"
                 >
                   <ArrowLeft className="h-5 w-5" />
                   Fortsett å handle
@@ -130,7 +130,7 @@ const CartPage: React.FC = () => {
     );
   }
 
-  // ✅ Calculate total
+  // âœ… Calculate total
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
@@ -146,8 +146,8 @@ const CartPage: React.FC = () => {
                   {totalItems} {totalItems === 1 ? 'vare' : 'varer'}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center">
-                <ShoppingBag className="h-6 w-6 text-yellow-600" />
+              <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-500 rounded-full flex items-center justify-center">
+                <ShoppingBag className="h-6 w-6 text-white" />
               </div>
             </div>
           </div>
@@ -158,7 +158,7 @@ const CartPage: React.FC = () => {
                 <div className="flex gap-3">
                   {/* Product Image */}
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden shadow-inner">
+                    <div className="w-16 h-16 bg-white rounded-xl overflow-hidden shadow-inner">
                       {item.image ? (
                         <Image 
                           src={item.image} 
@@ -198,12 +198,12 @@ const CartPage: React.FC = () => {
                           min="1"
                           value={item.quantity}
                           onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value) || 1)}
-                          className="w-16 h-8 text-center text-sm font-bold text-black border-2 border-gray-200 rounded-lg focus:border-yellow-300 focus:outline-none"
+                          className="w-16 h-8 text-center text-sm font-bold text-black border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none"
                         />
                       </div>
                       
                       <div className="text-right flex-shrink-0">
-                        <p className="text-lg font-bold text-yellow-600">{formatCurrency(item.price * item.quantity)}</p>
+                        <p className="text-lg font-bold text-yellow-500">{formatCurrency(item.price * item.quantity)}</p>
                         <p className="text-xs text-gray-500">{formatCurrency(item.price)} per stk</p>
                       </div>
                     </div>
@@ -219,7 +219,7 @@ const CartPage: React.FC = () => {
             
             <button
               onClick={handleCheckout}
-              className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 shadow-lg transform hover:scale-105 mb-3"
+              className="w-full bg-gradient-to-r from-yellow-500 to-yellow-500 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-yellow-600 hover:to-yellow-600 transition-all duration-300 shadow-lg transform hover:scale-105 mb-3"
             >
               Gå til kassen
             </button>
@@ -245,8 +245,8 @@ const CartPage: React.FC = () => {
                   {totalItems} {totalItems === 1 ? 'vare' : 'varer'} i handlekurven
                 </p>
               </div>
-              <div className="w-16 h-16 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center">
-                <ShoppingBag className="h-8 w-8 text-yellow-600" />
+              <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-500 rounded-full flex items-center justify-center">
+                <ShoppingBag className="h-8 w-8 text-white" />
               </div>
             </div>
           </div>
@@ -260,15 +260,15 @@ const CartPage: React.FC = () => {
                       <div key={item.id}>
                         <div className="flex items-center gap-8 p-4 rounded-xl hover:bg-gray-50 transition-all duration-200">
                           {/* Product Image */}
-                          <div className="flex-shrink-0">
-                            <div className="w-28 h-28 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden shadow-lg">
+                          <div className=" ">
+                            <div className="w-28 h-28 bg-white rounded-lg shadow-lg">
                               {item.image ? (
                                 <Image 
                                   src={item.image} 
                                   alt={item.name}
                                   width={112}
                                   height={112}
-                                  className="w-full h-full object-contain"
+                                  className="w-full h-full object-contain rounded-lg"
                                 />
                               ) : (
                                 <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
@@ -291,12 +291,12 @@ const CartPage: React.FC = () => {
                                   min="1"
                                   value={item.quantity}
                                   onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value) || 1)}
-                                  className="w-20 h-12 text-center text-lg font-bold text-black border-2 border-gray-200 rounded-lg focus:border-yellow-300 focus:outline-none"
+                                  className="w-20 h-12 text-center text-lg font-bold text-black border-2 border-gray-200 rounded-lg focus:border-yellow-500 focus:outline-none"
                                 />
                               </div>
                               
                               <div className="text-right">
-                                <p className="text-3xl font-bold text-yellow-600">{formatCurrency(item.price * item.quantity)}</p>
+                                <p className="text-3xl font-bold text-yellow-500">{formatCurrency(item.price * item.quantity)}</p>
                                 <p className="text-sm text-gray-600 font-medium">{formatCurrency(item.price)} per stk</p>
                               </div>
                             </div>
@@ -324,7 +324,7 @@ const CartPage: React.FC = () => {
 
                 <button
                   onClick={handleCheckout}
-                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 shadow-lg transform hover:scale-105"
+                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-500 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-yellow-600 hover:to-yellow-600 transition-all duration-300 shadow-lg transform hover:scale-105"
                 >
                   Gå til kassen
                 </button>
@@ -340,17 +340,13 @@ const CartPage: React.FC = () => {
                   
                   <div className="text-center mt-8 pt-6 border-t border-gray-200">
                     <div className="flex items-center justify-center gap-3 text-sm text-gray-600 mb-3">
-                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                        <span className="text-green-600 text-sm font-bold">✓</span>
-                      </div>
+                     
                       <span className="font-medium">Kopi av E-sykkel manualen vil bli sendt på e-post med sporingsnummer</span>
                     </div>
                     <div className="flex items-center justify-center gap-3 text-sm text-gray-600">
-                      <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center">
-                        <span className="text-yellow-600 text-sm font-bold">💾</span>
-                      </div>
+                     
                       <span className="font-medium">Handlekurven din lagres automatisk</span>
-                    </div>
+                    </div> 
                   </div>
                 </div>
               </div>
